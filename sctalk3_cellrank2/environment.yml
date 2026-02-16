@@ -1,0 +1,31 @@
+name: cellrank2_workshop
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - jupyter
+  - jupyterlab
+  - pip:
+    # Core single-cell stack
+    - scanpy>=1.9
+    - anndata>=0.9
+    - scvelo>=0.3
+    # CellRank 2
+    - cellrank>=2.0
+    # Moscot for optimal transport
+    - moscot>=0.3
+    # RNA velocity (dynamical modeling)
+    - scvelo>=0.3
+    # Plotting and visualization
+    - matplotlib>=3.6
+    - seaborn>=0.12
+    # Utilities
+    - pandas>=1.5
+    - numpy>=1.23
+    - scipy>=1.9
+    - scikit-learn>=1.1
+    # Session info
+    - session-info
