@@ -37,248 +37,6 @@ type KernelInputCard = {
   snippet: string;
 };
 
-type SlotCrosswalkId = 'x' | 'layers' | 'obs' | 'var' | 'obsm' | 'varm' | 'obsp' | 'varp' | 'uns' | 'raw';
-type CrosswalkDirection = 'ANNDATA_TO_SEURAT' | 'SEURAT_TO_ANNDATA';
-
-type SlotCrosswalk = {
-  id: SlotCrosswalkId;
-  anndataPath: string;
-  anndataMeaning: string;
-  seuratAnchor: string;
-  seuratPaths: string[];
-  seuratMeaning: string;
-  shapeHint: string;
-  pythonPeek: string;
-  rPeek: string;
-  memoryHook: string;
-};
-
-const SLOT_CROSSWALK: SlotCrosswalk[] = [
-  {
-    id: 'x',
-    anndataPath: 'adata.X',
-    anndataMeaning: 'Primary matrix used by many Scanpy/CellRank steps (observations × variables).',
-    seuratAnchor: 'obj[["RNA"]]$data / $counts',
-    seuratPaths: [
-      'obj[["RNA"]]$data',
-      'obj[["RNA"]]$counts',
-      'LayerData(obj, assay = "RNA", layer = "data")',
-    ],
-    seuratMeaning: 'Equivalent values are assay layers in Seurat v5 (typically genes × cells orientation).',
-    shapeHint: 'AnnData: cells × genes | Seurat Assay5 layer: genes × cells',
-    pythonPeek: 'adata.X[:3, :5]',
-    rPeek: 'LayerData(obj, assay = "RNA", layer = "data")[1:5, 1:3]',
-    memoryHook: 'Think: AnnData keeps one active matrix in adata.X; Seurat keeps layer matrices per assay.',
-  },
-  {
-    id: 'layers',
-    anndataPath: 'adata.layers["counts" | "log1p" | ...]',
-    anndataMeaning: 'Alternative matrices with same dimensions as adata.X (raw counts, normalized, imputed, etc.).',
-    seuratAnchor: 'Layers(obj[["RNA"]]) + LayerData(...)',
-    seuratPaths: [
-      'Layers(obj[["RNA"]])',
-      'LayerData(obj, assay = "RNA", layer = "counts")',
-      'LayerData(obj, assay = "RNA", layer = "scale.data")',
-    ],
-    seuratMeaning: 'Seurat v5 Assay5 is layer-first; this is the closest 1:1 concept to AnnData layers.',
-    shapeHint: 'Same matrix dimensions as X for each named layer',
-    pythonPeek: 'adata.layers["counts"][:3, :5]',
-    rPeek: 'LayerData(obj, assay = "RNA", layer = "counts")[1:5, 1:3]',
-    memoryHook: 'If you remember one equivalence: AnnData layers ≈ Seurat v5 assay layers.',
-  },
-  {
-    id: 'obs',
-    anndataPath: 'adata.obs',
-    anndataMeaning: 'Per-cell metadata table (clusters, sample, pseudotime, QC, etc.).',
-    seuratAnchor: 'obj[[]] / obj@meta.data',
-    seuratPaths: [
-      'obj[[]]',
-      'obj@meta.data',
-    ],
-    seuratMeaning: 'Cell metadata lives at Seurat object level and aligns to cell barcodes.',
-    shapeHint: 'Rows = cells (n_obs)',
-    pythonPeek: 'adata.obs.head()',
-    rPeek: 'head(obj[[]])',
-    memoryHook: 'obs = observations = cells. In Seurat this is meta.data.',
-  },
-  {
-    id: 'var',
-    anndataPath: 'adata.var',
-    anndataMeaning: 'Per-gene metadata table (gene symbols, HVG flags, biotypes, etc.).',
-    seuratAnchor: 'obj[["RNA"]]@meta.data',
-    seuratPaths: [
-      'obj[["RNA"]]@meta.data',
-      'VariableFeatures(obj)',
-    ],
-    seuratMeaning: 'Feature metadata is attached to each assay in Seurat.',
-    shapeHint: 'Rows = genes/features (n_var)',
-    pythonPeek: 'adata.var.head()',
-    rPeek: 'head(obj[["RNA"]]@meta.data)',
-    memoryHook: 'var = variables = genes/features. In Seurat this is assay-level feature metadata.',
-  },
-  {
-    id: 'obsm',
-    anndataPath: 'adata.obsm["X_pca"], adata.obsm["X_umap"], ...',
-    anndataMeaning: 'Multi-dimensional per-cell arrays (embeddings, latent spaces, cell-level factors).',
-    seuratAnchor: 'Embeddings(obj[["pca"]]), Embeddings(obj[["umap"]])',
-    seuratPaths: [
-      'Embeddings(obj[["pca"]])',
-      'Embeddings(obj[["umap"]])',
-      'obj@reductions',
-    ],
-    seuratMeaning: 'Cell embeddings are stored in DimReduc objects within reductions.',
-    shapeHint: 'Rows = cells, columns = latent dimensions',
-    pythonPeek: 'adata.obsm["X_umap"][:5, :2]',
-    rPeek: 'Embeddings(obj[["umap"]])[1:5, 1:2]',
-    memoryHook: 'obsm = observation matrices (cell embeddings).',
-  },
-  {
-    id: 'varm',
-    anndataPath: 'adata.varm["PCs"], ...',
-    anndataMeaning: 'Per-gene multi-dimensional arrays (e.g., PCA loadings by gene).',
-    seuratAnchor: 'Loadings(obj[["pca"]])',
-    seuratPaths: [
-      'Loadings(obj[["pca"]])',
-      'obj@reductions$pca@feature.loadings',
-    ],
-    seuratMeaning: 'Feature loadings are in DimReduc feature.loadings.',
-    shapeHint: 'Rows = genes, columns = latent dimensions',
-    pythonPeek: 'adata.varm["PCs"][:5, :3]',
-    rPeek: 'Loadings(obj[["pca"]])[1:5, 1:3]',
-    memoryHook: 'varm mirrors obsm but for genes/features.',
-  },
-  {
-    id: 'obsp',
-    anndataPath: 'adata.obsp["connectivities"], adata.obsp["distances"]',
-    anndataMeaning: 'Cell-cell pairwise sparse matrices (KNN graph, distances, connectivities).',
-    seuratAnchor: 'obj@graphs$RNA_nn / obj@graphs$RNA_snn',
-    seuratPaths: [
-      'obj@graphs$RNA_nn',
-      'obj@graphs$RNA_snn',
-      'obj@neighbors',
-    ],
-    seuratMeaning: 'Seurat stores cell-cell graphs/neighbors in graph/neighbor slots.',
-    shapeHint: 'Square matrix over cells (n_obs × n_obs)',
-    pythonPeek: 'adata.obsp["connectivities"][:5, :5].A',
-    rPeek: 'obj@graphs$RNA_snn[1:5, 1:5]',
-    memoryHook: 'obsp = observation pairwise. Think cell-cell graph.',
-  },
-  {
-    id: 'varp',
-    anndataPath: 'adata.varp[...]',
-    anndataMeaning: 'Gene-gene pairwise matrices (coexpression/correlation/networks).',
-    seuratAnchor: 'No strict dedicated slot (often misc/tools)',
-    seuratPaths: [
-      'obj[["RNA"]]@misc$gene_graph',
-      'obj@tools$...',
-    ],
-    seuratMeaning: 'Seurat has no single built-in varp-equivalent container; project conventions are common.',
-    shapeHint: 'Square matrix over genes (n_var × n_var)',
-    pythonPeek: 'adata.varp["gene_corr"][:5, :5]',
-    rPeek: 'obj[["RNA"]]@misc$gene_graph[1:5, 1:5]',
-    memoryHook: 'varp is specialized in AnnData; in Seurat you usually choose a custom storage location.',
-  },
-  {
-    id: 'uns',
-    anndataPath: 'adata.uns',
-    anndataMeaning: 'Unstructured metadata/dicts: params, colors, method outputs, run settings.',
-    seuratAnchor: 'obj@misc / obj@commands / obj@tools',
-    seuratPaths: [
-      'obj@misc',
-      'obj@commands',
-      'obj@tools',
-    ],
-    seuratMeaning: 'Project-level, method-level, and command history style metadata.',
-    shapeHint: 'Key-value tree (not matrix-shaped)',
-    pythonPeek: 'list(adata.uns.keys())[:8]',
-    rPeek: 'names(obj@misc)',
-    memoryHook: 'uns = unstructured. In Seurat, misc/commands/tools covers this role.',
-  },
-  {
-    id: 'raw',
-    anndataPath: 'adata.raw.X + adata.raw.var',
-    anndataMeaning: 'Frozen snapshot of matrix + gene metadata (often raw counts before heavy transforms).',
-    seuratAnchor: 'usually counts layer or a dedicated raw assay',
-    seuratPaths: [
-      'obj[["RNA"]]$counts',
-      'obj[["RNA_raw"]]$counts',
-    ],
-    seuratMeaning: 'Seurat has no single global raw container; workflows keep raw in counts layer or separate assay.',
-    shapeHint: 'Snapshot of matrix and feature metadata',
-    pythonPeek: 'adata.raw[:, :5].X[:3, :5]',
-    rPeek: 'obj[["RNA"]]$counts[1:5, 1:3]',
-    memoryHook: 'AnnData raw is explicit; in Seurat raw is typically assay/layer convention.',
-  },
-];
-
-const SLOT_ATLAS_META: Record<SlotCrosswalkId, {
-  annLabel: string;
-  seuratLabel: string;
-  annTone: string;
-  seuratTone: string;
-}> = {
-  x: {
-    annLabel: 'X',
-    seuratLabel: 'assay layer',
-    annTone: 'from-emerald-500/30 to-emerald-700/20 border-emerald-400/40',
-    seuratTone: 'from-violet-500/30 to-violet-700/20 border-violet-400/40',
-  },
-  layers: {
-    annLabel: 'layers',
-    seuratLabel: 'Layers()',
-    annTone: 'from-teal-500/30 to-teal-700/20 border-teal-400/40',
-    seuratTone: 'from-fuchsia-500/30 to-fuchsia-700/20 border-fuchsia-400/40',
-  },
-  obs: {
-    annLabel: 'obs',
-    seuratLabel: 'meta.data',
-    annTone: 'from-yellow-500/30 to-yellow-700/20 border-yellow-300/40',
-    seuratTone: 'from-amber-500/30 to-amber-700/20 border-amber-300/40',
-  },
-  var: {
-    annLabel: 'var',
-    seuratLabel: 'assay meta',
-    annTone: 'from-sky-500/30 to-sky-700/20 border-sky-400/40',
-    seuratTone: 'from-blue-500/30 to-blue-700/20 border-blue-400/40',
-  },
-  obsm: {
-    annLabel: 'obsm',
-    seuratLabel: 'reductions',
-    annTone: 'from-orange-500/30 to-orange-700/20 border-orange-300/40',
-    seuratTone: 'from-rose-500/30 to-rose-700/20 border-rose-400/40',
-  },
-  varm: {
-    annLabel: 'varm',
-    seuratLabel: 'loadings',
-    annTone: 'from-cyan-500/30 to-cyan-700/20 border-cyan-400/40',
-    seuratTone: 'from-indigo-500/30 to-indigo-700/20 border-indigo-400/40',
-  },
-  obsp: {
-    annLabel: 'obsp',
-    seuratLabel: 'graphs',
-    annTone: 'from-red-500/30 to-red-700/20 border-red-400/40',
-    seuratTone: 'from-pink-500/30 to-pink-700/20 border-pink-400/40',
-  },
-  varp: {
-    annLabel: 'varp',
-    seuratLabel: 'misc/tools',
-    annTone: 'from-purple-500/30 to-purple-700/20 border-purple-400/40',
-    seuratTone: 'from-violet-500/30 to-violet-700/20 border-violet-400/40',
-  },
-  uns: {
-    annLabel: 'uns',
-    seuratLabel: 'misc/commands',
-    annTone: 'from-slate-500/40 to-slate-700/20 border-slate-300/40',
-    seuratTone: 'from-zinc-500/40 to-zinc-700/20 border-zinc-300/40',
-  },
-  raw: {
-    annLabel: 'raw',
-    seuratLabel: 'counts/raw assay',
-    annTone: 'from-lime-500/30 to-lime-700/20 border-lime-300/40',
-    seuratTone: 'from-emerald-500/30 to-emerald-700/20 border-emerald-300/40',
-  },
-};
-
 const formatPreviewValue = (value: string | number) => {
   if (typeof value === 'number') {
     return Number.isInteger(value) ? String(value) : value.toFixed(3);
@@ -617,9 +375,6 @@ combo.compute_transition_matrix()`,
 export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [selectedId, setSelectedId] = useState<KernelId>(KERNEL_INPUTS[0].id);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [crosswalkDirection, setCrosswalkDirection] = useState<CrosswalkDirection>('ANNDATA_TO_SEURAT');
-  const [crosswalkQuery, setCrosswalkQuery] = useState('');
-  const [selectedCrosswalkId, setSelectedCrosswalkId] = useState<SlotCrosswalkId>('obs');
   const [decisionState, setDecisionState] = useState({
     multipleSignals: false,
     hasRealTime: false,
@@ -668,44 +423,9 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
     return steps;
   }, [decisionState]);
 
-  const filteredCrosswalk = useMemo(() => {
-    const query = crosswalkQuery.trim().toLowerCase();
-    if (!query) return SLOT_CROSSWALK;
-    return SLOT_CROSSWALK.filter((item) =>
-      [
-        item.anndataPath,
-        item.seuratAnchor,
-        item.anndataMeaning,
-        item.seuratMeaning,
-        item.memoryHook,
-        ...item.seuratPaths,
-      ]
-        .join(' ')
-        .toLowerCase()
-        .includes(query)
-    );
-  }, [crosswalkQuery]);
-
-  const selectedCrosswalk = useMemo(
-    () =>
-      filteredCrosswalk.find((item) => item.id === selectedCrosswalkId)
-      ?? SLOT_CROSSWALK.find((item) => item.id === selectedCrosswalkId)
-      ?? filteredCrosswalk[0]
-      ?? SLOT_CROSSWALK[0],
-    [filteredCrosswalk, selectedCrosswalkId]
-  );
-
   useEffect(() => {
     setShowAdvanced(false);
   }, [selectedId]);
-
-  useEffect(() => {
-    if (!filteredCrosswalk.length) return;
-    const exists = filteredCrosswalk.some((item) => item.id === selectedCrosswalkId);
-    if (!exists) {
-      setSelectedCrosswalkId(filteredCrosswalk[0].id);
-    }
-  }, [filteredCrosswalk, selectedCrosswalkId]);
 
   return (
     <div className="w-full h-screen box-border overflow-y-auto overscroll-y-contain overflow-x-hidden bg-slate-950 text-white p-4 md:p-6">
@@ -725,75 +445,20 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px,1fr] gap-4">
-          <div className="rounded-xl border border-slate-800 bg-slate-900 p-3 space-y-3 h-fit lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
-            <div className="space-y-2">
-              {KERNEL_INPUTS.map((kernel) => (
-                <button
-                  key={kernel.id}
-                  onClick={() => setSelectedId(kernel.id)}
-                  className={`w-full text-left rounded-lg border px-3 py-2 transition ${
-                    selected.id === kernel.id
-                      ? 'border-blue-400/50 bg-blue-500/10'
-                      : 'border-slate-700 bg-slate-950 hover:bg-slate-800/70'
-                  }`}
-                >
-                  <div className="text-sm font-semibold">{kernel.emoji} {kernel.label}</div>
-                </button>
-              ))}
-            </div>
-
-            <div className="rounded-lg border border-slate-700 bg-slate-950/60 p-3">
-              <div className="text-[11px] uppercase tracking-wider text-cyan-300">Structure Atlas</div>
-              <p className="text-[11px] text-slate-400 mt-1">
-                Separate quick visual map. Click any block to sync with the translator panel.
-              </p>
-
-              <div className="mt-3">
-                <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1">AnnData slots</div>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {SLOT_CROSSWALK.map((item) => {
-                    const meta = SLOT_ATLAS_META[item.id];
-                    const isActive = selectedCrosswalk.id === item.id && crosswalkDirection === 'ANNDATA_TO_SEURAT';
-                    return (
-                      <button
-                        key={`ann-${item.id}`}
-                        onClick={() => {
-                          setSelectedCrosswalkId(item.id);
-                          setCrosswalkDirection('ANNDATA_TO_SEURAT');
-                        }}
-                        className={`rounded border bg-gradient-to-br px-2 py-1.5 text-left transition ${meta.annTone} ${isActive ? 'ring-1 ring-cyan-300/80' : ''}`}
-                        title={item.anndataPath}
-                      >
-                        <div className="text-[11px] font-mono text-slate-100">{meta.annLabel}</div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="mt-3">
-                <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1">Seurat object anchors</div>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {SLOT_CROSSWALK.map((item) => {
-                    const meta = SLOT_ATLAS_META[item.id];
-                    const isActive = selectedCrosswalk.id === item.id && crosswalkDirection === 'SEURAT_TO_ANNDATA';
-                    return (
-                      <button
-                        key={`seu-${item.id}`}
-                        onClick={() => {
-                          setSelectedCrosswalkId(item.id);
-                          setCrosswalkDirection('SEURAT_TO_ANNDATA');
-                        }}
-                        className={`rounded border bg-gradient-to-br px-2 py-1.5 text-left transition ${meta.seuratTone} ${isActive ? 'ring-1 ring-violet-300/80' : ''}`}
-                        title={item.seuratAnchor}
-                      >
-                        <div className="text-[10px] font-mono text-slate-100 truncate">{meta.seuratLabel}</div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+          <div className="rounded-xl border border-slate-800 bg-slate-900 p-3 space-y-2 h-fit lg:sticky lg:top-4">
+            {KERNEL_INPUTS.map((kernel) => (
+              <button
+                key={kernel.id}
+                onClick={() => setSelectedId(kernel.id)}
+                className={`w-full text-left rounded-lg border px-3 py-2 transition ${
+                  selected.id === kernel.id
+                    ? 'border-blue-400/50 bg-blue-500/10'
+                    : 'border-slate-700 bg-slate-950 hover:bg-slate-800/70'
+                }`}
+              >
+                <div className="text-sm font-semibold">{kernel.emoji} {kernel.label}</div>
+              </button>
+            ))}
           </div>
 
           <div className={`rounded-xl border bg-gradient-to-br ${selected.colorClass} p-4 md:p-6`}>
@@ -996,105 +661,6 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
                 </div>
               )}
 
-              <div className="rounded-lg border border-slate-700 bg-slate-900/90 p-4">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="text-sm font-semibold text-cyan-200">Seurat v5 ↔ AnnData Slot Translator</div>
-                  <div className="text-[11px] text-slate-400">Interactive crosswalk for biologists</div>
-                </div>
-                <p className="mt-2 text-xs text-slate-300">
-                  Click slots to map Seurat object locations to AnnData containers used by CellRank/Scanpy workflows.
-                </p>
-
-                <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-                  <div className="rounded border border-cyan-500/30 bg-cyan-950/20 px-2 py-1.5">
-                    <div className="text-cyan-200 font-semibold">AnnData orientation</div>
-                    <div className="text-slate-200 font-mono mt-0.5">matrix: cells × genes (n_obs × n_var)</div>
-                  </div>
-                  <div className="rounded border border-violet-500/30 bg-violet-950/20 px-2 py-1.5">
-                    <div className="text-violet-200 font-semibold">Seurat v5 assay orientation</div>
-                    <div className="text-slate-200 font-mono mt-0.5">layer matrix: genes × cells (features × cells)</div>
-                  </div>
-                </div>
-
-                <div className="mt-3 inline-flex rounded-lg border border-slate-700 bg-slate-950 p-1">
-                  <button
-                    onClick={() => setCrosswalkDirection('ANNDATA_TO_SEURAT')}
-                    className={`rounded px-2.5 py-1 text-xs ${crosswalkDirection === 'ANNDATA_TO_SEURAT' ? 'bg-cyan-500/25 text-cyan-100' : 'text-slate-300 hover:bg-slate-800'}`}
-                  >
-                    AnnData → Seurat
-                  </button>
-                  <button
-                    onClick={() => setCrosswalkDirection('SEURAT_TO_ANNDATA')}
-                    className={`rounded px-2.5 py-1 text-xs ${crosswalkDirection === 'SEURAT_TO_ANNDATA' ? 'bg-violet-500/25 text-violet-100' : 'text-slate-300 hover:bg-slate-800'}`}
-                  >
-                    Seurat → AnnData
-                  </button>
-                </div>
-
-                <div className="mt-3">
-                  <input
-                    type="text"
-                    value={crosswalkQuery}
-                    onChange={(event) => setCrosswalkQuery(event.target.value)}
-                    placeholder="Filter: obs, layers, graphs, embeddings..."
-                    className="w-full rounded border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 placeholder:text-slate-500 focus:border-cyan-500/70 focus:outline-none"
-                  />
-                </div>
-
-                <div className="mt-3 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2">
-                  {(filteredCrosswalk.length > 0 ? filteredCrosswalk : SLOT_CROSSWALK).map((item) => {
-                    const isSelected = selectedCrosswalk.id === item.id;
-                    return (
-                      <button
-                        key={item.id}
-                        onClick={() => setSelectedCrosswalkId(item.id)}
-                        className={`text-left rounded border px-2 py-1.5 transition ${isSelected ? 'border-cyan-400/60 bg-cyan-500/10' : 'border-slate-700 bg-slate-950 hover:bg-slate-800/70'}`}
-                      >
-                        <div className="text-[11px] font-mono text-slate-100">
-                          {crosswalkDirection === 'ANNDATA_TO_SEURAT' ? item.anndataPath : item.seuratAnchor}
-                        </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">{item.id.toUpperCase()}</div>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-4 grid grid-cols-1 xl:grid-cols-2 gap-3">
-                  <div className="rounded border border-cyan-500/30 bg-cyan-950/20 p-3">
-                    <div className="text-[11px] uppercase tracking-wider text-cyan-200">AnnData</div>
-                    <div className="text-sm font-mono text-cyan-100 mt-1">{selectedCrosswalk.anndataPath}</div>
-                    <p className="text-xs text-slate-200 mt-2">{selectedCrosswalk.anndataMeaning}</p>
-                    <div className="text-[11px] text-cyan-100 mt-2 font-mono">{selectedCrosswalk.shapeHint}</div>
-                    <div className="mt-2 text-[11px] uppercase tracking-wider text-slate-400">Python peek</div>
-                    <pre className="mt-1 text-[11px] font-mono text-slate-100 bg-slate-950/70 border border-slate-700 rounded px-2 py-1 overflow-x-auto">
-{selectedCrosswalk.pythonPeek}
-                    </pre>
-                  </div>
-
-                  <div className="rounded border border-violet-500/30 bg-violet-950/20 p-3">
-                    <div className="text-[11px] uppercase tracking-wider text-violet-200">Seurat v5</div>
-                    <div className="text-sm font-mono text-violet-100 mt-1">{selectedCrosswalk.seuratAnchor}</div>
-                    <p className="text-xs text-slate-200 mt-2">{selectedCrosswalk.seuratMeaning}</p>
-                    <div className="mt-2 text-[11px] uppercase tracking-wider text-slate-400">Common Seurat locations</div>
-                    <div className="space-y-1 mt-1">
-                      {selectedCrosswalk.seuratPaths.map((path) => (
-                        <div key={path} className="text-[11px] font-mono text-slate-200 border border-slate-700 bg-slate-950/70 rounded px-2 py-1">
-                          {path}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-2 text-[11px] uppercase tracking-wider text-slate-400">R peek</div>
-                    <pre className="mt-1 text-[11px] font-mono text-slate-100 bg-slate-950/70 border border-slate-700 rounded px-2 py-1 overflow-x-auto">
-{selectedCrosswalk.rPeek}
-                    </pre>
-                  </div>
-                </div>
-
-                <div className="mt-3 rounded border border-emerald-500/30 bg-emerald-950/20 px-3 py-2">
-                  <div className="text-[11px] uppercase tracking-wider text-emerald-200">Memory hook</div>
-                  <div className="text-sm text-emerald-100 mt-1">{selectedCrosswalk.memoryHook}</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export type AppMode = 'MENU' | 'EXPLORER' | 'FORMULAS' | 'PYTHON_INPUTS';
+export type AppMode = 'MENU' | 'EXPLORER' | 'FORMULAS' | 'PYTHON_INPUTS' | 'STRUCTURE_ATLAS';
 
 export type KernelParams = {
   pseudotimeBias: number;

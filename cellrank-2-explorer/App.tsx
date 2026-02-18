@@ -1,6 +1,6 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { AppMode } from './types';
-import { LayoutGrid, Binary, ArrowRight, Code2 } from 'lucide-react';
+import { LayoutGrid, Binary, ArrowRight, Code2, Database } from 'lucide-react';
 
 const Explorer3D = lazy(() =>
   import('./components/Explorer3D').then((module) => ({ default: module.Explorer3D }))
@@ -10,6 +10,9 @@ const FormulaLab = lazy(() =>
 );
 const PythonKernelInputs = lazy(() =>
   import('./components/PythonKernelInputs').then((module) => ({ default: module.PythonKernelInputs }))
+);
+const DataStructureAtlas = lazy(() =>
+  import('./components/DataStructureAtlas').then((module) => ({ default: module.DataStructureAtlas }))
 );
 
 export default function App() {
@@ -37,6 +40,7 @@ export default function App() {
           {mode === 'EXPLORER' && <Explorer3D onBack={() => setMode('MENU')} />}
           {mode === 'FORMULAS' && <FormulaLab onBack={() => setMode('MENU')} />}
           {mode === 'PYTHON_INPUTS' && <PythonKernelInputs onBack={() => setMode('MENU')} />}
+          {mode === 'STRUCTURE_ATLAS' && <DataStructureAtlas onBack={() => setMode('MENU')} />}
         </Suspense>
       );
   }
@@ -54,7 +58,7 @@ export default function App() {
                 Interactive Learning Suite for Single-Cell Dynamics
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 w-full">
                 {/* Card 1: 3D Explorer */}
                 <button 
                     onClick={() => setMode('EXPLORER')}
@@ -103,6 +107,23 @@ export default function App() {
                     </p>
                     <div className="flex items-center text-violet-400 font-bold text-sm mt-4 group-hover:translate-x-2 transition-transform">
                         Open Recipes <ArrowRight size={16} className="ml-2" />
+                    </div>
+                </button>
+
+                {/* Card 4: Structure Atlas */}
+                <button
+                    onClick={() => setMode('STRUCTURE_ATLAS')}
+                    className="group relative bg-slate-900 border border-slate-800 hover:border-cyan-500 p-8 rounded-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] text-left flex flex-col h-64"
+                >
+                    <div className="bg-cyan-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <Database className="text-cyan-300" size={24} />
+                    </div>
+                    <h2 className="text-2xl font-bold text-white mb-2">Structure Atlas</h2>
+                    <p className="text-slate-400 text-sm mb-auto">
+                        Separate visual map for AnnData vs Seurat v5 object structure with interactive slot mapping.
+                    </p>
+                    <div className="flex items-center text-cyan-300 font-bold text-sm mt-4 group-hover:translate-x-2 transition-transform">
+                        Open Atlas <ArrowRight size={16} className="ml-2" />
                     </div>
                 </button>
 
