@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppMode } from './types';
 import { Explorer3D } from './components/Explorer3D';
 import { FormulaLab } from './components/FormulaLab';
@@ -7,6 +7,18 @@ import { LayoutGrid, Binary, ArrowRight, Code2 } from 'lucide-react';
 
 export default function App() {
   const [mode, setMode] = useState<AppMode>('MENU');
+
+  useEffect(() => {
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    const overflow = mode === 'EXPLORER' ? 'hidden' : 'auto';
+    document.body.style.overflow = overflow;
+    document.documentElement.style.overflow = overflow;
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    };
+  }, [mode]);
 
   if (mode === 'EXPLORER') {
       return <Explorer3D onBack={() => setMode('MENU')} />;

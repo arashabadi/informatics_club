@@ -428,7 +428,7 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
   }, [selectedId]);
 
   return (
-    <div className="w-full h-screen overflow-y-auto overflow-x-hidden bg-slate-950 text-white p-4 md:p-6">
+    <div className="w-full h-screen box-border overflow-y-auto overscroll-y-contain overflow-x-hidden bg-slate-950 text-white p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between gap-3 mb-4">
           <button

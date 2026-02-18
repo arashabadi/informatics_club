@@ -644,7 +644,11 @@ plt.title("Transition matrix block")`;
 
       {/* Main Content Card */}
       <div className="flex-1 min-h-0 px-4 md:px-6 pb-2 md:pb-4 pointer-events-none">
-        <div className="pointer-events-auto max-w-md h-full overflow-y-auto pr-1">
+        <div
+          className="pointer-events-auto max-w-md h-full max-h-full overflow-y-auto overscroll-y-contain pr-1"
+          onWheel={(event) => event.stopPropagation()}
+          onTouchMove={(event) => event.stopPropagation()}
+        >
           <div className="bg-slate-900/95 backdrop-blur border border-slate-700 p-4 md:p-6 rounded-xl shadow-2xl">
             {renderContent()}
             {renderKernelControls()}
