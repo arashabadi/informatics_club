@@ -145,7 +145,7 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
           distanceFactor={11}
         >
           <div className="pointer-events-none rounded bg-emerald-950/95 border border-emerald-400/70 px-2.5 py-1 text-[10px] font-bold text-emerald-200 whitespace-nowrap shadow-[0_0_10px_rgba(16,185,129,0.35)]">
-            Selected Cell #{activeCell}
+            cell #{activeCell}
           </div>
         </Html>
       )}

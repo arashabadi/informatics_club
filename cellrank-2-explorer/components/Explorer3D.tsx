@@ -120,6 +120,13 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     }
   };
 
+  const handleWalkBack = () => {
+    setWalkPath((prevPath) => {
+      if (prevPath.length <= 1) return prevPath;
+      return prevPath.slice(0, -1);
+    });
+  };
+
   const handleKernelParamChange = (key: keyof KernelParams, value: number) => {
     setKernelParams((prev) => ({
       ...prev,
@@ -209,6 +216,7 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         kernel={kernel}
         setKernel={setKernel}
         onWalk={handleWalkStep}
+        onWalkBack={handleWalkBack}
         onResetWalk={handleResetWalk}
         onToggleWalk={handleToggleWalk}
         onWalkBurst={handleWalkBurst}

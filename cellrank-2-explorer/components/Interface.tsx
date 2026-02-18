@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { CellData, GameStage, KernelParams, KernelType } from '../types';
-import { ArrowRight, Play, Pause, FastForward, RefreshCcw, Info, GitGraph, Activity, Zap, Grid, Camera, Loader2, ChevronDown, LogOut } from 'lucide-react';
+import { ArrowRight, Play, Pause, FastForward, RefreshCcw, Info, GitGraph, Activity, Zap, Grid, Camera, Loader2, ChevronDown, LogOut, Undo2 } from 'lucide-react';
 import { computeKernelCompareScores, getTransitionProbs } from '../utils/simulation';
 // @ts-ignore
 import html2canvas from 'html2canvas';
@@ -16,6 +16,7 @@ interface InterfaceProps {
   kernel: KernelType;
   setKernel: (k: KernelType) => void;
   onWalk: () => void;
+  onWalkBack: () => void;
   onResetWalk: () => void;
   onToggleWalk: () => void;
   onWalkBurst: (steps: number) => void;
@@ -81,6 +82,7 @@ export const Interface: React.FC<InterfaceProps> = ({
   kernel,
   setKernel,
   onWalk,
+  onWalkBack,
   onResetWalk,
   onToggleWalk,
   onWalkBurst,
@@ -484,6 +486,13 @@ plt.title("Transition matrix block")`;
                     className="bg-orange-600 hover:bg-orange-500 disabled:opacity-50 text-white px-4 py-2 rounded font-bold flex items-center gap-2"
                 >
                     <Play size={16} /> Simulate Step
+                </button>
+                <button
+                    onClick={onWalkBack}
+                    disabled={isWalking || walkPath.length <= 1}
+                    className="bg-amber-700 hover:bg-amber-600 disabled:opacity-50 text-white px-4 py-2 rounded font-bold flex items-center gap-2"
+                >
+                    <Undo2 size={16} /> Step Back
                 </button>
                 <button 
                     onClick={onToggleWalk}
