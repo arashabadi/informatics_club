@@ -10,7 +10,20 @@ View your app in AI Studio: https://ai.studio/apps/drive/13oASNtiZwRaOn_shR9nth5
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+### Option A: Conda (recommended)
+
+1. Create/update the conda env:
+   - Create: `conda env create -f environment.yml`
+   - Update: `conda env update -f environment.yml --prune`
+2. Activate it:
+   `conda activate cellrank2exp`
+3. Set the `GEMINI_API_KEY` in `.env.local` to your Gemini API key
+4. Start the app:
+   `cellrank2exp start`
+
+### Option B: Node.js
+
+**Prerequisites:** Node.js
 
 
 1. Install dependencies:

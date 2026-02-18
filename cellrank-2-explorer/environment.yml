@@ -1,6 +1,13 @@
 name: cellrank2exp
 channels:
+  - conda-forge
   - defaults
 dependencies:
-  - python=3.9
+  - python>=3.9,<3.13
   - pip
+  - setuptools
+  - wheel
+  - nodejs=20
+  - pip:
+      - --no-build-isolation
+      - -e .
