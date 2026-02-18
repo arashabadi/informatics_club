@@ -211,6 +211,74 @@ const SLOT_CROSSWALK: SlotCrosswalk[] = [
   },
 ];
 
+const SLOT_ATLAS_META: Record<SlotCrosswalkId, {
+  annLabel: string;
+  seuratLabel: string;
+  annTone: string;
+  seuratTone: string;
+}> = {
+  x: {
+    annLabel: 'X',
+    seuratLabel: 'assay layer',
+    annTone: 'from-emerald-500/30 to-emerald-700/20 border-emerald-400/40',
+    seuratTone: 'from-violet-500/30 to-violet-700/20 border-violet-400/40',
+  },
+  layers: {
+    annLabel: 'layers',
+    seuratLabel: 'Layers()',
+    annTone: 'from-teal-500/30 to-teal-700/20 border-teal-400/40',
+    seuratTone: 'from-fuchsia-500/30 to-fuchsia-700/20 border-fuchsia-400/40',
+  },
+  obs: {
+    annLabel: 'obs',
+    seuratLabel: 'meta.data',
+    annTone: 'from-yellow-500/30 to-yellow-700/20 border-yellow-300/40',
+    seuratTone: 'from-amber-500/30 to-amber-700/20 border-amber-300/40',
+  },
+  var: {
+    annLabel: 'var',
+    seuratLabel: 'assay meta',
+    annTone: 'from-sky-500/30 to-sky-700/20 border-sky-400/40',
+    seuratTone: 'from-blue-500/30 to-blue-700/20 border-blue-400/40',
+  },
+  obsm: {
+    annLabel: 'obsm',
+    seuratLabel: 'reductions',
+    annTone: 'from-orange-500/30 to-orange-700/20 border-orange-300/40',
+    seuratTone: 'from-rose-500/30 to-rose-700/20 border-rose-400/40',
+  },
+  varm: {
+    annLabel: 'varm',
+    seuratLabel: 'loadings',
+    annTone: 'from-cyan-500/30 to-cyan-700/20 border-cyan-400/40',
+    seuratTone: 'from-indigo-500/30 to-indigo-700/20 border-indigo-400/40',
+  },
+  obsp: {
+    annLabel: 'obsp',
+    seuratLabel: 'graphs',
+    annTone: 'from-red-500/30 to-red-700/20 border-red-400/40',
+    seuratTone: 'from-pink-500/30 to-pink-700/20 border-pink-400/40',
+  },
+  varp: {
+    annLabel: 'varp',
+    seuratLabel: 'misc/tools',
+    annTone: 'from-purple-500/30 to-purple-700/20 border-purple-400/40',
+    seuratTone: 'from-violet-500/30 to-violet-700/20 border-violet-400/40',
+  },
+  uns: {
+    annLabel: 'uns',
+    seuratLabel: 'misc/commands',
+    annTone: 'from-slate-500/40 to-slate-700/20 border-slate-300/40',
+    seuratTone: 'from-zinc-500/40 to-zinc-700/20 border-zinc-300/40',
+  },
+  raw: {
+    annLabel: 'raw',
+    seuratLabel: 'counts/raw assay',
+    annTone: 'from-lime-500/30 to-lime-700/20 border-lime-300/40',
+    seuratTone: 'from-emerald-500/30 to-emerald-700/20 border-emerald-300/40',
+  },
+};
+
 const formatPreviewValue = (value: string | number) => {
   if (typeof value === 'number') {
     return Number.isInteger(value) ? String(value) : value.toFixed(3);
@@ -657,20 +725,75 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[280px,1fr] gap-4">
-          <div className="rounded-xl border border-slate-800 bg-slate-900 p-3 space-y-2 h-fit lg:sticky lg:top-4">
-            {KERNEL_INPUTS.map((kernel) => (
-              <button
-                key={kernel.id}
-                onClick={() => setSelectedId(kernel.id)}
-                className={`w-full text-left rounded-lg border px-3 py-2 transition ${
-                  selected.id === kernel.id
-                    ? 'border-blue-400/50 bg-blue-500/10'
-                    : 'border-slate-700 bg-slate-950 hover:bg-slate-800/70'
-                }`}
-              >
-                <div className="text-sm font-semibold">{kernel.emoji} {kernel.label}</div>
-              </button>
-            ))}
+          <div className="rounded-xl border border-slate-800 bg-slate-900 p-3 space-y-3 h-fit lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
+            <div className="space-y-2">
+              {KERNEL_INPUTS.map((kernel) => (
+                <button
+                  key={kernel.id}
+                  onClick={() => setSelectedId(kernel.id)}
+                  className={`w-full text-left rounded-lg border px-3 py-2 transition ${
+                    selected.id === kernel.id
+                      ? 'border-blue-400/50 bg-blue-500/10'
+                      : 'border-slate-700 bg-slate-950 hover:bg-slate-800/70'
+                  }`}
+                >
+                  <div className="text-sm font-semibold">{kernel.emoji} {kernel.label}</div>
+                </button>
+              ))}
+            </div>
+
+            <div className="rounded-lg border border-slate-700 bg-slate-950/60 p-3">
+              <div className="text-[11px] uppercase tracking-wider text-cyan-300">Structure Atlas</div>
+              <p className="text-[11px] text-slate-400 mt-1">
+                Separate quick visual map. Click any block to sync with the translator panel.
+              </p>
+
+              <div className="mt-3">
+                <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1">AnnData slots</div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {SLOT_CROSSWALK.map((item) => {
+                    const meta = SLOT_ATLAS_META[item.id];
+                    const isActive = selectedCrosswalk.id === item.id && crosswalkDirection === 'ANNDATA_TO_SEURAT';
+                    return (
+                      <button
+                        key={`ann-${item.id}`}
+                        onClick={() => {
+                          setSelectedCrosswalkId(item.id);
+                          setCrosswalkDirection('ANNDATA_TO_SEURAT');
+                        }}
+                        className={`rounded border bg-gradient-to-br px-2 py-1.5 text-left transition ${meta.annTone} ${isActive ? 'ring-1 ring-cyan-300/80' : ''}`}
+                        title={item.anndataPath}
+                      >
+                        <div className="text-[11px] font-mono text-slate-100">{meta.annLabel}</div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="mt-3">
+                <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1">Seurat object anchors</div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {SLOT_CROSSWALK.map((item) => {
+                    const meta = SLOT_ATLAS_META[item.id];
+                    const isActive = selectedCrosswalk.id === item.id && crosswalkDirection === 'SEURAT_TO_ANNDATA';
+                    return (
+                      <button
+                        key={`seu-${item.id}`}
+                        onClick={() => {
+                          setSelectedCrosswalkId(item.id);
+                          setCrosswalkDirection('SEURAT_TO_ANNDATA');
+                        }}
+                        className={`rounded border bg-gradient-to-br px-2 py-1.5 text-left transition ${meta.seuratTone} ${isActive ? 'ring-1 ring-violet-300/80' : ''}`}
+                        title={item.seuratAnchor}
+                      >
+                        <div className="text-[10px] font-mono text-slate-100 truncate">{meta.seuratLabel}</div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className={`rounded-xl border bg-gradient-to-br ${selected.colorClass} p-4 md:p-6`}>
