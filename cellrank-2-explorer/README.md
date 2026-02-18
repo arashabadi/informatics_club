@@ -10,6 +10,12 @@ View your app in AI Studio: https://ai.studio/apps/drive/13oASNtiZwRaOn_shR9nth5
 
 ## Run Locally
 
+## Teach the full CellRank protocol
+
+If your goal is to teach all sections of the full protocol PDF (concepts + procedures + troubleshooting + limitations), use:
+
+- `PROTOCOL_TEACHING_BLUEPRINT.md`
+
 ### Option A: Conda (recommended)
 
 1. Create/update the conda env:

@@ -9,5 +9,4 @@ dependencies:
   - wheel
   - nodejs=20
   - pip:
-      - --no-build-isolation
       - -e .
