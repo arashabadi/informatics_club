@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export type AppMode = 'MENU' | 'EXPLORER' | 'FORMULAS';
+export type AppMode = 'MENU' | 'EXPLORER' | 'FORMULAS' | 'WORKFLOW';
 
 export enum GameStage {
   INTRO = 0,
