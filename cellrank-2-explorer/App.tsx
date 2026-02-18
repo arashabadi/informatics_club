@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { AppMode } from './types';
-import { Explorer3D } from './components/Explorer3D';
-import { FormulaLab } from './components/FormulaLab';
-import { PythonKernelInputs } from './components/PythonKernelInputs';
 import { LayoutGrid, Binary, ArrowRight, Code2 } from 'lucide-react';
+
+const Explorer3D = lazy(() =>
+  import('./components/Explorer3D').then((module) => ({ default: module.Explorer3D }))
+);
+const FormulaLab = lazy(() =>
+  import('./components/FormulaLab').then((module) => ({ default: module.FormulaLab }))
+);
+const PythonKernelInputs = lazy(() =>
+  import('./components/PythonKernelInputs').then((module) => ({ default: module.PythonKernelInputs }))
+);
 
 export default function App() {
   const [mode, setMode] = useState<AppMode>('MENU');
@@ -20,16 +27,18 @@ export default function App() {
     };
   }, [mode]);
 
-  if (mode === 'EXPLORER') {
-      return <Explorer3D onBack={() => setMode('MENU')} />;
-  }
-
-  if (mode === 'FORMULAS') {
-      return <FormulaLab onBack={() => setMode('MENU')} />;
-  }
-
-  if (mode === 'PYTHON_INPUTS') {
-      return <PythonKernelInputs onBack={() => setMode('MENU')} />;
+  if (mode !== 'MENU') {
+      return (
+        <Suspense fallback={
+          <div className="w-full h-screen bg-slate-950 text-slate-200 flex items-center justify-center text-sm">
+            Loading module…
+          </div>
+        }>
+          {mode === 'EXPLORER' && <Explorer3D onBack={() => setMode('MENU')} />}
+          {mode === 'FORMULAS' && <FormulaLab onBack={() => setMode('MENU')} />}
+          {mode === 'PYTHON_INPUTS' && <PythonKernelInputs onBack={() => setMode('MENU')} />}
+        </Suspense>
+      );
   }
 
   return (
