@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, Environment } from '@react-three/drei';
-import { CellData, GameStage, KernelType } from '../types';
-import { generateManifold, nextStep, getMacrostates } from '../utils/simulation';
+import { CellData, GameStage, KernelParams, KernelType } from '../types';
+import { DEFAULT_KERNEL_PARAMS, generateManifold, nextStep, getMacrostates } from '../utils/simulation';
 import { CellCloud, TerminalHighlights } from './Visuals';
 import { Interface } from './Interface';
+
+const MAX_WALK_LENGTH = 800;
 
 export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [stage, setStage] = useState<GameStage>(GameStage.INTRO);
@@ -12,33 +14,75 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [activeCell, setActiveCell] = useState<number | null>(null);
   const [walkPath, setWalkPath] = useState<number[]>([]);
   const [kernel, setKernel] = useState<KernelType>('Pseudotime');
+  const [kernelParams, setKernelParams] = useState<KernelParams>({ ...DEFAULT_KERNEL_PARAMS });
   const [isWalking, setIsWalking] = useState(false);
   const [terminalStates, setTerminalStates] = useState<number[]>([]);
+  const [isInitializing, setIsInitializing] = useState(true);
+  const [initError, setInitError] = useState<string | null>(null);
 
   useEffect(() => {
-    const data = generateManifold();
-    setCells(data);
-    setTerminalStates(getMacrostates(data));
-    setActiveCell(10); 
+    let isCancelled = false;
+    setIsInitializing(true);
+    setInitError(null);
+
+    const initTimer = window.setTimeout(() => {
+      try {
+        const data = generateManifold();
+        const terminalIds = getMacrostates(data);
+        if (isCancelled) return;
+        setCells(data);
+        setTerminalStates(terminalIds);
+        setActiveCell(data.length > 10 ? 10 : data[0]?.id ?? null);
+      } catch (error) {
+        if (isCancelled) return;
+        const message = error instanceof Error ? error.message : 'Unknown explorer initialization error';
+        setInitError(message);
+        setCells([]);
+        setTerminalStates([]);
+        setActiveCell(null);
+      } finally {
+        if (!isCancelled) setIsInitializing(false);
+      }
+    }, 0);
+
+    return () => {
+      isCancelled = true;
+      window.clearTimeout(initTimer);
+    };
   }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight') setStage(s => Math.min(s + 1, GameStage.MACROSTATES));
       else if (e.key === 'ArrowLeft') setStage(s => Math.max(s - 1, GameStage.INTRO));
-      else if (e.key === ' ') if (stage === GameStage.RANDOM_WALK) handleWalkStep();
+      else if (e.key === ' ' && stage === GameStage.RANDOM_WALK) {
+        if (activeCell === null || cells.length === 0) return;
+        setWalkPath((prevPath) => {
+          const currentPath = prevPath.length > 0 ? [...prevPath] : [activeCell];
+          const currentId = currentPath[currentPath.length - 1];
+          const nextId = nextStep(currentId, cells, kernel, kernelParams);
+          currentPath.push(nextId);
+          if (currentPath.length > MAX_WALK_LENGTH) {
+            currentPath.splice(0, currentPath.length - MAX_WALK_LENGTH);
+          }
+          return currentPath;
+        });
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [stage, activeCell, cells, kernel]);
+  }, [stage, activeCell, cells, kernel, kernelParams]);
 
   useEffect(() => {
     setWalkPath([]);
     setIsWalking(false);
-    if (stage === GameStage.RANDOM_WALK && activeCell === null) setActiveCell(10); 
-  }, [stage, kernel]);
+    if (stage === GameStage.RANDOM_WALK && activeCell === null && cells.length > 0) {
+      setActiveCell(Math.min(10, cells.length - 1));
+    }
+  }, [stage, kernel, activeCell, cells.length]);
 
   const handleCellClick = (id: number) => {
+    if (id < 0 || id >= cells.length) return;
     if (stage === GameStage.MACROSTATES) return;
     setActiveCell(id);
     setWalkPath([id]);
@@ -49,11 +93,14 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     setWalkPath((prevPath) => {
       const currentPath = prevPath.length > 0 ? [...prevPath] : [activeCell];
       const currentId = currentPath[currentPath.length - 1];
-      const nextId = nextStep(currentId, cells, kernel);
+      const nextId = nextStep(currentId, cells, kernel, kernelParams);
       currentPath.push(nextId);
+      if (currentPath.length > MAX_WALK_LENGTH) {
+        currentPath.splice(0, currentPath.length - MAX_WALK_LENGTH);
+      }
       return currentPath;
     });
-  }, [activeCell, cells, kernel]);
+  }, [activeCell, cells, kernel, kernelParams]);
 
   const handleToggleWalk = () => {
     if (activeCell === null) return;
@@ -65,6 +112,13 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     for (let i = 0; i < steps; i += 1) {
       handleWalkStep();
     }
+  };
+
+  const handleKernelParamChange = (key: keyof KernelParams, value: number) => {
+    setKernelParams((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
   };
 
   useEffect(() => {
@@ -80,6 +134,11 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     else setWalkPath([]);
   };
 
+  useEffect(() => {
+    if (activeCell === null) return;
+    setWalkPath([activeCell]);
+  }, [kernelParams, activeCell]);
+
   return (
     <div className="w-full h-screen bg-slate-900 relative">
       <button 
@@ -88,6 +147,18 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       >
         Exit to Menu
       </button>
+
+      {isInitializing && (
+        <div className="absolute inset-0 z-40 flex items-center justify-center bg-slate-950/75 text-slate-200 text-sm">
+          Initializing Explorer 3D…
+        </div>
+      )}
+
+      {initError && (
+        <div className="absolute top-16 left-4 right-4 z-50 rounded border border-red-500/40 bg-red-950/85 px-3 py-2 text-sm text-red-200">
+          Explorer failed to initialize: {initError}
+        </div>
+      )}
 
       <Canvas gl={{ preserveDrawingBuffer: true }} camera={{ position: [0, 0, 18], fov: 45 }}>
         <color attach="background" args={['#0f172a']} />
@@ -122,6 +193,8 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         cells={cells}
         activeCell={activeCell}
         walkPath={walkPath}
+        kernelParams={kernelParams}
+        onKernelParamChange={handleKernelParamChange}
       />
     </div>
   );

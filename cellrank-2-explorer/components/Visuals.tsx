@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Line, Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three';
@@ -15,8 +15,15 @@ interface CellsProps {
 
 export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCellClick, walkPath, kernel }) => {
   const meshRef = useRef<THREE.InstancedMesh>(null);
-  const tempObj = new THREE.Object3D();
+  const tempObj = useMemo(() => new THREE.Object3D(), []);
   const hoverRef = useRef<number | null>(null);
+  const walkPathSet = useMemo(() => new Set(walkPath), [walkPath]);
+  const activeNeighborSet = useMemo(() => {
+    if (activeCell === null) return null;
+    const active = data[activeCell];
+    if (!active) return null;
+    return new Set(active.neighbors);
+  }, [activeCell, data]);
 
   // Update instance positions and colors
   useFrame(() => {
@@ -28,7 +35,7 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
       // Scale logic
       let scale = 0.15;
       if (activeCell === cell.id) scale = 0.4;
-      if (walkPath.includes(cell.id)) scale = 0.25;
+      if (walkPathSet.has(cell.id)) scale = 0.25;
       
       tempObj.scale.setScalar(scale);
       tempObj.updateMatrix();
@@ -40,13 +47,13 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
       // Gray out others in later stages to focus
       const isNetworkStage = stage === GameStage.KNN_GRAPH || stage === GameStage.KERNEL_BIAS || stage === GameStage.TRANSITION_MATRIX;
       
-      if (isNetworkStage && activeCell !== null) {
-         if (activeCell !== cell.id && !data[activeCell].neighbors.includes(cell.id)) {
+      if (isNetworkStage && activeCell !== null && activeNeighborSet) {
+         if (activeCell !== cell.id && !activeNeighborSet.has(cell.id)) {
             color.lerp(new THREE.Color('#1e293b'), 0.8); // dim
          }
       }
       
-      if (walkPath.includes(cell.id)) {
+      if (walkPathSet.has(cell.id)) {
           color.set('#ffffff'); // Path is white
           if (cell.id === walkPath[walkPath.length-1]) color.set('#10b981'); // Head is green
       }
@@ -200,15 +207,22 @@ const Connections: React.FC<{ data: CellData[], activeId: number, showDirection:
 
 // Draws the random walk path
 const WalkLine: React.FC<{ data: CellData[], path: number[] }> = ({ data, path }) => {
-    const points = useMemo(() => path.map(id => data[id].position), [path, data]);
+    const points = useMemo(
+      () => path.map(id => data[id]?.position).filter(Boolean) as THREE.Vector3[],
+      [path, data]
+    );
+    if (points.length < 2) return null;
     return <Line points={points} color="white" lineWidth={3} transparent opacity={0.8} />;
 };
 
 export const TerminalHighlights: React.FC<{ data: CellData[], ids: number[] }> = ({ data, ids }) => {
     return (
         <group>
-            {ids.map(id => (
-                <group key={id} position={data[id].position}>
+            {ids.map(id => {
+                const cell = data[id];
+                if (!cell) return null;
+                return (
+                <group key={id} position={cell.position}>
                      <Sphere args={[0.6, 16, 16]}>
                          <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={2} />
                      </Sphere>
@@ -218,7 +232,8 @@ export const TerminalHighlights: React.FC<{ data: CellData[], ids: number[] }> =
                          </div>
                      </Html>
                 </group>
-            ))}
+                );
+            })}
         </group>
     )
 }

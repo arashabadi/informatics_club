@@ -37,9 +37,9 @@ export default function App() {
                     <div className="bg-blue-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <LayoutGrid className="text-blue-400" size={24} />
                     </div>
-                    <h2 className="text-2xl font-bold text-white mb-2">3D Explorer</h2>
+                    <h2 className="text-2xl font-bold text-white mb-2">Explorer Studio</h2>
                     <p className="text-slate-400 text-sm mb-auto">
-                        Visualise a 1200-cell manifold in 3D. Simulate random walks and see macrostates directly on the graph.
+                        3D manifold + live formulas together. Tune kernel parameters and instantly see edges, matrices, and walks update.
                     </p>
                     <div className="flex items-center text-blue-400 font-bold text-sm mt-4 group-hover:translate-x-2 transition-transform">
                         Launch <ArrowRight size={16} className="ml-2" />
@@ -54,9 +54,9 @@ export default function App() {
                     <div className="bg-emerald-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <Binary className="text-emerald-400" size={24} />
                     </div>
-                    <h2 className="text-2xl font-bold text-white mb-2">Formula Lab</h2>
+                    <h2 className="text-2xl font-bold text-white mb-2">Formula Lab (Standalone)</h2>
                     <p className="text-slate-400 text-sm mb-auto">
-                        Interactive calculator for Kernels and Matrices. Plug in numbers for Pseudotime and Velocity to see how probabilities change.
+                        Dedicated deep-dive modules for kernels, GPCCA, and absorption math without the 3D scene.
                     </p>
                     <div className="flex items-center text-emerald-400 font-bold text-sm mt-4 group-hover:translate-x-2 transition-transform">
                         Start Calculating <ArrowRight size={16} className="ml-2" />

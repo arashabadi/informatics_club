@@ -1,9 +1,18 @@
 import * as THREE from 'three';
-import { CellData, KernelType } from '../types';
+import { CellData, KernelParams, KernelType } from '../types';
 
 // Constants
 const NUM_CELLS = 1200;
 const NEIGHBORS_K = 15; // Increased slightly for better connectivity in sparse kernels
+
+export const DEFAULT_KERNEL_PARAMS: KernelParams = {
+  pseudotimeBias: 10,
+  velocitySigma: 0.35,
+  cytoScale: 10,
+  otEpsilon: 1,
+  otTimeTarget: 0.05,
+  alpha: 0.5,
+};
 
 // Helper to generate a Y-shaped bifurcation manifold
 export const generateManifold = (): CellData[] => {
@@ -93,8 +102,17 @@ export const generateManifold = (): CellData[] => {
 export const getTransitionProbs = (
   currentId: number,
   cells: CellData[],
-  kernel: KernelType
+  kernel: KernelType,
+  params?: Partial<KernelParams>
 ): { targetId: number; prob: number }[] => {
+  const resolved: KernelParams = {
+    ...DEFAULT_KERNEL_PARAMS,
+    ...params,
+  };
+  resolved.velocitySigma = Math.max(0.05, resolved.velocitySigma);
+  resolved.otEpsilon = Math.max(0.05, resolved.otEpsilon);
+  resolved.alpha = Math.min(1, Math.max(0, resolved.alpha));
+
   const current = cells[currentId];
   if (!current) return [];
 
@@ -103,14 +121,13 @@ export const getTransitionProbs = (
 
   const computePseudotimeWeight = (c: CellData, n: CellData) => {
       const dt = n.pseudotime - c.pseudotime;
-      if (dt > 0) return 1.0 + dt * 10; 
-      return 0.05;
+      return Math.max(1e-6, Math.exp(resolved.pseudotimeBias * dt));
   };
 
   const computeVelocityWeight = (c: CellData, n: CellData) => {
       const displacement = new THREE.Vector3().subVectors(n.position, c.position).normalize();
       const cosine = c.velocity.dot(displacement);
-      return Math.max(0.01, (cosine + 1) ** 2);
+      return Math.max(1e-6, Math.exp(cosine / resolved.velocitySigma));
   };
 
   if (kernel === 'Pseudotime') {
@@ -124,25 +141,21 @@ export const getTransitionProbs = (
       // w_ij ~ logistic(potency_i - potency_j)
       weights = candidates.map(n => {
           const diff = current.potency - n.potency; // Positive if current is stem-like and neighbor is diff-like
-          // Sigmoid-like scaling
-          return 1 / (1 + Math.exp(-10 * diff)); 
+          return 1 / (1 + Math.exp(-resolved.cytoScale * diff));
       });
   }
   else if (kernel === 'RealTime') {
       // Optimal Transport approximation
       // Prefer neighbors in the "next" time bin (pseudotime + epsilon)
       // Penalize large distance
-      const epsilon = 0.05; // Time step size
       weights = candidates.map(n => {
           const dt = n.pseudotime - current.pseudotime;
-          // We want dt to be around epsilon
-          const timeError = Math.abs(dt - epsilon);
+          // We want dt to be around otTimeTarget
+          const timeError = Math.abs(dt - resolved.otTimeTarget);
           const dist = current.position.distanceTo(n.position);
-          
-          // Cost = distance^2 + lambda * time_deviation
-          // Weight ~ exp(-Cost)
-          const cost = (dist * 0.5) + (timeError * 20);
-          return Math.exp(-cost);
+
+          const cost = ((dist * dist) + (timeError * 12)) / resolved.otEpsilon;
+          return Math.max(1e-6, Math.exp(-cost));
       });
   }
   else if (kernel === 'Combined') {
@@ -150,8 +163,7 @@ export const getTransitionProbs = (
       weights = candidates.map(n => {
           const wVel = computeVelocityWeight(current, n);
           const wPseudo = computePseudotimeWeight(current, n);
-          // Simple additive combination (in reality usually linear comb of transition matrices)
-          return 0.5 * wVel + 0.5 * wPseudo;
+          return resolved.alpha * wVel + (1 - resolved.alpha) * wPseudo;
       });
   }
 
@@ -171,9 +183,10 @@ export const getTransitionProbs = (
 export const nextStep = (
   currentId: number, 
   cells: CellData[], 
-  kernel: KernelType
+  kernel: KernelType,
+  params?: Partial<KernelParams>
 ): number => {
-  const probs = getTransitionProbs(currentId, cells, kernel);
+  const probs = getTransitionProbs(currentId, cells, kernel, params);
   if (probs.length === 0) return currentId;
 
   // Sample
@@ -187,9 +200,28 @@ export const nextStep = (
   return probs[probs.length - 1].targetId;
 };
 
+export const computeKernelCompareScores = (
+  currentId: number,
+  cells: CellData[],
+  params?: Partial<KernelParams>
+): { kernel: KernelType; score: number }[] => {
+  const kernels: KernelType[] = ['Pseudotime', 'Velocity', 'CytoTRACE', 'RealTime', 'Combined'];
+  return kernels.map((kernel) => {
+    const probs = getTransitionProbs(currentId, cells, kernel, params);
+    return {
+      kernel,
+      score: probs[0]?.prob ?? 0,
+    };
+  });
+};
+
 // Find macrostates (fake implementation for visual)
 export const getMacrostates = (cells: CellData[]): number[] => {
-    const typeA = cells.filter(c => c.type === 'TypeA').sort((a,b) => b.pseudotime - a.pseudotime)[0];
-    const typeB = cells.filter(c => c.type === 'TypeB').sort((a,b) => b.pseudotime - a.pseudotime)[0];
+    if (cells.length === 0) return [];
+    const typeA = cells.filter(c => c.type === 'TypeA').sort((a,b) => b.pseudotime - a.pseudotime)[0] ?? cells[0];
+    const typeB = cells.filter(c => c.type === 'TypeB').sort((a,b) => b.pseudotime - a.pseudotime)[0] ?? cells[cells.length - 1];
+    if (typeA.id === typeB.id && cells.length > 1) {
+      return [typeA.id, cells[cells.length - 1].id];
+    }
     return [typeA.id, typeB.id];
 }

@@ -2,6 +2,15 @@ import * as THREE from 'three';
 
 export type AppMode = 'MENU' | 'EXPLORER' | 'FORMULAS';
 
+export type KernelParams = {
+  pseudotimeBias: number;
+  velocitySigma: number;
+  cytoScale: number;
+  otEpsilon: number;
+  otTimeTarget: number;
+  alpha: number;
+};
+
 export enum GameStage {
   INTRO = 0,
   KNN_GRAPH = 1,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { CellData, GameStage, KernelType } from '../types';
+import { CellData, GameStage, KernelParams, KernelType } from '../types';
 import { ArrowRight, Play, Pause, FastForward, RefreshCcw, Info, GitGraph, Activity, Zap, Grid, Camera, Loader2, ChevronDown } from 'lucide-react';
-import { getTransitionProbs } from '../utils/simulation';
+import { computeKernelCompareScores, getTransitionProbs } from '../utils/simulation';
 // @ts-ignore
 import html2canvas from 'html2canvas';
 
@@ -18,6 +18,8 @@ interface InterfaceProps {
   cells: CellData[];
   activeCell: number | null;
   walkPath: number[];
+  kernelParams: KernelParams;
+  onKernelParamChange: (key: keyof KernelParams, value: number) => void;
 }
 
 const Formula = ({ children }: { children?: React.ReactNode }) => (
@@ -31,14 +33,158 @@ const M = ({ children }: { children?: React.ReactNode }) => (
     <span className="font-serif italic">{children}</span>
 );
 
+const ParamSlider = ({
+  label,
+  value,
+  min,
+  max,
+  step,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  onChange: (value: number) => void;
+}) => (
+  <label className="block">
+    <div className="flex justify-between items-center text-[11px] text-slate-400 mb-1">
+      <span>{label}</span>
+      <span className="text-slate-200 font-mono">{value.toFixed(step < 1 ? 2 : 1)}</span>
+    </div>
+    <input
+      className="w-full accent-emerald-500"
+      type="range"
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={(event) => onChange(parseFloat(event.target.value))}
+    />
+  </label>
+);
+
 export const Interface: React.FC<InterfaceProps> = ({ 
-  stage, setStage, kernel, setKernel, onWalk, onResetWalk, onToggleWalk, onWalkBurst, isWalking, cells, activeCell, walkPath
+  stage,
+  setStage,
+  kernel,
+  setKernel,
+  onWalk,
+  onResetWalk,
+  onToggleWalk,
+  onWalkBurst,
+  isWalking,
+  cells,
+  activeCell,
+  walkPath,
+  kernelParams,
+  onKernelParamChange,
 }) => {
   const [isCapturing, setIsCapturing] = useState(false);
   const [showKernelMenu, setShowKernelMenu] = useState(false);
   const stageLabels = ['Manifold', 'KNN Graph', 'Kernel', 'Matrix', 'Walk', 'Macrostates'];
   const selectedCell = activeCell !== null ? cells[activeCell] : null;
   const uniqueVisited = walkPath.length > 0 ? new Set(walkPath).size : 0;
+  const kernelScores = activeCell !== null ? computeKernelCompareScores(activeCell, cells, kernelParams) : [];
+  const totalScore = kernelScores.reduce((acc, score) => acc + score.score, 0);
+  const normalizedScores = kernelScores.map((entry) => ({
+    ...entry,
+    normalized: totalScore > 0 ? entry.score / totalScore : 0,
+  }));
+
+  const renderKernelControls = () => {
+    if (stage !== GameStage.KERNEL_BIAS) return null;
+
+    return (
+      <div className="space-y-2 mt-3 border border-slate-700 bg-slate-800/70 rounded-lg p-3">
+        <div className="text-[11px] uppercase tracking-wider text-slate-400">Live Formula Controls</div>
+        {(kernel === 'Pseudotime' || kernel === 'Combined') && (
+          <ParamSlider
+            label="Pseudotime Bias b"
+            value={kernelParams.pseudotimeBias}
+            min={1}
+            max={20}
+            step={0.5}
+            onChange={(value) => onKernelParamChange('pseudotimeBias', value)}
+          />
+        )}
+        {(kernel === 'Velocity' || kernel === 'Combined') && (
+          <ParamSlider
+            label="Velocity Sigma σ"
+            value={kernelParams.velocitySigma}
+            min={0.1}
+            max={2}
+            step={0.05}
+            onChange={(value) => onKernelParamChange('velocitySigma', value)}
+          />
+        )}
+        {kernel === 'CytoTRACE' && (
+          <ParamSlider
+            label="CytoTRACE Scale"
+            value={kernelParams.cytoScale}
+            min={1}
+            max={20}
+            step={0.5}
+            onChange={(value) => onKernelParamChange('cytoScale', value)}
+          />
+        )}
+        {kernel === 'RealTime' && (
+          <>
+            <ParamSlider
+              label="OT Epsilon ε"
+              value={kernelParams.otEpsilon}
+              min={0.1}
+              max={3}
+              step={0.1}
+              onChange={(value) => onKernelParamChange('otEpsilon', value)}
+            />
+            <ParamSlider
+              label="Target Δt"
+              value={kernelParams.otTimeTarget}
+              min={0}
+              max={0.25}
+              step={0.01}
+              onChange={(value) => onKernelParamChange('otTimeTarget', value)}
+            />
+          </>
+        )}
+        {kernel === 'Combined' && (
+          <ParamSlider
+            label="Combination α (Velocity)"
+            value={kernelParams.alpha}
+            min={0}
+            max={1}
+            step={0.05}
+            onChange={(value) => onKernelParamChange('alpha', value)}
+          />
+        )}
+      </div>
+    );
+  };
+
+  const renderKernelCompare = () => {
+    if (activeCell === null || (stage !== GameStage.KERNEL_BIAS && stage !== GameStage.TRANSITION_MATRIX)) {
+      return null;
+    }
+
+    return (
+      <div className="space-y-2 mt-3 border border-slate-700 bg-slate-800/70 rounded-lg p-3">
+        <div className="text-[11px] uppercase tracking-wider text-slate-400">Kernel Quick Compare (Cell #{activeCell})</div>
+        {normalizedScores.map((entry) => (
+          <div key={entry.kernel}>
+            <div className="flex justify-between text-[11px] mb-1">
+              <span className="text-slate-300">{entry.kernel}</span>
+              <span className="text-slate-200 font-mono">{(entry.normalized * 100).toFixed(1)}%</span>
+            </div>
+            <div className="h-2 rounded bg-slate-700 overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-500" style={{ width: `${entry.normalized * 100}%` }} />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   const handleSnapshot = async () => {
       setIsCapturing(true);
@@ -169,7 +315,7 @@ export const Interface: React.FC<InterfaceProps> = ({
           </div>
         );
       case GameStage.TRANSITION_MATRIX:
-        const probs = activeCell !== null ? getTransitionProbs(activeCell, cells, kernel) : [];
+        const probs = activeCell !== null ? getTransitionProbs(activeCell, cells, kernel, kernelParams) : [];
         
         return (
           <div className="space-y-4">
@@ -336,6 +482,8 @@ export const Interface: React.FC<InterfaceProps> = ({
       <div className="p-6 pointer-events-auto max-w-md">
         <div className="bg-slate-900/95 backdrop-blur border border-slate-700 p-6 rounded-xl shadow-2xl">
             {renderContent()}
+            {renderKernelControls()}
+            {renderKernelCompare()}
 
             {selectedCell && (
                 <div className="mt-4 border border-slate-700 bg-slate-800/70 rounded-lg p-3 text-xs grid grid-cols-2 gap-2">
