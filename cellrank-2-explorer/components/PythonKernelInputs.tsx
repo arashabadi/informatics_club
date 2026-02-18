@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, GitBranch, Sparkles, Terminal } from 'lucide-react';
 
 type SlotSnapshot = {
@@ -374,6 +374,7 @@ combo.compute_transition_matrix()`,
 
 export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [selectedId, setSelectedId] = useState<KernelId>(KERNEL_INPUTS[0].id);
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [decisionState, setDecisionState] = useState({
     multipleSignals: false,
     hasRealTime: false,
@@ -422,8 +423,12 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
     return steps;
   }, [decisionState]);
 
+  useEffect(() => {
+    setShowAdvanced(false);
+  }, [selectedId]);
+
   return (
-    <div className="w-full min-h-screen bg-slate-950 text-white p-4 md:p-6">
+    <div className="w-full h-screen overflow-y-auto overflow-x-hidden bg-slate-950 text-white p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between gap-3 mb-4">
           <button
@@ -528,112 +533,133 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
               </div>
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <div className="rounded-lg border border-slate-700 bg-slate-900/90 p-4">
                 <div className="flex items-center gap-2 text-sm text-emerald-300 mb-2">
                   <Terminal className="w-4 h-4" />
-                  Input checklist
+                  Inputs + choice summary
                 </div>
-                <ul className="space-y-2 text-sm text-slate-200">
-                  {selected.checklist.map((line) => (
-                    <li key={line}>• {line}</li>
-                  ))}
-                </ul>
-                <div className="mt-4 rounded border border-emerald-500/30 bg-emerald-950/30 px-3 py-2 text-sm text-emerald-200">
-                  {selected.funHint}
+                <p className="text-xs text-indigo-100 border border-indigo-500/30 bg-indigo-950/30 rounded px-3 py-2">
+                  {selectedDecision.scenario}
+                </p>
+
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-3">
+                  <div>
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Required inputs</div>
+                    <div className="space-y-1 text-sm text-slate-200">
+                      {selected.checklist.map((line) => (
+                        <div key={line}>• {line}</div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Choose this when</div>
+                    <div className="space-y-1 text-xs text-slate-200">
+                      {selectedDecision.chooseWhen.map((line) => (
+                        <div key={line}>• {line}</div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-3 rounded border border-indigo-500/30 bg-indigo-950/30 px-3 py-2 text-xs text-indigo-100">
-                  Decision scenario: {selectedDecision.scenario}
-                </div>
+
                 <div className="mt-3">
-                  <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Decision branch for this kernel</div>
+                  <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Decision branch</div>
                   <div className="space-y-1 text-xs text-slate-200">
                     {selectedDecision.treePath.map((line) => (
                       <div key={line}>• {line}</div>
                     ))}
                   </div>
                 </div>
+
                 <div className="mt-3">
-                  <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Choose when</div>
+                  <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Key input structure (slot → shape)</div>
                   <div className="space-y-1 text-xs text-slate-200">
-                    {selectedDecision.chooseWhen.map((line) => (
-                      <div key={line}>• {line}</div>
+                    {selected.slots.map((slot) => (
+                      <div key={slot.slot} className="flex items-center justify-between gap-3 border border-slate-700 rounded px-2 py-1 bg-slate-950/50">
+                        <span className="text-cyan-300 font-mono">{slot.slot}</span>
+                        <span className="text-slate-400 font-mono">{slot.shape}</span>
+                      </div>
                     ))}
                   </div>
                 </div>
-                <div className="mt-3">
-                  <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Assumptions</div>
-                  <div className="space-y-1 text-xs text-slate-200">
-                    {selectedDecision.assumptions.map((line) => (
-                      <div key={line}>• {line}</div>
-                    ))}
-                  </div>
-                </div>
+
+                <button
+                  onClick={() => setShowAdvanced((prev) => !prev)}
+                  className="mt-3 text-xs border border-slate-600 rounded px-2 py-1 bg-slate-900 hover:bg-slate-800"
+                >
+                  {showAdvanced ? 'Hide advanced snapshot' : 'Show advanced snapshot'}
+                </button>
               </div>
 
-              <div className="rounded-lg border border-slate-700 bg-slate-900/90 p-4">
-                <div className="text-xs uppercase tracking-wider text-slate-300 mb-2">Actual data structure snapshot</div>
-                <p className="text-xs text-slate-300 mb-3">{selected.structureSummary}</p>
-
-                <div className="space-y-2">
-                  {selected.slots.map((slot) => (
-                    <div key={slot.slot} className="rounded border border-slate-700 bg-slate-950/70 px-3 py-2">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-[11px] text-cyan-300 font-mono">{slot.slot}</span>
-                        <span className="text-[11px] text-slate-500 font-mono">{slot.shape}</span>
+              {showAdvanced && (
+                <div className="rounded-lg border border-slate-700 bg-slate-900/90 p-4">
+                  <div className="text-xs uppercase tracking-wider text-slate-300 mb-2">Advanced data snapshot</div>
+                  <p className="text-xs text-slate-300 mb-3">{selected.structureSummary}</p>
+                  <div className="space-y-2">
+                    {selected.slots.map((slot) => (
+                      <div key={slot.slot} className="rounded border border-slate-700 bg-slate-950/70 px-3 py-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[11px] text-cyan-300 font-mono">{slot.slot}</span>
+                          <span className="text-[11px] text-slate-500 font-mono">{slot.shape}</span>
+                        </div>
+                        <div className="text-[11px] text-slate-300 mt-0.5">{slot.dtype}</div>
+                        <div className="text-[11px] text-slate-500">{slot.example}</div>
                       </div>
-                      <div className="text-[11px] text-slate-300 mt-0.5">{slot.dtype}</div>
-                      <div className="text-[11px] text-slate-500">{slot.example}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-3 overflow-x-auto">
-                  <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">adata.obs preview</div>
-                  <table className="min-w-full text-[11px] border border-slate-700">
-                    <thead className="bg-slate-900">
-                      <tr>
-                        {selected.obsPreview.columns.map((column) => (
-                          <th key={column} className="px-2 py-1 text-left text-slate-300 border-b border-slate-700 whitespace-nowrap">{column}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {selected.obsPreview.rows.map((row, rowIndex) => (
-                        <tr key={rowIndex} className="odd:bg-slate-900/30">
-                          {row.map((cellValue, cellIndex) => (
-                            <td key={cellIndex} className="px-2 py-1 text-slate-200 border-b border-slate-800 whitespace-nowrap">
-                              {formatPreviewValue(cellValue)}
-                            </td>
+                    ))}
+                  </div>
+                  <div className="mt-3 overflow-x-auto">
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">adata.obs preview</div>
+                    <table className="min-w-full text-[11px] border border-slate-700">
+                      <thead className="bg-slate-900">
+                        <tr>
+                          {selected.obsPreview.columns.map((column) => (
+                            <th key={column} className="px-2 py-1 text-left text-slate-300 border-b border-slate-700 whitespace-nowrap">{column}</th>
                           ))}
                         </tr>
+                      </thead>
+                      <tbody>
+                        {selected.obsPreview.rows.map((row, rowIndex) => (
+                          <tr key={rowIndex} className="odd:bg-slate-900/30">
+                            {row.map((cellValue, cellIndex) => (
+                              <td key={cellIndex} className="px-2 py-1 text-slate-200 border-b border-slate-800 whitespace-nowrap">
+                                {formatPreviewValue(cellValue)}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="mt-3">
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">{selected.matrixLabel}</div>
+                    <div
+                      className="inline-grid gap-[2px] rounded border border-slate-700 bg-slate-950 p-2"
+                      style={{ gridTemplateColumns: `repeat(${selected.matrixPreview[0]?.length ?? 0}, minmax(16px, 1fr))` }}
+                    >
+                      {selected.matrixPreview.map((row, rowIndex) =>
+                        row.map((value, colIndex) => (
+                          <div
+                            key={`${rowIndex}-${colIndex}`}
+                            className="w-6 h-6 rounded-[2px] text-[9px] flex items-center justify-center text-slate-100"
+                            style={{ backgroundColor: `rgba(56, 189, 248, ${0.1 + value})` }}
+                            title={`${value.toFixed(3)}`}
+                          >
+                            {value.toFixed(2)}
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                  <div className="mt-3">
+                    <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Assumptions</div>
+                    <div className="space-y-1 text-xs text-slate-200">
+                      {selectedDecision.assumptions.map((line) => (
+                        <div key={line}>• {line}</div>
                       ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                <div className="mt-3">
-                  <div className="text-[11px] uppercase tracking-wider text-slate-400 mb-1">{selected.matrixLabel}</div>
-                  <div
-                    className="inline-grid gap-[2px] rounded border border-slate-700 bg-slate-950 p-2"
-                    style={{ gridTemplateColumns: `repeat(${selected.matrixPreview[0]?.length ?? 0}, minmax(16px, 1fr))` }}
-                  >
-                    {selected.matrixPreview.map((row, rowIndex) =>
-                      row.map((value, colIndex) => (
-                        <div
-                          key={`${rowIndex}-${colIndex}`}
-                          className="w-6 h-6 rounded-[2px] text-[9px] flex items-center justify-center text-slate-100"
-                          style={{ backgroundColor: `rgba(56, 189, 248, ${0.1 + value})` }}
-                          title={`${value.toFixed(3)}`}
-                        >
-                          {value.toFixed(2)}
-                        </div>
-                      ))
-                    )}
+                    </div>
                   </div>
                 </div>
-              </div>
-
+              )}
             </div>
           </div>
         </div>
