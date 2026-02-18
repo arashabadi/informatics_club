@@ -8,6 +8,7 @@ import { getTransitionProbs } from '../utils/simulation';
 interface CellsProps {
   data: CellData[];
   activeCell: number | null;
+  matrixFocus: { sourceId: number; targetId: number; value: number } | null;
   stage: GameStage;
   onCellClick: (id: number) => void;
   walkPath: number[];
@@ -15,10 +16,12 @@ interface CellsProps {
   kernelParams: KernelParams;
 }
 
-export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCellClick, walkPath, kernel, kernelParams }) => {
+export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, matrixFocus, stage, onCellClick, walkPath, kernel, kernelParams }) => {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const tempObj = useMemo(() => new THREE.Object3D(), []);
   const [hoveredCell, setHoveredCell] = useState<number | null>(null);
+  const matrixSource = matrixFocus ? data[matrixFocus.sourceId] : null;
+  const matrixTarget = matrixFocus ? data[matrixFocus.targetId] : null;
   const walkPathSet = useMemo(() => new Set(walkPath), [walkPath]);
   const activeNeighborSet = useMemo(() => {
     if (activeCell === null) return null;
@@ -38,6 +41,11 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
       let scale = 0.15;
       if (activeCell === cell.id) scale = 0.4;
       if (walkPathSet.has(cell.id)) scale = 0.25;
+      if (stage === GameStage.TRANSITION_MATRIX && matrixFocus) {
+        if (cell.id === matrixFocus.sourceId && cell.id === matrixFocus.targetId) scale = Math.max(scale, 0.48);
+        else if (cell.id === matrixFocus.sourceId) scale = Math.max(scale, 0.46);
+        else if (cell.id === matrixFocus.targetId) scale = Math.max(scale, 0.44);
+      }
       
       tempObj.scale.setScalar(scale);
       tempObj.updateMatrix();
@@ -58,6 +66,16 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
       if (walkPathSet.has(cell.id)) {
           color.set('#ffffff'); // Path is white
           if (cell.id === walkPath[walkPath.length-1]) color.set('#10b981'); // Head is green
+      }
+
+      if (stage === GameStage.TRANSITION_MATRIX && matrixFocus) {
+        if (cell.id === matrixFocus.sourceId && cell.id === matrixFocus.targetId) {
+          color.set('#22d3ee');
+        } else if (cell.id === matrixFocus.sourceId) {
+          color.set('#22d3ee');
+        } else if (cell.id === matrixFocus.targetId) {
+          color.set('#f59e0b');
+        }
       }
 
       meshRef.current!.setColorAt(i, color);
@@ -148,6 +166,48 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
             cell #{activeCell}
           </div>
         </Html>
+      )}
+
+      {stage === GameStage.TRANSITION_MATRIX && matrixSource && (
+        <Html
+          position={[
+            matrixSource.position.x,
+            matrixSource.position.y + 1.03,
+            matrixSource.position.z,
+          ]}
+          center
+          distanceFactor={10}
+        >
+          <div className="pointer-events-none rounded bg-cyan-950/95 border border-cyan-300/70 px-2 py-1 text-[10px] font-bold text-cyan-100 whitespace-nowrap shadow-[0_0_10px_rgba(34,211,238,0.35)]">
+            row/source #{matrixFocus?.sourceId}
+          </div>
+        </Html>
+      )}
+
+      {stage === GameStage.TRANSITION_MATRIX && matrixTarget && matrixFocus?.sourceId !== matrixFocus?.targetId && (
+        <Html
+          position={[
+            matrixTarget.position.x,
+            matrixTarget.position.y + 1.03,
+            matrixTarget.position.z,
+          ]}
+          center
+          distanceFactor={10}
+        >
+          <div className="pointer-events-none rounded bg-amber-950/95 border border-amber-300/70 px-2 py-1 text-[10px] font-bold text-amber-100 whitespace-nowrap shadow-[0_0_10px_rgba(245,158,11,0.35)]">
+            column/target #{matrixFocus?.targetId}
+          </div>
+        </Html>
+      )}
+
+      {stage === GameStage.TRANSITION_MATRIX && matrixSource && matrixTarget && matrixFocus?.sourceId !== matrixFocus?.targetId && (
+        <Line
+          points={[matrixSource.position, matrixTarget.position]}
+          color="#22d3ee"
+          transparent
+          opacity={0.85}
+          lineWidth={2.4}
+        />
       )}
 
       {/* Visualize Neighborhood Connections for Active Cell */}

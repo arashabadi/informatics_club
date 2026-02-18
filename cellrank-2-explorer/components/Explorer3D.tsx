@@ -19,6 +19,7 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [isWalking, setIsWalking] = useState(false);
   const [initialStates, setInitialStates] = useState<number[]>([]);
   const [terminalStates, setTerminalStates] = useState<number[]>([]);
+  const [matrixFocus, setMatrixFocus] = useState<{ sourceId: number; targetId: number; value: number } | null>(null);
   const [navigationMode, setNavigationMode] = useState<'ROTATE' | 'PAN'>('ROTATE');
   const [isInitializing, setIsInitializing] = useState(true);
   const [initError, setInitError] = useState<string | null>(null);
@@ -85,14 +86,26 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     if (stage === GameStage.RANDOM_WALK && activeCell === null && cells.length > 0) {
       setActiveCell(Math.min(10, cells.length - 1));
     }
+    if (stage !== GameStage.TRANSITION_MATRIX) {
+      setMatrixFocus(null);
+    }
   }, [stage, kernel, activeCell, cells.length]);
 
   const handleCellClick = (id: number) => {
     if (id < 0 || id >= cells.length) return;
     if (stage === GameStage.MACROSTATES) return;
+    setMatrixFocus(null);
     setActiveCell(id);
     setWalkPath([id]);
   };
+
+  const handleMatrixCellSelect = useCallback((sourceId: number, targetId: number, value: number) => {
+    if (sourceId < 0 || sourceId >= cells.length) return;
+    if (targetId < 0 || targetId >= cells.length) return;
+    setMatrixFocus({ sourceId, targetId, value });
+    setActiveCell(sourceId);
+    setWalkPath([]);
+  }, [cells.length]);
 
   const handleWalkStep = useCallback(() => {
     if (activeCell === null || cells.length === 0) return;
@@ -149,8 +162,9 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
   useEffect(() => {
     if (activeCell === null) return;
+    if (stage !== GameStage.RANDOM_WALK) return;
     setWalkPath([activeCell]);
-  }, [kernelParams, activeCell]);
+  }, [kernelParams, activeCell, stage]);
 
   return (
     <div className="w-full h-screen bg-slate-900 relative">
@@ -176,6 +190,7 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             <CellCloud 
                 data={cells} 
                 activeCell={activeCell} 
+                matrixFocus={matrixFocus}
                 stage={stage} 
                 onCellClick={handleCellClick}
                 walkPath={walkPath}
@@ -209,6 +224,7 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         onExit={onBack}
         initialStates={initialStates}
         terminalStates={terminalStates}
+        matrixFocus={matrixFocus}
         navigationMode={navigationMode}
         setNavigationMode={setNavigationMode}
         stage={stage}
@@ -218,6 +234,7 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         onWalk={handleWalkStep}
         onWalkBack={handleWalkBack}
         onResetWalk={handleResetWalk}
+        onMatrixCellSelect={handleMatrixCellSelect}
         onToggleWalk={handleToggleWalk}
         onWalkBurst={handleWalkBurst}
         isWalking={isWalking}

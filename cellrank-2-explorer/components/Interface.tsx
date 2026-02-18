@@ -9,6 +9,7 @@ interface InterfaceProps {
   onExit: () => void;
   initialStates: number[];
   terminalStates: number[];
+  matrixFocus: { sourceId: number; targetId: number; value: number } | null;
   navigationMode: 'ROTATE' | 'PAN';
   setNavigationMode: (mode: 'ROTATE' | 'PAN') => void;
   stage: GameStage;
@@ -18,6 +19,7 @@ interface InterfaceProps {
   onWalk: () => void;
   onWalkBack: () => void;
   onResetWalk: () => void;
+  onMatrixCellSelect: (sourceId: number, targetId: number, value: number) => void;
   onToggleWalk: () => void;
   onWalkBurst: (steps: number) => void;
   isWalking: boolean;
@@ -75,6 +77,7 @@ export const Interface: React.FC<InterfaceProps> = ({
   onExit,
   initialStates,
   terminalStates,
+  matrixFocus,
   navigationMode,
   setNavigationMode,
   stage,
@@ -84,6 +87,7 @@ export const Interface: React.FC<InterfaceProps> = ({
   onWalk,
   onWalkBack,
   onResetWalk,
+  onMatrixCellSelect,
   onToggleWalk,
   onWalkBurst,
   isWalking,
@@ -423,27 +427,46 @@ plt.title("Transition matrix block")`;
                     <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">
                         Matrix Block View (Python-like)
                     </h3>
-                    <p className="text-[11px] text-slate-400 mb-2">Rows = source cells, columns = target cells from a local neighborhood.</p>
+                    <p className="text-[11px] text-slate-300 mb-2">
+                      Row index <span className="text-cyan-300 font-mono">i</span> = source cell where a walk starts.
+                      Column index <span className="text-amber-300 font-mono">j</span> = target cell after one step.
+                      Click any box to highlight both cells in 3D.
+                    </p>
                      <div className="overflow-x-auto">
                         <div
                             className="inline-grid gap-[2px] rounded-md bg-slate-900/70 p-2 border border-slate-700"
                             style={{ gridTemplateColumns: `repeat(${matrixPreview.indices.length}, minmax(10px, 1fr))` }}
                         >
                             {matrixPreview.rows.map((row, rowIdx) =>
-                                row.map((value, colIdx) => (
+                                row.map((value, colIdx) => {
+                                  const sourceId = matrixPreview.indices[rowIdx];
+                                  const targetId = matrixPreview.indices[colIdx];
+                                  const isFocused = matrixFocus?.sourceId === sourceId && matrixFocus?.targetId === targetId;
+                                  return (
                                     <div
                                         key={`${rowIdx}-${colIdx}`}
-                                        className="w-3.5 h-3.5 rounded-[2px] cursor-crosshair"
+                                        className={`w-3.5 h-3.5 rounded-[2px] cursor-crosshair ${isFocused ? 'ring-2 ring-cyan-300/90' : ''}`}
                                         style={{ backgroundColor: `rgba(34, 197, 94, ${Math.max(0.07, value / matrixPreview.maxValue)})` }}
                                         title={`T[${matrixPreview.indices[rowIdx]}, ${matrixPreview.indices[colIdx]}] = ${value.toFixed(4)}`}
                                         onMouseEnter={() => setHoveredMatrixEntry({
-                                            source: matrixPreview.indices[rowIdx],
-                                            target: matrixPreview.indices[colIdx],
+                                            source: sourceId,
+                                            target: targetId,
                                             value,
                                         })}
                                         onMouseLeave={() => setHoveredMatrixEntry((prev) => (prev && prev.source === matrixPreview.indices[rowIdx] && prev.target === matrixPreview.indices[colIdx] ? null : prev))}
+                                        onClick={() => onMatrixCellSelect(sourceId, targetId, value)}
+                                        onKeyDown={(event) => {
+                                          if (event.key === 'Enter' || event.key === ' ') {
+                                            event.preventDefault();
+                                            onMatrixCellSelect(sourceId, targetId, value);
+                                          }
+                                        }}
+                                        role="button"
+                                        tabIndex={0}
+                                        aria-label={`Select matrix entry T[${sourceId}, ${targetId}]`}
                                     />
-                                ))
+                                  );
+                                })
                             )}
                         </div>
                     </div>
@@ -452,6 +475,11 @@ plt.title("Transition matrix block")`;
                           ? `T[${hoveredMatrixEntry.source}, ${hoveredMatrixEntry.target}] = ${hoveredMatrixEntry.value.toFixed(4)}`
                           : 'Hover a box to inspect probability values'}
                     </div>
+                    {matrixFocus && (
+                      <div className="text-[11px] text-cyan-200 font-mono mt-1">
+                        Focused pair: row/source #{matrixFocus.sourceId} → column/target #{matrixFocus.targetId} | T = {matrixFocus.value.toFixed(4)}
+                      </div>
+                    )}
                     <p className="text-[11px] text-slate-500 mt-2 font-mono break-all">
                         Cell order: [{matrixPreview.indices.join(', ')}]
                     </p>
