@@ -30,6 +30,14 @@ export default function App() {
     };
   }, [mode]);
 
+  useEffect(() => {
+    if (mode !== 'MENU') return;
+    const timer = window.setTimeout(() => {
+      void import('./components/Explorer3D');
+    }, 200);
+    return () => window.clearTimeout(timer);
+  }, [mode]);
+
   if (mode !== 'MENU') {
       return (
         <Suspense fallback={

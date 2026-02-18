@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stars, Environment } from '@react-three/drei';
+import { OrbitControls, Stars, AdaptiveDpr } from '@react-three/drei';
 import * as THREE from 'three';
 import { CellData, GameStage, KernelParams, KernelType } from '../types';
 import { DEFAULT_KERNEL_PARAMS, generateManifold, nextStep, getInitialStates, getMacrostates } from '../utils/simulation';
@@ -23,13 +23,15 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [navigationMode, setNavigationMode] = useState<'ROTATE' | 'PAN'>('ROTATE');
   const [isInitializing, setIsInitializing] = useState(true);
   const [initError, setInitError] = useState<string | null>(null);
+  const [initVersion, setInitVersion] = useState(0);
 
   useEffect(() => {
     let isCancelled = false;
+    let frameId = 0;
     setIsInitializing(true);
     setInitError(null);
 
-    const initTimer = window.setTimeout(() => {
+    frameId = window.requestAnimationFrame(() => {
       try {
         const data = generateManifold();
         const initialIds = getInitialStates(data);
@@ -50,13 +52,13 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       } finally {
         if (!isCancelled) setIsInitializing(false);
       }
-    }, 0);
+    });
 
     return () => {
       isCancelled = true;
-      window.clearTimeout(initTimer);
+      window.cancelAnimationFrame(frameId);
     };
-  }, []);
+  }, [initVersion]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -176,16 +178,32 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
       {initError && (
         <div className="absolute top-16 left-4 right-4 z-50 rounded border border-red-500/40 bg-red-950/85 px-3 py-2 text-sm text-red-200">
-          Explorer failed to initialize: {initError}
+          <div>Explorer failed to initialize: {initError}</div>
+          <button
+            onClick={() => setInitVersion((prev) => prev + 1)}
+            className="mt-2 rounded border border-red-300/50 bg-red-900/60 px-2 py-1 text-xs text-red-100 hover:bg-red-800/70"
+          >
+            Retry Explorer Init
+          </button>
         </div>
       )}
 
-      <Canvas gl={{ preserveDrawingBuffer: true }} camera={{ position: [0, 0, 18], fov: 45 }}>
+      <Canvas
+        dpr={[1, 1.5]}
+        gl={{ preserveDrawingBuffer: true, antialias: true, alpha: false }}
+        performance={{ min: 0.6 }}
+        camera={{ position: [0, 0, 18], fov: 45 }}
+        onCreated={({ gl }) => {
+          gl.setClearColor('#020617');
+        }}
+      >
         <color attach="background" args={['#0f172a']} />
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-        <Environment preset="city" />
+        <AdaptiveDpr pixelated />
+        <ambientLight intensity={0.75} />
+        <hemisphereLight args={['#93c5fd', '#0f172a', 0.45]} />
+        <pointLight position={[10, 10, 10]} intensity={1.2} />
+        <Stars radius={90} depth={40} count={1800} factor={3} saturation={0} fade speed={0.7} />
+        <gridHelper args={[28, 28, '#334155', '#1e293b']} position={[0, -4.5, 0]} />
         <group rotation={[0, -Math.PI / 6, 0]}>
             <CellCloud 
                 data={cells} 

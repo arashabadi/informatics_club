@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import { CellData, KernelParams, KernelType } from '../types';
 
 // Constants
-const NUM_CELLS = 1200;
-const NEIGHBORS_K = 15; // Increased slightly for better connectivity in sparse kernels
+const NUM_CELLS = 900;
+const NEIGHBORS_K = 15;
+const LOCAL_WINDOW = 90;
 
 export const DEFAULT_KERNEL_PARAMS: KernelParams = {
   pseudotimeBias: 10,
@@ -83,16 +84,41 @@ export const generateManifold = (): CellData[] => {
     });
   }
 
-  // Compute KNN (Naive O(N^2) for simplicity in browser, manageable for 1200 cells)
-  cells.forEach(cell => {
-    const distances = cells.map(other => ({
-      id: other.id,
-      dist: cell.position.distanceTo(other.position)
-    }));
-    
-    // Sort by distance and pick top K (exclude self)
+  // Compute local KNN using a pseudotime window for faster browser startup.
+  const idsByPseudotime = [...cells]
+    .sort((a, b) => a.pseudotime - b.pseudotime)
+    .map((cell) => cell.id);
+  const rankById = new Array<number>(cells.length);
+  idsByPseudotime.forEach((id, rank) => {
+    rankById[id] = rank;
+  });
+
+  cells.forEach((cell) => {
+    const rank = rankById[cell.id];
+    const start = Math.max(0, rank - LOCAL_WINDOW);
+    const end = Math.min(idsByPseudotime.length - 1, rank + LOCAL_WINDOW);
+    let distances: { id: number; dist: number }[] = [];
+
+    for (let pointer = start; pointer <= end; pointer += 1) {
+      const otherId = idsByPseudotime[pointer];
+      if (otherId === cell.id) continue;
+      distances.push({
+        id: otherId,
+        dist: cell.position.distanceTo(cells[otherId].position),
+      });
+    }
+
+    if (distances.length < NEIGHBORS_K) {
+      distances = cells
+        .filter((other) => other.id !== cell.id)
+        .map((other) => ({
+          id: other.id,
+          dist: cell.position.distanceTo(other.position),
+        }));
+    }
+
     distances.sort((a, b) => a.dist - b.dist);
-    cell.neighbors = distances.slice(1, NEIGHBORS_K + 1).map(d => d.id);
+    cell.neighbors = distances.slice(0, NEIGHBORS_K).map((entry) => entry.id);
   });
 
   return cells;

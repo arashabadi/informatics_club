@@ -38,7 +38,7 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, matrixFocus,
       tempObj.position.copy(cell.position);
       
       // Scale logic
-      let scale = 0.15;
+      let scale = 0.18;
       if (activeCell === cell.id) scale = 0.4;
       if (walkPathSet.has(cell.id)) scale = 0.25;
       if (stage === GameStage.TRANSITION_MATRIX && matrixFocus) {
@@ -59,7 +59,7 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, matrixFocus,
       
       if (isNetworkStage && activeCell !== null && activeNeighborSet) {
          if (activeCell !== cell.id && !activeNeighborSet.has(cell.id)) {
-            color.lerp(new THREE.Color('#1e293b'), 0.8); // dim
+            color.lerp(new THREE.Color('#334155'), 0.45); // dim but keep visible
          }
       }
       
@@ -132,8 +132,14 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, matrixFocus,
         onPointerMove={handlePointerMove}
         onPointerOut={handlePointerOut}
       >
-        <sphereGeometry args={[1, 16, 16]} />
-        <meshStandardMaterial />
+        <sphereGeometry args={[1, 12, 12]} />
+        <meshStandardMaterial
+          color="#f8fafc"
+          emissive="#111827"
+          emissiveIntensity={0.03}
+          roughness={0.55}
+          metalness={0}
+        />
       </instancedMesh>
 
       {hoveredCell !== null && hoveredCell !== activeCell && data[hoveredCell] && (
