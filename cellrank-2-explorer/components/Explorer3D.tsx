@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, Environment } from '@react-three/drei';
+import * as THREE from 'three';
 import { CellData, GameStage, KernelParams, KernelType } from '../types';
 import { DEFAULT_KERNEL_PARAMS, generateManifold, nextStep, getMacrostates } from '../utils/simulation';
 import { CellCloud, TerminalHighlights } from './Visuals';
@@ -141,13 +142,6 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
   return (
     <div className="w-full h-screen bg-slate-900 relative">
-      <button 
-        onClick={onBack}
-        className="absolute top-4 left-4 z-50 bg-slate-800 text-white px-3 py-1 rounded border border-slate-600 hover:bg-slate-700"
-      >
-        Exit to Menu
-      </button>
-
       {isInitializing && (
         <div className="absolute inset-0 z-40 flex items-center justify-center bg-slate-950/75 text-slate-200 text-sm">
           Initializing Explorer 3D…
@@ -174,13 +168,32 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 onCellClick={handleCellClick}
                 walkPath={walkPath}
                 kernel={kernel}
+                kernelParams={kernelParams}
             />
             {stage === GameStage.MACROSTATES && <TerminalHighlights data={cells} ids={terminalStates} />}
         </group>
-        <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} autoRotate={stage === GameStage.INTRO} autoRotateSpeed={0.5} />
+        <OrbitControls
+          enablePan={true}
+          enableZoom={true}
+          enableRotate={true}
+          screenSpacePanning={true}
+          panSpeed={1.8}
+          zoomSpeed={1.2}
+          rotateSpeed={0.7}
+          enableDamping={true}
+          dampingFactor={0.08}
+          mouseButtons={{
+            LEFT: THREE.MOUSE.PAN,
+            MIDDLE: THREE.MOUSE.DOLLY,
+            RIGHT: THREE.MOUSE.ROTATE,
+          }}
+          autoRotate={stage === GameStage.INTRO}
+          autoRotateSpeed={0.5}
+        />
       </Canvas>
 
       <Interface 
+        onExit={onBack}
         stage={stage}
         setStage={setStage}
         kernel={kernel}

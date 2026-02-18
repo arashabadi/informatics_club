@@ -1,8 +1,9 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Line, Sphere, Html } from '@react-three/drei';
 import * as THREE from 'three';
-import { CellData, GameStage, KernelType } from '../types';
+import { CellData, GameStage, KernelParams, KernelType } from '../types';
+import { getTransitionProbs } from '../utils/simulation';
 
 interface CellsProps {
   data: CellData[];
@@ -11,12 +12,13 @@ interface CellsProps {
   onCellClick: (id: number) => void;
   walkPath: number[];
   kernel: KernelType;
+  kernelParams: KernelParams;
 }
 
-export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCellClick, walkPath, kernel }) => {
+export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCellClick, walkPath, kernel, kernelParams }) => {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const tempObj = useMemo(() => new THREE.Object3D(), []);
-  const hoverRef = useRef<number | null>(null);
+  const [hoveredCell, setHoveredCell] = useState<number | null>(null);
   const walkPathSet = useMemo(() => new Set(walkPath), [walkPath]);
   const activeNeighborSet = useMemo(() => {
     if (activeCell === null) return null;
@@ -76,13 +78,29 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
   const handlePointerOver = (e: any) => {
       e.stopPropagation();
       document.body.style.cursor = 'pointer';
-      hoverRef.current = e.instanceId;
+      const instanceId = e.instanceId;
+      if (instanceId !== undefined) {
+        setHoveredCell(instanceId);
+      }
+  };
+
+  const handlePointerMove = (e: any) => {
+      const instanceId = e.instanceId;
+      if (instanceId !== undefined) {
+        setHoveredCell(instanceId);
+      }
   };
   
   const handlePointerOut = () => {
       document.body.style.cursor = 'default';
-      hoverRef.current = null;
+      setHoveredCell(null);
   };
+
+  useEffect(() => {
+    return () => {
+      document.body.style.cursor = 'default';
+    };
+  }, []);
 
   const isNetworkStage = stage === GameStage.KNN_GRAPH || stage === GameStage.KERNEL_BIAS || stage === GameStage.TRANSITION_MATRIX;
 
@@ -93,11 +111,44 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
         args={[undefined, undefined, data.length]}
         onClick={handleClick}
         onPointerOver={handlePointerOver}
+        onPointerMove={handlePointerMove}
         onPointerOut={handlePointerOut}
       >
         <sphereGeometry args={[1, 16, 16]} />
         <meshStandardMaterial />
       </instancedMesh>
+
+      {hoveredCell !== null && hoveredCell !== activeCell && data[hoveredCell] && (
+        <Html
+          position={[
+            data[hoveredCell].position.x,
+            data[hoveredCell].position.y + 0.45,
+            data[hoveredCell].position.z,
+          ]}
+          center
+          distanceFactor={12}
+        >
+          <div className="pointer-events-none rounded bg-slate-950/90 border border-slate-600 px-2 py-1 text-[10px] font-semibold text-slate-100 whitespace-nowrap">
+            Cell #{hoveredCell}
+          </div>
+        </Html>
+      )}
+
+      {activeCell !== null && data[activeCell] && (
+        <Html
+          position={[
+            data[activeCell].position.x,
+            data[activeCell].position.y + 0.72,
+            data[activeCell].position.z,
+          ]}
+          center
+          distanceFactor={11}
+        >
+          <div className="pointer-events-none rounded bg-emerald-950/95 border border-emerald-400/70 px-2.5 py-1 text-[10px] font-bold text-emerald-200 whitespace-nowrap shadow-[0_0_10px_rgba(16,185,129,0.35)]">
+            Selected Cell #{activeCell}
+          </div>
+        </Html>
+      )}
 
       {/* Visualize Neighborhood Connections for Active Cell */}
       {isNetworkStage && activeCell !== null && (
@@ -106,6 +157,7 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
           activeId={activeCell} 
           showDirection={stage === GameStage.KERNEL_BIAS || stage === GameStage.TRANSITION_MATRIX} 
           kernel={kernel}
+          kernelParams={kernelParams}
         />
       )}
 
@@ -118,63 +170,92 @@ export const CellCloud: React.FC<CellsProps> = ({ data, activeCell, stage, onCel
 };
 
 // Draws lines/arrows between active cell and neighbors
-const Connections: React.FC<{ data: CellData[], activeId: number, showDirection: boolean, kernel: KernelType }> = ({ data, activeId, showDirection, kernel }) => {
+const Connections: React.FC<{ data: CellData[], activeId: number, showDirection: boolean, kernel: KernelType, kernelParams: KernelParams }> = ({ data, activeId, showDirection, kernel, kernelParams }) => {
     const activeCell = data[activeId];
+    const transitionProbs = useMemo(
+      () => (activeCell ? getTransitionProbs(activeId, data, kernel, kernelParams) : []),
+      [activeId, data, kernel, kernelParams, activeCell]
+    );
+    const maxProb = transitionProbs[0]?.prob ?? 1;
+    const probByTarget = useMemo(() => {
+      const probMap = new Map<number, number>();
+      transitionProbs.forEach((entry) => probMap.set(entry.targetId, entry.prob));
+      return probMap;
+    }, [transitionProbs]);
     if (!activeCell) return null;
 
     return (
         <group>
             {activeCell.neighbors.map(nid => {
                 const neighbor = data[nid];
+                if (!neighbor) return null;
+                const probability = probByTarget.get(nid) ?? 0;
+                const normalized = maxProb > 0 ? probability / maxProb : 0;
                 
                 // Defaults
-                let opacity = 0.3;
+                let opacity = 0.12;
                 let color = 'white';
-                let thickness = 1;
+                let thickness = 0.8;
 
                 if (showDirection) {
                     if (kernel === 'Pseudotime') {
-                        if (neighbor.pseudotime > activeCell.pseudotime) {
-                            opacity = 1; color = '#4ade80'; thickness = 3; // Green forward
+                        const dt = neighbor.pseudotime - activeCell.pseudotime;
+                        if (dt > 0) {
+                            opacity = 0.25 + normalized * 0.75;
+                            color = '#4ade80';
+                            thickness = 1 + normalized * 4;
                         } else {
-                            opacity = 0.1; color = '#94a3b8';
+                            opacity = 0.04;
+                            color = '#64748b';
+                            thickness = 0.4;
                         }
                     } 
                     else if (kernel === 'Velocity') {
                         const disp = new THREE.Vector3().subVectors(neighbor.position, activeCell.position).normalize();
                         const cos = activeCell.velocity.dot(disp);
                         if (cos > 0) {
-                            opacity = 0.5 + cos * 0.5; color = '#f472b6'; thickness = 2 + cos * 3; // Pink velocity
+                            opacity = Math.max(0.2, 0.3 + cos * normalized);
+                            color = '#f472b6';
+                            thickness = 1 + normalized * 4;
                         } else {
-                            opacity = 0.1;
+                            opacity = 0.04;
+                            thickness = 0.5;
                         }
                     }
                     else if (kernel === 'CytoTRACE') {
-                        // High potency -> Low potency
                         const diff = activeCell.potency - neighbor.potency;
                         if (diff > 0) {
-                             opacity = 1; color = '#facc15'; thickness = 3; // Yellow flow
+                             opacity = 0.2 + normalized * 0.8;
+                             color = '#facc15';
+                             thickness = 1 + normalized * 3.6;
                         } else {
-                            opacity = 0.1; color = '#94a3b8';
+                            opacity = 0.06;
+                            color = '#713f12';
+                            thickness = 0.5;
                         }
                     }
                     else if (kernel === 'RealTime') {
-                         // Similar to Pseudotime but tighter
                          const dt = neighbor.pseudotime - activeCell.pseudotime;
-                         if (dt > 0 && dt < 0.1) {
-                             opacity = 1; color = '#06b6d4'; thickness = 3; // Cyan tight temporal coupling
+                         const target = kernelParams.otTimeTarget;
+                         const width = Math.max(0.03, target + 0.06);
+                         const temporalMatch = Math.max(0, 1 - Math.abs(dt - target) / width);
+                         if (temporalMatch > 0.15 && normalized > 0.25) {
+                             opacity = 0.25 + normalized * temporalMatch * 0.75;
+                             color = '#06b6d4';
+                             thickness = 0.8 + normalized * temporalMatch * 5;
                          } else {
-                             opacity = 0.1;
+                             opacity = 0.02;
+                             thickness = 0.3;
                          }
                     }
                     else if (kernel === 'Combined') {
-                        // Mix of Velocity (Pink) and Pseudotime (Green) -> Purple/White?
-                        // Let's use a unique Indigo
-                         if (neighbor.pseudotime > activeCell.pseudotime) {
-                             opacity = 1; color = '#818cf8'; thickness = 3;
-                         } else {
-                             opacity = 0.1;
-                         }
+                        const dt = neighbor.pseudotime - activeCell.pseudotime;
+                        const disp = new THREE.Vector3().subVectors(neighbor.position, activeCell.position).normalize();
+                        const cos = activeCell.velocity.dot(disp);
+                        const directionBlend = ((cos + 1) / 2) * (dt > 0 ? 1 : 0.45);
+                        opacity = 0.12 + normalized * directionBlend * 0.88;
+                        color = '#818cf8';
+                        thickness = 0.8 + normalized * 4;
                     }
                 }
 

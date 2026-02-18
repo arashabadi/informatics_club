@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { CellData, GameStage, KernelParams, KernelType } from '../types';
-import { ArrowRight, Play, Pause, FastForward, RefreshCcw, Info, GitGraph, Activity, Zap, Grid, Camera, Loader2, ChevronDown } from 'lucide-react';
+import { ArrowRight, Play, Pause, FastForward, RefreshCcw, Info, GitGraph, Activity, Zap, Grid, Camera, Loader2, ChevronDown, LogOut } from 'lucide-react';
 import { computeKernelCompareScores, getTransitionProbs } from '../utils/simulation';
 // @ts-ignore
 import html2canvas from 'html2canvas';
 
 interface InterfaceProps {
+  onExit: () => void;
   stage: GameStage;
   setStage: (s: GameStage) => void;
   kernel: KernelType;
@@ -66,6 +67,7 @@ const ParamSlider = ({
 );
 
 export const Interface: React.FC<InterfaceProps> = ({ 
+  onExit,
   stage,
   setStage,
   kernel,
@@ -83,15 +85,66 @@ export const Interface: React.FC<InterfaceProps> = ({
 }) => {
   const [isCapturing, setIsCapturing] = useState(false);
   const [showKernelMenu, setShowKernelMenu] = useState(false);
+  const [hoveredMatrixEntry, setHoveredMatrixEntry] = useState<{ source: number; target: number; value: number } | null>(null);
   const stageLabels = ['Manifold', 'KNN Graph', 'Kernel', 'Matrix', 'Walk', 'Macrostates'];
   const selectedCell = activeCell !== null ? cells[activeCell] : null;
   const uniqueVisited = walkPath.length > 0 ? new Set(walkPath).size : 0;
+  const activeProbs = useMemo(
+    () => (activeCell !== null ? getTransitionProbs(activeCell, cells, kernel, kernelParams) : []),
+    [activeCell, cells, kernel, kernelParams]
+  );
   const kernelScores = activeCell !== null ? computeKernelCompareScores(activeCell, cells, kernelParams) : [];
   const totalScore = kernelScores.reduce((acc, score) => acc + score.score, 0);
   const normalizedScores = kernelScores.map((entry) => ({
     ...entry,
     normalized: totalScore > 0 ? entry.score / totalScore : 0,
   }));
+  const matrixPreview = useMemo(() => {
+    if (activeCell === null || activeProbs.length === 0) return null;
+    const indices = Array.from(new Set([activeCell, ...activeProbs.slice(0, 11).map((entry) => entry.targetId)])).slice(0, 12);
+    if (indices.length < 2) return null;
+
+    const rows = indices.map((sourceId) => {
+      const rowProbs = getTransitionProbs(sourceId, cells, kernel, kernelParams);
+      const probMap = new Map<number, number>(rowProbs.map((entry) => [entry.targetId, entry.prob]));
+      return indices.map((targetId) => probMap.get(targetId) ?? 0);
+    });
+
+    const maxValue = rows.flat().reduce((max, value) => Math.max(max, value), 0);
+    return { indices, rows, maxValue: maxValue > 0 ? maxValue : 1 };
+  }, [activeCell, activeProbs, cells, kernel, kernelParams]);
+
+  const matrixPythonSnippet = useMemo(() => {
+    const kernelInit: Record<KernelType, string> = {
+      Pseudotime: 'kernel = cr.kernels.PseudotimeKernel(adata, time_key="dpt_pseudotime")',
+      Velocity: 'kernel = cr.kernels.VelocityKernel(adata)',
+      CytoTRACE: 'kernel = cr.kernels.CytoTRACEKernel(adata, potency_key="ct_potency")',
+      RealTime: 'kernel = cr.kernels.RealTimeKernel(adata, time_key="time")',
+      Combined: 'kernel = 0.6 * vk + 0.4 * pk',
+    };
+
+    return `import cellrank as cr
+import matplotlib.pyplot as plt
+import numpy as np
+
+${kernelInit[kernel]}
+kernel.compute_transition_matrix()
+
+T = kernel.transition_matrix  # scipy.sparse.csr_matrix
+print("shape:", T.shape, "nnz:", T.nnz)
+
+idx = np.random.choice(T.shape[0], 40, replace=False)
+block = T[idx][:, idx].A
+
+plt.figure(figsize=(4, 4))
+plt.imshow(block, cmap="viridis")
+plt.colorbar(label="P(i→j)")
+plt.title("Transition matrix block")`;
+  }, [kernel]);
+
+  useEffect(() => {
+    setHoveredMatrixEntry(null);
+  }, [stage, activeCell, kernel]);
 
   const renderKernelControls = () => {
     if (stage !== GameStage.KERNEL_BIAS) return null;
@@ -315,7 +368,7 @@ export const Interface: React.FC<InterfaceProps> = ({
           </div>
         );
       case GameStage.TRANSITION_MATRIX:
-        const probs = activeCell !== null ? getTransitionProbs(activeCell, cells, kernel, kernelParams) : [];
+        const probs = activeProbs;
         
         return (
           <div className="space-y-4">
@@ -348,6 +401,55 @@ export const Interface: React.FC<InterfaceProps> = ({
                     </div>
                 </div>
             )}
+
+            {matrixPreview && (
+                <div className="bg-slate-800 p-3 rounded-lg border border-slate-600">
+                    <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">
+                        Matrix Block View (Python-like)
+                    </h3>
+                    <p className="text-[11px] text-slate-400 mb-2">Rows = source cells, columns = target cells from a local neighborhood.</p>
+                     <div className="overflow-x-auto">
+                        <div
+                            className="inline-grid gap-[2px] rounded-md bg-slate-900/70 p-2 border border-slate-700"
+                            style={{ gridTemplateColumns: `repeat(${matrixPreview.indices.length}, minmax(10px, 1fr))` }}
+                        >
+                            {matrixPreview.rows.map((row, rowIdx) =>
+                                row.map((value, colIdx) => (
+                                    <div
+                                        key={`${rowIdx}-${colIdx}`}
+                                        className="w-3.5 h-3.5 rounded-[2px] cursor-crosshair"
+                                        style={{ backgroundColor: `rgba(34, 197, 94, ${Math.max(0.07, value / matrixPreview.maxValue)})` }}
+                                        title={`T[${matrixPreview.indices[rowIdx]}, ${matrixPreview.indices[colIdx]}] = ${value.toFixed(4)}`}
+                                        onMouseEnter={() => setHoveredMatrixEntry({
+                                            source: matrixPreview.indices[rowIdx],
+                                            target: matrixPreview.indices[colIdx],
+                                            value,
+                                        })}
+                                        onMouseLeave={() => setHoveredMatrixEntry((prev) => (prev && prev.source === matrixPreview.indices[rowIdx] && prev.target === matrixPreview.indices[colIdx] ? null : prev))}
+                                    />
+                                ))
+                            )}
+                        </div>
+                    </div>
+                    <div className="text-[11px] text-emerald-300 font-mono mt-2">
+                        {hoveredMatrixEntry
+                          ? `T[${hoveredMatrixEntry.source}, ${hoveredMatrixEntry.target}] = ${hoveredMatrixEntry.value.toFixed(4)}`
+                          : 'Hover a box to inspect probability values'}
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-2 font-mono break-all">
+                        Cell order: [{matrixPreview.indices.join(', ')}]
+                    </p>
+                </div>
+            )}
+
+            <div className="bg-slate-950/80 p-3 rounded-lg border border-slate-700">
+                <h3 className="text-xs font-bold text-slate-400 uppercase mb-2">
+                    How this looks in Python
+                </h3>
+                <pre className="text-[11px] leading-relaxed text-slate-200 overflow-x-auto font-mono">
+{matrixPythonSnippet}
+                </pre>
+            </div>
             
             <p className="text-sm text-yellow-200 bg-yellow-900/30 p-2 rounded mt-2">
                 <Info className="inline w-4 h-4 mr-1"/> Click cells to inspect probabilities.
@@ -429,20 +531,31 @@ export const Interface: React.FC<InterfaceProps> = ({
   };
 
   return (
-    <div className="absolute top-0 left-0 h-full w-full pointer-events-none flex flex-col justify-between">
+    <div className="absolute inset-0 pointer-events-none flex flex-col">
       {/* Header */}
-      <div className="bg-slate-900/90 backdrop-blur border-b border-slate-700 p-4 pointer-events-auto flex justify-between items-center">
+      <div className="bg-slate-900/90 backdrop-blur border-b border-slate-700 px-4 py-3 pointer-events-auto flex justify-between items-center">
         <div>
             <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
                 CellRank 2 Explorer
             </h1>
             <p className="text-xs text-slate-400">Interactive Tutorial for Biologists</p>
         </div>
-        <div className="flex items-center gap-4">
-             <div className="hidden md:flex text-xs text-slate-500 gap-2">
-                <span className="border border-slate-700 px-1 rounded bg-slate-800">←</span>
-                <span className="border border-slate-700 px-1 rounded bg-slate-800">→</span>
-                <span>to navigate</span>
+        <div className="flex items-center gap-3">
+             <button
+                onClick={onExit}
+                className="inline-flex items-center gap-1.5 rounded-md border border-slate-600 bg-slate-800 px-2.5 py-1.5 text-xs text-slate-100 hover:bg-slate-700"
+                title="Exit to Menu"
+             >
+                <LogOut className="w-3.5 h-3.5" />
+                Exit
+             </button>
+             <div className="hidden md:flex text-xs text-slate-500 gap-2 items-center">
+                <span className="border border-slate-700 px-1 rounded bg-slate-800">L-drag</span>
+                <span>pan</span>
+                <span className="border border-slate-700 px-1 rounded bg-slate-800">R-drag</span>
+                <span>rotate</span>
+                <span className="border border-slate-700 px-1 rounded bg-slate-800">wheel</span>
+                <span>zoom</span>
              </div>
              
              <button 
@@ -460,13 +573,13 @@ export const Interface: React.FC<InterfaceProps> = ({
         </div>
       </div>
 
-      <div className="px-6 pt-3 pb-1 pointer-events-auto">
-        <div className="max-w-3xl flex flex-wrap gap-2">
+      <div className="px-4 md:px-6 pt-2 pb-1 pointer-events-auto">
+        <div className="max-w-3xl flex flex-nowrap gap-2 overflow-x-auto pb-1">
             {stageLabels.map((label, idx) => (
                 <button
                     key={label}
                     onClick={() => setStage(idx as GameStage)}
-                    className={`text-[11px] px-2.5 py-1 rounded-full border transition ${
+                    className={`shrink-0 text-[11px] px-2.5 py-1 rounded-full border transition ${
                         stage === idx
                             ? 'bg-blue-500/20 border-blue-400/60 text-blue-200'
                             : 'bg-slate-800/70 border-slate-700 text-slate-400 hover:text-slate-200'
@@ -479,8 +592,9 @@ export const Interface: React.FC<InterfaceProps> = ({
       </div>
 
       {/* Main Content Card */}
-      <div className="p-6 pointer-events-auto max-w-md">
-        <div className="bg-slate-900/95 backdrop-blur border border-slate-700 p-6 rounded-xl shadow-2xl">
+      <div className="flex-1 min-h-0 px-4 md:px-6 pb-2 md:pb-4 pointer-events-none">
+        <div className="pointer-events-auto max-w-md h-full overflow-y-auto pr-1">
+          <div className="bg-slate-900/95 backdrop-blur border border-slate-700 p-4 md:p-6 rounded-xl shadow-2xl">
             {renderContent()}
             {renderKernelControls()}
             {renderKernelCompare()}
@@ -522,11 +636,12 @@ export const Interface: React.FC<InterfaceProps> = ({
                     Next <ArrowRight size={16} />
                 </button>
             </div>
+          </div>
         </div>
       </div>
       
       {/* Legend Footer */}
-      <div className="p-4 bg-slate-900/80 backdrop-blur text-xs flex gap-6 justify-center text-slate-400 border-t border-slate-800">
+      <div className="hidden md:flex p-4 bg-slate-900/80 backdrop-blur text-xs gap-6 justify-center text-slate-400 border-t border-slate-800 pointer-events-auto">
         <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-yellow-400"></span> Stem</div>
         <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-slate-300"></span> Progenitor</div>
         <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-red-500"></span> Type A</div>
