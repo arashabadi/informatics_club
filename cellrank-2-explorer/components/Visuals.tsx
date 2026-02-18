@@ -318,3 +318,26 @@ export const TerminalHighlights: React.FC<{ data: CellData[], ids: number[] }> =
         </group>
     )
 }
+
+export const InitialHighlights: React.FC<{ data: CellData[], ids: number[] }> = ({ data, ids }) => {
+    return (
+        <group>
+            {ids.map(id => {
+                const cell = data[id];
+                if (!cell) return null;
+                return (
+                <group key={id} position={cell.position}>
+                     <Sphere args={[0.52, 16, 16]}>
+                         <meshStandardMaterial color="#22c55e" emissive="#22c55e" emissiveIntensity={1.6} />
+                     </Sphere>
+                     <Html position={[0, 0.95, 0]}>
+                         <div className="bg-emerald-700 text-white px-2 py-1 rounded text-xs font-bold whitespace-nowrap">
+                             Initial State
+                         </div>
+                     </Html>
+                </group>
+                );
+            })}
+        </group>
+    )
+}

@@ -3,8 +3,8 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import { CellData, GameStage, KernelParams, KernelType } from '../types';
-import { DEFAULT_KERNEL_PARAMS, generateManifold, nextStep, getMacrostates } from '../utils/simulation';
-import { CellCloud, TerminalHighlights } from './Visuals';
+import { DEFAULT_KERNEL_PARAMS, generateManifold, nextStep, getInitialStates, getMacrostates } from '../utils/simulation';
+import { CellCloud, InitialHighlights, TerminalHighlights } from './Visuals';
 import { Interface } from './Interface';
 
 const MAX_WALK_LENGTH = 800;
@@ -17,7 +17,9 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [kernel, setKernel] = useState<KernelType>('Pseudotime');
   const [kernelParams, setKernelParams] = useState<KernelParams>({ ...DEFAULT_KERNEL_PARAMS });
   const [isWalking, setIsWalking] = useState(false);
+  const [initialStates, setInitialStates] = useState<number[]>([]);
   const [terminalStates, setTerminalStates] = useState<number[]>([]);
+  const [navigationMode, setNavigationMode] = useState<'ROTATE' | 'PAN'>('ROTATE');
   const [isInitializing, setIsInitializing] = useState(true);
   const [initError, setInitError] = useState<string | null>(null);
 
@@ -29,16 +31,19 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     const initTimer = window.setTimeout(() => {
       try {
         const data = generateManifold();
+        const initialIds = getInitialStates(data);
         const terminalIds = getMacrostates(data);
         if (isCancelled) return;
         setCells(data);
+        setInitialStates(initialIds);
         setTerminalStates(terminalIds);
-        setActiveCell(data.length > 10 ? 10 : data[0]?.id ?? null);
+        setActiveCell(initialIds[0] ?? (data.length > 10 ? 10 : data[0]?.id ?? null));
       } catch (error) {
         if (isCancelled) return;
         const message = error instanceof Error ? error.message : 'Unknown explorer initialization error';
         setInitError(message);
         setCells([]);
+        setInitialStates([]);
         setTerminalStates([]);
         setActiveCell(null);
       } finally {
@@ -170,6 +175,7 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 kernel={kernel}
                 kernelParams={kernelParams}
             />
+            {(stage === GameStage.INTRO || stage === GameStage.MACROSTATES) && <InitialHighlights data={cells} ids={initialStates} />}
             {stage === GameStage.MACROSTATES && <TerminalHighlights data={cells} ids={terminalStates} />}
         </group>
         <OrbitControls
@@ -183,9 +189,9 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
           enableDamping={true}
           dampingFactor={0.08}
           mouseButtons={{
-            LEFT: THREE.MOUSE.PAN,
+            LEFT: navigationMode === 'PAN' ? THREE.MOUSE.PAN : THREE.MOUSE.ROTATE,
             MIDDLE: THREE.MOUSE.DOLLY,
-            RIGHT: THREE.MOUSE.ROTATE,
+            RIGHT: navigationMode === 'PAN' ? THREE.MOUSE.ROTATE : THREE.MOUSE.PAN,
           }}
           autoRotate={stage === GameStage.INTRO}
           autoRotateSpeed={0.5}
@@ -194,6 +200,10 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
       <Interface 
         onExit={onBack}
+        initialStates={initialStates}
+        terminalStates={terminalStates}
+        navigationMode={navigationMode}
+        setNavigationMode={setNavigationMode}
         stage={stage}
         setStage={setStage}
         kernel={kernel}

@@ -78,7 +78,7 @@ export default function App() {
                     </div>
                     <h2 className="text-2xl font-bold text-white mb-2">Python Input Arcade</h2>
                     <p className="text-slate-400 text-sm mb-auto">
-                        Explore real AnnData structure snapshots (obs, layers, obsm, obsp) plus runnable Python for every CellRank kernel.
+                        Explore real AnnData structure snapshots (obs, layers, obsm, obsp) for every CellRank kernel.
                     </p>
                     <div className="flex items-center text-violet-400 font-bold text-sm mt-4 group-hover:translate-x-2 transition-transform">
                         Open Recipes <ArrowRight size={16} className="ml-2" />

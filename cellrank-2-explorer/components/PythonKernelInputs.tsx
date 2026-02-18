@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowLeft, Check, Copy, Sparkles, Terminal } from 'lucide-react';
+import { ArrowLeft, Sparkles, Terminal } from 'lucide-react';
 
 type SlotSnapshot = {
   slot: string;
@@ -272,22 +272,11 @@ combo.compute_transition_matrix()`,
 
 export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   const [selectedId, setSelectedId] = useState(KERNEL_INPUTS[0].id);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const selected = useMemo(
     () => KERNEL_INPUTS.find((item) => item.id === selectedId) ?? KERNEL_INPUTS[0],
     [selectedId]
   );
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(selected.snippet);
-      setCopiedId(selected.id);
-      window.setTimeout(() => setCopiedId((prev) => (prev === selected.id ? null : prev)), 1400);
-    } catch {
-      setCopiedId(null);
-    }
-  };
 
   return (
     <div className="w-full min-h-screen bg-slate-950 text-white p-4 md:p-6">
@@ -302,7 +291,7 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
           </button>
           <div className="inline-flex items-center gap-2 text-xs text-slate-300 border border-slate-700 bg-slate-900/90 rounded-lg px-3 py-2">
             <Sparkles className="w-4 h-4 text-emerald-400" />
-            Real data inputs + runnable CellRank kernel setup
+            Real data input structures for each kernel
           </div>
         </div>
 
@@ -326,16 +315,9 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
           <div className={`rounded-xl border bg-gradient-to-br ${selected.colorClass} p-4 md:p-6`}>
             <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
               <h2 className="text-2xl font-bold">{selected.emoji} {selected.label}</h2>
-              <button
-                onClick={handleCopy}
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-slate-900/80 px-3 py-2 text-sm hover:bg-slate-800"
-              >
-                {copiedId === selected.id ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                {copiedId === selected.id ? 'Copied' : 'Copy Python'}
-              </button>
             </div>
 
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               <div className="rounded-lg border border-slate-700 bg-slate-900/90 p-4">
                 <div className="flex items-center gap-2 text-sm text-emerald-300 mb-2">
                   <Terminal className="w-4 h-4" />
@@ -414,12 +396,6 @@ export const PythonKernelInputs: React.FC<{ onBack: () => void }> = ({ onBack })
                 </div>
               </div>
 
-              <div className="rounded-lg border border-slate-700 bg-slate-950/95 p-4">
-                <div className="text-xs uppercase tracking-wider text-slate-400 mb-2">Python recipe</div>
-                <pre className="text-xs md:text-sm leading-relaxed overflow-auto text-slate-100 font-mono">
-{selected.snippet}
-                </pre>
-              </div>
             </div>
           </div>
         </div>

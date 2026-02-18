@@ -7,6 +7,10 @@ import html2canvas from 'html2canvas';
 
 interface InterfaceProps {
   onExit: () => void;
+  initialStates: number[];
+  terminalStates: number[];
+  navigationMode: 'ROTATE' | 'PAN';
+  setNavigationMode: (mode: 'ROTATE' | 'PAN') => void;
   stage: GameStage;
   setStage: (s: GameStage) => void;
   kernel: KernelType;
@@ -68,6 +72,10 @@ const ParamSlider = ({
 
 export const Interface: React.FC<InterfaceProps> = ({ 
   onExit,
+  initialStates,
+  terminalStates,
+  navigationMode,
+  setNavigationMode,
   stage,
   setStage,
   kernel,
@@ -88,6 +96,9 @@ export const Interface: React.FC<InterfaceProps> = ({
   const [hoveredMatrixEntry, setHoveredMatrixEntry] = useState<{ source: number; target: number; value: number } | null>(null);
   const stageLabels = ['Manifold', 'KNN Graph', 'Kernel', 'Matrix', 'Walk', 'Macrostates'];
   const selectedCell = activeCell !== null ? cells[activeCell] : null;
+  const selectedCellRole = selectedCell
+    ? `${initialStates.includes(selectedCell.id) ? 'Initial' : ''}${initialStates.includes(selectedCell.id) && terminalStates.includes(selectedCell.id) ? ' + ' : ''}${terminalStates.includes(selectedCell.id) ? 'Terminal' : ''}` || 'Intermediate'
+    : null;
   const uniqueVisited = walkPath.length > 0 ? new Set(walkPath).size : 0;
   const activeProbs = useMemo(
     () => (activeCell !== null ? getTransitionProbs(activeCell, cells, kernel, kernelParams) : []),
@@ -279,6 +290,9 @@ plt.title("Transition matrix block")`;
               The <strong>Yellow</strong> cells are Stem cells. They differentiate into two distinct lineages: 
               <strong> Red (Type A)</strong> and <strong>Blue (Type B)</strong>.
             </p>
+            <div className="rounded border border-emerald-500/40 bg-emerald-950/30 p-2 text-xs text-emerald-200">
+              Initial states are shown as green markers (source-like, low pseudotime). IDs: {initialStates.length > 0 ? initialStates.map((id) => `#${id}`).join(', ') : 'N/A'}.
+            </div>
           </div>
         );
       case GameStage.KNN_GRAPH:
@@ -510,17 +524,31 @@ plt.title("Transition matrix block")`;
        case GameStage.MACROSTATES:
         return (
             <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-red-500">Terminal States</h2>
+            <h2 className="text-2xl font-bold text-red-500">Macrostates, Initial vs Terminal</h2>
             <p className="text-slate-300">
-              By analyzing the Markov Chain (using estimators like GPCCA+), CellRank automatically identifies <strong>Macrostates</strong>.
+              CellRank groups cells into coarse dynamical states (macrostates). A practical view is:
+              <strong> initial states</strong> act as sources, <strong>terminal states</strong> act as sinks.
             </p>
             <p className="text-slate-300">
-              These are the "sinks" of the process—states where random walks tend to end up. These correspond to the mature cell types.
+              Terminal states are regions where random walks accumulate. Initial states are early cells that mostly flow outward toward multiple fates.
             </p>
-             <div className="mt-4 p-4 border border-red-500/30 bg-red-900/20 rounded">
-                <h3 className="font-bold text-red-400 mb-2">Fate Probability</h3>
+             <div className="grid grid-cols-1 gap-2">
+                <div className="p-3 border border-emerald-500/30 bg-emerald-900/20 rounded">
+                    <h3 className="font-bold text-emerald-300 mb-1 text-sm">Initial States (Sources)</h3>
+                    <p className="text-xs text-emerald-100">IDs: {initialStates.length > 0 ? initialStates.map((id) => `#${id}`).join(', ') : 'N/A'}</p>
+                </div>
+                <div className="p-3 border border-red-500/30 bg-red-900/20 rounded">
+                    <h3 className="font-bold text-red-300 mb-1 text-sm">Terminal States (Sinks)</h3>
+                    <p className="text-xs text-red-100">IDs: {terminalStates.length > 0 ? terminalStates.map((id) => `#${id}`).join(', ') : 'N/A'}</p>
+                </div>
+             </div>
+             <div className="mt-1 p-4 border border-red-500/30 bg-red-900/20 rounded">
+                <h3 className="font-bold text-red-400 mb-2">Fate Probability Concept</h3>
                 <p className="text-sm">
                     <M>P</M>(fate<M><sub>A</sub></M> | cell<M><sub>i</sub></M>) is the probability that a random walk starting at <M>i</M> ends in Terminal State A.
+                </p>
+                <p className="text-xs text-slate-300 mt-2">
+                    In practice, high terminal-state probabilities indicate commitment; mixed probabilities indicate transitional/plastic cells.
                 </p>
             </div>
            </div>
@@ -549,13 +577,27 @@ plt.title("Transition matrix block")`;
                 <LogOut className="w-3.5 h-3.5" />
                 Exit
              </button>
-             <div className="hidden md:flex text-xs text-slate-500 gap-2 items-center">
-                <span className="border border-slate-700 px-1 rounded bg-slate-800">L-drag</span>
-                <span>pan</span>
-                <span className="border border-slate-700 px-1 rounded bg-slate-800">R-drag</span>
-                <span>rotate</span>
-                <span className="border border-slate-700 px-1 rounded bg-slate-800">wheel</span>
+             <div className="hidden md:flex items-center gap-1">
+                <button
+                  onClick={() => setNavigationMode('ROTATE')}
+                  className={`rounded border px-2 py-1 text-[11px] ${navigationMode === 'ROTATE' ? 'border-blue-400/70 bg-blue-500/20 text-blue-100' : 'border-slate-700 bg-slate-800 text-slate-300'}`}
+                  title="Left-drag rotates, right-drag pans"
+                >
+                  Rotate Mode
+                </button>
+                <button
+                  onClick={() => setNavigationMode('PAN')}
+                  className={`rounded border px-2 py-1 text-[11px] ${navigationMode === 'PAN' ? 'border-blue-400/70 bg-blue-500/20 text-blue-100' : 'border-slate-700 bg-slate-800 text-slate-300'}`}
+                  title="Left-drag pans, right-drag rotates"
+                >
+                  Pan Mode
+                </button>
+             </div>
+             <div className="hidden xl:flex text-xs text-slate-500 gap-2 items-center">
+                <span className="border border-slate-700 px-1 rounded bg-slate-800">wheel/pinch</span>
                 <span>zoom</span>
+                <span className="border border-slate-700 px-1 rounded bg-slate-800">mode buttons</span>
+                <span>choose drag behavior</span>
              </div>
              
              <button 
@@ -608,6 +650,10 @@ plt.title("Transition matrix block")`;
                     <div>
                         <div className="text-slate-500">Type</div>
                         <div className="text-slate-100">{selectedCell.type}</div>
+                    </div>
+                    <div>
+                        <div className="text-slate-500">State Role</div>
+                        <div className="text-cyan-300">{selectedCellRole}</div>
                     </div>
                     <div>
                         <div className="text-slate-500">Pseudotime</div>

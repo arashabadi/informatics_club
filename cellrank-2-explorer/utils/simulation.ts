@@ -215,6 +215,19 @@ export const computeKernelCompareScores = (
   });
 };
 
+export const getInitialStates = (cells: CellData[]): number[] => {
+    if (cells.length === 0) return [];
+    const stemLike = cells
+      .filter(c => c.type === 'Stem' || c.type === 'Progenitor')
+      .sort((a, b) => a.pseudotime - b.pseudotime);
+
+    const chosen = (stemLike.length > 0 ? stemLike : [...cells].sort((a, b) => a.pseudotime - b.pseudotime))
+      .slice(0, 2)
+      .map(c => c.id);
+
+    return Array.from(new Set(chosen));
+};
+
 // Find macrostates (fake implementation for visual)
 export const getMacrostates = (cells: CellData[]): number[] => {
     if (cells.length === 0) return [];
