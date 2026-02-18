@@ -5,9 +5,10 @@ import { ArrowLeft, Sigma, TrendingUp, Clock, Activity, ArrowRightLeft, GitMerge
 // TYPES & NAVIGATION
 // ----------------------------------------------------------------------
 
-type ModuleId = 'PSEUDOTIME' | 'VELOCITY' | 'CYTOTRACE' | 'REALTIME' | 'COMBINATION' | 'MATRIX' | 'GPCCA' | 'ABSORPTION';
+type ModuleId = 'COMPARE' | 'PSEUDOTIME' | 'VELOCITY' | 'CYTOTRACE' | 'REALTIME' | 'COMBINATION' | 'MATRIX' | 'GPCCA' | 'ABSORPTION';
 
 const MODULES: { id: ModuleId; label: string; icon: React.ElementType }[] = [
+    { id: 'COMPARE', label: 'Kernel Quick Compare', icon: FunctionSquare },
     { id: 'PSEUDOTIME', label: 'Pseudotime Kernel', icon: Clock },
     { id: 'VELOCITY', label: 'Velocity Kernel', icon: TrendingUp },
     { id: 'CYTOTRACE', label: 'CytoTRACE Kernel', icon: Activity },
@@ -19,7 +20,9 @@ const MODULES: { id: ModuleId; label: string; icon: React.ElementType }[] = [
 ];
 
 export const FormulaLab: React.FC<{ onBack: () => void }> = ({ onBack }) => {
-  const [activeModule, setActiveModule] = useState<ModuleId>('PSEUDOTIME');
+  const [activeModule, setActiveModule] = useState<ModuleId>('COMPARE');
+  const activeIdx = MODULES.findIndex((m) => m.id === activeModule);
+  const activeLabel = MODULES[activeIdx]?.label ?? '';
 
   return (
     <div className="w-full h-screen bg-slate-950 text-slate-100 font-sans flex overflow-hidden">
@@ -56,6 +59,13 @@ export const FormulaLab: React.FC<{ onBack: () => void }> = ({ onBack }) => {
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto bg-slate-950 p-8">
         <div className="max-w-4xl mx-auto">
+            <div className="mb-6 rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+                <div className="text-sm font-semibold text-slate-200">{activeLabel}</div>
+                <div className="text-xs text-slate-400 font-mono">
+                    Module {activeIdx + 1} / {MODULES.length}
+                </div>
+            </div>
+            {activeModule === 'COMPARE' && <QuickCompareLab />}
             {activeModule === 'PSEUDOTIME' && <PseudotimeLab />}
             {activeModule === 'VELOCITY' && <VelocityLab />}
             {activeModule === 'CYTOTRACE' && <CytoTraceLab />}
@@ -119,6 +129,149 @@ const Range = ({ label, value, min, max, step, onChange, color = "blue" }: any) 
         />
     </div>
 );
+
+const QuickCompareLab = () => {
+    const [pseudoDelta, setPseudoDelta] = useState(0.08);
+    const [velocityCos, setVelocityCos] = useState(0.6);
+    const [potencyDiff, setPotencyDiff] = useState(0.35);
+    const [transportCost, setTransportCost] = useState(1.2);
+    const [alpha, setAlpha] = useState(0.5);
+
+    const pseudoRaw = Math.exp(8 * pseudoDelta);
+    const velocityRaw = Math.exp(velocityCos / 0.35);
+    const cytoRaw = 1 / (1 + Math.exp(-8 * potencyDiff));
+    const realtimeRaw = Math.exp(-transportCost);
+    const combinedRaw = alpha * velocityRaw + (1 - alpha) * pseudoRaw;
+
+    const kernels = [
+        {
+            id: 'Pseudotime',
+            raw: pseudoRaw,
+            color: 'bg-blue-500',
+            text: 'text-blue-300',
+            hint: pseudoDelta >= 0 ? 'Forward pseudotime favored' : 'Backward edge penalized',
+        },
+        {
+            id: 'Velocity',
+            raw: velocityRaw,
+            color: 'bg-purple-500',
+            text: 'text-purple-300',
+            hint: velocityCos >= 0 ? 'Aligned with velocity field' : 'Opposes velocity field',
+        },
+        {
+            id: 'CytoTRACE',
+            raw: cytoRaw,
+            color: 'bg-yellow-500',
+            text: 'text-yellow-300',
+            hint: potencyDiff >= 0 ? 'High-to-low potency flow' : 'Potency increase discouraged',
+        },
+        {
+            id: 'RealTime',
+            raw: realtimeRaw,
+            color: 'bg-cyan-500',
+            text: 'text-cyan-300',
+            hint: transportCost <= 2 ? 'Low OT transport cost' : 'High OT transport cost',
+        },
+        {
+            id: 'Combined',
+            raw: combinedRaw,
+            color: 'bg-indigo-500',
+            text: 'text-indigo-300',
+            hint: `Blend α=${alpha.toFixed(2)} of Velocity + (1-α) Pseudotime`,
+        },
+    ];
+
+    const total = kernels.reduce((acc, k) => acc + k.raw, 0);
+    const normalized = kernels.map((k) => ({
+        ...k,
+        prob: total > 0 ? k.raw / total : 0,
+    }));
+    const winner = normalized.reduce((best, current) => (current.prob > best.prob ? current : best));
+
+    return (
+        <div className="space-y-6">
+            <Section title="Kernel Quick Compare">
+                <p className="text-sm text-slate-300 leading-relaxed">
+                    Tune one shared scenario and compare how each kernel scores the same transition candidate.
+                    This makes kernel assumptions easy to contrast before full transition-matrix construction.
+                </p>
+            </Section>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Section title="Shared Scenario Controls">
+                    <Range
+                        label="Pseudotime Difference (τ_j - τ_i)"
+                        value={pseudoDelta}
+                        min={-0.3}
+                        max={0.3}
+                        step={0.01}
+                        onChange={setPseudoDelta}
+                        color="blue"
+                    />
+                    <Range
+                        label="Velocity Alignment cos(v_i, x_j-x_i)"
+                        value={velocityCos}
+                        min={-1}
+                        max={1}
+                        step={0.05}
+                        onChange={setVelocityCos}
+                        color="purple"
+                    />
+                    <Range
+                        label="Potency Difference (pot_i - pot_j)"
+                        value={potencyDiff}
+                        min={-0.8}
+                        max={0.8}
+                        step={0.02}
+                        onChange={setPotencyDiff}
+                        color="yellow"
+                    />
+                    <Range
+                        label="OT Transport Cost"
+                        value={transportCost}
+                        min={0}
+                        max={6}
+                        step={0.1}
+                        onChange={setTransportCost}
+                        color="cyan"
+                    />
+                    <Range
+                        label="Combination Weight α (Velocity)"
+                        value={alpha}
+                        min={0}
+                        max={1}
+                        step={0.05}
+                        onChange={setAlpha}
+                        color="indigo"
+                    />
+                </Section>
+
+                <Section title="Normalized Kernel Scores">
+                    <div className="space-y-4">
+                        {normalized.map((k) => (
+                            <div key={k.id}>
+                                <div className="flex justify-between items-center text-xs mb-1">
+                                    <span className={`font-bold ${k.text}`}>{k.id}</span>
+                                    <span className="font-mono text-slate-300">{(k.prob * 100).toFixed(1)}%</span>
+                                </div>
+                                <div className="h-3 rounded-full bg-slate-800 overflow-hidden">
+                                    <div className={`h-full ${k.color}`} style={{ width: `${k.prob * 100}%` }} />
+                                </div>
+                                <div className="text-[11px] text-slate-500 mt-1">{k.hint}</div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-5 p-3 rounded-lg border border-emerald-500/40 bg-emerald-900/20">
+                        <div className="text-xs uppercase tracking-wider text-emerald-300 mb-1">Dominant Kernel</div>
+                        <div className="text-sm font-semibold text-emerald-200">
+                            {winner.id} drives this transition under the current settings.
+                        </div>
+                    </div>
+                </Section>
+            </div>
+        </div>
+    );
+};
 
 // ----------------------------------------------------------------------
 // MODULE 1: Pseudotime Kernel

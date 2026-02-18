@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { AppMode } from './types';
 import { Explorer3D } from './components/Explorer3D';
 import { FormulaLab } from './components/FormulaLab';
-import { ProtocolWorkflow } from './components/ProtocolWorkflow';
-import { LayoutGrid, Binary, ArrowRight, Route } from 'lucide-react';
+import { LayoutGrid, Binary, ArrowRight } from 'lucide-react';
 
 export default function App() {
   const [mode, setMode] = useState<AppMode>('MENU');
@@ -14,10 +13,6 @@ export default function App() {
 
   if (mode === 'FORMULAS') {
       return <FormulaLab onBack={() => setMode('MENU')} />;
-  }
-
-  if (mode === 'WORKFLOW') {
-      return <ProtocolWorkflow onBack={() => setMode('MENU')} />;
   }
 
   return (
@@ -33,7 +28,7 @@ export default function App() {
                 Interactive Learning Suite for Single-Cell Dynamics
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 {/* Card 1: 3D Explorer */}
                 <button 
                     onClick={() => setMode('EXPLORER')}
@@ -68,21 +63,6 @@ export default function App() {
                     </div>
                 </button>
 
-                <button 
-                    onClick={() => setMode('WORKFLOW')}
-                    className="group relative bg-slate-900 border border-slate-800 hover:border-fuchsia-500 p-8 rounded-2xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(217,70,239,0.2)] text-left flex flex-col h-64"
-                >
-                    <div className="bg-fuchsia-500/10 w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <Route className="text-fuchsia-400" size={24} />
-                    </div>
-                    <h2 className="text-2xl font-bold text-white mb-2">Protocol Workflow</h2>
-                    <p className="text-slate-400 text-sm mb-auto">
-                        Full protocol map with all required and optional steps: kernels, GPCCA estimation, and downstream analysis.
-                    </p>
-                    <div className="flex items-center text-fuchsia-400 font-bold text-sm mt-4 group-hover:translate-x-2 transition-transform">
-                        Open Map <ArrowRight size={16} className="ml-2" />
-                    </div>
-                </button>
             </div>
         </div>
 

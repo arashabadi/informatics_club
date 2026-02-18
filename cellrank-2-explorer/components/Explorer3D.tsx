@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, Environment } from '@react-three/drei';
 import { CellData, GameStage, KernelType } from '../types';
@@ -44,14 +44,36 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     setWalkPath([id]);
   };
 
-  const handleWalkStep = () => {
+  const handleWalkStep = useCallback(() => {
+    if (activeCell === null || cells.length === 0) return;
+    setWalkPath((prevPath) => {
+      const currentPath = prevPath.length > 0 ? [...prevPath] : [activeCell];
+      const currentId = currentPath[currentPath.length - 1];
+      const nextId = nextStep(currentId, cells, kernel);
+      currentPath.push(nextId);
+      return currentPath;
+    });
+  }, [activeCell, cells, kernel]);
+
+  const handleToggleWalk = () => {
     if (activeCell === null) return;
-    let currentPath = walkPath.length > 0 ? [...walkPath] : [activeCell];
-    const currentId = currentPath[currentPath.length - 1];
-    const nextId = nextStep(currentId, cells, kernel);
-    currentPath.push(nextId);
-    setWalkPath(currentPath);
+    setIsWalking((prev) => !prev);
   };
+
+  const handleWalkBurst = (steps: number) => {
+    if (steps <= 0) return;
+    for (let i = 0; i < steps; i += 1) {
+      handleWalkStep();
+    }
+  };
+
+  useEffect(() => {
+    if (!isWalking || stage !== GameStage.RANDOM_WALK) return;
+    const timer = window.setInterval(() => {
+      handleWalkStep();
+    }, 350);
+    return () => window.clearInterval(timer);
+  }, [isWalking, stage, handleWalkStep]);
 
   const handleResetWalk = () => {
     if (activeCell !== null) setWalkPath([activeCell]);
@@ -94,9 +116,12 @@ export const Explorer3D: React.FC<{ onBack: () => void }> = ({ onBack }) => {
         setKernel={setKernel}
         onWalk={handleWalkStep}
         onResetWalk={handleResetWalk}
+        onToggleWalk={handleToggleWalk}
+        onWalkBurst={handleWalkBurst}
         isWalking={isWalking}
         cells={cells}
         activeCell={activeCell}
+        walkPath={walkPath}
       />
     </div>
   );

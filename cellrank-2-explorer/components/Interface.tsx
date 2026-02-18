@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CellData, GameStage, KernelType } from '../types';
-import { ArrowRight, Play, RefreshCcw, Info, GitGraph, Activity, Zap, Grid, Camera, Loader2, ChevronDown } from 'lucide-react';
+import { ArrowRight, Play, Pause, FastForward, RefreshCcw, Info, GitGraph, Activity, Zap, Grid, Camera, Loader2, ChevronDown } from 'lucide-react';
 import { getTransitionProbs } from '../utils/simulation';
 // @ts-ignore
 import html2canvas from 'html2canvas';
@@ -12,9 +12,12 @@ interface InterfaceProps {
   setKernel: (k: KernelType) => void;
   onWalk: () => void;
   onResetWalk: () => void;
+  onToggleWalk: () => void;
+  onWalkBurst: (steps: number) => void;
   isWalking: boolean;
   cells: CellData[];
   activeCell: number | null;
+  walkPath: number[];
 }
 
 const Formula = ({ children }: { children?: React.ReactNode }) => (
@@ -29,10 +32,13 @@ const M = ({ children }: { children?: React.ReactNode }) => (
 );
 
 export const Interface: React.FC<InterfaceProps> = ({ 
-  stage, setStage, kernel, setKernel, onWalk, onResetWalk, isWalking, cells, activeCell
+  stage, setStage, kernel, setKernel, onWalk, onResetWalk, onToggleWalk, onWalkBurst, isWalking, cells, activeCell, walkPath
 }) => {
   const [isCapturing, setIsCapturing] = useState(false);
   const [showKernelMenu, setShowKernelMenu] = useState(false);
+  const stageLabels = ['Manifold', 'KNN Graph', 'Kernel', 'Matrix', 'Walk', 'Macrostates'];
+  const selectedCell = activeCell !== null ? cells[activeCell] : null;
+  const uniqueVisited = walkPath.length > 0 ? new Set(walkPath).size : 0;
 
   const handleSnapshot = async () => {
       setIsCapturing(true);
@@ -209,7 +215,7 @@ export const Interface: React.FC<InterfaceProps> = ({
             <p className="text-slate-300">
               Simulate a Random Walk using the <strong>{kernel} Kernel</strong>.
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
                 <button 
                     onClick={onWalk}
                     disabled={isWalking}
@@ -217,12 +223,36 @@ export const Interface: React.FC<InterfaceProps> = ({
                 >
                     <Play size={16} /> Simulate Step
                 </button>
+                <button 
+                    onClick={onToggleWalk}
+                    className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded font-bold flex items-center gap-2"
+                >
+                    {isWalking ? <Pause size={16} /> : <Play size={16} />}
+                    {isWalking ? 'Pause Auto' : 'Auto Walk'}
+                </button>
+                <button 
+                    onClick={() => onWalkBurst(10)}
+                    disabled={isWalking}
+                    className="bg-sky-700 hover:bg-sky-600 disabled:opacity-50 text-white px-4 py-2 rounded font-bold flex items-center gap-2"
+                >
+                    <FastForward size={16} /> +10 Steps
+                </button>
                  <button 
                     onClick={onResetWalk}
                     className="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded font-bold flex items-center gap-2"
                 >
                     <RefreshCcw size={16} /> Reset
                 </button>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+                <div className="bg-slate-800/80 border border-slate-700 rounded px-3 py-2 text-xs">
+                    <div className="text-slate-400">Walk length</div>
+                    <div className="text-orange-300 font-mono">{walkPath.length}</div>
+                </div>
+                <div className="bg-slate-800/80 border border-slate-700 rounded px-3 py-2 text-xs">
+                    <div className="text-slate-400">Unique cells visited</div>
+                    <div className="text-orange-300 font-mono">{uniqueVisited}</div>
+                </div>
             </div>
              <p className="text-sm text-yellow-200 bg-yellow-900/30 p-2 rounded">
               <Info className="inline w-4 h-4 mr-1"/> Watch the particle follow the kernel's bias.
@@ -284,10 +314,49 @@ export const Interface: React.FC<InterfaceProps> = ({
         </div>
       </div>
 
+      <div className="px-6 pt-3 pb-1 pointer-events-auto">
+        <div className="max-w-3xl flex flex-wrap gap-2">
+            {stageLabels.map((label, idx) => (
+                <button
+                    key={label}
+                    onClick={() => setStage(idx as GameStage)}
+                    className={`text-[11px] px-2.5 py-1 rounded-full border transition ${
+                        stage === idx
+                            ? 'bg-blue-500/20 border-blue-400/60 text-blue-200'
+                            : 'bg-slate-800/70 border-slate-700 text-slate-400 hover:text-slate-200'
+                    }`}
+                >
+                    {idx + 1}. {label}
+                </button>
+            ))}
+        </div>
+      </div>
+
       {/* Main Content Card */}
       <div className="p-6 pointer-events-auto max-w-md">
         <div className="bg-slate-900/95 backdrop-blur border border-slate-700 p-6 rounded-xl shadow-2xl">
             {renderContent()}
+
+            {selectedCell && (
+                <div className="mt-4 border border-slate-700 bg-slate-800/70 rounded-lg p-3 text-xs grid grid-cols-2 gap-2">
+                    <div>
+                        <div className="text-slate-500">Selected Cell</div>
+                        <div className="text-slate-100 font-mono">#{selectedCell.id}</div>
+                    </div>
+                    <div>
+                        <div className="text-slate-500">Type</div>
+                        <div className="text-slate-100">{selectedCell.type}</div>
+                    </div>
+                    <div>
+                        <div className="text-slate-500">Pseudotime</div>
+                        <div className="text-emerald-300 font-mono">{selectedCell.pseudotime.toFixed(3)}</div>
+                    </div>
+                    <div>
+                        <div className="text-slate-500">Potency</div>
+                        <div className="text-yellow-300 font-mono">{selectedCell.potency.toFixed(3)}</div>
+                    </div>
+                </div>
+            )}
             
             <div className="mt-6 flex justify-between border-t border-slate-800 pt-4" id="ui-controls">
                 <button 
