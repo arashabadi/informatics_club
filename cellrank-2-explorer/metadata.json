@@ -1,0 +1,5 @@
+{
+  "name": "CellRank 2 Explorer",
+  "description": "A 3D interactive educational game teaching the concepts of CellRank 2: Kernels, Markov Chains, and Cellular Fate.",
+  "requestFramePermissions": []
+}
