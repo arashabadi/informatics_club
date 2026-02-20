@@ -1,0 +1,5 @@
+# Keep local datasets out of git history.
+data/
+
+# OS cruft
+.DS_Store
