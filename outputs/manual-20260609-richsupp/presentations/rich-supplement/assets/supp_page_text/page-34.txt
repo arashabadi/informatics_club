@@ -1,0 +1,7 @@
+Supplemental Figure 18: Comparison of KNN and SNN graphs. (A) KNN graph (k=3)
+constructed with the approximate Annoy algorithm (directedness not shown). Black =
+incorrectly added edges; Green = incorrectly omitted edges. (B) SNN graph with Seurat’s
+pruning method. An example hub node is marked with *. An example peripheral node is
+marked with **. Note: the SNN graph with Scanpy’s method is simply the undirected KNN
+graph.
+

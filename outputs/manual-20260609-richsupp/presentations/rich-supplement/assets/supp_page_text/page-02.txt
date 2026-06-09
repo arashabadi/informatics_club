@@ -1,0 +1,32 @@
+                    Supplemental Information
+         The impact of package selection and versioning on
+                   single-cell RNA-seq analysis
+        Joseph M Rich1,2 , Lambda Moses1 , Pétur Helgi Einarsson3 , Kayla
+      Jackson1,2 , Laura Luebbert1 , A. Sina Booeshaghi1 , Sindri Antonsson3 ,
+    Delaney K. Sullivan1,4 , Nicolas Bray5 , Páll Melsted3 , and Lior Pachter*1,6,7
+     1
+     Biology and Biological Engineering, California Institute of Technology,
+                           Pasadena, CA, 91125, USA
+   2
+     USC-Caltech MD/PhD Program, Keck School of Medicine, Los Angeles,
+                                CA, 90033, USA
+  3
+    Faculty of Industrial Engineering, Mechanical Engineering and Computer
+                           Science, Reykjavı́k, Iceland
+4
+  UCLA-Caltech Medical Scientist Training Program, David Ge↵en School of
+  Medicine, University of California, Los Angeles, Los Angeles, CA, 90095,
+                                       USA
+                                  5
+                                    Boston, MA
+ 6
+   Computing and Mathematical Sciences, California Institute of Technology,
+                           Pasadena, CA, 91125, USA
+                                 7
+                                   Lead Contact
+
+                                   November 27, 2025
+
+*
+    Correspondence: lpachter@caltech.edu.
+

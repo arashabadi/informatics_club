@@ -1,0 +1,4 @@
+Supplemental Figure 1: scRNA-seq matrix generation and analysis overview. Red =
+sources of variability explored in this study; Blue = plots and metrics used to assess function
+similarity.
+

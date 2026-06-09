@@ -1,0 +1,97 @@
+                                                                                            Regression,
+      Seurat v5.0.2              Filtering           Normalization     HVG selection                                PCA               SNN           Clustering             UMAP                  DE
+                                                                                              Scaling
+
+
+
+
+                            CreateSeuratObj                            FindVariableFea
+      Function nam                                   NormalizeData                            ScaleData           RunPCA         FindNeighbors      FindClusters         RunUMAP          FindAllMarkers
+                                  ect                                       tures
+
+
+
+
+                                                                                                                                                                      umap.method =
+                                                                                                                                                                         "uwot"
+
+                                                                                                                                                                       n.neighbors =
+                                                                                                                                                                            30L
+                                                                                                                                                                                          logfc.threshold =
+                                                                                                                                                                      n.components               0.1a
+                                                                       selection.metho                                                                                    = 2L
+                                                                           d = "vst"                                                                                                         test.use =
+                                                                                                                                                  modularity.fxn =    metric = "cosine"       "wilcox"
+                                                                        loess.span =                                               reduction =          1
+                                                                                           vars.to.regress                                                              n.epochs =
+                                                                             0.3                                                      "pca"                                               min.pct = 0.01b
+                                                                                               = NULL                                                                      NULL
+                                                                                                                                                  initial.membershi
+                                                                       clip.max = "auto"                                           dims = 1:10         p = NULL                           min.diff.pct = -Inf
+                                                                                             latent.data =                                                            learning.rate =
+                                                                                                 NULL                                                                        1
+                                                                       mean.function =                           npcs = 50        k.param = 20      node.sizes =                             only.pos =
+                                                                        FastExpMean                                                                    NULL                                   FALSE
+                                                                                           split.by = NULL                                                             min.dist = 0.3
+                                                                                                                 rev.pca =        prune.SNN =
+                                                      scale.factor =   dispersion.functi                          FALSE               1/15        resolution = 0.8                        max.cells.per.ide
+                                                                                             model.use =                                                                spread = 1
+                              min.cells = 0              10000               on =                                                                                                             nt = Inf
+                                                                                               "linear"
+                                                                         FastLogVMR                            weight.by.var =    nn.method =        method =
+         Defaults                                                                                                                                                     set.op.mix.ratio
+                             min.features =          normalization.m                                               TRUE             "annoy"          "matrix"                               latent.vars =
+                                                                                              use.umi =                                                                     =1
+                                   0                    ethod =         num.bin = 20                                                                                                            NULL
+                                                                                               FALSE
+                                                     "LogNormalize"                                            approx = TRUE      n.trees = 50     algorithm = 1
+                                                                       binning.method                                                                 (original       local.connectivit   min.cells.feature
+                                                                                              do.scale =                                                                   y = 1L
+                                                                       = "equal_width"                          features =       annoy.metric =      Louvain)                                   =3
+                                                                                                TRUE
+                                                                                                               NULL (HVGs)        "euclidean"
+                                                                         nfeatures =                                                                n.start = 10      repulsion.stren     min.cells.group
+                                                                                             do.center =                                                                  gth = 1
+                                                                            2000                                                   nn.eps = 0                                                   =3
+                                                                                                TRUE
+                                                                                                                                                     n.iter = 10
+                                                                        mean.cutoff =                                              l2.norm =                          negative.sampl         mean.fxn =
+                                                                                           scale.max = 10                                                               e.rate = 5
+                                                                          c(0.1, 8)                                                  FALSE        group.singletons                             NULL
+                                                                                                                                                      = TRUE
+                                                                       dispersion.cutoff                                                                                 a = NULL          return.thresh =
+                                                                          = c(1, Inf)                                                                                                           0.01
+                                                                                                                                                                         b = NULL
+                                                                                                                                                                                              base = 2
+                                                                                                                                                                      dens.lambda = 2
+
+                                                                                                                                                                      dens.frac = 0.3
+
+                                                                                                                                                                      dens.var.shift =
+                                                                                                                                                                            0.1
+
+
+                                                                                                                                                                                          logfc.threshold=
+                                                                       selection.metho
+                                                                                                                                                                                                  0
+                                                                              d=
+                                                                       "mean.var.plot"     vars.to.regress =
+     (non-default)                                   Scale.factor =                                                               k.param = 15      algorithm =       umap.method =          min.pct = 0
+                                                                                           c("nCount_RNA"
+     Arguments to                                   median(seurat_o                                                                                   "leiden"         "umap-learn"
+                                                                        mean.cutoff =         , "pct_mt")
+     match Scanpy                                   bject$nCount_R                                                                    dims =                                               return.thresh =
+                                                                        c(0.0125, 3)
+       defaults                                           NA)                                                                    total_pcs_used   resolution = 1.0     min.dist = 0.5            1.0
+                                                                                           scale.max = Inf
+                                                                       dispersion.cutoff
+                                                                                                                                                                                          min.cells.group
+                                                                          = c(0.5, Inf)
+                                                                                                                                                                                                =1
+
+
+a
+    default changed from Seurat v4 (was logfc.threshold = 0.25)
+b
+    default changed from Seurat v4 (was min.pct = 0.1)
+

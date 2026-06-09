@@ -1,0 +1,13 @@
+Supplemental Figure 17: Variability introduced by di↵erences in random seeds for func-
+tions involving randomness. (A) Seurat SNN graph generation (Annoy), with di↵erent seeds
+for KNN graph generation. (B) Seurat clustering (Louvain), with di↵erent seeds for Lou-
+vain; and UMAP-projection (uwot), with di↵erent seeds for UMAP projection. (C) Seurat
+KNN graph generation from UMAP space, with di↵erent seeds for UMAP projection. (D)
+Seurat clustering (Leiden) and UMAP projection from UMAP space, with di↵erent seeds for
+UMAP projection. (E) Scanpy SNN graph generation (NNDescent), with di↵erent seeds for
+KNN graph generation. (F) Scanpy clustering (Leiden), with di↵erent seeds for Leiden; and
+UMAP-projection (UMAP-learn), with di↵erent seeds for UMAP projection. (G) Scanpy
+KNN graph generation from UMAP space, with di↵erent seeds for UMAP projection. (H)
+Scanpy clustering (Leiden) and UMAP projection from UMAP space, with di↵erent seeds
+for UMAP projection. Dataset: 10k PBMC.
+

@@ -1,0 +1,85 @@
+                                                                             Regression,
+Scanpy v1.9.5       Filtering         Normalization     HVG selection                               PCA              SNN            Clustering            UMAP                DE
+                                                                               Scaling
+
+
+
+                sc.pp.filter_cells,
+                                      sc.pp.normalize   sc.pp.highly_vari   sc.pp.regress_o                                         sc.tl.leiden,                       sc.tl.rank_genes
+Function name   sc.pp.filter_gene                                                                 sc.tl.pca     sc.pp.neighbors                         sc.tl.umap
+                                           _total          able_genes        ut, sc.pp.scale                                        sc.tl.louvain                            _groups
+                         s
+
+
+
+
+                                                                                                                                                       min_dist = 0.5
+                  min_cells =
+                    None                                                                                                                               spread = 1.0
+                                                                                                                                                                        use_raw = None
+                 min_genes =                            n_top_genes =                                                              resolution = 1     n_components =
+                                                                                                                                                                          reference =
+                    None                                    None                                                                                            2
+                                                                                                                n_neighbors =                                                "rest"
+                                                                                               n_comps = 50                         restrict_to =
+                                                                                                                     15
+                  max_cells =                             min_mean =                           or 1 – minimum                          None           maxiter = None
+                                                                                                                                                                        n_genes = None
+                    None               target_sum =         0.0125                             dimension size
+                                                                                                                n_pcs = None
+                                           None                                                                                   directed = True       alpha = 1.0
+                                                                                                                                                                         rankby_abs =
+                 max_genes =                            max_mean = 3        zero_center =       zero_center =
+                                                                                                                use_rep = None                                               False
+                    None              exclude_highly_                           True                True                           use_weights =        gamma = 1
+  Defaults                              expressed =      min_disp = 0.5                                                                True
+                                                                                                                  knn = True                                              pts = False
+                 min_counts =              False                             max_value =        svd_solver =                                          negative_sampl
+                 None (genes)                            max_disp = inf         None              "arpack"                        n_iterations = -1     e_rate = 5
+                                                                                                                   method =                                             method = None
+                                      max_fraction =
+                                                                                                                    "umap"
+                 min_counts =             0.05             span = 0.3                          use_highly_var                     partition_type =       init_pos =
+                                                                                                                                                                        corr_method =
+                 None (cells)                                                                   iable = None                            None             "spectral"
+                                                                                                                  metric =                                                'benjamini-
+                                                          n_bins = 20                              (HVGs)
+                                                                                                                 "euclidian"                                             hochberg’
+                 max_counts =                                                                                                     flavor = "vtraag"      a = None
+                 None (genes)                           flavor = "seurat"                                                             (louvain)
+                                                                                                                                                                         tie_correct =
+                                                                                                                                                         b = None
+                                                                                                                                                                             False
+                 max_counts =
+                  None (cells)                                                                                                                           method =
+                                                                                                                                                          "umap"
+
+
+
+
+                                                                                                                                                                        use_raw=True
+
+                                                                                                                                                                          pts = True
+
+                                                                                                                                                                           method =
+                                                                                                                                      function                            "wilcoxon"
+                                                                                                                n_neighbors =
+                                                                                                                                    sc.tl.louvain
+                                                        n_top_genes =            Omit                                20
+(non-default)                                                                                                                        instead of                         corr_method =
+                                                             2000           sc.pp.regress_o
+Arguments to                           target_sum =                                             zero_center =                        sc.tl.leiden                        "bonferroni"
+                                                                                   ut                             n_pcs = 10                           min_dist = 0.3
+match Seurat                               1e-4                                                     False
+                                                            flavor =
+  defaults                                                                                                                        resolution = 0.8                       tie_correct =
+                                                          "seurat_v3"       max_value = 10                        use_rep =
+                                                                                                                                                                             True
+                                                                                                                   'X_pca'
+                                                                                                                                  n_iterations = 10
+                                                                                                                                                                        manual filtering
+                                                                                                                                                                         (abs(log_fc) ≥
+                                                                                                                                                                        0.1, pts ≥ 0.01,
+                                                                                                                                                                        pts_rest ≥ 0.01
+                                                                                                                                                                        p_value < 0.01)
+

@@ -1,0 +1,5 @@
+Supplemental Figure 19: Schematic of protocol describing generation and downstream
+use of KNN and SNN graphs. Top is for Seurat, bottom is for Scanpy. KNN(i) refers to the
+full set of k-nearest neighbors for cell i. Bold = function/method name; Italics = outside
+package utilized.
+

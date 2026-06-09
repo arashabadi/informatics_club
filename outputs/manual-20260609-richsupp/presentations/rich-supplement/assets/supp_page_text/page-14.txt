@@ -1,0 +1,8 @@
+Supplemental Figure 6: Extended UMAP analysis for Seurat vs. Scanpy showing (i)
+density plots of UMAP-derived KNN graph neighborhood Jaccard indices, (ii) alluvial plots
+of Leiden clustering performed on UMAP-derived KNN graphs, and UMAP projections of
+UMAP-derived KNN graphs colored with Leiden clustering results. (A) Default methods,
+sequential analysis (see Figure 1). (B) Aligned methods, sequential analysis (see Figure S2).
+(C) Default methods, controlled analysis (see Figure S3). (D) Aligned methods, controlled
+analysis (see Figure S4). Dataset: 10k PBMC.
+

@@ -1,0 +1,12 @@
+Supplemental Figure 12: Pipeline consistency metrics as a function of the fraction of
+cells retained after cell downsampling. (A) Jaccard index for detected cells. (B) Jaccard
+index for detected genes. (C) Jaccard index for selected HVGs. (D) Mean of di↵erence in
+PC loadings for PCs 1-3. (E) Median log(SNN degree ratio). (F) Adjusted Rand Index of
+cluster assignments. (G) Median Jaccard index of UMAP-derived KNN graphs for each cell.
+(H) Jaccard index of sets of significant (p < 0.05) marker genes across all clusters. (I) Jaccard
+index of all markers. (J) CCC of log fold changes. (K) Fraction of genes whose adjusted
+p-value crosses the 0.05 threshold after downsampling. Orange = Seurat workflow; Blue =
+Scanpy workflow; lighter lines = replicates of downsampling across random seeds; dashed
+line = metric recorded when comparing between Seurat and Scanpy when both pipelines are
+run on the full, non-downsampled dataset using their default parameters (Figure 1, S3).
+

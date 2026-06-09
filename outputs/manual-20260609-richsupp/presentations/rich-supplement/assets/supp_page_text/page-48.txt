@@ -1,0 +1,6 @@
+Supplemental Table 2: Scanpy function details for scRNA-seq pipeline agreement with
+Seurat. Bold = parameter in agreement by default; italics = no analogous parameter in
+Seurat; green = equivalent by default; yellow = equivalent with matched arguments; or-
+ange = partially incompatible, partially equivalent with matched arguments (depending on
+algorithm choice); red = incompatible
+

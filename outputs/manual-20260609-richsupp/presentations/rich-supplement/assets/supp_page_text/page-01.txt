@@ -1,0 +1,14 @@
+Cell Systems, Volume 17
+
+
+
+Supplemental information
+
+
+
+The impact of package selection and versioning
+on single-cell RNA-seq analysis
+Joseph M. Rich, Lambda Moses, Pétur Helgi Einarsson, Kayla Jackson, Laura Luebbert, A.
+Sina Booeshaghi, Sindri Antonsson, Delaney K. Sullivan, Nicolas Bray, Páll
+Melsted, and Lior Pachter
+

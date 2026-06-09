@@ -1,0 +1,3 @@
+Supplemental Figure 14: UMI counts pre-filtering and number of features under di↵erent
+conditions. (A) Cell Ranger v7 vs. v6. (B) Full size dataset vs. downsampled reads to 4%.
+

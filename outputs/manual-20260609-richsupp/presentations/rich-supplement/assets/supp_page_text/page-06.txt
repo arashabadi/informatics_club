@@ -1,0 +1,13 @@
+Supplemental Figure 2: Seurat vs. Scanpy, aligned function arguments (Seurat-like ar-
+guments used in Scanpy), sequential analysis (data is run from start to end through each
+package without modification). (A) Filtering and HVG selection analysis UpSet plots con-
+sisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection
+onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping
+between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and
+degree ratio (Seurat/Scanpy) per cell. (D) Clustering and UMAP analysis through UMAP
+plots of Seurat (left) and Scanpy (right), with the alluvial diagram (middle) showing cluster
+assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial
+diagram represent the total number of clusters in each group. (E) Di↵erential expression
+analysis UpSet plot through overlap of all significant (p < 0.05) marker genes across all
+clusters.
+

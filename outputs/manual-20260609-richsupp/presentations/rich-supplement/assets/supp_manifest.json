@@ -1,0 +1,477 @@
+[
+  {
+    "kind": "fig",
+    "number": 1,
+    "label": "FigS1.",
+    "title": "Matrix workflow",
+    "sourcePage": 3,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS01.png",
+    "legend": "Supplemental Figure 1: scRNA-seq matrix generation and analysis overview. Red = sources of variability explored in this study; Blue = plots and metrics used to assess function similarity.",
+    "rawWidth": 4950,
+    "rawHeight": 3825,
+    "cropBox": [
+      130,
+      654,
+      4518,
+      3132
+    ],
+    "width": 4388,
+    "height": 2478
+  },
+  {
+    "kind": "fig",
+    "number": 2,
+    "label": "FigS2.",
+    "title": "Aligned sequential",
+    "sourcePage": 5,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS02.png",
+    "legend": "Supplemental Figure 2: Seurat vs. Scanpy, aligned function arguments (Seurat-like arguments used in Scanpy), sequential analysis (data is run from start to end through each package without modification). (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (Seurat/Scanpy) per cell. (D) Clustering and UMAP analysis through UMAP plots of Seurat (left) and Scanpy (right), with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) Differential expression analysis UpSet plot through overlap of all significant (p < 0.05) marker genes across all clusters.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      477,
+      466,
+      3338,
+      3454
+    ],
+    "width": 2861,
+    "height": 2988
+  },
+  {
+    "kind": "fig",
+    "number": 3,
+    "label": "FigS3.",
+    "title": "Default controlled",
+    "sourcePage": 7,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS03.png",
+    "legend": "Supplemental Figure 3: Seurat vs. Scanpy, default function arguments, controlled analysis (the data created by Scanpy is replaced by the data created by Seurat following each step, such that each step sees identical input). (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (Seurat/Scanpy) per cell. (D) Clustering and UMAP analysis through UMAP plots of Seurat (left) and Scanpy (right), with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) (i) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. (ii) Differential expression analysis with matched clusters of overlap of all markers. (iii) Differential expression analysis with matched clusters of logFC similarity. (iv) Differential expression analysis with matched clusters of adjusted p-value similarity. Dataset: 10k PBMC. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      477,
+      466,
+      3339,
+      4386
+    ],
+    "width": 2862,
+    "height": 3920
+  },
+  {
+    "kind": "fig",
+    "number": 4,
+    "label": "FigS4.",
+    "title": "Aligned controlled",
+    "sourcePage": 9,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS04.png",
+    "legend": "Supplemental Figure 4: Seurat vs. Scanpy, aligned function arguments (Seurat-like arguments used in Scanpy), controlled analysis (the data created by Scanpy is replaced by the data created by Seurat following each step, such that each step sees identical input). (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (Seurat/Scanpy) per cell. (D) Clustering and UMAP analysis through UMAP plots of Seurat (left) and Scanpy (right), with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) (i) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. (ii) Differential expression analysis with matched clusters of overlap of all markers. (iii) Differential expression analysis with matched clusters of logFC similarity. (iv) Differential expression analysis with matched clusters of adjusted p-value similarity. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      475,
+      465,
+      3339,
+      4389
+    ],
+    "width": 2864,
+    "height": 3924
+  },
+  {
+    "kind": "fig",
+    "number": 5,
+    "label": "FigS5.",
+    "title": "Scanpy-aligned controlled",
+    "sourcePage": 11,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS05.png",
+    "legend": "Supplemental Figure 5: Seurat vs. Scanpy, aligned function arguments (Scanpy-like arguments used in Seurat), controlled analysis (the data created by Seurat is replaced by the data created by Scanpy following each step, such that each step sees identical input). (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (Seurat/Scanpy) per cell. (D) Clustering and UMAP analysis through UMAP plots of Seurat (left) and Scanpy (right), with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) (i) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. (ii) Differential expression analysis with matched clusters of overlap of all markers. (iii) Differential expression analysis with matched clusters of logFC similarity. (iv) Differential expression analysis with matched clusters of adjusted p-value similarity. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      475,
+      465,
+      3339,
+      4389
+    ],
+    "width": 2864,
+    "height": 3924
+  },
+  {
+    "kind": "fig",
+    "number": 6,
+    "label": "FigS6.",
+    "title": "Extended UMAP",
+    "sourcePage": 13,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS06.png",
+    "legend": "Supplemental Figure 6: Extended UMAP analysis for Seurat vs. Scanpy showing (i) density plots of UMAP-derived KNN graph neighborhood Jaccard indices, (ii) alluvial plots of Leiden clustering performed on UMAP-derived KNN graphs, and UMAP projections of UMAP-derived KNN graphs colored with Leiden clustering results. (A) Default methods, sequential analysis (see Figure 1). (B) Aligned methods, sequential analysis (see Figure S2). (C) Default methods, controlled analysis (see Figure S3). (D) Aligned methods, controlled analysis (see Figure S4). Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      473,
+      475,
+      3350,
+      4232
+    ],
+    "width": 2877,
+    "height": 3757
+  },
+  {
+    "kind": "fig",
+    "number": 7,
+    "label": "FigS7.",
+    "title": "Read downsample: Seurat",
+    "sourcePage": 15,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS07.png",
+    "legend": "Supplemental Figure 7: Read downsampling to 4% of original size vs. full dataset in Seurat. (A) Filtering and HVG selection analysis UpSet plots consisting of the overlap of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot of proportion of variance explained, and sine of the eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (full/downsampled) per cell. (D) Clustering and UMAP analysis through UMAP plots of full (left) and downsampled (right) data, with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) (i) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. (ii) Differential expression analysis with matched clusters of overlap of all markers. (iii) Differential expression analysis with matched clusters of logFC similarity. (iv) Differential expression analysis with matched clusters of adjusted p-value similarity. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      458,
+      465,
+      3385,
+      4390
+    ],
+    "width": 2927,
+    "height": 3925
+  },
+  {
+    "kind": "fig",
+    "number": 8,
+    "label": "FigS8.",
+    "title": "Read downsample: Scanpy",
+    "sourcePage": 17,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS08.png",
+    "legend": "Supplemental Figure 8: Read downsampling to 4% of original size vs. full dataset in Scanpy. (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (full/downsampled) per cell. (D) Clustering and UMAP analysis through UMAP plots of full (left) and downsampled (right) data, with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) (i) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. (ii) Differential expression analysis with matched clusters of overlap of all markers. (iii) Differential expression analysis with matched clusters of logFC similarity. (iv) Differential expression analysis with matched clusters of adjusted p-value similarity. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      458,
+      465,
+      3380,
+      4390
+    ],
+    "width": 2922,
+    "height": 3925
+  },
+  {
+    "kind": "fig",
+    "number": 9,
+    "label": "FigS9.",
+    "title": "Cell downsample: Seurat",
+    "sourcePage": 19,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS09.png",
+    "legend": "Supplemental Figure 9: Cell downsampling to 16% of original size vs. full dataset in Seurat. (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (full/downsampled) per cell. (D) Clustering and UMAP analysis through UMAP plots of full (left) and downsampled (right) data, with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) Differential expression analysis UpSet plot through overlap of all significant (p < 0.05) marker genes across all clusters. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      475,
+      465,
+      3339,
+      3419
+    ],
+    "width": 2864,
+    "height": 2954
+  },
+  {
+    "kind": "fig",
+    "number": 10,
+    "label": "FigS10.",
+    "title": "Cell downsample: Scanpy",
+    "sourcePage": 21,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS10.png",
+    "legend": "Supplemental Figure 10: Cell downsampling to 16% of original size vs. full dataset in Scanpy. (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (full/downsampled) per cell. (D) Clustering and UMAP analysis through UMAP plots of full (left) and downsampled (right) data, with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) Differential expression analysis UpSet plot through overlap of all significant (p < 0.05) marker genes across all clusters. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      475,
+      465,
+      3339,
+      3420
+    ],
+    "width": 2864,
+    "height": 2955
+  },
+  {
+    "kind": "fig",
+    "number": 11,
+    "label": "FigS11.",
+    "title": "Read-downsampling metrics",
+    "sourcePage": 23,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS11.png",
+    "legend": "Supplemental Figure 11: Pipeline consistency metrics as a function of the fraction of reads retained after read downsampling. (A) Jaccard index for detected cells. (B) Jaccard index for detected genes. (C) Jaccard index for selected HVGs. (D) Mean of difference in PC loadings for PCs 1-3. (E) Median log(SNN degree ratio). (F) Adjusted Rand Index of cluster assignments. (G) Median Jaccard index of UMAP-derived KNN graphs for each cell. (H) Jaccard index of sets of significant (p < 0.05) marker genes across all clusters. (I) Jaccard index of all markers. (J) CCC of log fold changes. (K) Fraction of genes whose adjusted p-value crosses the 0.05 threshold after downsampling. Orange = Seurat workflow; Blue = Scanpy workflow; lighter lines = replicates of downsampling across random seeds; dashed line = metric recorded when comparing between Seurat and Scanpy when both pipelines are run on the full, non-downsampled dataset using their default parameters (Figure 1, S3).",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      473,
+      473,
+      3358,
+      4203
+    ],
+    "width": 2885,
+    "height": 3730
+  },
+  {
+    "kind": "fig",
+    "number": 12,
+    "label": "FigS12.",
+    "title": "Cell-downsampling metrics",
+    "sourcePage": 25,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS12.png",
+    "legend": "Supplemental Figure 12: Pipeline consistency metrics as a function of the fraction of cells retained after cell downsampling. (A) Jaccard index for detected cells. (B) Jaccard index for detected genes. (C) Jaccard index for selected HVGs. (D) Mean of difference in PC loadings for PCs 1-3. (E) Median log(SNN degree ratio). (F) Adjusted Rand Index of cluster assignments. (G) Median Jaccard index of UMAP-derived KNN graphs for each cell. (H) Jaccard index of sets of significant (p < 0.05) marker genes across all clusters. (I) Jaccard index of all markers. (J) CCC of log fold changes. (K) Fraction of genes whose adjusted p-value crosses the 0.05 threshold after downsampling. Orange = Seurat workflow; Blue = Scanpy workflow; lighter lines = replicates of downsampling across random seeds; dashed line = metric recorded when comparing between Seurat and Scanpy when both pipelines are run on the full, non-downsampled dataset using their default parameters (Figure 1, S3).",
+    "rawWidth": 3825,
+    "rawHeight": 3341,
+    "cropBox": [
+      475,
+      473,
+      3355,
+      3284
+    ],
+    "width": 2880,
+    "height": 2811
+  },
+  {
+    "kind": "fig",
+    "number": 13,
+    "label": "FigS13.",
+    "title": "Cell Ranger v7 vs v6",
+    "sourcePage": 26,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS13.png",
+    "legend": "Supplemental Figure 13: Cell Ranger version control (v7 vs. v6). (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (v7/v6) per cell. (D) Clustering and UMAP analysis through UMAP plots of Cell Ranger v7 (left) and Cell Ranger v6 (right), with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 3539,
+    "cropBox": [
+      477,
+      466,
+      3339,
+      3539
+    ],
+    "width": 2862,
+    "height": 3073
+  },
+  {
+    "kind": "fig",
+    "number": 14,
+    "label": "FigS14.",
+    "title": "UMI and feature counts",
+    "sourcePage": 27,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS14.png",
+    "legend": "Supplemental Figure 14: UMI counts pre-filtering and number of features under different conditions. (A) Cell Ranger v7 vs. v6. (B) Full size dataset vs. downsampled reads to 4%.",
+    "rawWidth": 3825,
+    "rawHeight": 3663,
+    "cropBox": [
+      436,
+      481,
+      3389,
+      3663
+    ],
+    "width": 2953,
+    "height": 3182
+  },
+  {
+    "kind": "fig",
+    "number": 15,
+    "label": "FigS15.",
+    "title": "Enrichr clusters 0-9",
+    "sourcePage": 28,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS15.png",
+    "legend": "Supplemental Figure 15: Additional analysis underscores observed differences between Seurat and Scanpy in biologically-motivated downstream analysis on clusters 0-9. Each row represents repeated analysis on a cluster derived from the conditions of Supplemental Figure 3 (i.e., Seurat vs. Scanpy with default methods and controlled input preceding each step). (A) Volcano plots for differentially-expressed genes identified by Seurat. (B) Volcano plot for differentially-expressed genes identified by Scanpy. Biological significance thresholds used (dashed lines): | log F C| = 1 (vertical) and p = 0.05 (horizontal). Red = significantly upregulated; Blue = significantly downregulated; grey = no significant difference. (C) UpSet plots of the set comparison for the biologically significant (i.e., red and blue) genes selected from the volcano plots generated by Seurat and Scanpy. (D) Gene ontology analysis scatterplot from the Enrichr \"pathway\" database given the biologically significant genes identified by Seurat and Scanpy. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      493,
+      477,
+      3318,
+      4791
+    ],
+    "width": 2825,
+    "height": 4314
+  },
+  {
+    "kind": "fig",
+    "number": 16,
+    "label": "FigS16.",
+    "title": "Enrichr clusters 10-18",
+    "sourcePage": 30,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS16.png",
+    "legend": "Supplemental Figure 16: Additional analysis underscores observed differences between Seurat and Scanpy in biologically-motivated downstream analysis on clusters 10-18. Each row represents repeated analysis on a cluster derived from the conditions of Supplemental Figure 3 (i.e., Seurat vs. Scanpy with default methods and controlled input preceding each step). (A) Volcano plots for differentially-expressed genes identified by Seurat. (B) Volcano plot for differentially-expressed genes identified by Scanpy. Biological significance thresholds used (dashed lines): | log F C| = 1 (vertical) and p = 0.05 (horizontal). Red = significantly upregulated; Blue = significantly downregulated; grey = no significant difference. (C) UpSet plots of the set comparison for the biologically significant (i.e., red and blue) genes selected from the volcano plots generated by Seurat and Scanpy. (D) Gene ontology analysis scatterplot from the Enrichr \"pathway\" database given the biologically significant genes identified by Seurat and Scanpy. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      493,
+      477,
+      3314,
+      4361
+    ],
+    "width": 2821,
+    "height": 3884
+  },
+  {
+    "kind": "fig",
+    "number": 17,
+    "label": "FigS17.",
+    "title": "Random seed variability",
+    "sourcePage": 32,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS17.png",
+    "legend": "Supplemental Figure 17: Variability introduced by differences in random seeds for functions involving randomness. (A) Seurat SNN graph generation (Annoy), with different seeds for KNN graph generation. (B) Seurat clustering (Louvain), with different seeds for Louvain; and UMAP-projection (uwot), with different seeds for UMAP projection. (C) Seurat KNN graph generation from UMAP space, with different seeds for UMAP projection. (D) Seurat clustering (Leiden) and UMAP projection from UMAP space, with different seeds for UMAP projection. (E) Scanpy SNN graph generation (NNDescent), with different seeds for KNN graph generation. (F) Scanpy clustering (Leiden), with different seeds for Leiden; and UMAP-projection (UMAP-learn), with different seeds for UMAP projection. (G) Scanpy KNN graph generation from UMAP space, with different seeds for UMAP projection. (H) Scanpy clustering (Leiden) and UMAP projection from UMAP space, with different seeds for UMAP projection. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      449,
+      473,
+      3380,
+      4237
+    ],
+    "width": 2931,
+    "height": 3764
+  },
+  {
+    "kind": "fig",
+    "number": 18,
+    "label": "FigS18.",
+    "title": "KNN vs SNN graphs",
+    "sourcePage": 34,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS18.png",
+    "legend": "Supplemental Figure 18: Comparison of KNN and SNN graphs. (A) KNN graph (k=3) constructed with the approximate Annoy algorithm (directedness not shown). Black = incorrectly added edges; Green = incorrectly omitted edges. (B) SNN graph with Seurat's pruning method. An example hub node is marked with *. An example peripheral node is marked with **. Note: the SNN graph with Scanpy's method is simply the undirected KNN graph.",
+    "rawWidth": 3825,
+    "rawHeight": 1955,
+    "cropBox": [
+      436,
+      432,
+      3389,
+      1955
+    ],
+    "width": 2953,
+    "height": 1523
+  },
+  {
+    "kind": "fig",
+    "number": 19,
+    "label": "FigS19.",
+    "title": "KNN/SNN workflow",
+    "sourcePage": 35,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS19.png",
+    "legend": "Supplemental Figure 19: Schematic of protocol describing generation and downstream use of KNN and SNN graphs. Top is for Seurat, bottom is for Scanpy. KNN(i) refers to the full set of k-nearest neighbors for cell i. Bold = function/method name; Italics = outside package utilized.",
+    "rawWidth": 4950,
+    "rawHeight": 3825,
+    "cropBox": [
+      101,
+      662,
+      4518,
+      3165
+    ],
+    "width": 4417,
+    "height": 2503
+  },
+  {
+    "kind": "fig",
+    "number": 20,
+    "label": "FigS20.",
+    "title": "Mouse brain dataset",
+    "sourcePage": 37,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS20.png",
+    "legend": "Supplemental Figure 20: Seurat vs. Scanpy with default function arguments applied to a mouse brain dataset. (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (Seurat/Scanpy) per cell. (D) Clustering and UMAP analysis through UMAP plots of Seurat (left) and Scanpy (right), with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) (i) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. (ii) Differential expression analysis with matched clusters of overlap of all markers. (iii) Differential expression analysis with matched clusters of logFC similarity. (iv) Differential expression analysis with matched clusters of adjusted p-value similarity. Dataset: mouse brain.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      458,
+      466,
+      3380,
+      4390
+    ],
+    "width": 2922,
+    "height": 3924
+  },
+  {
+    "kind": "fig",
+    "number": 21,
+    "label": "FigS21.",
+    "title": "NSCLC dataset",
+    "sourcePage": 39,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS21.png",
+    "legend": "Supplemental Figure 21: Seurat vs. Scanpy with default function arguments applied to a non-small cell lung cancer dataset. (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (Seurat/Scanpy) per cell. (D) Clustering and UMAP analysis through UMAP plots of Seurat (left) and Scanpy (right), with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) (i) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. (ii) Differential expression analysis with matched clusters of overlap of all markers. (iii) Differential expression analysis with matched clusters of logFC similarity. (iv) Differential expression analysis with matched clusters of adjusted p-value similarity. Dataset: non-small cell lung cancer.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      458,
+      465,
+      3380,
+      4390
+    ],
+    "width": 2922,
+    "height": 3925
+  },
+  {
+    "kind": "fig",
+    "number": 22,
+    "label": "FigS22.",
+    "title": "Bootstrap seed metrics",
+    "sourcePage": 41,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS22.png",
+    "legend": "Supplemental Figure 22: Pipeline consistency metrics as a function of the random seed used to generate a bootstrapped dataset. (A) Jaccard index for detected cells. (B) Jaccard index for detected genes. (C) Jaccard index for selected HVGs. (D) Mean of difference in PC loadings for PCs 1-3. (E) Median log(SNN degree ratio). (F) Adjusted Rand Index of cluster assignments. (G) Median Jaccard index of UMAP-derived KNN graphs for each cell. (H) Jaccard index of sets of significant (p < 0.05) marker genes across all clusters. (I) Jaccard index of all markers. (J) CCC of log fold changes. (K) Fraction of genes whose adjusted p-value crosses the 0.05 threshold after downsampling. Orange = Seurat workflow; Blue = Scanpy workflow; lighter lines = replicates of downsampling across random seeds; dashed line = metric recorded when comparing between Seurat and Scanpy when both pipelines are run on the full, non-downsampled dataset using their default parameters (Figure 1, S3).",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      474,
+      473,
+      3353,
+      4199
+    ],
+    "width": 2879,
+    "height": 3726
+  },
+  {
+    "kind": "fig",
+    "number": 23,
+    "label": "FigS23.",
+    "title": "Bootstrap vs original",
+    "sourcePage": 43,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/figS23.png",
+    "legend": "Supplemental Figure 23: Representative bootstrapped dataset vs. original dataset in Seurat. (A) Filtering and HVG selection analysis UpSet plots consisting of sets of (i) cells, (ii) genes, and (iii) HVGs. (B) (i) PCA analysis through projection onto the first 2 PCs. (ii) Scree plot and the sine of eigenvectors. Black lines = point mapping between conditions. (C) KNN/SNN analysis through SNN neighborhood Jaccard index and degree ratio (Seurat/Scanpy) per cell. (D) Clustering and UMAP analysis through UMAP plots of Seurat (left) and Scanpy (right), with the alluvial diagram (middle) showing cluster assignment mapping and degree of cluster agreement. Numbers at the bottom of the alluvial diagram represent the total number of clusters in each group. (E) (i) Differential expression analysis through overlap of all significant (p < 0.05) marker genes across all clusters. (ii) Differential expression analysis with matched clusters of overlap of all markers. (iii) Differential expression analysis with matched clusters of logFC similarity. (iv) Differential expression analysis with matched clusters of adjusted p-value similarity. Dataset: 10k PBMC.",
+    "rawWidth": 3825,
+    "rawHeight": 4950,
+    "cropBox": [
+      457,
+      465,
+      3384,
+      4390
+    ],
+    "width": 2927,
+    "height": 3925
+  },
+  {
+    "kind": "table",
+    "number": 1,
+    "label": "Table S1.",
+    "title": "Seurat functions",
+    "sourcePage": 45,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/tableS01.png",
+    "legend": "Supplemental Table 1: Seurat function details for scRNA-seq pipeline agreement with Scanpy. Bold = parameter in agreement by default; italics = no analogous parameter in Scanpy; green = equivalent by default; yellow = equivalent with matched arguments; orange = partially incompatible, partially equivalent with matched arguments (depending on algorithm choice); red = incompatible",
+    "rawWidth": 4950,
+    "rawHeight": 3825,
+    "cropBox": [
+      555,
+      153,
+      4621,
+      3780
+    ],
+    "width": 4066,
+    "height": 3627
+  },
+  {
+    "kind": "table",
+    "number": 2,
+    "label": "Table S2.",
+    "title": "Scanpy functions",
+    "sourcePage": 47,
+    "image": "/Users/ashi/github/informatics_club/outputs/manual-20260609-richsupp/presentations/rich-supplement/assets/supp_crops/tableS02.png",
+    "legend": "Supplemental Table 2: Scanpy function details for scRNA-seq pipeline agreement with Seurat. Bold = parameter in agreement by default; italics = no analogous parameter in Seurat; green = equivalent by default; yellow = equivalent with matched arguments; orange = partially incompatible, partially equivalent with matched arguments (depending on algorithm choice); red = incompatible",
+    "rawWidth": 4950,
+    "rawHeight": 3825,
+    "cropBox": [
+      518,
+      169,
+      4584,
+      3659
+    ],
+    "width": 4066,
+    "height": 3490
+  }
+]

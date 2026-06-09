@@ -1,0 +1,293 @@
+             A   B   C   D                                               Enrichr pathway
+                                                                 Scanpy only: 5
+
+
+
+
+                             − log10(Scanpy adj. p−value)
+                                                            20
+
+
+
+
+Cluster 10
+                                                            15
+
+
+
+
+                                                            10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                  Seurat only: 16
+                                                                 0       5            10          15                  20
+
+                                                                     − log10(Seurat adj. p−value)
+
+
+
+
+                                                                         Enrichr pathway
+                                                                 Scanpy only: 5
+
+
+
+
+                             − log10(Scanpy adj. p−value)
+Cluster 11
+                                                            10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                  Seurat only: 43
+                                                                 0           5             10              15                  20
+
+                                                                     − log10(Seurat adj. p−value)
+
+
+
+
+                                                                         Enrichr pathway
+                                                                 Scanpy only: 6
+
+
+
+
+                             − log10(Scanpy adj. p−value)
+                                                            20
+
+
+
+
+Cluster 12
+                                                            15
+
+
+
+
+                                                            10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                   Seurat only: 4
+                                                                 0               10                             20
+
+                                                                     − log10(Seurat adj. p−value)
+
+
+
+
+                                                                         Enrichr pathway
+                                                            20   Scanpy only: 8
+
+
+
+
+                             − log10(Scanpy adj. p−value)
+                                                            15
+
+
+
+
+Cluster 13                                                  10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                  Seurat only: 10
+                                                                 0           5             10              15                  20
+
+                                                                     − log10(Seurat adj. p−value)
+
+
+
+
+                                                                         Enrichr pathway
+                                                                 Scanpy only: 9
+
+
+
+
+                             − log10(Scanpy adj. p−value)
+                                                            15
+
+
+
+
+Cluster 14                                                  10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                   Seurat only: 5
+                                                                 0       5             10             15                  20
+
+                                                                     − log10(Seurat adj. p−value)
+
+
+
+
+                                                                         Enrichr pathway
+                                                                 Scanpy only: 6
+
+
+
+
+                             − log10(Scanpy adj. p−value)
+                                                            20
+
+
+
+
+Cluster 15
+                                                            15
+
+
+
+
+                                                            10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                  Seurat only: 13
+                                                                 0       5            10         15                  20
+
+                                                                     − log10(Seurat adj. p−value)
+
+
+
+
+                                                                         Enrichr pathway
+                                                                 Scanpy only: 16
+                             − log10(Scanpy adj. p−value)
+
+
+
+
+                                                            20
+
+
+
+
+Cluster 16
+                                                            15
+
+
+
+
+                                                            10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                  Seurat only: 23
+                                                                 0       5            10          15                  20
+
+                                                                     − log10(Seurat adj. p−value)
+
+
+
+
+                                                                         Enrichr pathway
+                                                            20   Scanpy only: 12
+                             − log10(Scanpy adj. p−value)
+
+
+
+
+                                                            15
+
+
+
+
+Cluster 17                                                  10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                  Seurat only: 14
+                                                                 0           5             10              15                  20
+
+                                                                     − log10(Seurat adj. p−value)
+
+
+
+
+                                                                         Enrichr pathway
+                                                                 Scanpy only: 7
+                             − log10(Scanpy adj. p−value)
+
+
+
+
+                                                            20
+
+
+
+
+Cluster 18
+                                                            15
+
+
+
+
+                                                            10
+
+
+
+
+                                                             5
+
+
+
+
+                                                             0                                  Seurat only: 18
+                                                                 0           5             10          15                      20
+
+                                                                     − log10(Seurat adj. p−value)
+
