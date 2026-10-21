@@ -1,0 +1,245 @@
+{
+  "page": 7,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Malte D Luecken & Fabian J Theis Molecular Systems Biology",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.762089,
+      "y1": 41.169976
+    },
+    {
+      "text": "points. The differing environments experienced by the cells can differences between datasets. When estimating batch effects,",
+      "x0": 42.519699,
+      "y0": 81.914618,
+      "x1": 552.793526,
+      "y1": 89.78414
+    },
+    {
+      "text": "have an effect on the measurement of the transcriptome or on ComBat uses all cells in a batch to fit batch parameters. This",
+      "x0": 42.519699,
+      "y0": 93.252935,
+      "x1": 552.76376,
+      "y1": 101.122458
+    },
+    {
+      "text": "the transcriptome itself. The resulting effects exist on multiple approach will confound the batch effect with biological differences",
+      "x0": 42.519699,
+      "y0": 104.591253,
+      "x1": 552.825776,
+      "y1": 112.460776
+    },
+    {
+      "text": "levels: between groups of cells in an experiment, between exper- between cell types or states that are not shared among datasets.",
+      "x0": 42.519699,
+      "y0": 115.929571,
+      "x1": 552.763759,
+      "y1": 123.799093
+    },
+    {
+      "text": "iments performed in the same laboratory or between datasets Data integration methods such as Canonical Correlation Analysis",
+      "x0": 42.519699,
+      "y0": 127.267889,
+      "x1": 552.802623,
+      "y1": 135.13735
+    },
+    {
+      "text": "from different laboratories. Here, we distinguish between the first (CCA; Butler et al, 2018), Mutual Nearest Neighbours (MNN;",
+      "x0": 42.519699,
+      "y0": 138.606207,
+      "x1": 552.792707,
+      "y1": 146.475668
+    },
+    {
+      "text": "and the last two scenarios. Correcting for batch effects between Haghverdi et al, 2018), Scanorama (preprint: Hie et al, 2018), RISC",
+      "x0": 42.519699,
+      "y0": 149.944525,
+      "x1": 552.788546,
+      "y1": 157.813986
+    },
+    {
+      "text": "samples or cells in the same experiment is the classical scenario (preprint: Liu et al, 2018), scGen (preprint: Lotfollahi et al, 2018),",
+      "x0": 42.519699,
+      "y0": 161.282782,
+      "x1": 552.749679,
+      "y1": 169.152304
+    },
+    {
+      "text": "known as batch correction from bulk RNA-seq. We distinguish LIGER (preprint: Welch et al, 2018), BBKNN (preprint: Park et al,",
+      "x0": 42.519699,
+      "y0": 172.621161,
+      "x1": 552.719116,
+      "y1": 180.490622
+    },
+    {
+      "text": "this from the integration of data from multiple experiments, 2018), and Harmony (preprint: Korsunsky et al, 2018) have been",
+      "x0": 42.519699,
+      "y0": 183.959417,
+      "x1": 552.787725,
+      "y1": 191.82894
+    },
+    {
+      "text": "which we call data integration. While batch effects are typically developed to overcome this issue. While data integration methods",
+      "x0": 42.519699,
+      "y0": 195.297735,
+      "x1": 552.808386,
+      "y1": 203.167258
+    },
+    {
+      "text": "corrected using linear methods, non-linear approaches are used can also be applied to simple batch correction problems, we",
+      "x0": 42.519699,
+      "y0": 206.636053,
+      "x1": 552.761254,
+      "y1": 214.505575
+    },
+    {
+      "text": "for data integration. recommend to be wary of over-correction given the increased",
+      "x0": 42.519699,
+      "y0": 217.974371,
+      "x1": 552.824925,
+      "y1": 225.843893
+    },
+    {
+      "text": "A recent comparison of classical batch correction methods has degrees of freedom of non-linear data integration approaches. For",
+      "x0": 53.631451,
+      "y0": 229.312689,
+      "x1": 552.776137,
+      "y1": 237.182211
+    },
+    {
+      "text": "revealed that ComBat (Johnson et al, 2006) performs well also for example, MNN was shown to be outperformed by ComBat in the",
+      "x0": 42.519699,
+      "y0": 240.651007,
+      "x1": 552.736447,
+      "y1": 248.520529
+    },
+    {
+      "text": "single-cell experiments of low-to-medium complexity (Buttner et al, simpler batch correction setting (Buttner et al, 2019). Further",
+      "x0": 42.518871,
+      "y0": 251.989325,
+      "x1": 552.779464,
+      "y1": 259.858847
+    },
+    {
+      "text": "2019). ComBat consists of a linear model of gene expression where comparison studies between data integration and batch correction",
+      "x0": 42.518051,
+      "y0": 263.327642,
+      "x1": 552.782752,
+      "y1": 271.197165
+    },
+    {
+      "text": "the batch contribution is taken into account both in the mean and methods are needed to assess how generally these methods can be",
+      "x0": 42.518051,
+      "y0": 274.66596,
+      "x1": 552.768696,
+      "y1": 282.535483
+    },
+    {
+      "text": "the variance of the data (Fig 3). Irrespective of computational meth- applied.",
+      "x0": 42.518051,
+      "y0": 286.004278,
+      "x1": 334.9791,
+      "y1": 293.8738
+    },
+    {
+      "text": "ods, the best method of batch correction is pre-empting the effect",
+      "x0": 42.518051,
+      "y0": 297.348394,
+      "x1": 289.131379,
+      "y1": 305.212118
+    },
+    {
+      "text": "and avoiding it altogether by clever experimental design (Hicks et al, Expression recovery",
+      "x0": 42.518051,
+      "y0": 308.672645,
+      "x1": 371.896431,
+      "y1": 316.550436
+    },
+    {
+      "text": "2017). Batch effects can be avoided by pooling cells across experi- A further type of technical data correction is expression recovery",
+      "x0": 42.518051,
+      "y0": 320.019232,
+      "x1": 552.786911,
+      "y1": 327.888754
+    },
+    {
+      "text": "mental conditions and samples. Using strategies such as cell tagging (also denoising or imputation). Measurements of single-cell tran-",
+      "x0": 42.518051,
+      "y0": 331.35755,
+      "x1": 552.753825,
+      "y1": 339.227041
+    },
+    {
+      "text": "(preprint: Gehring et al, 2018), or via genetic variation (Kang et al, scriptomes contain various sources of noise (Gru\u0308n et al, 2014;",
+      "x0": 42.518051,
+      "y0": 342.695868,
+      "x1": 552.716645,
+      "y1": 350.56539
+    },
+    {
+      "text": "2018), it is possible to demultiplex cells that were pooled in the Kharchenko et al, 2014; Hicks et al, 2017). A particularly promi-",
+      "x0": 42.518051,
+      "y0": 354.034185,
+      "x1": 552.757151,
+      "y1": 361.903708
+    },
+    {
+      "text": "experiment. nent aspect of this noise is dropout. Inferring dropout events,",
+      "x0": 42.518051,
+      "y0": 365.372503,
+      "x1": 552.764594,
+      "y1": 373.241995
+    },
+    {
+      "text": "In comparison with batch correction, the additional challenge replacing these zeros with appropriate expression values, and",
+      "x0": 53.629791,
+      "y0": 376.710821,
+      "x1": 552.739788,
+      "y1": 384.580313
+    },
+    {
+      "text": "that data integration methods face revolves around compositional reducing the noise in the dataset have been the target of several",
+      "x0": 42.518051,
+      "y0": 388.049139,
+      "x1": 552.778652,
+      "y1": 395.918631
+    },
+    {
+      "text": "No batch correction Batch correction",
+      "x0": 127.673203,
+      "y0": 427.84137,
+      "x1": 464.094835,
+      "y1": 435.867132
+    },
+    {
+      "text": "Figure 3. UMAP visualization before and after batch correction.",
+      "x0": 50.513401,
+      "y0": 705.040891,
+      "x1": 256.502716,
+      "y1": 714.106831
+    },
+    {
+      "text": "Cells are coloured by sample of origin. Separation of batches is clearly visible before batch correction and less visible afterwards. Batch correction was performed using",
+      "x0": 50.513401,
+      "y0": 717.94102,
+      "x1": 541.542148,
+      "y1": 724.384811
+    },
+    {
+      "text": "ComBat on mouse intestinal epithelium data from Haber et al (2017).",
+      "x0": 50.513401,
+      "y0": 725.564092,
+      "x1": 255.10586,
+      "y1": 734.630032
+    },
+    {
+      "text": "\u00aa 2019 The Authors Molecular Systems Biology 15: e8746 | 2019 7 of 23",
+      "x0": 42.519329,
+      "y0": 756.836115,
+      "x1": 552.760268,
+      "y1": 768.492305
+    }
+  ]
+}

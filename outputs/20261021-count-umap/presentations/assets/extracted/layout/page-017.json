@@ -1,0 +1,469 @@
+{
+  "page": 17,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Malte D Luecken & Fabian J Theis Molecular Systems Biology",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.762111,
+      "y1": 41.169976
+    },
+    {
+      "text": "Gene-level analysis vigilant which variables are added to the model. For example, in",
+      "x0": 42.519699,
+      "y0": 81.908859,
+      "x1": 552.714144,
+      "y1": 89.772583
+    },
+    {
+      "text": "While we have so far focused on gene-level analysis methods that most single-cell experimental set-ups the sample and condition",
+      "x0": 42.519699,
+      "y0": 93.247174,
+      "x1": 552.773679,
+      "y1": 101.122456
+    },
+    {
+      "text": "characterize cellular structures, gene-level analysis of single-cell covariates are confounded, since it is rarely possible to obtain a",
+      "x0": 42.519699,
+      "y0": 104.58549,
+      "x1": 552.743912,
+      "y1": 112.460771
+    },
+    {
+      "text": "data has a broader scope. Differential expression testing, gene set single sample under multiple conditions. If we incorporate both the",
+      "x0": 42.519699,
+      "y0": 115.923806,
+      "x1": 552.735643,
+      "y1": 123.799087
+    },
+    {
+      "text": "analyses and gene regulatory network inference directly investigate sample and condition covariates into the model, the variability asso-",
+      "x0": 42.519699,
+      "y0": 127.262121,
+      "x1": 552.80014,
+      "y1": 135.137403
+    },
+    {
+      "text": "molecular signals in the data. Rather than describing the cellular ciated with these covariates can no longer unambiguously be",
+      "x0": 42.519699,
+      "y0": 138.600437,
+      "x1": 552.769546,
+      "y1": 146.475718
+    },
+    {
+      "text": "heterogeneity, these approaches use this heterogeneity as context in assigned. Thus, when testing over condition, we cannot include the",
+      "x0": 42.519699,
+      "y0": 149.938753,
+      "x1": 552.73647,
+      "y1": 157.814034
+    },
+    {
+      "text": "which gene expression is to be understood. sample covariate in the model in the given form. When correcting",
+      "x0": 42.519699,
+      "y0": 161.277069,
+      "x1": 552.783603,
+      "y1": 169.15235
+    },
+    {
+      "text": "for multiple categorical batch covariates, it becomes increasingly dif-",
+      "x0": 306.1372,
+      "y0": 172.615384,
+      "x1": 552.776987,
+      "y1": 180.479108
+    },
+    {
+      "text": "Differential expression testing ficult to visually spot confounding groups of covariates. In this situa-",
+      "x0": 42.519699,
+      "y0": 183.9537,
+      "x1": 552.784429,
+      "y1": 191.817424
+    },
+    {
+      "text": "A common question asked of expression data is whether any genes tion, it is helpful to test whether the model design matrix is full rank.",
+      "x0": 42.519699,
+      "y0": 195.292016,
+      "x1": 552.770373,
+      "y1": 203.167297
+    },
+    {
+      "text": "are differentially expressed between two experimental conditions. Even when design matrices are not full rank, DE testing tools will",
+      "x0": 42.519699,
+      "y0": 206.630331,
+      "x1": 552.767065,
+      "y1": 214.505612
+    },
+    {
+      "text": "DE testing is a well-documented problem that originates from bulk often adapt the matrix and run without outputting a warning. This",
+      "x0": 42.519699,
+      "y0": 217.968647,
+      "x1": 552.762103,
+      "y1": 225.843928
+    },
+    {
+      "text": "gene expression analysis (Scholtens & von Heydebreck, 2005). An will not deliver the intended results.",
+      "x0": 42.519699,
+      "y0": 229.306963,
+      "x1": 435.196537,
+      "y1": 237.182244
+    },
+    {
+      "text": "advantage over bulk differential testing is that we can account for In the scenario we describe here, the condition covariate is deter-",
+      "x0": 42.519699,
+      "y0": 240.645278,
+      "x1": 552.744738,
+      "y1": 248.520559
+    },
+    {
+      "text": "cellular heterogeneity in the single-cell setting by performing tests mined in the experimental set-up. Thus, a DE test over this covariate",
+      "x0": 42.519699,
+      "y0": 251.983594,
+      "x1": 552.741431,
+      "y1": 259.858875
+    },
+    {
+      "text": "within cell-identity clusters. This set-up tells us how individual cell (within the same cluster) is independent of the clustering procedure.",
+      "x0": 42.519699,
+      "y0": 263.32191,
+      "x1": 552.748046,
+      "y1": 271.197191
+    },
+    {
+      "text": "identities react transcriptionally under particular experimental This set-up distinguishes DE testing over conditions and DE testing",
+      "x0": 42.519699,
+      "y0": 274.660225,
+      "x1": 552.777814,
+      "y1": 282.535506
+    },
+    {
+      "text": "conditions (Kang et al, 2018). over clusters. Obtained P-values for DE tests over conditions repre-",
+      "x0": 42.519699,
+      "y0": 285.998541,
+      "x1": 552.81337,
+      "y1": 293.873822
+    },
+    {
+      "text": "Although designed to answer the same question, bulk and single-cell sent the expected measures of significance and must be corrected",
+      "x0": 53.631448,
+      "y0": 297.336857,
+      "x1": 552.783606,
+      "y1": 305.212138
+    },
+    {
+      "text": "DE tools differ methodologically. While bulk methods were developed for multiple testing. To reduce the multiple testing burden, tran-",
+      "x0": 42.5197,
+      "y0": 308.675172,
+      "x1": 552.751357,
+      "y1": 316.550453
+    },
+    {
+      "text": "to accurately estimate gene variance from few samples, single-cell data scripts that may not be of interest can be excluded from the dataset.",
+      "x0": 42.5197,
+      "y0": 320.013488,
+      "x1": 552.802625,
+      "y1": 327.888769
+    },
+    {
+      "text": "do not present this problem. On the other hand, single-cell data contain While pseudogenes or non-coding RNAs can be informative (An",
+      "x0": 42.5197,
+      "y0": 331.351804,
+      "x1": 552.733992,
+      "y1": 339.227085
+    },
+    {
+      "text": "unique technical noise artefacts such as dropout, and high cell-to-cell et al, 2017), they are often ignored in the analysis.",
+      "x0": 42.5197,
+      "y0": 342.690119,
+      "x1": 487.895067,
+      "y1": 350.5654
+    },
+    {
+      "text": "variability (Hicks et al, 2017; Vallejos et al, 2017). These artefacts are",
+      "x0": 42.5197,
+      "y0": 354.039992,
+      "x1": 289.106567,
+      "y1": 361.903716
+    },
+    {
+      "text": "taken into account in methods designed specifically for single-cell data",
+      "x0": 42.5197,
+      "y0": 365.378308,
+      "x1": 289.14047,
+      "y1": 373.242032
+    },
+    {
+      "text": "(Kharchenko et al, 2014; Finak et al, 2015). Yet, a recent, large-scale",
+      "x0": 42.5197,
+      "y0": 376.716624,
+      "x1": 289.109048,
+      "y1": 384.580348
+    },
+    {
+      "text": "Pitfalls & recommendations:",
+      "x0": 311.6409,
+      "y0": 383.627665,
+      "x1": 408.739927,
+      "y1": 390.516664
+    },
+    {
+      "text": "comparison study of DE analysis has suggested that bulk DE testing",
+      "x0": 42.518873,
+      "y0": 388.054939,
+      "x1": 289.120621,
+      "y1": 395.918663
+    },
+    {
+      "text": "packages perform comparably to the best-performing single-cell tools \u2022 DE testing should not be performed on corrected data (denoised,",
+      "x0": 42.518873,
+      "y0": 394.921173,
+      "x1": 538.696761,
+      "y1": 411.758123
+    },
+    {
+      "text": "(Soneson & Robinson, 2018). Furthermore, when bulk tools are batch corrected, etc.), but instead on measured data with technical",
+      "x0": 42.518873,
+      "y0": 409.570272,
+      "x1": 538.719924,
+      "y1": 418.595295
+    },
+    {
+      "text": "covariates included in the model.",
+      "x0": 319.067688,
+      "y0": 419.03779,
+      "x1": 422.604419,
+      "y1": 425.949205
+    },
+    {
+      "text": "adapted to model single-cell data via introducing gene weights into the",
+      "x0": 42.518873,
+      "y0": 422.069886,
+      "x1": 289.103255,
+      "y1": 429.93361
+    },
+    {
+      "text": "\u2022 Users should not rely on DE testing tools to correct models with",
+      "x0": 311.6409,
+      "y0": 425.138489,
+      "x1": 538.740845,
+      "y1": 441.975439
+    },
+    {
+      "text": "tests, these tools have been suggested to outperform their single-cell",
+      "x0": 42.518873,
+      "y0": 433.408202,
+      "x1": 289.146257,
+      "y1": 441.271926
+    },
+    {
+      "text": "confounded covariates. Model specification should be performed care-",
+      "x0": 319.067688,
+      "y0": 439.844373,
+      "x1": 538.743834,
+      "y1": 446.755788
+    },
+    {
+      "text": "counterparts (Van den Berge et al, 2018). According to this compar-",
+      "x0": 42.518873,
+      "y0": 444.746518,
+      "x1": 289.107393,
+      "y1": 452.610242
+    },
+    {
+      "text": "fully ensuring a full-rank design matrix.",
+      "x0": 319.067688,
+      "y0": 449.311891,
+      "x1": 442.379284,
+      "y1": 456.223306
+    },
+    {
+      "text": "\u2022 We recommend using MAST or limma for DE testing.",
+      "x0": 311.6409,
+      "y0": 455.412476,
+      "x1": 483.728224,
+      "y1": 472.249426
+    },
+    {
+      "text": "ison, the top-performing DE analysis tools are DESeq2 (Love et al,",
+      "x0": 42.518048,
+      "y0": 456.084833,
+      "x1": 289.156176,
+      "y1": 463.948557
+    },
+    {
+      "text": "2014) and EdgeR (Robinson et al, 2010) in combination with weights",
+      "x0": 42.518046,
+      "y0": 467.423149,
+      "x1": 289.152045,
+      "y1": 475.286873
+    },
+    {
+      "text": "estimated by ZINB-wave (Risso et al, 2018). Independent comparison",
+      "x0": 42.518048,
+      "y0": 478.761465,
+      "x1": 289.123106,
+      "y1": 486.625189
+    },
+    {
+      "text": "studies that include weighted bulk DE testing methods are required to Gene set analysis",
+      "x0": 42.518051,
+      "y0": 489.930915,
+      "x1": 363.831328,
+      "y1": 497.963504
+    },
+    {
+      "text": "confirm these results. Gene-level analysis methods often produce long lists of candidate",
+      "x0": 42.518051,
+      "y0": 501.2775,
+      "x1": 552.836056,
+      "y1": 509.30182
+    },
+    {
+      "text": "The improved performance of weighted bulk DE testing comes at genes that are difficult to interpret. For example, thousands of genes",
+      "x0": 53.629798,
+      "y0": 512.615816,
+      "x1": 552.773212,
+      "y1": 520.640136
+    },
+    {
+      "text": "the cost of computational efficiency. Given the trend of increasing cell may be differentially expressed between treated and control cells.",
+      "x0": 42.518051,
+      "y0": 523.954131,
+      "x1": 552.773212,
+      "y1": 531.978451
+    },
+    {
+      "text": "numbers in single-cell experiments, algorithm runtime is becoming an We can facilitate the interpretation of these results by grouping",
+      "x0": 42.518051,
+      "y0": 535.292447,
+      "x1": 552.799672,
+      "y1": 543.316767
+    },
+    {
+      "text": "increasingly important consideration in method choice. Thus, the the genes into sets based on shared characteristics and testing",
+      "x0": 42.518051,
+      "y0": 546.630763,
+      "x1": 552.780653,
+      "y1": 554.655083
+    },
+    {
+      "text": "single-cell tool MAST (Finak et al, 2015) represents a potent alternative whether these characteristics are overrepresented in the candidate",
+      "x0": 42.518051,
+      "y0": 557.969078,
+      "x1": 552.779,
+      "y1": 565.993398
+    },
+    {
+      "text": "to weighted bulk DE tools. MAST uses a hurdle model to account for gene list.",
+      "x0": 42.518051,
+      "y0": 569.307394,
+      "x1": 339.261118,
+      "y1": 577.331714
+    },
+    {
+      "text": "dropout while modelling changes in gene expression dependent upon Gene set information can be found in curated label databases for",
+      "x0": 42.518051,
+      "y0": 580.64571,
+      "x1": 552.759982,
+      "y1": 588.67003
+    },
+    {
+      "text": "condition and technical covariates. It was the best-performing single- various applications. To interpret DE results, we typically group",
+      "x0": 42.518051,
+      "y0": 591.984025,
+      "x1": 552.779827,
+      "y1": 600.008345
+    },
+    {
+      "text": "cell DE testing method in the aforementioned study (Soneson & Robin- genes based on involvement in common biological processes.",
+      "x0": 42.518051,
+      "y0": 603.322341,
+      "x1": 552.804634,
+      "y1": 611.346661
+    },
+    {
+      "text": "son, 2018), and outperformed bulk and single-cell methods in a small- Biological process labels are stored in databases such as MSigDB",
+      "x0": 42.518051,
+      "y0": 614.660657,
+      "x1": 552.786442,
+      "y1": 622.684977
+    },
+    {
+      "text": "scale comparison on a single dataset (Vieth et al, 2017). While MAST (Liberzon et al, 2011), the Gene Ontology (Ashburner et al, 2000;",
+      "x0": 42.518051,
+      "y0": 625.998972,
+      "x1": 552.744271,
+      "y1": 634.023292
+    },
+    {
+      "text": "has a 10-fold to 100-fold faster runtime than weighted bulk methods The Gene Ontology Consortium, 2017), or the pathway databases",
+      "x0": 42.518051,
+      "y0": 637.337288,
+      "x1": 552.794711,
+      "y1": 645.361608
+    },
+    {
+      "text": "(Van den Berge et al, 2018), a further 10-fold speedup can be achieved KEGG (Kanehisa et al, 2017) and Reactome (Fabregat et al, 2018).",
+      "x0": 42.518051,
+      "y0": 648.675604,
+      "x1": 552.753367,
+      "y1": 656.699924
+    },
+    {
+      "text": "using limma\u2013voom (Law et al, 2014). Although limma is a bulk DE Enrichment of annotations on the gene list can be tested using a vast",
+      "x0": 42.517224,
+      "y0": 660.013919,
+      "x1": 552.787272,
+      "y1": 668.03824
+    },
+    {
+      "text": "testing method, limma\u2013voom was shown to achieve comparable array of tools, which are reviewed and compared in Huang et al",
+      "x0": 42.516395,
+      "y0": 671.352235,
+      "x1": 552.748408,
+      "y1": 679.376555
+    },
+    {
+      "text": "performance to MAST. (2009) and Tarca et al (2013).",
+      "x0": 42.516399,
+      "y0": 682.690551,
+      "x1": 414.602376,
+      "y1": 690.714871
+    },
+    {
+      "text": "As uncorrected, measured data should be used for DE testing, A recent development in the single-cell analysis field is the use of",
+      "x0": 53.628147,
+      "y0": 694.028866,
+      "x1": 552.77735,
+      "y1": 702.053187
+    },
+    {
+      "text": "accounting for confounding factors is crucial to robust estimation of paired gene labels to perform ligand\u2013receptor analysis. Here, inter-",
+      "x0": 42.516399,
+      "y0": 705.367182,
+      "x1": 552.752537,
+      "y1": 713.391502
+    },
+    {
+      "text": "differentially expressed genes. While DE testing tools typically allow action between cell clusters is inferred from the expression of recep-",
+      "x0": 42.516399,
+      "y0": 716.705498,
+      "x1": 552.766594,
+      "y1": 724.729818
+    },
+    {
+      "text": "the user the flexibility to incorporate confounders, users must be tors and their cognate ligands. Ligand\u2013receptor pair labels can be",
+      "x0": 42.516399,
+      "y0": 728.043814,
+      "x1": 552.776517,
+      "y1": 736.068134
+    },
+    {
+      "text": "\u00aa 2019 The Authors Molecular Systems Biology 15: e8746 | 2019 17 of 23",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.760334,
+      "y1": 768.492305
+    }
+  ]
+}

@@ -1,0 +1,448 @@
+{
+  "page": 6,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.770361,
+      "y1": 41.169976
+    },
+    {
+      "text": "weighted equally for downstream analysis. There is currently no covariates serves to single out particular biological signals of inter-",
+      "x0": 42.519699,
+      "y0": 81.919954,
+      "x1": 552.750519,
+      "y1": 89.78414
+    },
+    {
+      "text": "consensus on whether or not to perform normalization over genes. est. The most common biological data correction is to remove the",
+      "x0": 42.519699,
+      "y0": 93.258269,
+      "x1": 552.738943,
+      "y1": 101.122456
+    },
+    {
+      "text": "While the popular Seurat tutorials (Butler et al, 2018) generally effects of the cell cycle on the transcriptome. This data correction",
+      "x0": 42.519699,
+      "y0": 104.596585,
+      "x1": 552.786903,
+      "y1": 112.460771
+    },
+    {
+      "text": "apply gene scaling, the authors of the Slingshot method opt against can be performed by a simple linear regression against a cell cycle",
+      "x0": 42.519703,
+      "y0": 115.934901,
+      "x1": 552.767058,
+      "y1": 123.799087
+    },
+    {
+      "text": "scaling over genes in their tutorial (Street et al, 2018). The prefer- score as implemented in the Scanpy and Seurat platforms (Butler",
+      "x0": 42.519703,
+      "y0": 127.273216,
+      "x1": 552.76375,
+      "y1": 135.137403
+    },
+    {
+      "text": "ence between the two choices revolves around whether all genes et al, 2018; Wolf et al, 2018) or in specialized packages with more",
+      "x0": 42.519705,
+      "y0": 138.611532,
+      "x1": 552.810055,
+      "y1": 146.475718
+    },
+    {
+      "text": "should be weighted equally for downstream analysis, or whether complex mixture models such as scLVM (Buettner et al, 2015) or f-",
+      "x0": 42.519705,
+      "y0": 149.949848,
+      "x1": 552.754653,
+      "y1": 157.814034
+    },
+    {
+      "text": "the magnitude of expression of a gene is an informative proxy for scLVM (Buettner et al, 2017). Lists of marker genes to compute cell",
+      "x0": 42.519705,
+      "y0": 161.288163,
+      "x1": 552.787729,
+      "y1": 169.15235
+    },
+    {
+      "text": "the importance of the gene. In order to retain as much biological cycle scores are obtained from the literature (Macosko et al, 2015).",
+      "x0": 42.519705,
+      "y0": 172.626479,
+      "x1": 552.750518,
+      "y1": 180.490665
+    },
+    {
+      "text": "information as possible from the data, we opt to refrain from scal- These methods can also be used to regress out other known biologi-",
+      "x0": 42.519705,
+      "y0": 183.964795,
+      "x1": 552.791863,
+      "y1": 191.828981
+    },
+    {
+      "text": "ing over genes in this tutorial. cal effects such as mitochondrial gene expression, which is inter-",
+      "x0": 42.519705,
+      "y0": 195.30311,
+      "x1": 552.750518,
+      "y1": 203.167297
+    },
+    {
+      "text": "After normalization, data matrices are typically log(x+1)-trans- preted as an indication of cell stress.",
+      "x0": 53.631452,
+      "y0": 206.641426,
+      "x1": 437.175276,
+      "y1": 214.505612
+    },
+    {
+      "text": "formed. This transformation has three important effects. Firstly, Several aspects should be considered prior to correcting data",
+      "x0": 42.519705,
+      "y0": 217.979742,
+      "x1": 552.799305,
+      "y1": 225.843928
+    },
+    {
+      "text": "distances between log-transformed expression values represent log for biological effects. Firstly, correcting for biological covariates is",
+      "x0": 42.519705,
+      "y0": 229.318057,
+      "x1": 552.763749,
+      "y1": 237.182244
+    },
+    {
+      "text": "fold changes, which are the canonical way to measure changes in not always helpful to interpret scRNA-seq data. While removing",
+      "x0": 42.519705,
+      "y0": 240.656373,
+      "x1": 552.766229,
+      "y1": 248.520559
+    },
+    {
+      "text": "expression. Secondly, log transformation mitigates (but does not cell cycle effects can improve the inference of developmental",
+      "x0": 42.519705,
+      "y0": 251.994689,
+      "x1": 552.741423,
+      "y1": 259.858875
+    },
+    {
+      "text": "remove) the mean\u2013variance relationship in single-cell data (Bren- trajectories (Buettner et al, 2015; Vento-Tormo et al, 2018), cell",
+      "x0": 42.519705,
+      "y0": 263.333004,
+      "x1": 552.786075,
+      "y1": 271.197191
+    },
+    {
+      "text": "necke et al, 2013). Finally, log transformation reduces the skew- cycle signals can also be informative of the biology. For example,",
+      "x0": 42.519706,
+      "y0": 274.67132,
+      "x1": 552.805094,
+      "y1": 282.535506
+    },
+    {
+      "text": "ness of the data to approximate the assumption of many proliferating cell populations can be identified based on cell cycle",
+      "x0": 42.519707,
+      "y0": 286.009636,
+      "x1": 552.766229,
+      "y1": 293.873822
+    },
+    {
+      "text": "downstream analysis tools that the data are normally distributed. scores (see case study on project github). Also, biological signals",
+      "x0": 42.519707,
+      "y0": 297.347952,
+      "x1": 552.795171,
+      "y1": 305.212138
+    },
+    {
+      "text": "While scRNA-seq data are not in fact log-normally distributed must be understood in context. Given that biological processes",
+      "x0": 42.519707,
+      "y0": 308.686267,
+      "x1": 552.83238,
+      "y1": 316.550453
+    },
+    {
+      "text": "(Vieth et al, 2017), these three effects make the log transformation occur within the same organism, there exist dependencies between",
+      "x0": 42.519707,
+      "y0": 320.024583,
+      "x1": 552.772018,
+      "y1": 327.888769
+    },
+    {
+      "text": "a crude, but useful tool. This usefulness is highlighted by down- these processes. Thus, correcting for one process may unintention-",
+      "x0": 42.519708,
+      "y0": 331.362899,
+      "x1": 552.772017,
+      "y1": 339.227085
+    },
+    {
+      "text": "stream applications for differential expression testing (Finak et al, ally mask the signal of another. Finally, it has been argued that",
+      "x0": 42.519708,
+      "y0": 342.701214,
+      "x1": 552.769537,
+      "y1": 350.5654
+    },
+    {
+      "text": "2015; Ritchie et al, 2015) or batch correction (Johnson et al, 2006; variation in cell size accounts for the transcriptomic effect gener-",
+      "x0": 42.518885,
+      "y0": 354.03953,
+      "x1": 552.763749,
+      "y1": 361.903716
+    },
+    {
+      "text": "Buttner et al, 2019) that use log transformation for these purposes. ally attributed to the cell cycle (McDavid et al, 2016). Thus,",
+      "x0": 42.518058,
+      "y0": 365.377846,
+      "x1": 552.757128,
+      "y1": 373.242032
+    },
+    {
+      "text": "It should however be noted that log transformation of normalized correcting for cell size via normalization, or dedicated tools such",
+      "x0": 42.518058,
+      "y0": 376.716161,
+      "x1": 552.74556,
+      "y1": 384.580348
+    },
+    {
+      "text": "data can introduce spurious differential expression effects into the as cgCorrect (Blasi et al, 2017), also partially corrects for cell cycle",
+      "x0": 42.518058,
+      "y0": 388.054477,
+      "x1": 552.765405,
+      "y1": 395.918663
+    },
+    {
+      "text": "data (preprint: Lun, 2018). This effect is particularly pronounced effects in scRNA-seq data.",
+      "x0": 42.518058,
+      "y0": 399.392793,
+      "x1": 401.455285,
+      "y1": 407.256979
+    },
+    {
+      "text": "when normalization size factor distributions differ strongly",
+      "x0": 42.518058,
+      "y0": 410.731571,
+      "x1": 289.16198,
+      "y1": 418.595295
+    },
+    {
+      "text": "between tested groups. Regressing out technical effects",
+      "x0": 42.518058,
+      "y0": 422.061155,
+      "x1": 411.834408,
+      "y1": 429.93361
+    },
+    {
+      "text": "The variants of regression models used to regress out biological",
+      "x0": 306.137194,
+      "y0": 433.40774,
+      "x1": 552.801788,
+      "y1": 441.271464
+    },
+    {
+      "text": "covariates can also be applied to technical covariates. The most",
+      "x0": 306.137194,
+      "y0": 444.746055,
+      "x1": 552.762098,
+      "y1": 452.609779
+    },
+    {
+      "text": "Pitfalls & recommendations: prominent technical covariates in single-cell data are count depth",
+      "x0": 48.018902,
+      "y0": 456.084371,
+      "x1": 552.793519,
+      "y1": 466.201663
+    },
+    {
+      "text": "and batch. Although normalization scales count data to render gene",
+      "x0": 306.137194,
+      "y0": 467.422687,
+      "x1": 552.751348,
+      "y1": 475.286411
+    },
+    {
+      "text": "\u2022 We recommend scran for normalization of non-full-length datasets.",
+      "x0": 48.018902,
+      "y0": 470.606171,
+      "x1": 275.056096,
+      "y1": 487.443121
+    },
+    {
+      "text": "counts comparable between cells, a count depth effect often remains",
+      "x0": 306.137194,
+      "y0": 478.761002,
+      "x1": 552.789385,
+      "y1": 486.624726
+    },
+    {
+      "text": "An alternative is to evaluate normalization approaches via scone espe-",
+      "x0": 55.445702,
+      "y0": 485.232976,
+      "x1": 275.119606,
+      "y1": 492.166807
+    },
+    {
+      "text": "in the data. This count depth effect can be both a biological and a",
+      "x0": 306.137194,
+      "y0": 490.099318,
+      "x1": 552.743079,
+      "y1": 497.963042
+    },
+    {
+      "text": "cially for plate-based datasets. Full-length scRNA-seq protocols can",
+      "x0": 55.445702,
+      "y0": 494.722909,
+      "x1": 275.091213,
+      "y1": 501.634324
+    },
+    {
+      "text": "be corrected for gene length using bulk methods. technical artefact. For example, cells may differ in size and therefore",
+      "x0": 55.445702,
+      "y0": 501.437634,
+      "x1": 552.767059,
+      "y1": 511.101842
+    },
+    {
+      "text": "\u2022 There is no consensus on scaling genes to 0 mean and unit variance. in mRNA molecule counts. Yet, technical count effects may remain",
+      "x0": 48.018902,
+      "y0": 510.29126,
+      "x1": 552.774501,
+      "y1": 527.12821
+    },
+    {
+      "text": "We prefer not to scale gene expression. after normalization as no scaling method can infer the expression",
+      "x0": 55.446447,
+      "y0": 524.114265,
+      "x1": 552.786078,
+      "y1": 531.977989
+    },
+    {
+      "text": "\u2022 Normalized data should be log(x+1)-transformed for use with down- values of genes that were not detected due to poor sampling.",
+      "x0": 48.018902,
+      "y0": 531.097473,
+      "x1": 552.808403,
+      "y1": 547.934423
+    },
+    {
+      "text": "stream analysis methods that assume data are normally distributed. Regressing out count depth effects can improve the performance of",
+      "x0": 55.445702,
+      "y0": 545.803465,
+      "x1": 552.771193,
+      "y1": 554.65462
+    },
+    {
+      "text": "trajectory inference algorithms, which rely on finding transitions",
+      "x0": 306.137194,
+      "y0": 558.129212,
+      "x1": 552.800962,
+      "y1": 565.992936
+    },
+    {
+      "text": "between cells (see case study on project github). When correcting",
+      "x0": 306.137194,
+      "y0": 569.467528,
+      "x1": 552.78277,
+      "y1": 577.331252
+    },
+    {
+      "text": "Data correction and integration for multiple covariates (e.g. cell cycle and count depth), the regres-",
+      "x0": 42.519699,
+      "y0": 580.752922,
+      "x1": 552.795173,
+      "y1": 588.669567
+    },
+    {
+      "text": "Normalization as described above attempts to remove the effects sion should be performed over all covariates in a single step to",
+      "x0": 42.519699,
+      "y0": 592.099506,
+      "x1": 552.77202,
+      "y1": 600.007883
+    },
+    {
+      "text": "of count sampling. However, normalized data may still contain account for dependence between covariates.",
+      "x0": 42.519699,
+      "y0": 603.437822,
+      "x1": 465.569854,
+      "y1": 611.346199
+    },
+    {
+      "text": "unwanted variability. Data correction targets further technical An alternative to regression-based strategies for removing count",
+      "x0": 42.519699,
+      "y0": 614.776138,
+      "x1": 552.752175,
+      "y1": 622.684514
+    },
+    {
+      "text": "and biological covariates such as batch, dropout, or cell cycle effects is to use a more rigorous normalization procedure such as",
+      "x0": 42.519699,
+      "y0": 626.114453,
+      "x1": 552.760444,
+      "y1": 634.02283
+    },
+    {
+      "text": "effects. These covariates are not always corrected for. Instead, downsampling or non-linear normalization methods (see \u201cNormal-",
+      "x0": 42.519699,
+      "y0": 637.452769,
+      "x1": 552.818326,
+      "y1": 645.361146
+    },
+    {
+      "text": "the decision of which covariates to consider will depend on the ization\u201d section). These approaches may be particularly relevant for",
+      "x0": 42.519699,
+      "y0": 648.791085,
+      "x1": 552.753829,
+      "y1": 656.699462
+    },
+    {
+      "text": "intended downstream analysis. We propose to consider correction plate-based scRNA-seq datasets where the larger variation of count",
+      "x0": 42.519699,
+      "y0": 660.1294,
+      "x1": 552.751348,
+      "y1": 668.037777
+    },
+    {
+      "text": "for biological and technical covariates separately as these are depths per cell can mask the heterogeneity between cells.",
+      "x0": 42.519699,
+      "y0": 671.467716,
+      "x1": 512.85804,
+      "y1": 679.376093
+    },
+    {
+      "text": "used for different purposes and present unique challenges.",
+      "x0": 42.519699,
+      "y0": 682.806032,
+      "x1": 262.425306,
+      "y1": 690.669755
+    },
+    {
+      "text": "Batch effects and data integration",
+      "x0": 306.137194,
+      "y0": 694.181558,
+      "x1": 421.594191,
+      "y1": 701.855098
+    },
+    {
+      "text": "Regressing out biological effects Batch effects can occur when cells are handled in distinct",
+      "x0": 42.519699,
+      "y0": 705.474394,
+      "x1": 552.805096,
+      "y1": 713.391867
+    },
+    {
+      "text": "While correcting for technical covariates may be crucial to uncover- groups. These groups can consist of cells on different chips, cells",
+      "x0": 42.519699,
+      "y0": 716.820979,
+      "x1": 552.799307,
+      "y1": 724.730182
+    },
+    {
+      "text": "ing the underlying biological signal, correction for biological in different sequencing lanes or cells harvested at different time",
+      "x0": 42.519699,
+      "y0": 728.159294,
+      "x1": 552.743079,
+      "y1": 736.068498
+    },
+    {
+      "text": "6 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.836152,
+      "y1": 768.492305
+    }
+  ]
+}

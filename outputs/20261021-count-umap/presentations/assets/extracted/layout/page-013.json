@@ -1,0 +1,301 @@
+{
+  "page": 13,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Malte D Luecken & Fabian J Theis Molecular Systems Biology",
+      "x0": 42.519699,
+      "y0": 31.60287,
+      "x1": 552.762089,
+      "y1": 41.169987
+    },
+    {
+      "text": "While it may be tempting to assume that the clusters detected in may be detected in separate clusters. For the above reasons, it is best",
+      "x0": 53.6315,
+      "y0": 81.920355,
+      "x1": 552.723877,
+      "y1": 89.78414
+    },
+    {
+      "text": "single-cell data represent cell types, there are several axes of variation to use the term \u201ccell identities\u201d rather than \u201ccell types\u201d. Before clus-",
+      "x0": 42.519749,
+      "y0": 93.258673,
+      "x1": 552.726357,
+      "y1": 101.122458
+    },
+    {
+      "text": "that determine cellular identity (Wagner et al, 2016; Clevers et al, tering and annotating clusters, the user must decide which level of",
+      "x0": 42.519749,
+      "y0": 104.596991,
+      "x1": 552.723876,
+      "y1": 112.460776
+    },
+    {
+      "text": "2017). Firstly, it is not always clear what constitutes a cell type. For annotation detail, and thus which cluster resolution, is of interest.",
+      "x0": 42.519749,
+      "y0": 115.935309,
+      "x1": 538.831297,
+      "y1": 123.799093
+    },
+    {
+      "text": "example, while \u201cT cells\u201d may be a satisfactory label of a cell type to Identifying and annotating clusters relies on using external",
+      "x0": 42.519749,
+      "y0": 127.273626,
+      "x1": 552.75944,
+      "y1": 135.13735
+    },
+    {
+      "text": "some, others may look for T-cell subtypes within a dataset and distin- sources of information describing the expected expression profiles",
+      "x0": 42.519749,
+      "y0": 138.611944,
+      "x1": 552.794161,
+      "y1": 146.475668
+    },
+    {
+      "text": "+ + et al, 2016; Clevers",
+      "x0": 111.741699,
+      "y0": 148.251758,
+      "x1": 289.149387,
+      "y1": 157.815634
+    },
+    {
+      "text": "guish between CD4 and CD8 T cells (Wagner of individual cell identities. Thanks to recent and ongoing efforts",
+      "x0": 42.519749,
+      "y0": 149.950262,
+      "x1": 552.767702,
+      "y1": 157.815634
+    },
+    {
+      "text": "et al, 2017). Furthermore, cells of the same cell type in different states such as the mouse brain atlas (Zeisel et al, 2018) or the Human Cell",
+      "x0": 42.520351,
+      "y0": 161.28858,
+      "x1": 552.752827,
+      "y1": 169.153952
+    },
+    {
+      "text": "A C",
+      "x0": 54.645599,
+      "y0": 204.756302,
+      "x1": 399.261157,
+      "y1": 214.00621
+    },
+    {
+      "text": "Tuft cells",
+      "x0": 118.849197,
+      "y0": 210.404737,
+      "x1": 146.463497,
+      "y1": 216.886737
+    },
+    {
+      "text": "Goblet",
+      "x0": 261.438507,
+      "y0": 230.076795,
+      "x1": 282.438507,
+      "y1": 236.558795
+    },
+    {
+      "text": "Enteroendocrine",
+      "x0": 62.7715,
+      "y0": 233.251295,
+      "x1": 114.2425,
+      "y1": 239.733295
+    },
+    {
+      "text": "cells",
+      "x0": 264.875488,
+      "y0": 237.576612,
+      "x1": 279.001488,
+      "y1": 244.058612
+    },
+    {
+      "text": "cells",
+      "x0": 81.444,
+      "y0": 240.751112,
+      "x1": 95.57,
+      "y1": 247.233112
+    },
+    {
+      "text": "TA",
+      "x0": 69.936699,
+      "y0": 304.395826,
+      "x1": 77.846699,
+      "y1": 310.877826
+    },
+    {
+      "text": "Paneth",
+      "x0": 292.041809,
+      "y0": 314.575208,
+      "x1": 314.084809,
+      "y1": 321.057208
+    },
+    {
+      "text": "cells",
+      "x0": 296.001007,
+      "y0": 322.075025,
+      "x1": 310.127007,
+      "y1": 328.557025
+    },
+    {
+      "text": "EP",
+      "x0": 154.460297,
+      "y0": 342.505903,
+      "x1": 163.273297,
+      "y1": 348.987903
+    },
+    {
+      "text": "(early)",
+      "x0": 149.602295,
+      "y0": 350.00572,
+      "x1": 168.131295,
+      "y1": 356.48772
+    },
+    {
+      "text": "Stem cells",
+      "x0": 242.474792,
+      "y0": 360.171797,
+      "x1": 275.017792,
+      "y1": 366.653797
+    },
+    {
+      "text": "EP (early)",
+      "x0": 258.232513,
+      "y0": 388.878126,
+      "x1": 287.520513,
+      "y1": 395.360126
+    },
+    {
+      "text": "TA",
+      "x0": 258.232513,
+      "y0": 400.949598,
+      "x1": 266.142513,
+      "y1": 407.431598
+    },
+    {
+      "text": "EP (stress)",
+      "x0": 173.477905,
+      "y0": 408.581007,
+      "x1": 206.531905,
+      "y1": 415.063007
+    },
+    {
+      "text": "Goblet cells",
+      "x0": 258.233185,
+      "y0": 413.020399,
+      "x1": 295.305185,
+      "y1": 419.502399
+    },
+    {
+      "text": "Stem cells",
+      "x0": 258.233887,
+      "y0": 425.094709,
+      "x1": 290.776887,
+      "y1": 431.576709
+    },
+    {
+      "text": "EP (stress)",
+      "x0": 258.233185,
+      "y0": 437.166212,
+      "x1": 291.287185,
+      "y1": 443.648212
+    },
+    {
+      "text": "Enterocytes",
+      "x0": 258.232513,
+      "y0": 449.23982,
+      "x1": 295.311513,
+      "y1": 455.72182
+    },
+    {
+      "text": "Enterocytes",
+      "x0": 118.212898,
+      "y0": 453.050612,
+      "x1": 155.291898,
+      "y1": 459.532612
+    },
+    {
+      "text": "Paneth cells",
+      "x0": 258.233887,
+      "y0": 461.311323,
+      "x1": 296.348187,
+      "y1": 467.793323
+    },
+    {
+      "text": "Enteroendocrine cells",
+      "x0": 258.233185,
+      "y0": 473.384199,
+      "x1": 325.776185,
+      "y1": 479.866199
+    },
+    {
+      "text": "Tuft cells",
+      "x0": 258.233185,
+      "y0": 485.455702,
+      "x1": 285.847485,
+      "y1": 491.937702
+    },
+    {
+      "text": "B Slc12a2 Arg2 Tff3 Defa24",
+      "x0": 54.5756,
+      "y0": 518.073166,
+      "x1": 485.034405,
+      "y1": 527.323074
+    },
+    {
+      "text": "EMBO",
+      "x0": 543.83662,
+      "y0": 632.754854,
+      "x1": 548.28142,
+      "y1": 647.380454
+    },
+    {
+      "text": "\u00a9",
+      "x0": 543.83662,
+      "y0": 648.715814,
+      "x1": 548.28142,
+      "y1": 652.555814
+    },
+    {
+      "text": "Figure 6. Cluster analysis results of mouse intestinal epithelium dataset from Haber et al (2017).",
+      "x0": 50.513401,
+      "y0": 683.100702,
+      "x1": 362.421499,
+      "y1": 692.166642
+    },
+    {
+      "text": "(A) Annotated cell-identity clusters found by Louvain clustering visualized in a UMAP representation. (B) Cell-identity marker expression to identify stem cells (Slc12a2),",
+      "x0": 50.512699,
+      "y0": 696.057323,
+      "x1": 541.57772,
+      "y1": 702.501114
+    },
+    {
+      "text": "enterocytes (Arg2), goblet cells (Tff3) and Paneth cells (Defa24). Corrected expression levels are visualized from low expression (grey) to high expression (red). Marker genes",
+      "x0": 50.512699,
+      "y0": 705.298305,
+      "x1": 544.774509,
+      "y1": 711.742096
+    },
+    {
+      "text": "may be expressed also in other cell-identity populations as shown for goblet and Paneth cells. (C) Cell-identity composition heat maps of proximal (upper) and distal (lower)",
+      "x0": 50.512699,
+      "y0": 714.539294,
+      "x1": 544.762638,
+      "y1": 720.983086
+    },
+    {
+      "text": "intestinal epithelium regions. High relative cell density is shown as dark red.",
+      "x0": 50.512699,
+      "y0": 723.780273,
+      "x1": 274.493023,
+      "y1": 730.224064
+    },
+    {
+      "text": "\u00aa 2019 The Authors Molecular Systems Biology 15: e8746 | 2019 13 of 23",
+      "x0": 42.519329,
+      "y0": 756.836127,
+      "x1": 552.760207,
+      "y1": 768.492317
+    }
+  ]
+}

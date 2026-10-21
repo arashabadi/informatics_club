@@ -1,0 +1,518 @@
+{
+  "page": 12,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519686,
+      "y0": 31.602853,
+      "x1": 552.770358,
+      "y1": 41.169971
+    },
+    {
+      "text": "CELL LEVEL GENE LEVEL",
+      "x0": 177.529007,
+      "y0": 84.460078,
+      "x1": 482.187211,
+      "y1": 90.921811
+    },
+    {
+      "text": "CLUSTER ANALYSIS TRAJECTORY ANALYSIS Differential",
+      "x0": 85.338303,
+      "y0": 103.096919,
+      "x1": 413.949786,
+      "y1": 110.973996
+    },
+    {
+      "text": "Fabp1",
+      "x0": 520.719563,
+      "y0": 111.629237,
+      "x1": 529.278563,
+      "y1": 114.407237
+    },
+    {
+      "text": "expression",
+      "x0": 377.542786,
+      "y0": 112.91302,
+      "x1": 413.963786,
+      "y1": 119.37402
+    },
+    {
+      "text": "400",
+      "x0": 429.291432,
+      "y0": 117.973022,
+      "x1": 437.631432,
+      "y1": 122.603022
+    },
+    {
+      "text": "Clustering Trajectory analysis Tspan1 Krt8",
+      "x0": 55.442699,
+      "y0": 121.312983,
+      "x1": 478.029539,
+      "y1": 129.217404
+    },
+    {
+      "text": "inference Guca2a Rbp2",
+      "x0": 212.634003,
+      "y0": 131.156367,
+      "x1": 521.037535,
+      "y1": 137.617367
+    },
+    {
+      "text": "300",
+      "x0": 429.291432,
+      "y0": 137.276062,
+      "x1": 437.631432,
+      "y1": 141.906062
+    },
+    {
+      "text": "FDR Cd9 Suox",
+      "x0": 420.783542,
+      "y0": 137.430477,
+      "x1": 482.459339,
+      "y1": 149.328477
+    },
+    {
+      "text": "Reg3g Slc51a Lgals4 Casp6",
+      "x0": 443.902424,
+      "y0": 148.834925,
+      "x1": 506.041433,
+      "y1": 153.131541
+    },
+    {
+      "text": "\u2013log2 200",
+      "x0": 420.783542,
+      "y0": 151.116477,
+      "x1": 437.631432,
+      "y1": 166.451877
+    },
+    {
+      "text": "Phgr1",
+      "x0": 470.557257,
+      "y0": 154.146517,
+      "x1": 478.558257,
+      "y1": 156.924517
+    },
+    {
+      "text": "100",
+      "x0": 429.519429,
+      "y0": 175.882568,
+      "x1": 437.608929,
+      "y1": 180.512568
+    },
+    {
+      "text": "0",
+      "x0": 434.367451,
+      "y0": 195.185669,
+      "x1": 437.147451,
+      "y1": 199.815669
+    },
+    {
+      "text": "\u20132.0 0.0 2.0",
+      "x0": 438.931447,
+      "y0": 201.284668,
+      "x1": 532.909445,
+      "y1": 205.914668
+    },
+    {
+      "text": "log2 FC",
+      "x0": 476.660237,
+      "y0": 208.383562,
+      "x1": 497.660237,
+      "y1": 213.939562
+    },
+    {
+      "text": "Compositional Metastable Gene set analysis",
+      "x0": 55.442699,
+      "y0": 227.267085,
+      "x1": 436.125786,
+      "y1": 234.948178
+    },
+    {
+      "text": "analysis states Gene",
+      "x0": 55.442699,
+      "y0": 235.667109,
+      "x1": 522.48729,
+      "y1": 244.0379
+    },
+    {
+      "text": "GO:0002181 overlap",
+      "x0": 392.108795,
+      "y0": 244.4819,
+      "x1": 527.92929,
+      "y1": 252.225026
+    },
+    {
+      "text": "GO:0006518 5",
+      "x0": 392.108795,
+      "y0": 251.608888,
+      "x1": 519.483014,
+      "y1": 257.2141
+    },
+    {
+      "text": "GO:0006412 25",
+      "x0": 392.108795,
+      "y0": 257.294618,
+      "x1": 521.860804,
+      "y1": 262.203175
+    },
+    {
+      "text": "GO:0043604 50",
+      "x0": 392.108795,
+      "y0": 263.233827,
+      "x1": 521.860804,
+      "y1": 267.886891
+    },
+    {
+      "text": "GO:0043043",
+      "x0": 392.108795,
+      "y0": 268.222933,
+      "x1": 416.823266,
+      "y1": 272.183064
+    },
+    {
+      "text": "GO:0043603 75",
+      "x0": 392.108795,
+      "y0": 271.467714,
+      "x1": 521.860804,
+      "y1": 277.172139
+    },
+    {
+      "text": "GO:1901566",
+      "x0": 392.108795,
+      "y0": 278.201936,
+      "x1": 416.823266,
+      "y1": 282.162068
+    },
+    {
+      "text": "GO:0042742 Adjusted",
+      "x0": 392.108795,
+      "y0": 280.925869,
+      "x1": 532.188114,
+      "y1": 287.151143
+    },
+    {
+      "text": "GO:0042274 p-value",
+      "x0": 392.108795,
+      "y0": 286.949869,
+      "x1": 528.406907,
+      "y1": 292.421869
+    },
+    {
+      "text": "GO:0000028 GO:0009617 10 \u20134",
+      "x0": 392.108795,
+      "y0": 293.169191,
+      "x1": 525.781462,
+      "y1": 302.118397
+    },
+    {
+      "text": "GO:0042254 10 \u20136",
+      "x0": 392.108795,
+      "y0": 303.149049,
+      "x1": 525.781462,
+      "y1": 310.841725
+    },
+    {
+      "text": "Pseudotime GO:0019730",
+      "x0": 285.1604,
+      "y0": 308.138155,
+      "x1": 416.823266,
+      "y1": 316.309205
+    },
+    {
+      "text": "GO:0009605 10 \u20138",
+      "x0": 392.108795,
+      "y0": 313.125948,
+      "x1": 525.781462,
+      "y1": 320.650715
+    },
+    {
+      "text": "GO:0051707",
+      "x0": 392.108795,
+      "y0": 318.115877,
+      "x1": 416.823266,
+      "y1": 322.076008
+    },
+    {
+      "text": "GO:0043207 10 \u201310",
+      "x0": 392.108795,
+      "y0": 323.105806,
+      "x1": 527.485606,
+      "y1": 330.459615
+    },
+    {
+      "text": "Cluster Gene expression GO:0002487",
+      "x0": 55.442699,
+      "y0": 328.094881,
+      "x1": 416.823266,
+      "y1": 335.536801
+    },
+    {
+      "text": "Goblet GO:0022613 10 \u201312",
+      "x0": 136.583538,
+      "y0": 333.083986,
+      "x1": 527.485606,
+      "y1": 340.381059
+    },
+    {
+      "text": "annotation Tuft dynamics GO:0098542",
+      "x0": 55.442699,
+      "y0": 337.475795,
+      "x1": 416.823266,
+      "y1": 343.936795
+    },
+    {
+      "text": "cells cells GO:0006959 10 \u201314",
+      "x0": 107.588543,
+      "y0": 340.946244,
+      "x1": 527.485606,
+      "y1": 350.07552
+    },
+    {
+      "text": "EEC 0.05 0.10 0.15 0.20 0.25 0.30",
+      "x0": 89.298741,
+      "y0": 351.818178,
+      "x1": 504.76848,
+      "y1": 358.341447
+    },
+    {
+      "text": "Paneth Gene ratio",
+      "x0": 167.725949,
+      "y0": 357.152849,
+      "x1": 475.646514,
+      "y1": 363.377896
+    },
+    {
+      "text": "cells",
+      "x0": 171.120144,
+      "y0": 363.274064,
+      "x1": 183.225744,
+      "y1": 368.830064
+    },
+    {
+      "text": "Gene regulatory",
+      "x0": 377.542786,
+      "y0": 377.15948,
+      "x1": 430.952086,
+      "y1": 383.62048
+    },
+    {
+      "text": "TA EP networks",
+      "x0": 100.229542,
+      "y0": 382.391252,
+      "x1": 408.650786,
+      "y1": 392.020504
+    },
+    {
+      "text": "(early) Gene Gene",
+      "x0": 114.929547,
+      "y0": 389.766706,
+      "x1": 528.888285,
+      "y1": 397.150706
+    },
+    {
+      "text": "Stem cells A B",
+      "x0": 147.327145,
+      "y0": 398.048706,
+      "x1": 521.93622,
+      "y1": 406.355706
+    },
+    {
+      "text": "EP",
+      "x0": 127.928547,
+      "y0": 410.926042,
+      "x1": 135.482547,
+      "y1": 416.482042
+    },
+    {
+      "text": "(late)",
+      "x0": 125.319142,
+      "y0": 417.047257,
+      "x1": 138.093142,
+      "y1": 422.603257
+    },
+    {
+      "text": "Enterocytes TF",
+      "x0": 112.574543,
+      "y0": 434.573499,
+      "x1": 499.8673,
+      "y1": 442.209459
+    },
+    {
+      "text": "EMBO",
+      "x0": 546.665587,
+      "y0": 437.120406,
+      "x1": 551.110387,
+      "y1": 451.746006
+    },
+    {
+      "text": "Pseudotime",
+      "x0": 284.53241,
+      "y0": 447.912508,
+      "x1": 321.87741,
+      "y1": 454.394508
+    },
+    {
+      "text": "\u00a9",
+      "x0": 546.665587,
+      "y0": 453.080406,
+      "x1": 551.110387,
+      "y1": 456.920406
+    },
+    {
+      "text": "Figure 5. Overview of downstream analysis methods.",
+      "x0": 50.513388,
+      "y0": 480.140083,
+      "x1": 223.12261,
+      "y1": 489.206023
+    },
+    {
+      "text": "Methods are divided into cell- and gene-level analysis. Cell-level analysis approaches are again subdivided into cluster and trajectory analysis branches, which include also",
+      "x0": 50.513388,
+      "y0": 490.998972,
+      "x1": 544.806571,
+      "y1": 497.449737
+    },
+    {
+      "text": "gene-level analysis methods. All methods with a blue background are gene-level approaches.",
+      "x0": 50.513388,
+      "y0": 500.296457,
+      "x1": 321.172146,
+      "y1": 506.747222
+    },
+    {
+      "text": "multi-resolution modularity optimization (Newman & Girvan,",
+      "x0": 42.519699,
+      "y0": 546.802191,
+      "x1": 289.163622,
+      "y1": 554.665915
+    },
+    {
+      "text": "2004; Reichardt & Bornholdt, 2006) as implemented in the Louvain Pitfalls & recommendations:",
+      "x0": 42.519699,
+      "y0": 555.917368,
+      "x1": 408.739927,
+      "y1": 566.004233
+    },
+    {
+      "text": "algorithm (Blondel et al, 2008) on single-cell KNN graphs. This \u2022 We recommend clustering by Louvain community detection on a",
+      "x0": 42.519699,
+      "y0": 567.210877,
+      "x1": 538.751306,
+      "y1": 584.047827
+    },
+    {
+      "text": "method is the default clustering method implemented in the single-cell KNN graph.",
+      "x0": 42.518871,
+      "y0": 580.817144,
+      "x1": 388.595774,
+      "y1": 588.828188
+    },
+    {
+      "text": "Scanpy and Seurat single-cell analysis platforms. It has been \u2022 Clustering does not have to be performed at a single resolution.",
+      "x0": 42.518871,
+      "y0": 588.017181,
+      "x1": 538.778951,
+      "y1": 604.854131
+    },
+    {
+      "text": "shown to outperform other clustering methods for single-cell RNA- Subclustering particular cell clusters is a valid approach to focus on",
+      "x0": 42.518871,
+      "y0": 602.723063,
+      "x1": 538.7528,
+      "y1": 611.357489
+    },
+    {
+      "text": "more detailed substructures in a dataset.",
+      "x0": 319.067688,
+      "y0": 612.133799,
+      "x1": 447.113417,
+      "y1": 619.045213
+    },
+    {
+      "text": "seq data (Duo\u0300 et al, 2018; Freytag et al, 2018), and flow and mass",
+      "x0": 42.518871,
+      "y0": 614.832083,
+      "x1": 289.133038,
+      "y1": 622.695807
+    },
+    {
+      "text": "cytometry data (Weber & Robinson, 2016). Conceptually, the",
+      "x0": 42.518871,
+      "y0": 626.170401,
+      "x1": 289.118142,
+      "y1": 634.034125
+    },
+    {
+      "text": "Louvain algorithm detects communities as groups of cells that",
+      "x0": 42.518871,
+      "y0": 637.508719,
+      "x1": 289.151217,
+      "y1": 645.372442
+    },
+    {
+      "text": "have more links between them than expected from the number of Cluster annotation",
+      "x0": 42.518871,
+      "y0": 648.614326,
+      "x1": 368.857165,
+      "y1": 656.710753
+    },
+    {
+      "text": "links the cells have in total. The optimized modularity function On a gene level, clustered data are analysed by finding the gene",
+      "x0": 42.518871,
+      "y0": 659.960913,
+      "x1": 552.758328,
+      "y1": 668.049078
+    },
+    {
+      "text": "includes a resolution parameter, which allows the user to deter- signatures of each cluster. These so-called marker genes characterize",
+      "x0": 42.518871,
+      "y0": 671.299223,
+      "x1": 552.835225,
+      "y1": 679.387388
+    },
+    {
+      "text": "mine the scale of the cluster partition. By subsetting the KNN the cluster and are used to annotate it with a meaningful biological",
+      "x0": 42.518871,
+      "y0": 682.637541,
+      "x1": 552.80546,
+      "y1": 690.725706
+    },
+    {
+      "text": "graph, it is also possible to subcluster only particular clusters. label. This label represents the identity of cells within the cluster. As",
+      "x0": 42.518871,
+      "y0": 693.975851,
+      "x1": 552.723599,
+      "y1": 702.064017
+    },
+    {
+      "text": "Such subclustering can allow the user to identify cell states within any clustering algorithm will produce a partition of the data, the",
+      "x0": 42.518871,
+      "y0": 705.314169,
+      "x1": 552.740964,
+      "y1": 713.402334
+    },
+    {
+      "text": "cell-type clusters (Wagner et al, 2016), but may also lead to validity of the identified clusters can only be determined by success-",
+      "x0": 42.518871,
+      "y0": 716.652483,
+      "x1": 552.767424,
+      "y1": 724.740656
+    },
+    {
+      "text": "patterns that arise only from noise in the data. ful annotation of the represented biology.",
+      "x0": 42.518051,
+      "y0": 727.990801,
+      "x1": 455.441644,
+      "y1": 736.078966
+    },
+    {
+      "text": "12 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519686,
+      "y0": 756.83611,
+      "x1": 552.836045,
+      "y1": 768.4923
+    }
+  ]
+}

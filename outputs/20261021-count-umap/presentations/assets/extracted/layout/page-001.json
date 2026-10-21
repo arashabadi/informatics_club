@@ -1,0 +1,357 @@
+{
+  "page": 1,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Review",
+      "x0": 42.519699,
+      "y0": 48.636195,
+      "x1": 91.217316,
+      "y1": 69.358585
+    },
+    {
+      "text": "Current best practices in single-cell RNA-seq",
+      "x0": 42.519699,
+      "y0": 100.178078,
+      "x1": 480.357739,
+      "y1": 126.689691
+    },
+    {
+      "text": "analysis: a tutorial",
+      "x0": 42.519699,
+      "y0": 128.580105,
+      "x1": 223.472347,
+      "y1": 155.091718
+    },
+    {
+      "text": "1 1,2,*",
+      "x0": 125.744904,
+      "y0": 167.475036,
+      "x1": 242.780237,
+      "y1": 174.838392
+    },
+    {
+      "text": "Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 169.885416,
+      "x1": 226.784444,
+      "y1": 180.943883
+    },
+    {
+      "text": "Abstract outline current best practices to lay a foundation for future analysis",
+      "x0": 42.519699,
+      "y0": 215.684246,
+      "x1": 552.787732,
+      "y1": 227.63848
+    },
+    {
+      "text": "standardization.",
+      "x0": 306.139676,
+      "y0": 230.341471,
+      "x1": 364.468496,
+      "y1": 238.205195
+    },
+    {
+      "text": "Single-cell RNA-seq has enabled gene expression to be studied at The challenges to standardization include the growing number of",
+      "x0": 42.519699,
+      "y0": 241.657349,
+      "x1": 552.773675,
+      "y1": 249.543511
+    },
+    {
+      "text": "an unprecedented resolution. The promise of this technology is analysis methods (385 tools as of 7 March 2019) and exploding",
+      "x0": 42.519699,
+      "y0": 252.995665,
+      "x1": 552.805924,
+      "y1": 260.881827
+    },
+    {
+      "text": "attracting a growing user base for single-cell analysis methods. As dataset sizes (Angerer et al, 2017; Zappia et al, 2018). We are",
+      "x0": 42.519699,
+      "y0": 264.33398,
+      "x1": 552.779463,
+      "y1": 272.220142
+    },
+    {
+      "text": "more analysis tools are becoming available, it is becoming increas- continuously finding new ways to use the data at our disposal. For",
+      "x0": 42.519699,
+      "y0": 275.672296,
+      "x1": 552.722408,
+      "y1": 283.558458
+    },
+    {
+      "text": "ingly difficult to navigate this landscape and produce an up-to- example, it has recently become possible to predict cell fates in dif-",
+      "x0": 42.519699,
+      "y0": 287.010612,
+      "x1": 552.724062,
+      "y1": 294.896774
+    },
+    {
+      "text": "date workflow to analyse one\u2019s data. Here, we detail the steps of a ferentiation (La Manno et al, 2018). While the continuous improve-",
+      "x0": 42.519699,
+      "y0": 298.348927,
+      "x1": 552.80427,
+      "y1": 306.235089
+    },
+    {
+      "text": "typical single-cell RNA-seq analysis, including pre-processing (qual- ment of analysis tools is beneficial for generating new scientific",
+      "x0": 42.519699,
+      "y0": 309.687243,
+      "x1": 552.758793,
+      "y1": 317.573405
+    },
+    {
+      "text": "ity control, normalization, data correction, feature selection, and insight, it complicates standardization.",
+      "x0": 42.519699,
+      "y0": 321.025559,
+      "x1": 445.513641,
+      "y1": 328.911721
+    },
+    {
+      "text": "dimensionality reduction) and cell- and gene-level downstream Further challenges for standardization lie in technical aspects.",
+      "x0": 42.519699,
+      "y0": 332.363874,
+      "x1": 552.786908,
+      "y1": 340.250036
+    },
+    {
+      "text": "analysis. We formulate current best-practice recommendations for Analysis tools for scRNA-seq data are written in a variety of",
+      "x0": 42.519699,
+      "y0": 343.70219,
+      "x1": 552.773677,
+      "y1": 351.588352
+    },
+    {
+      "text": "these steps based on independent comparison studies. We have programming languages\u2014most prominently R and Python (Zappia",
+      "x0": 42.519699,
+      "y0": 355.040506,
+      "x1": 552.780291,
+      "y1": 362.926668
+    },
+    {
+      "text": "integrated these best-practice recommendations into a workflow, et al, 2018). Although cross-environment support is growing",
+      "x0": 42.519699,
+      "y0": 366.378821,
+      "x1": 552.7621,
+      "y1": 374.264983
+    },
+    {
+      "text": "which we apply to a public dataset to further illustrate how these (preprint: Scholz et al, 2018), the choice of programming language",
+      "x0": 42.519699,
+      "y0": 377.717137,
+      "x1": 552.773676,
+      "y1": 385.603299
+    },
+    {
+      "text": "steps work in practice. Our documented case study can be found is often also a choice between analysis tools. Popular platforms such",
+      "x0": 42.519699,
+      "y0": 389.055453,
+      "x1": 552.747219,
+      "y1": 396.941615
+    },
+    {
+      "text": "at https://www.github.com/theislab/single-cell-tutorial. This as Seurat (Butler et al, 2018), Scater (McCarthy et al, 2017), or",
+      "x0": 42.519699,
+      "y0": 400.393768,
+      "x1": 552.72902,
+      "y1": 408.27993
+    },
+    {
+      "text": "review will serve as a workflow tutorial for new entrants into the Scanpy (Wolf et al, 2018) provide integrated environments to",
+      "x0": 42.519699,
+      "y0": 411.732084,
+      "x1": 552.718274,
+      "y1": 419.618246
+    },
+    {
+      "text": "field, and help established users update their analysis pipelines. develop pipelines and contain large analysis toolboxes. However,",
+      "x0": 42.519699,
+      "y0": 423.0704,
+      "x1": 552.793523,
+      "y1": 430.956562
+    },
+    {
+      "text": "out of necessity these platforms limit themselves to tools developed",
+      "x0": 306.138851,
+      "y0": 434.431154,
+      "x1": 552.803446,
+      "y1": 442.294877
+    },
+    {
+      "text": "Keywords analysis pipeline development; computational biology; data analy- in their respective programming languages. By extension, language",
+      "x0": 42.519699,
+      "y0": 445.769469,
+      "x1": 552.772851,
+      "y1": 453.633193
+    },
+    {
+      "text": "sis tutorial; single-cell RNA-seq restrictions also hold true for currently available scRNA-seq analysis",
+      "x0": 42.519699,
+      "y0": 457.107785,
+      "x1": 552.786908,
+      "y1": 464.971509
+    },
+    {
+      "text": "DOI 10.15252/msb.20188746 | Received 16 November 2018 | Revised 15 March tutorials, many of which revolve around the above platforms (R and",
+      "x0": 42.519699,
+      "y0": 468.446101,
+      "x1": 552.742256,
+      "y1": 476.309824
+    },
+    {
+      "text": "2019 | Accepted 3 April 2019 bioconductor tools: https://github.com/drisso/bioc2016singlecell",
+      "x0": 42.519698,
+      "y0": 479.784416,
+      "x1": 552.776985,
+      "y1": 487.64814
+    },
+    {
+      "text": "Mol Syst Biol. (2019) 15: e8746 and https://hemberg-lab.github.io/scRNA.seq.course/; Lun et al,",
+      "x0": 42.519696,
+      "y0": 489.927918,
+      "x1": 552.71993,
+      "y1": 499.641258
+    },
+    {
+      "text": "2016b; Seurat: https://satijalab.org/seurat/get_started.html; Scanpy:",
+      "x0": 306.138851,
+      "y0": 502.461048,
+      "x1": 552.795177,
+      "y1": 510.324772
+    },
+    {
+      "text": "https://scanpy.readthedocs.io/en/stable/tutorials.html).",
+      "x0": 306.138851,
+      "y0": 513.799363,
+      "x1": 509.477717,
+      "y1": 521.663087
+    },
+    {
+      "text": "Introduction Considering the above-mentioned challenges, instead of targeting",
+      "x0": 42.519699,
+      "y0": 524.20905,
+      "x1": 552.79435,
+      "y1": 533.001403
+    },
+    {
+      "text": "a standardized analysis pipeline, we outline current best practices",
+      "x0": 306.138851,
+      "y0": 536.475995,
+      "x1": 552.77037,
+      "y1": 544.339719
+    },
+    {
+      "text": "In recent years, single-cell RNA sequencing (scRNA-seq) has signifi- and common tools independent of programming language. We",
+      "x0": 42.519699,
+      "y0": 547.709295,
+      "x1": 552.786081,
+      "y1": 555.678034
+    },
+    {
+      "text": "cantly advanced our knowledge of biological systems. We have guide the reader through the various steps of a scRNA-seq analysis",
+      "x0": 42.519699,
+      "y0": 559.047611,
+      "x1": 552.786908,
+      "y1": 567.01635
+    },
+    {
+      "text": "been able to both study the cellular heterogeneity of zebrafish, frogs pipeline (Fig 1), present current best practices, and discuss analysis",
+      "x0": 42.519699,
+      "y0": 570.385927,
+      "x1": 552.796004,
+      "y1": 578.354666
+    },
+    {
+      "text": "and planaria (Briggs et al, 2018; Plass et al, 2018; Wagner et al, pitfalls and open questions. Where best practices cannot be deter-",
+      "x0": 42.519699,
+      "y0": 581.724242,
+      "x1": 552.804272,
+      "y1": 589.692981
+    },
+    {
+      "text": "2018) and discover previously obscured cellular populations (Mon- mined due to novelty of the tools and lack of comparisons, we list",
+      "x0": 42.518875,
+      "y0": 593.062558,
+      "x1": 552.734814,
+      "y1": 601.031297
+    },
+    {
+      "text": "toro et al, 2018; Plasschaert et al, 2018). The great potential of this popular available tools. The outlined steps start from read or count",
+      "x0": 42.518875,
+      "y0": 604.400874,
+      "x1": 552.754659,
+      "y1": 612.369613
+    },
+    {
+      "text": "technology has motivated computational biologists to develop a matrices and lead to potential analysis endpoints. Earlier pre-proces-",
+      "x0": 42.518875,
+      "y0": 615.739189,
+      "x1": 552.815022,
+      "y1": 623.707928
+    },
+    {
+      "text": "range of analysis tools (Rostom et al, 2017). Despite considerable sing steps are covered in Lun et al (2016b). A detailed case study",
+      "x0": 42.518875,
+      "y0": 627.077505,
+      "x1": 552.782773,
+      "y1": 635.046244
+    },
+    {
+      "text": "effort being undertaken by the field to ensure the usability of indi- that integrates the established current best practices is available on",
+      "x0": 42.518875,
+      "y0": 638.415821,
+      "x1": 552.713315,
+      "y1": 646.38456
+    },
+    {
+      "text": "vidual tools, a barrier of entry for novices in single-cell data analysis our github at: https://github.com/theislab/single-cell-tutorial/.",
+      "x0": 42.518875,
+      "y0": 649.754136,
+      "x1": 552.717449,
+      "y1": 657.722875
+    },
+    {
+      "text": "is the lack of standardization due to the relative immaturity of the Here, we have applied the current best practices in a practical exam-",
+      "x0": 42.518875,
+      "y0": 661.092452,
+      "x1": 552.791043,
+      "y1": 669.061191
+    },
+    {
+      "text": "field. In this paper, we present a tutorial for scRNA-seq analysis and ple workflow to analyse a public dataset. The analysis workflow",
+      "x0": 42.518875,
+      "y0": 672.430768,
+      "x1": 552.786081,
+      "y1": 680.399507
+    },
+    {
+      "text": "1 Institute of Computational Biology, Helmholtz Zentrum M\u00fcnchen, German Research Center for Environmental Health, Neuherberg, Germany",
+      "x0": 42.519699,
+      "y0": 712.61151,
+      "x1": 462.311774,
+      "y1": 719.062275
+    },
+    {
+      "text": "2 Department of Mathematics, Technische Universit\u00e4t M\u00fcnchen, Garching bei M\u00fcnchen, Germany",
+      "x0": 42.519699,
+      "y0": 720.888713,
+      "x1": 332.765071,
+      "y1": 727.339478
+    },
+    {
+      "text": "*Corresponding author. Tel: +498931872211; E-mail: fabian.theis@helmholtz-muenchen.de",
+      "x0": 51.476848,
+      "y0": 729.165917,
+      "x1": 316.20648,
+      "y1": 735.616682
+    },
+    {
+      "text": "\u00aa 2019 The Authors. Published under the terms of the CC BY 4.0 license Molecular Systems Biology 15: e8746 | 2019 1 of 23",
+      "x0": 42.519006,
+      "y0": 756.836115,
+      "x1": 552.760691,
+      "y1": 768.492305
+    }
+  ]
+}

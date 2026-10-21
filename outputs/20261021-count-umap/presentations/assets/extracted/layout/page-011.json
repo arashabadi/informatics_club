@@ -1,0 +1,441 @@
+{
+  "page": 11,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Malte D Luecken & Fabian J Theis Molecular Systems Biology",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.762111,
+      "y1": 41.169976
+    },
+    {
+      "text": "accurate representation of the underlying biology and will mask Broadly, cluster analysis methods attempt to explain the hetero-",
+      "x0": 42.519699,
+      "y0": 81.920261,
+      "x1": 552.746385,
+      "y1": 89.78414
+    },
+    {
+      "text": "other signals that may be relevant. Thus, biologically corrected geneity in the data based on a categorization of cells into groups.",
+      "x0": 42.519699,
+      "y0": 93.258576,
+      "x1": 552.765404,
+      "y1": 101.122456
+    },
+    {
+      "text": "data are appropriate mainly for analysis tools that focus on In contrast, in trajectory analysis the data are regarded as a snap-",
+      "x0": 42.519699,
+      "y0": 104.596892,
+      "x1": 552.730675,
+      "y1": 112.460771
+    },
+    {
+      "text": "particular biological processes such as trajectory inference meth- shot of a dynamic process. Trajectory analysis methods investi-",
+      "x0": 42.519699,
+      "y0": 115.935208,
+      "x1": 552.734809,
+      "y1": 123.799087
+    },
+    {
+      "text": "ods. gate this underlying process.",
+      "x0": 42.519699,
+      "y0": 127.273523,
+      "x1": 412.250332,
+      "y1": 135.137403
+    },
+    {
+      "text": "Statistical comparison of gene expression is most appropriate on Here, we describe cell- and gene-level cluster and trajectory anal-",
+      "x0": 53.631447,
+      "y0": 138.611839,
+      "x1": 552.794345,
+      "y1": 146.475718
+    },
+    {
+      "text": "the measured data layer. No perfect data correction method exists ysis tools before detailing gene-level analyses that are performed",
+      "x0": 42.519699,
+      "y0": 149.950155,
+      "x1": 552.816671,
+      "y1": 157.814034
+    },
+    {
+      "text": "for denoising, batch correction or correcting for other sources of independently of these cellular structures.",
+      "x0": 42.519699,
+      "y0": 161.28847,
+      "x1": 457.052059,
+      "y1": 169.15235
+    },
+    {
+      "text": "variation. Thus, data correction methods inevitably over- or under-",
+      "x0": 42.519699,
+      "y0": 172.626941,
+      "x1": 289.156179,
+      "y1": 180.490665
+    },
+    {
+      "text": "correct the data and therefore alter the variance of at least some Cluster analysis",
+      "x0": 42.519699,
+      "y0": 183.956833,
+      "x1": 362.918902,
+      "y1": 191.828981
+    },
+    {
+      "text": "gene expression profiles in an unintended way. Statistical tests of Clustering",
+      "x0": 42.519699,
+      "y0": 195.295148,
+      "x1": 340.034721,
+      "y1": 203.167297
+    },
+    {
+      "text": "gene expression rely on assessing the background variance as a null Organizing cells into clusters is typically the first intermediate",
+      "x0": 42.519699,
+      "y0": 206.641733,
+      "x1": 552.721579,
+      "y1": 214.505612
+    },
+    {
+      "text": "model for noise in the data. As data correction tends to reduce back- result of any single-cell analysis. Clusters allow us to infer the",
+      "x0": 42.519699,
+      "y0": 217.980049,
+      "x1": 552.725713,
+      "y1": 225.843928
+    },
+    {
+      "text": "ground variation (Fig EV2), genes whose background variation is identity of member cells. Clusters are obtained by grouping",
+      "x0": 42.519699,
+      "y0": 229.318364,
+      "x1": 552.821632,
+      "y1": 237.182244
+    },
+    {
+      "text": "over-corrected by data correction methods will be more likely cells based on the similarity of their gene expression profiles.",
+      "x0": 42.519699,
+      "y0": 240.65668,
+      "x1": 552.684368,
+      "y1": 248.520559
+    },
+    {
+      "text": "assessed as significantly differentially expressed. Furthermore, Expression profile similarity is determined via distance metrics,",
+      "x0": 42.519699,
+      "y0": 251.994996,
+      "x1": 552.746383,
+      "y1": 259.858875
+    },
+    {
+      "text": "certain data correction methods (e.g. ComBat) interpret expression which often take dimensionality-reduced representations as",
+      "x0": 42.519699,
+      "y0": 263.333311,
+      "x1": 552.783595,
+      "y1": 271.197191
+    },
+    {
+      "text": "signals that do not conform to the experimental design as noise, input. A common example of similarity scoring is Euclidean",
+      "x0": 42.519699,
+      "y0": 274.671627,
+      "x1": 552.719094,
+      "y1": 282.535506
+    },
+    {
+      "text": "which is subsequently removed from the data. In addition to an distances that are calculated on the PC-reduced expression",
+      "x0": 42.519699,
+      "y0": 286.009943,
+      "x1": 552.784422,
+      "y1": 293.873822
+    },
+    {
+      "text": "underestimation of the noise, this optimization of the experimental space. Two approaches exist to generate cell clusters from these",
+      "x0": 42.519699,
+      "y0": 297.348259,
+      "x1": 552.802614,
+      "y1": 305.212138
+    },
+    {
+      "text": "design signal can lead to an overestimation of the effect size. In the similarity scores: clustering algorithms and community detection",
+      "x0": 42.519699,
+      "y0": 308.686574,
+      "x1": 552.819979,
+      "y1": 316.550453
+    },
+    {
+      "text": "light of these considerations, using measured data as input, as methods.",
+      "x0": 42.519699,
+      "y0": 320.02489,
+      "x1": 340.234828,
+      "y1": 327.888769
+    },
+    {
+      "text": "opposed to corrected data, constitutes a more conservative approach Clustering is a classical unsupervised machine learning prob-",
+      "x0": 42.519699,
+      "y0": 331.363206,
+      "x1": 552.759615,
+      "y1": 339.227085
+    },
+    {
+      "text": "to differential testing. With measured data, technical covariates can lem, based directly on a distance matrix. Cells are assigned to clus-",
+      "x0": 42.519699,
+      "y0": 342.701521,
+      "x1": 552.808402,
+      "y1": 350.5654
+    },
+    {
+      "text": "and should be taken into consideration in the differential testing ters by minimizing intracluster distances or finding dense regions",
+      "x0": 42.519699,
+      "y0": 354.039837,
+      "x1": 552.756308,
+      "y1": 361.903716
+    },
+    {
+      "text": "model. in the reduced expression space. The popular k-means clustering",
+      "x0": 42.519699,
+      "y0": 365.378153,
+      "x1": 552.804262,
+      "y1": 373.242032
+    },
+    {
+      "text": "The above view is supported by a recent comparison of algorithm divides cells into k clusters by determining cluster",
+      "x0": 53.631447,
+      "y0": 376.716468,
+      "x1": 552.783587,
+      "y1": 384.580348
+    },
+    {
+      "text": "scRNA-seq differential expression methods, which uses only raw centroids and assigning cells to the nearest cluster centroid.",
+      "x0": 42.519699,
+      "y0": 388.054784,
+      "x1": 552.719917,
+      "y1": 395.918663
+    },
+    {
+      "text": "and normalized data as input (Soneson & Robinson, 2018). The Centroid positions are iteratively optimized (MacQueen, 1967).",
+      "x0": 42.519699,
+      "y0": 399.3931,
+      "x1": 552.748858,
+      "y1": 407.256979
+    },
+    {
+      "text": "normalized data used in this study revolve only around global This approach requires an input of the number of clusters",
+      "x0": 42.519699,
+      "y0": 410.731415,
+      "x1": 552.799298,
+      "y1": 418.595295
+    },
+    {
+      "text": "scaling methods. However, many currently available non-linear expected, which is usually unknown and must be calibrated",
+      "x0": 42.519699,
+      "y0": 422.069731,
+      "x1": 552.791856,
+      "y1": 429.93361
+    },
+    {
+      "text": "normalization methods blur the line between normalization and heuristically. Applications of k-means to single-cell data vary in",
+      "x0": 42.519699,
+      "y0": 433.408047,
+      "x1": 552.772838,
+      "y1": 441.271926
+    },
+    {
+      "text": "data correction (see \u201cNormalization\u201d section). Such normalized the distance metrics used. Alternatives to standard Euclidean",
+      "x0": 42.519699,
+      "y0": 444.746362,
+      "x1": 552.772011,
+      "y1": 452.610242
+    },
+    {
+      "text": "data may no longer be appropriate as input for differential distances include cosine similarity (Haghverdi et al, 2018), correla-",
+      "x0": 42.519699,
+      "y0": 456.084678,
+      "x1": 552.774484,
+      "y1": 463.948557
+    },
+    {
+      "text": "testing. tion-based distance metrics (Kim et al, 2018) or the SIMLR",
+      "x0": 42.519699,
+      "y0": 467.422994,
+      "x1": 552.787716,
+      "y1": 475.286873
+    },
+    {
+      "text": "method, which learns a distance metric for each dataset using",
+      "x0": 306.138832,
+      "y0": 478.761309,
+      "x1": 552.752985,
+      "y1": 486.625033
+    },
+    {
+      "text": "Gaussian kernels (Wang et al, 2017). A recent comparison has",
+      "x0": 306.138832,
+      "y0": 490.099625,
+      "x1": 552.786889,
+      "y1": 497.963349
+    },
+    {
+      "text": "Pitfalls & recommendations: suggested that correlation-based distances may outperform other",
+      "x0": 48.018902,
+      "y0": 501.437941,
+      "x1": 552.771178,
+      "y1": 509.571749
+    },
+    {
+      "text": "distance metrics when used with k-means or as the basis for Gaus-",
+      "x0": 306.138005,
+      "y0": 512.776256,
+      "x1": 552.769524,
+      "y1": 520.63998
+    },
+    {
+      "text": "\u2022 Use measured data for statistical testing, corrected data for visual",
+      "x0": 48.018902,
+      "y0": 513.976288,
+      "x1": 275.074775,
+      "y1": 530.813238
+    },
+    {
+      "text": "sian kernels (Kim et al, 2018).",
+      "x0": 306.138005,
+      "y0": 524.114572,
+      "x1": 417.59368,
+      "y1": 531.978296
+    },
+    {
+      "text": "comparison of data and reduced data for other downstream analysis",
+      "x0": 55.445702,
+      "y0": 528.625387,
+      "x1": 275.138285,
+      "y1": 535.536802
+    },
+    {
+      "text": "based on finding the underlying biological data manifold. Community detection methods are graph-partitioning algorithms",
+      "x0": 55.445702,
+      "y0": 535.452888,
+      "x1": 552.816655,
+      "y1": 545.004319
+    },
+    {
+      "text": "and thus rely on a graph representation of single-cell data. This",
+      "x0": 306.137176,
+      "y0": 546.791203,
+      "x1": 552.76208,
+      "y1": 554.654927
+    },
+    {
+      "text": "graph representation is obtained using a K-Nearest Neighbour",
+      "x0": 306.137176,
+      "y0": 558.129519,
+      "x1": 552.780272,
+      "y1": 565.993243
+    },
+    {
+      "text": "Downstream analysis approach (KNN graph). Cells are represented as nodes in the",
+      "x0": 42.519699,
+      "y0": 569.467835,
+      "x1": 552.738101,
+      "y1": 577.331559
+    },
+    {
+      "text": "After pre-processing, methods that we call downstream analysis graph. Each cell is connected to its K most similar cells, which are",
+      "x0": 42.519699,
+      "y0": 580.806151,
+      "x1": 552.776961,
+      "y1": 588.681432
+    },
+    {
+      "text": "are used to extract biological insights and describe the underly- typically obtained using Euclidean distances on the PC-reduced",
+      "x0": 42.519699,
+      "y0": 592.144466,
+      "x1": 552.792672,
+      "y1": 600.019747
+    },
+    {
+      "text": "ing biological system. These descriptions are obtained by fitting expression space. Depending on the size of the dataset, K is",
+      "x0": 42.519699,
+      "y0": 603.482782,
+      "x1": 552.765385,
+      "y1": 611.358063
+    },
+    {
+      "text": "interpretable models to the data. Examples of such models are commonly set to be between 5 and 100 nearest neighbours. The",
+      "x0": 42.519699,
+      "y0": 614.821098,
+      "x1": 552.739751,
+      "y1": 622.696379
+    },
+    {
+      "text": "groups of cells with similar gene expression profiles represent- resulting graph captures the underlying topology of the expression",
+      "x0": 42.519699,
+      "y0": 626.159413,
+      "x1": 552.786057,
+      "y1": 634.034694
+    },
+    {
+      "text": "ing cell-type clusters; small changes in gene expression between data (Wolf et al, 2019). Densely sampled regions of expression",
+      "x0": 42.519699,
+      "y0": 637.497729,
+      "x1": 552.780268,
+      "y1": 645.37301
+    },
+    {
+      "text": "similar cells denoting continuous (differentiation) trajectories; or space are represented as densely connected regions of the graph.",
+      "x0": 42.519699,
+      "y0": 648.836045,
+      "x1": 552.80094,
+      "y1": 656.711326
+    },
+    {
+      "text": "genes with correlated expression profiles indicating co-regula- These dense regions are detected using community detection meth-",
+      "x0": 42.519699,
+      "y0": 660.17436,
+      "x1": 552.741404,
+      "y1": 668.049641
+    },
+    {
+      "text": "tion. ods. Community detection is often faster than clustering as only",
+      "x0": 42.519699,
+      "y0": 671.512676,
+      "x1": 552.756288,
+      "y1": 679.387957
+    },
+    {
+      "text": "Downstream analysis can be divided into cell- and gene-level neighbouring cell pairs have to be considered as belonging to the",
+      "x0": 53.631447,
+      "y0": 682.850992,
+      "x1": 552.736442,
+      "y1": 690.726273
+    },
+    {
+      "text": "approaches as shown in Fig 5. Cell-level analysis typically focuses same cluster. This approach thus greatly reduces the search space",
+      "x0": 42.519699,
+      "y0": 694.189307,
+      "x1": 552.769518,
+      "y1": 702.064588
+    },
+    {
+      "text": "on the description of two structures: clusters and trajectories. for possible clusters.",
+      "x0": 42.519699,
+      "y0": 705.527623,
+      "x1": 381.213823,
+      "y1": 713.402904
+    },
+    {
+      "text": "These structures can in turn be analysed on the cell and the gene After the pioneering PhenoGraph method (Levine et al, 2015),",
+      "x0": 42.519699,
+      "y0": 716.865939,
+      "x1": 552.732301,
+      "y1": 724.74122
+    },
+    {
+      "text": "level leading to cluster analysis and trajectory analysis methods. the standard approach to clustering single-cell datasets has become",
+      "x0": 42.519699,
+      "y0": 728.204254,
+      "x1": 552.834009,
+      "y1": 736.079535
+    },
+    {
+      "text": "\u00aa 2019 The Authors Molecular Systems Biology 15: e8746 | 2019 11 of 23",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.76071,
+      "y1": 768.492305
+    }
+  ]
+}

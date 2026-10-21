@@ -1,0 +1,434 @@
+{
+  "page": 10,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.770361,
+      "y1": 41.169976
+    },
+    {
+      "text": "Table 1. Stages of data processing and appropriate downstream applications.",
+      "x0": 46.488201,
+      "y0": 78.904903,
+      "x1": 315.124063,
+      "y1": 88.618243
+    },
+    {
+      "text": "Pre-processing layer Stage of data processing Appropriate applications",
+      "x0": 46.488201,
+      "y0": 94.606891,
+      "x1": 387.93003,
+      "y1": 101.49589
+    },
+    {
+      "text": "Measured 1) Raw Statistical testing (Differential expression: marker genes, genes over condition,",
+      "x0": 46.488201,
+      "y0": 108.53059,
+      "x1": 546.78198,
+      "y1": 115.442005
+    },
+    {
+      "text": "genes over time)",
+      "x0": 303.7602,
+      "y0": 117.998107,
+      "x1": 355.388843,
+      "y1": 124.909522
+    },
+    {
+      "text": "2) Normalized (+ log transformed)",
+      "x0": 148.649371,
+      "y0": 131.831398,
+      "x1": 254.99998,
+      "y1": 138.742813
+    },
+    {
+      "text": "Corrected 3.1) Corrected (technical correction) Visual comparison of data (plotting)",
+      "x0": 46.48895,
+      "y0": 145.607902,
+      "x1": 415.745299,
+      "y1": 152.519317
+    },
+    {
+      "text": "3.2) Corrected (biological correction) Pre-processing for trajectory inference",
+      "x0": 148.650122,
+      "y0": 159.441192,
+      "x1": 422.873397,
+      "y1": 166.352607
+    },
+    {
+      "text": "Reduced 4) Feature selected Visualization, trajectory inference",
+      "x0": 46.490444,
+      "y0": 173.274483,
+      "x1": 407.848353,
+      "y1": 180.185898
+    },
+    {
+      "text": "5) Dimensionality reduced (summarized) Visualization, clustering, KNN graph inference, trajectory inference",
+      "x0": 148.650869,
+      "y0": 187.107773,
+      "x1": 510.846367,
+      "y1": 194.019188
+    },
+    {
+      "text": "Note 4). What sets UMAP apart in this comparison is its speed and characterization. While the order of the layers represent the typi-",
+      "x0": 42.519699,
+      "y0": 229.321444,
+      "x1": 552.772019,
+      "y1": 237.18569
+    },
+    {
+      "text": "ability to scale to large numbers of cells (Becht et al, 2018). Thus, in cal workflow in scRNA-seq analysis, it is also possible to skip",
+      "x0": 42.519699,
+      "y0": 240.65976,
+      "x1": 552.791864,
+      "y1": 248.524006
+    },
+    {
+      "text": "the absence of particular biological questions, we regard UMAP as layers or have slight alterations in the order of processing stages.",
+      "x0": 42.519693,
+      "y0": 251.998076,
+      "x1": 552.76375,
+      "y1": 259.862321
+    },
+    {
+      "text": "best practice for exploratory data visualization. Moreover, UMAP For example, data correction may not be necessary for single",
+      "x0": 42.519693,
+      "y0": 263.336391,
+      "x1": 552.77698,
+      "y1": 271.200637
+    },
+    {
+      "text": "can also summarize data in more than two dimensions. While we batch datasets. In Table 1, we summarize the appropriate down-",
+      "x0": 42.519693,
+      "y0": 274.674707,
+      "x1": 552.792691,
+      "y1": 282.538953
+    },
+    {
+      "text": "are not aware of any applications of UMAP for data summarization, stream applications for each layer of pre-processed data.",
+      "x0": 42.519693,
+      "y0": 286.013023,
+      "x1": 514.219927,
+      "y1": 293.877269
+    },
+    {
+      "text": "it may prove a suitable alternative to PCA. The stages of pre-processing in Table 1 are divided into three",
+      "x0": 42.519693,
+      "y0": 297.351338,
+      "x1": 552.772846,
+      "y1": 305.215584
+    },
+    {
+      "text": "An alternative to classical visualization on the cell level is groups: measured data, corrected data and reduced data. We define",
+      "x0": 53.631441,
+      "y0": 308.689654,
+      "x1": 552.760442,
+      "y1": 316.5539
+    },
+    {
+      "text": "partition-based graph abstraction (PAGA; Wolf et al, 2019). This measured data as raw data and processed data that retain the struc-",
+      "x0": 42.519693,
+      "y0": 320.02797,
+      "x1": 552.76623,
+      "y1": 327.892216
+    },
+    {
+      "text": "tool has been shown to adequately approximate the topology of ture of zeros. By scaling count data with a cell-specific factor, global",
+      "x0": 42.519696,
+      "y0": 331.366285,
+      "x1": 552.76623,
+      "y1": 339.230531
+    },
+    {
+      "text": "the data while coarse-graining the visualization using clusters. In scaling normalization methods retain zero expression values even",
+      "x0": 42.519696,
+      "y0": 342.704601,
+      "x1": 552.755482,
+      "y1": 350.568847
+    },
+    {
+      "text": "combination with any of the above visualization methods, PAGA after log(x+1)-transformation. In contrast, correcting data for",
+      "x0": 42.519696,
+      "y0": 354.042917,
+      "x1": 552.757962,
+      "y1": 361.907163
+    },
+    {
+      "text": "produces coarse-grained visualizations, which can simplify the unwanted variability replaces zero expression values. The corrected",
+      "x0": 42.519696,
+      "y0": 365.381232,
+      "x1": 552.819152,
+      "y1": 373.245478
+    },
+    {
+      "text": "interpretation of single-cell data especially with large numbers of data layer represents the \u201ccleanest\u201d version of the data, which is the",
+      "x0": 42.519696,
+      "y0": 376.719548,
+      "x1": 552.740597,
+      "y1": 384.583794
+    },
+    {
+      "text": "cells. closest approximation of the underlying biological signal. We call",
+      "x0": 42.519696,
+      "y0": 388.057864,
+      "x1": 552.734809,
+      "y1": 395.92211
+    },
+    {
+      "text": "the final pre-processing layer reduced data. This data layer empha-",
+      "x0": 306.1405,
+      "y0": 399.39618,
+      "x1": 552.798477,
+      "y1": 407.259903
+    },
+    {
+      "text": "sizes dominant aspects of the data, which can be described using a",
+      "x0": 306.141325,
+      "y0": 410.734495,
+      "x1": 552.748038,
+      "y1": 418.598219
+    },
+    {
+      "text": "Pitfalls & recommendations: reduced set of features.",
+      "x0": 48.018902,
+      "y0": 421.838663,
+      "x1": 389.791998,
+      "y1": 429.936535
+    },
+    {
+      "text": "\u2022 We recommend selecting between 1,000 and 5,000 highly variable",
+      "x0": 48.018902,
+      "y0": 433.132172,
+      "x1": 275.070291,
+      "y1": 449.969122
+    },
+    {
+      "text": "The aforementioned characteristics determine the suitability of",
+      "x0": 317.253073,
+      "y0": 433.411127,
+      "x1": 552.776151,
+      "y1": 441.27485
+    },
+    {
+      "text": "genes depending on dataset complexity. the pre-processed data for particular downstream applications. As",
+      "x0": 55.447194,
+      "y0": 444.749442,
+      "x1": 552.721577,
+      "y1": 454.749471
+    },
+    {
+      "text": "\u2022 Feature selection methods that use gene expression means and vari- the final pre-processing stage, reduced data would be the natural",
+      "x0": 48.018902,
+      "y0": 453.938477,
+      "x1": 552.802612,
+      "y1": 470.775427
+    },
+    {
+      "text": "ances cannot be used when gene expression values have been candidate for a broadly applicable data layer. However, testing for",
+      "x0": 55.445702,
+      "y0": 467.426074,
+      "x1": 552.75796,
+      "y1": 475.555776
+    },
+    {
+      "text": "normalized to zero mean and unit variance, or when residuals from differential expression is only biologically interpretable in gene",
+      "x0": 55.445702,
+      "y0": 478.111879,
+      "x1": 552.757133,
+      "y1": 486.628113
+    },
+    {
+      "text": "model fitting are used as normalized expression values. Thus, one space, which is not (fully) represented in reduced data. The",
+      "x0": 55.445702,
+      "y0": 487.579396,
+      "x1": 552.743076,
+      "y1": 497.966429
+    },
+    {
+      "text": "must consider what pre-processing to perform before selecting HVGs.",
+      "x0": 55.445702,
+      "y0": 497.046914,
+      "x1": 271.98145,
+      "y1": 503.958329
+    },
+    {
+      "text": "strength of reduced data lies in the summarization of the biology",
+      "x0": 306.141325,
+      "y0": 501.441021,
+      "x1": 552.812534,
+      "y1": 509.304745
+    },
+    {
+      "text": "\u2022 Dimensionality reduction methods should be considered separately",
+      "x0": 48.018902,
+      "y0": 503.147888,
+      "x1": 275.071786,
+      "y1": 519.984838
+    },
+    {
+      "text": "and the reduction of noise, which can mask biological signals.",
+      "x0": 306.141325,
+      "y0": 512.779336,
+      "x1": 552.767882,
+      "y1": 520.64306
+    },
+    {
+      "text": "for summarization and visualization.",
+      "x0": 55.445702,
+      "y0": 517.853865,
+      "x1": 170.273816,
+      "y1": 524.76528
+    },
+    {
+      "text": "\u2022 We recommend UMAP for exploratory visualization; PCA for general",
+      "x0": 48.018902,
+      "y0": 523.954178,
+      "x1": 275.0815,
+      "y1": 540.791128
+    },
+    {
+      "text": "Thus, reduced data are used for exploratory methods that require",
+      "x0": 306.141325,
+      "y0": 524.117652,
+      "x1": 552.810881,
+      "y1": 531.981376
+    },
+    {
+      "text": "purpose summarization; and diffusion maps as an alternative to PCA data summaries (visualization, neighbourhood graph inference,",
+      "x0": 55.445702,
+      "y0": 535.455968,
+      "x1": 552.803439,
+      "y1": 545.571584
+    },
+    {
+      "text": "for trajectory inference summarization. clustering) and for computationally complex downstream analysis",
+      "x0": 55.445702,
+      "y0": 546.794283,
+      "x1": 552.789382,
+      "y1": 555.039102
+    },
+    {
+      "text": "\u2022 PAGA with UMAP is a suitable alternative to visualize particularly tools (trajectory inference). Indeed, many trajectory inference",
+      "x0": 48.018902,
+      "y0": 554.228272,
+      "x1": 552.777805,
+      "y1": 571.065222
+    },
+    {
+      "text": "complex datasets. methods incorporate dimensionality reduction in the tools them-",
+      "x0": 55.445702,
+      "y0": 568.934065,
+      "x1": 552.800132,
+      "y1": 577.334639
+    },
+    {
+      "text": "selves.",
+      "x0": 306.141325,
+      "y0": 580.80923,
+      "x1": 330.327857,
+      "y1": 588.672954
+    },
+    {
+      "text": "The expression profiles of individual genes can only be",
+      "x0": 317.253073,
+      "y0": 592.147546,
+      "x1": 552.772844,
+      "y1": 600.01127
+    },
+    {
+      "text": "Stages of pre-processed data compared in gene space, which is captured in measured and",
+      "x0": 42.519699,
+      "y0": 603.37342,
+      "x1": 552.746382,
+      "y1": 611.349586
+    },
+    {
+      "text": "While we have outlined common pre-processing steps in scRNA- corrected data. Comparison of expression profiles can be",
+      "x0": 42.519699,
+      "y0": 614.720005,
+      "x1": 552.774497,
+      "y1": 622.687901
+    },
+    {
+      "text": "seq as a sequential pipeline above, downstream analyses often performed visually and statistically. We argue that visual and",
+      "x0": 42.519699,
+      "y0": 626.05832,
+      "x1": 552.74473,
+      "y1": 634.026217
+    },
+    {
+      "text": "prefer to take different levels of pre-processed data, and it is statistical comparison should be performed on different data",
+      "x0": 42.519699,
+      "y0": 637.396636,
+      "x1": 552.74473,
+      "y1": 645.364533
+    },
+    {
+      "text": "recommended to adapt pre-processing depending on the down- layers. For visual inspection of gene expression, corrected data",
+      "x0": 42.519699,
+      "y0": 648.734952,
+      "x1": 552.744729,
+      "y1": 656.702848
+    },
+    {
+      "text": "stream application. To clarify this situation to a new user, we are most appropriate. Should raw data be presented for visual",
+      "x0": 42.519699,
+      "y0": 660.073268,
+      "x1": 552.78194,
+      "y1": 668.041164
+    },
+    {
+      "text": "delineated pre-processing into five stages of data processing: (i) comparison, the user is required to inherently understand the",
+      "x0": 42.519699,
+      "y0": 671.411583,
+      "x1": 552.739768,
+      "y1": 679.37948
+    },
+    {
+      "text": "raw data, (ii) normalized data, (iii) corrected data, (iv) feature- biases in the data in order to interpret the results. Corrected data",
+      "x0": 42.519699,
+      "y0": 682.749899,
+      "x1": 552.802612,
+      "y1": 690.717795
+    },
+    {
+      "text": "selected data, and (v) dimensionality-reduced data. These stages facilitate this interpretation. However, one should consider",
+      "x0": 42.519699,
+      "y0": 694.088215,
+      "x1": 552.779459,
+      "y1": 702.056111
+    },
+    {
+      "text": "of data processing are grouped into three pre-processing layers: corrected data for technical and biological covariates separately",
+      "x0": 42.519699,
+      "y0": 705.42653,
+      "x1": 552.831554,
+      "y1": 713.394427
+    },
+    {
+      "text": "measured data, corrected data, and reduced data. Cell and gene here. While correction for biological covariates may increase the",
+      "x0": 42.519699,
+      "y0": 716.764846,
+      "x1": 552.739768,
+      "y1": 724.732742
+    },
+    {
+      "text": "QC should always be performed and is therefore omitted from this strength of a particular biological signal, it produces a less",
+      "x0": 42.519699,
+      "y0": 728.103162,
+      "x1": 552.776152,
+      "y1": 736.071058
+    },
+    {
+      "text": "10 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.836407,
+      "y1": 768.492305
+    }
+  ]
+}

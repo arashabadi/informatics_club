@@ -1,0 +1,1785 @@
+Review
+
+
+Current best practices in single-cell RNA-seq
+analysis: a tutorial
+Malte D Luecken1                    & Fabian J Theis1,2,*
+
+
+Abstract                                                                           outline current best practices to lay a foundation for future analysis
+                                                                                   standardization.
+Single-cell RNA-seq has enabled gene expression to be studied at                       The challenges to standardization include the growing number of
+an unprecedented resolution. The promise of this technology is                     analysis methods (385 tools as of 7 March 2019) and exploding
+attracting a growing user base for single-cell analysis methods. As                dataset sizes (Angerer et al, 2017; Zappia et al, 2018). We are
+more analysis tools are becoming available, it is becoming increas-                continuously finding new ways to use the data at our disposal. For
+ingly difficult to navigate this landscape and produce an up-to-                   example, it has recently become possible to predict cell fates in dif-
+date workflow to analyse one’s data. Here, we detail the steps of a                ferentiation (La Manno et al, 2018). While the continuous improve-
+typical single-cell RNA-seq analysis, including pre-processing (qual-              ment of analysis tools is beneficial for generating new scientific
+ity control, normalization, data correction, feature selection, and                insight, it complicates standardization.
+dimensionality reduction) and cell- and gene-level downstream                          Further challenges for standardization lie in technical aspects.
+analysis. We formulate current best-practice recommendations for                   Analysis tools for scRNA-seq data are written in a variety of
+these steps based on independent comparison studies. We have                       programming languages—most prominently R and Python (Zappia
+integrated these best-practice recommendations into a workflow,                    et al, 2018). Although cross-environment support is growing
+which we apply to a public dataset to further illustrate how these                 (preprint: Scholz et al, 2018), the choice of programming language
+steps work in practice. Our documented case study can be found                     is often also a choice between analysis tools. Popular platforms such
+at      https://www.github.com/theislab/single-cell-tutorial.    This              as Seurat (Butler et al, 2018), Scater (McCarthy et al, 2017), or
+review will serve as a workflow tutorial for new entrants into the                 Scanpy (Wolf et al, 2018) provide integrated environments to
+field, and help established users update their analysis pipelines.                 develop pipelines and contain large analysis toolboxes. However,
+                                                                                   out of necessity these platforms limit themselves to tools developed
+Keywords analysis pipeline development; computational biology; data analy-         in their respective programming languages. By extension, language
+sis tutorial; single-cell RNA-seq                                                  restrictions also hold true for currently available scRNA-seq analysis
+DOI 10.15252/msb.20188746 | Received 16 November 2018 | Revised 15 March           tutorials, many of which revolve around the above platforms (R and
+2019 | Accepted 3 April 2019                                                       bioconductor tools: https://github.com/drisso/bioc2016singlecell
+Mol Syst Biol. (2019) 15: e8746                                                    and https://hemberg-lab.github.io/scRNA.seq.course/; Lun et al,
+                                                                                   2016b; Seurat: https://satijalab.org/seurat/get_started.html; Scanpy:
+                                                                                   https://scanpy.readthedocs.io/en/stable/tutorials.html).
+Introduction                                                                           Considering the above-mentioned challenges, instead of targeting
+                                                                                   a standardized analysis pipeline, we outline current best practices
+In recent years, single-cell RNA sequencing (scRNA-seq) has signifi-               and common tools independent of programming language. We
+cantly advanced our knowledge of biological systems. We have                       guide the reader through the various steps of a scRNA-seq analysis
+been able to both study the cellular heterogeneity of zebrafish, frogs             pipeline (Fig 1), present current best practices, and discuss analysis
+and planaria (Briggs et al, 2018; Plass et al, 2018; Wagner et al,                 pitfalls and open questions. Where best practices cannot be deter-
+2018) and discover previously obscured cellular populations (Mon-                  mined due to novelty of the tools and lack of comparisons, we list
+toro et al, 2018; Plasschaert et al, 2018). The great potential of this            popular available tools. The outlined steps start from read or count
+technology has motivated computational biologists to develop a                     matrices and lead to potential analysis endpoints. Earlier pre-proces-
+range of analysis tools (Rostom et al, 2017). Despite considerable                 sing steps are covered in Lun et al (2016b). A detailed case study
+effort being undertaken by the field to ensure the usability of indi-              that integrates the established current best practices is available on
+vidual tools, a barrier of entry for novices in single-cell data analysis          our github at: https://github.com/theislab/single-cell-tutorial/.
+is the lack of standardization due to the relative immaturity of the               Here, we have applied the current best practices in a practical exam-
+field. In this paper, we present a tutorial for scRNA-seq analysis and             ple workflow to analyse a public dataset. The analysis workflow
+
+
+
+1 Institute of Computational Biology, Helmholtz Zentrum München, German Research Center for Environmental Health, Neuherberg, Germany
+2 Department of Mathematics, Technische Universität München, Garching bei München, Germany
+  *Corresponding author. Tel: +498931872211; E-mail: fabian.theis@helmholtz-muenchen.de
+
+
+
+ª 2019 The Authors. Published under the terms of the CC BY 4.0 license                                    Molecular Systems Biology 15: e8746 | 2019   1 of 23
+Molecular Systems Biology                                                                                                                                    Malte D Luecken & Fabian J Theis
+
+
+
+
+                                    PRE-PROCESSING                                                           DOWNSTREAM ANALYSIS
+
+
+
+
+                                             Raw data processing
+                                                                                                                             Clustering
+
+
+
+                  Cells
+
+                                                                                                                        Cluster annotation
+
+                                                                                                           Tuft cells
+                                                                                                                                                          Goblet cells
+                                                                                                             EEC
+                                                                          Count
+                                                                          matrices                                      TA     EP                         Paneth cells
+                                                                                                                             (early)
+          Genes
+
+
+
+
+                                                                                                                                                    Stem cells
+                                                                                                  Enterocytes                    EP (late)
+
+
+
+
+                     Quality control                          Normalization
+
+
+                                                                                          Trajectory inference                                              Differential expression
+                                               Count depth
+
+
+
+
+                                                                                                                                                                                                              Fabp1
+
+                                                                                                                                                    400
+                                                                                                                                                                              Krt8
+                                                                                                                                                                    Tspan1
+                                                                                     Progenitor                                                                     Guca2a
+                                                                                                                                                                                                       Rbp2
+                                                                                     cells                                                          300
+
+
+
+
+                                                                                                                                        –log2 FDR
+                                                                                                                                                                               Suox
+                      Count depth                                                                          Stem cells                                       Reg3g
+                                                                                                                                                                          Cd9
+                                                                                                                                                                      Slc51a  Lgals4           Casp6
+                                                                 Size factors                                                                                                Phgr1
+                                                                                                                                                    200
+
+        Data correction (e.g. batch)                         Feature selection
+                                                                                                                                                    100
+                BEFORE
+
+                                                                                                                                                     0
+                                                                                                                                                          –2.0                         0.0                      2.0
+                                                                                            Gene dynamics
+                                                                                                                                                                                     log2 FC
+                                                                                                         High
+                                                                                                           expression
+                                                                                                             Gene
+
+
+
+
+                                                                        Highly
+                AFTER                                                   variable
+                                                                        genes                                                     Compositional analysis
+                                                                        Other
+                                                                                                         Low                           Condition 1                              Condition 2
+                                                                        genes
+
+
+
+
+                                       Visualization                                     Pseudotime
+
+                                                                                           Metastable states
+       © EMBO
+
+
+
+
+                                                                                              Pseudotime
+
+
+  Figure 1. Schematic of a typical single-cell RNA-seq analysis workflow.
+  Raw sequencing data are processed and aligned to give count matrices, which represent the start of the workflow. The count data undergo pre-processing and downstream
+  analysis. Subplots are generated using the best-practices workflow on intestinal epithelium data from Haber et al (2017).
+
+
+
+
+2 of 23             Molecular Systems Biology 15: e8746 | 2019                                                                                                                                  ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                             Molecular Systems Biology
+
+
+
+
+                                                                                assigned to the same barcode may not correspond to reads from the
+   Box 1: Key elements of an experimental scRNA-seq workflow
+                                                                                same cell. A barcode may mistakenly tag multiple cells (doublet) or
+   Generating single-cell data from a biological sample requires multiple       may not tag any cells (empty droplet/well).
+   steps. Typical workflows incorporate single-cell dissociation, single-cell      While read and count data differ in the level of measurement
+   isolation, library construction, and sequencing. We give a brief over-       noise, the processing steps in a typical analysis pipeline are the
+   view of these stages here. A more detailed explanation and compar-           same. For simplicity, we will refer to the data as count matrices in
+   ison of different protocols can be found in Ziegenhain et al (2017);
+                                                                                this tutorial. Where results for read and count matrices differ, read
+   Macosko et al (2015); Svensson et al (2017).
+      Input material for a single-cell experiment is typically obtained in      matrices are specifically mentioned.
+   the form of biological tissue samples. As a first step, a single-cell
+   suspension is generated in a process called single-cell dissociation in      Quality control
+   which the tissue is digested.                                                Before analysing the single-cell gene expression data, we must
+      To profile the mRNA in each cell separately, cells must be isolated.
+                                                                                ensure that all cellular barcode data correspond to viable cells. Cell
+   Single-cell isolation is performed differently depending on the experi-
+   mental protocol. While plate-based techniques isolate cells into wells       QC is commonly performed based on three QC covariates: the
+   on a plate, droplet-based methods rely on capturing each cell in its         number of counts per barcode (count depth), the number of genes
+   own microfluidic droplet. In both cases, errors can occur that lead to       per barcode, and the fraction of counts from mitochondrial genes
+   multiple cells being captured together (doublets or multiplets), non-        per barcode (Ilicic et al, 2016; Griffiths et al, 2018). The distribu-
+   viable cells being captured, or no cell being captured at all (empty
+                                                                                tions of these QC covariates are examined for outlier peaks that are
+   droplets/wells). Empty droplets are especially common as droplet-
+   based methods rely on a low concentration flow of input cells to             filtered out by thresholding (Fig 2). These outlier barcodes can
+   control doublet rates.                                                       correspond to dying cells, cells whose membranes are broken, or
+      Each well or droplet contains the necessary chemicals to break            doublets. For example, barcodes with a low count depth, few
+   down the cell membranes and perform library construction. Library            detected genes, and a high fraction of mitochondrial counts are
+   construction is the process in which the intracellular mRNA is
+                                                                                indicative of cells whose cytoplasmic mRNA has leaked out through
+   captured, reverse-transcribed to cDNA molecules and amplified. As
+   cells undergo this process in isolation, the mRNA from each cell can         a broken membrane, and thus, only mRNA located in the mitochon-
+   be labelled with a well- or droplet-specific cellular barcode. Further-      dria is still conserved (Fig 2). In contrast, cells with unexpectedly
+   more, many experimental protocols also label captured molecules              high counts and a large number of detected genes may represent
+   with a unique molecular identifier (UMI). Cellular cDNA is amplified         doublets. Thus, high-count depth thresholds are commonly used to
+   before sequencing to increase its probability of being measured. UMIs
+                                                                                filter out potential doublets. Three recent doublet detection tools
+   allow us to distinguish between amplified copies of the same mRNA
+   molecule and reads from separate mRNA molecules transcribed from             offer more elegant and potentially better solutions (DoubletDecon:
+   the same gene.                                                               preprint: DePasquale et al, 2018; Scrublet: Wolock et al, 2019;
+      After library construction, cellular cDNA libraries are labelled with     Doublet Finder: McGinnis et al, 2018).
+   cellular barcodes and, depending on the protocol, UMIs. These                    Considering any of these three QC covariates in isolation can lead
+   libraries are pooled together (multiplexed) for sequencing. Sequencing
+                                                                                to misinterpretation of cellular signals. For example, cells with a
+   produces read data, which undergo quality control, grouping based on
+   their assigned barcodes (demultiplexing) and alignment in read               comparatively high fraction of mitochondrial counts may be involved
+   processing pipelines. For UMI-based protocols, read data can be              in respiratory processes. Likewise, other QC covariates also have
+   further demultiplexed to produce counts of captured mRNA molecules           biological interpretations. Cells with low counts and/or genes may
+   (count data).                                                                correspond to quiescent cell populations, and cells with high counts
+                                                                                may be larger in size. Indeed, molecular counts can differ strongly
+                                                                                between cells (see case study on project github). Thus, QC covariates
+integrates R and Python tools in a Jupyter–Ipython notebook with                should be considered jointly when univariate thresholding decisions
+rpy2. With the available documentation, it is readily adaptable as a            are made (Fig 2D), and these thresholds should be set as permissive
+workflow template.                                                              as possible to avoid filtering out viable cell populations unintention-
+                                                                                ally. In future, filtering models that account for multivariate QC
+                                                                                dependencies may provide more sensitive QC options.
+Pre-processing and visualization                                                    Datasets that contain heterogeneous mixtures of cell types may
+                                                                                exhibit multiple QC covariate peaks. For example, Fig 2D shows
+Raw data generated by sequencing machines are processed to obtain               two populations of cells with different QC distributions. If no previ-
+matrices of molecular counts (count matrices) or, alternatively, read           ous filtering step was performed (note that Cell Ranger also
+counts (read matrices), depending on whether unique molecular                   performs cell QC), then only the lowest count depth and gene per
+identifiers (UMIs) were incorporated in the single-cell library                 barcode peak should be considered as non-viable cells. A further
+construction protocol (see Box 1 for an overview of the experimen-              thresholding guideline is the proportion of cells that are filtered out
+tal steps that precede the analysis). Raw data processing pipelines             with the chosen threshold. For high-count filtering, this proportion
+such as Cell Ranger (Zheng et al, 2017), indrops (Klein et al, 2015),           should not exceed the expected doublet rate.
+SEQC (Azizi et al, 2018), or zUMIs (Parekh et al, 2018) take care of                In addition to checking the integrity of cells, QC steps must also be
+read quality control (QC), assigning reads to their cellular barcodes           performed at the level of transcripts. Raw count matrices often
+and mRNA molecules of origin (also called “demultiplexing”),                    include over 20,000 genes. This number can be drastically reduced
+genome alignment, and quantification. The resulting read or count               by filtering out genes that are not expressed in more than a few cells
+matrices have the dimension number of barcodes x number of tran-                and are thus not informative of the cellular heterogeneity. A guideline
+scripts. The term “barcode” is used here instead of “cell” as all reads         to setting this threshold is to use the minimum cell cluster size that is
+
+
+ª 2019 The Authors                                                                                    Molecular Systems Biology 15: e8746 | 2019   3 of 23
+Molecular Systems Biology                                                                                                                                                    Malte D Luecken & Fabian J Theis
+
+
+
+
+       A 3000                                                                                                               B
+                                                        160
+                                                                                                                                            800
+                        2500                            140
+                                                                                                                                            700
+                                                        120
+
+                        2000                            100                                                                                 600
+       Frequency
+
+
+
+
+                                                                                                                                Frequency
+                                                         80
+                                                                                                                                            500
+                        1500                             60
+                                                         40                                                                                 400
+
+                        1000                             20                                                                                 300
+                                                             0
+                                                                 0 1000         2000     3000    4000                                       200
+                                 500                                            Count depth
+                                                                                                                                            100
+
+                                   0                                                                                                         0
+                                          0   10000     20000           30000    40000   50000                                                     0      1000       2000    3000     4000
+                                                                 Count depth                                                                                      Number of genes
+
+       C                                                                                           D
+                                                                                                                     4000                                                                       0.2
+
+
+
+
+                                                                                                                                                                                                       Fraction mitochondrial counts
+                                                                                                   Number of genes
+
+
+
+
+                                                                                                                     3000                                                                       0.15
+                                 10 4
+                   Count depth
+
+
+
+
+                                                                                                                     2000
+                                                                                                                                                                                                0.1
+
+
+
+                                                                                                                     1000                                                                       0.05
+                                      3
+                                 10
+
+                                                                                                                       0
+                                                                                                                                                                                                0
+       © EMBO
+
+
+
+
+                                          0   2000    4000       6000     8000 10000 12000 14000                            0                     10000   20000     30000    40000   50000
+                                                                 Barcode rank                                                                               Count depth
+
+
+  Figure 2. Plots of quality control metrics with filtering decisions for a mouse intestinal epithelium dataset from Haber et al (2017).
+  (A) Histograms of count depth per cell. The smaller histogram is zoomed-in on count depths below 4,000. A threshold is applied here at 1,500 based on the peak detected at
+  around 1,200 counts. (B) Histogram of the number of genes detected per cell. A small noise peak is visible at approx. 400 genes. These cells are filtered out using the depicted
+  threshold (red line) at 700 genes. (C) Count depth distribution from high to low count depths. This visualization is related to the log–log plot shown in Cell Ranger outputs
+  that is used to filter out empty droplets. It shows an “elbow” where count depths start to decrease rapidly around 1,500 counts. (D) Number of genes versus the count depth
+  coloured by the fraction of mitochondrial reads. Mitochondrial read fractions are only high in particularly low count cells with few detected genes. These cells are filtered out
+  by our count and gene number thresholds. Jointly visualizing the count and gene thresholds shows the joint filtering effect, indicating that a lower gene threshold may have
+  sufficed. [Correction added on 5 July 2019, after first online publication: the x-axis label in panel B was corrected from “Count depth” to “Number of genes”.]
+
+
+
+
+of interest and leaving some leeway for dropout effects. For example,                                                       empty droplets, which can be used to model ambient RNA expres-
+filtering out genes expressed in fewer than 20 cells may make it diffi-                                                     sion profiles. The recently developed SoupX (preprint: Young &
+cult to detect cell clusters with fewer than 20 cells. For datasets with                                                    Behjati, 2018) uses this approach to directly correct the count data.
+high dropout rates, this threshold may also complicate the detection                                                        Pragmatic approaches that ignore strongly ambient genes in down-
+of larger clusters. The choice of threshold should scale with the                                                           stream analysis have also been used to tackle this problem (Ange-
+number of cells in the dataset and the intended downstream analysis.                                                        lidis et al, 2019).
+    Further QC can be performed on the count data directly. Ambient                                                             Quality control is performed to ensure that the data quality is suf-
+gene expression refers to counts that do not originate from a                                                               ficient for downstream analysis. As “sufficient data quality” cannot
+barcoded cell, but from other lysed cells whose mRNA contaminated                                                           be determined a priori, it is judged based on downstream analysis
+the cell suspension prior to library construction. These added ambi-                                                        performance (e.g., cluster annotation). Thus, it may be necessary to
+ent counts can distort downstream analysis such as marker gene                                                              revisit quality control decisions multiple times when analysing the
+identification or other differential expression tests especially when                                                       data. Often it is beneficial to start with permissive QC thresholds
+levels vary between samples. It is possible to correct for these effects                                                    and investigate the effects of these thresholds before going back to
+in droplet-based scRNA-seq datasets due to the large numbers of                                                             perform more stringent QC. This approach is particularly relevant
+
+
+4 of 23                           Molecular Systems Biology 15: e8746 | 2019                                                                                                                 ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                          Molecular Systems Biology
+
+
+
+
+for datasets containing heterogeneous cell populations where cell            calculating their size factors. This approach allows for molecular
+types or states may be misinterpreted as low-quality outlier cells. In       count variability in few highly expressed genes. More cellular hetero-
+low-quality datasets, stringent QC thresholds may be necessary. The          geneity is permitted by Scran’s pooling-based size factor estimation
+quality of a dataset can be determined by experimental QC metrics            method (Lun et al, 2016a). Here, size factors are estimated based on
+(see Appendix Supplementary Text S2). In this iterative QC opti-             a linear regression over genes, after cells are pooled to avoid technical
+mization, one should be aware of data peeking. QC thresholds                 dropout effects. This method limits variability to fewer than 50% of
+should not be adapted to improve the outcome of a statistical test.          genes being differentially expressed between cells, and is consistently
+Instead, QC can be evaluated from the distribution of QC covariates          a top-performing normalization method in independent comparisons.
+in dataset visualizations and clustering.                                    Scran has been shown to perform better than other tested normaliza-
+                                                                             tion methods for batch correction (Buttner et al, 2019) and differen-
+                                                                             tial expression analysis (preprint: Vieth et al, 2019). The method was
+ Pitfalls & recommendations:                                                 also shown to give robust size factor estimates in a small-scale
+                                                                             comparison from the original authors (Vallejos et al, 2017).
+ • Perform QC by finding outlier peaks in the number of genes, the count         CPM, high-count filtering CPM, and scran use linear, global scal-
+    depth and the fraction of mitochondrial reads. Consider these covari-
+    ates jointly instead of separately.                                      ing to normalize count data. Non-linear normalization methods,
+ • Be as permissive of QC thresholding as possible, and revisit QC if        which can account for more complex unwanted variation, also exist
+    downstream clustering cannot be interpreted.                             (Cole et al, 2019). Many such methods involve the parametric
+ • If the distribution of QC covariates differ between samples, QC thresh-   modelling of count data. For example, Mayer et al (2018) fit a nega-
+    olds should be determined separately for each sample to account for      tive binomial model to count data, using technical covariates such
+    sample quality differences as in Plasschaert et al (2018).               as the read depth and the number of counts per gene to fit the model
+                                                                             parameters. The residuals of the model fit serve as a normalized
+                                                                             quantification of gene expression. Such an approach can combine
+Normalization                                                                technical and biological data correction (e.g. batch correction or
+Each count in a count matrix represents the successful capture,              correction for cell cycle effects) with count depth normalization.
+reverse transcription and sequencing of a molecule of cellular               Non-linear normalization methods have been shown to outperform
+mRNA (Box 1). Count depths for identical cells can differ due to the         global scaling methods especially in situations with strong batch
+variability inherent in each of these steps. Thus, when gene expres-         effects (Cole et al, 2019). Thus, non-linear normalization methods
+sion is compared between cells based on count data, any difference           are particularly relevant for plate-based scRNA-seq data, which tend
+may have arisen solely due to sampling effects. Normalization                to have batch effects between plates. Furthermore, plate-based data
+addresses this issue by e.g. scaling count data to obtain correct rela-      can exhibit larger variations in count depths per cell than droplet-
+tive gene expression abundances between cells.                               based data (Svensson et al, 2017). While non-linear normalization
+    Many normalization methods exist for bulk gene expression                methods, or alternative approaches such as downsampling, appear
+(preprint: Pachter, 2011; Dillies et al, 2013). While some of these          better suited to these conditions, comparative studies are needed to
+methods have been applied to scRNA-seq analysis, sources of variation        confirm this hypothesis. In this tutorial, we prefer to separate the
+specific to single-cell data such as technical dropouts (zero counts due     normalization and data correction (batch correction, noise correc-
+to sampling) have prompted the development of scRNA-seq-specific             tion, etc.) steps to emphasize different processing stages of the data
+normalization methods (Lun et al, 2016a; Vallejos et al, 2017).              (see “Stages of pre-processed data” section). Thus, we focus on
+    The most commonly used normalization protocol is count depth             global scaling normalization methods.
+scaling, also referred to as “counts per million” or CPM normaliza-              We cannot expect that a single normalization method is appro-
+tion. This protocol comes from bulk expression analysis and normal-          priate for all types of scRNA-seq data. For example, Vieth et al
+izes count data using a so-called size factor proportional to the count      (2017) showed that read and count data are best fit by different
+depth per cell. Variations of this method scale the size factors with        models. Indeed Cole et al (2019) find that different normalization
+different factors of 10, or by the median count depth per cell in the        methods perform optimally for different datasets and argue that
+dataset. CPM normalization assumes that all cells in the dataset initi-      their scone tool should be used to select the appropriate normaliza-
+ally contained an equal number of mRNA molecules and count depth             tion method for a specific dataset. Furthermore, scRNA-seq tech-
+differences arise only due to sampling. This assumption is shared            niques can be divided into full-length and 30 enrichment methods
+with the downsampling protocol, which is the process of randomly             (Svensson et al, 2017; Ziegenhain et al, 2017). Data from full-
+sampling reads or counts from the data to leave all cells with a pre-        length protocols may benefit from normalization methods that take
+specified number of counts or fewer. While downsampling throws               into account gene length (e.g. Patel et al, 2014; Kowalczyk et al,
+away data, it also increases technical dropout rates which CPM and           2015; Soneson & Robinson, 2018), while 30 enrichment data do
+other global scaling normalization methods do not. Thus, downsam-            not. A commonly used normalization method for full-length
+pling can deliver a more realistic representation of what cellular           scRNA-seq data is TPM normalization (Li et al, 2009), which
+expression profiles would look like at similar count depths.                 comes from bulk RNA-seq analysis.
+    As single-cell datasets typically consist of heterogeneous cell popu-        In the same way that cellular count data can be normalized to
+lations with varying sizes and molecule counts, more complex                 make them comparable between cells, gene counts can be scaled
+normalization methods are usually appropriate. For example, Wein-            to improve comparisons between genes. Gene normalization
+reb et al (2018) used a simple extension of CPM that excludes genes          constitutes scaling gene counts to have zero mean and unit vari-
+that account for at least 5% of the total counts in any cell, when           ance (z scores). This scaling has the effect that all genes are
+
+
+ª 2019 The Authors                                                                                 Molecular Systems Biology 15: e8746 | 2019   5 of 23
+Molecular Systems Biology                                                                                         Malte D Luecken & Fabian J Theis
+
+
+
+
+weighted equally for downstream analysis. There is currently no             covariates serves to single out particular biological signals of inter-
+consensus on whether or not to perform normalization over genes.            est. The most common biological data correction is to remove the
+While the popular Seurat tutorials (Butler et al, 2018) generally           effects of the cell cycle on the transcriptome. This data correction
+apply gene scaling, the authors of the Slingshot method opt against         can be performed by a simple linear regression against a cell cycle
+scaling over genes in their tutorial (Street et al, 2018). The prefer-      score as implemented in the Scanpy and Seurat platforms (Butler
+ence between the two choices revolves around whether all genes              et al, 2018; Wolf et al, 2018) or in specialized packages with more
+should be weighted equally for downstream analysis, or whether              complex mixture models such as scLVM (Buettner et al, 2015) or f-
+the magnitude of expression of a gene is an informative proxy for           scLVM (Buettner et al, 2017). Lists of marker genes to compute cell
+the importance of the gene. In order to retain as much biological           cycle scores are obtained from the literature (Macosko et al, 2015).
+information as possible from the data, we opt to refrain from scal-         These methods can also be used to regress out other known biologi-
+ing over genes in this tutorial.                                            cal effects such as mitochondrial gene expression, which is inter-
+    After normalization, data matrices are typically log(x+1)-trans-        preted as an indication of cell stress.
+formed. This transformation has three important effects. Firstly,               Several aspects should be considered prior to correcting data
+distances between log-transformed expression values represent log           for biological effects. Firstly, correcting for biological covariates is
+fold changes, which are the canonical way to measure changes in             not always helpful to interpret scRNA-seq data. While removing
+expression. Secondly, log transformation mitigates (but does not            cell cycle effects can improve the inference of developmental
+remove) the mean–variance relationship in single-cell data (Bren-           trajectories (Buettner et al, 2015; Vento-Tormo et al, 2018), cell
+necke et al, 2013). Finally, log transformation reduces the skew-           cycle signals can also be informative of the biology. For example,
+ness of the data to approximate the assumption of many                      proliferating cell populations can be identified based on cell cycle
+downstream analysis tools that the data are normally distributed.           scores (see case study on project github). Also, biological signals
+While scRNA-seq data are not in fact log-normally distributed               must be understood in context. Given that biological processes
+(Vieth et al, 2017), these three effects make the log transformation        occur within the same organism, there exist dependencies between
+a crude, but useful tool. This usefulness is highlighted by down-           these processes. Thus, correcting for one process may unintention-
+stream applications for differential expression testing (Finak et al,       ally mask the signal of another. Finally, it has been argued that
+2015; Ritchie et al, 2015) or batch correction (Johnson et al, 2006;        variation in cell size accounts for the transcriptomic effect gener-
+Buttner et al, 2019) that use log transformation for these purposes.        ally attributed to the cell cycle (McDavid et al, 2016). Thus,
+It should however be noted that log transformation of normalized            correcting for cell size via normalization, or dedicated tools such
+data can introduce spurious differential expression effects into the        as cgCorrect (Blasi et al, 2017), also partially corrects for cell cycle
+data (preprint: Lun, 2018). This effect is particularly pronounced          effects in scRNA-seq data.
+when normalization size factor distributions differ strongly
+between tested groups.                                                      Regressing out technical effects
+                                                                            The variants of regression models used to regress out biological
+                                                                            covariates can also be applied to technical covariates. The most
+ Pitfalls & recommendations:                                                prominent technical covariates in single-cell data are count depth
+                                                                            and batch. Although normalization scales count data to render gene
+ • We recommend scran for normalization of non-full-length datasets.        counts comparable between cells, a count depth effect often remains
+   An alternative is to evaluate normalization approaches via scone espe-
+   cially for plate-based datasets. Full-length scRNA-seq protocols can
+                                                                            in the data. This count depth effect can be both a biological and a
+   be corrected for gene length using bulk methods.                         technical artefact. For example, cells may differ in size and therefore
+ • There is no consensus on scaling genes to 0 mean and unit variance.      in mRNA molecule counts. Yet, technical count effects may remain
+   We prefer not to scale gene expression.                                  after normalization as no scaling method can infer the expression
+ • Normalized data should be log(x+1)-transformed for use with down-        values of genes that were not detected due to poor sampling.
+   stream analysis methods that assume data are normally distributed.       Regressing out count depth effects can improve the performance of
+                                                                            trajectory inference algorithms, which rely on finding transitions
+                                                                            between cells (see case study on project github). When correcting
+Data correction and integration                                             for multiple covariates (e.g. cell cycle and count depth), the regres-
+Normalization as described above attempts to remove the effects             sion should be performed over all covariates in a single step to
+of count sampling. However, normalized data may still contain               account for dependence between covariates.
+unwanted variability. Data correction targets further technical                 An alternative to regression-based strategies for removing count
+and biological covariates such as batch, dropout, or cell cycle             effects is to use a more rigorous normalization procedure such as
+effects. These covariates are not always corrected for. Instead,            downsampling or non-linear normalization methods (see “Normal-
+the decision of which covariates to consider will depend on the             ization” section). These approaches may be particularly relevant for
+intended downstream analysis. We propose to consider correction             plate-based scRNA-seq datasets where the larger variation of count
+for biological and technical covariates separately as these are             depths per cell can mask the heterogeneity between cells.
+used for different purposes and present unique challenges.
+                                                                            Batch effects and data integration
+Regressing out biological effects                                           Batch effects can occur when cells are handled in distinct
+While correcting for technical covariates may be crucial to uncover-        groups. These groups can consist of cells on different chips, cells
+ing the underlying biological signal, correction for biological             in different sequencing lanes or cells harvested at different time
+
+
+6 of 23     Molecular Systems Biology 15: e8746 | 2019                                                                             ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                                             Molecular Systems Biology
+
+
+
+
+points. The differing environments experienced by the cells can                           differences between datasets. When estimating batch effects,
+have an effect on the measurement of the transcriptome or on                              ComBat uses all cells in a batch to fit batch parameters. This
+the transcriptome itself. The resulting effects exist on multiple                         approach will confound the batch effect with biological differences
+levels: between groups of cells in an experiment, between exper-                          between cell types or states that are not shared among datasets.
+iments performed in the same laboratory or between datasets                               Data integration methods such as Canonical Correlation Analysis
+from different laboratories. Here, we distinguish between the first                       (CCA; Butler et al, 2018), Mutual Nearest Neighbours (MNN;
+and the last two scenarios. Correcting for batch effects between                          Haghverdi et al, 2018), Scanorama (preprint: Hie et al, 2018), RISC
+samples or cells in the same experiment is the classical scenario                         (preprint: Liu et al, 2018), scGen (preprint: Lotfollahi et al, 2018),
+known as batch correction from bulk RNA-seq. We distinguish                               LIGER (preprint: Welch et al, 2018), BBKNN (preprint: Park et al,
+this from the integration of data from multiple experiments,                              2018), and Harmony (preprint: Korsunsky et al, 2018) have been
+which we call data integration. While batch effects are typically                         developed to overcome this issue. While data integration methods
+corrected using linear methods, non-linear approaches are used                            can also be applied to simple batch correction problems, we
+for data integration.                                                                     recommend to be wary of over-correction given the increased
+   A recent comparison of classical batch correction methods has                          degrees of freedom of non-linear data integration approaches. For
+revealed that ComBat (Johnson et al, 2006) performs well also for                         example, MNN was shown to be outperformed by ComBat in the
+single-cell experiments of low-to-medium complexity (Buttner et al,                       simpler batch correction setting (Buttner et al, 2019). Further
+2019). ComBat consists of a linear model of gene expression where                         comparison studies between data integration and batch correction
+the batch contribution is taken into account both in the mean and                         methods are needed to assess how generally these methods can be
+the variance of the data (Fig 3). Irrespective of computational meth-                     applied.
+ods, the best method of batch correction is pre-empting the effect
+and avoiding it altogether by clever experimental design (Hicks et al,                    Expression recovery
+2017). Batch effects can be avoided by pooling cells across experi-                       A further type of technical data correction is expression recovery
+mental conditions and samples. Using strategies such as cell tagging                      (also denoising or imputation). Measurements of single-cell tran-
+(preprint: Gehring et al, 2018), or via genetic variation (Kang et al,                    scriptomes contain various sources of noise (Grün et al, 2014;
+2018), it is possible to demultiplex cells that were pooled in the                        Kharchenko et al, 2014; Hicks et al, 2017). A particularly promi-
+experiment.                                                                               nent aspect of this noise is dropout. Inferring dropout events,
+   In comparison with batch correction, the additional challenge                          replacing these zeros with appropriate expression values, and
+that data integration methods face revolves around compositional                          reducing the noise in the dataset have been the target of several
+
+
+
+                            No batch correction                                                                          Batch correction
+
+
+
+
+  Figure 3. UMAP visualization before and after batch correction.
+  Cells are coloured by sample of origin. Separation of batches is clearly visible before batch correction and less visible afterwards. Batch correction was performed using
+  ComBat on mouse intestinal epithelium data from Haber et al (2017).
+
+
+
+ª 2019 The Authors                                                                                                   Molecular Systems Biology 15: e8746 | 2019       7 of 23
+Molecular Systems Biology                                                                                        Malte D Luecken & Fabian J Theis
+
+
+
+
+recent tools (MAGIC: van Dijk et al, 2018; DCA: Eraslan et al,              to keep only genes that are “informative” of the variability in the
+2019; scVI: Lopez et al, 2018; SAVER: Huang et al, 2018; scIm-              data. Thus, highly variable genes (HVGs) are often used (Bren-
+pute: Li & Li, 2018). Performing expression recovery has been               necke et al, 2013). Depending on the task and the complexity of
+shown to improve the estimation of gene–gene correlations (van              the dataset, typically between 1,000 and 5,000 HVGs are selected
+Dijk et al, 2018; Eraslan et al, 2019). Furthermore, this step can be       for downstream analysis (see Fig EV1 and Dataset EV1). Prelimi-
+integrated with normalization, batch correction and other down-             nary results from Klein et al (2015) suggest that downstream anal-
+stream analysis as implemented in the scVI tool (Lopez et al, 2018).        ysis is robust to the exact choice of the number of HVGs. While
+While most data correction methods take normalized data as input,           varying the number of HVGs between 200 and 2,400, the authors
+some expression recovery methods are based on expected negative             reported similar low-dimensional representations in the PCA space.
+binomial noise distributions and therefore run on raw count data.           Based on this result, we prefer to err on the side of higher
+When applying expression recovery, one should take into considera-          numbers of HVGs.
+tion that no method is perfect. Thus, any method may over- or                  A simple, yet popular, method of selecting HVGs is implemented
+under-correct noise in the data. Indeed, false correlation signals have     in both Scanpy and Seurat. Here, genes are binned by their mean
+been reported as a result of expression recovery (Andrews &                 expression, and the genes with the highest variance-to-mean ratio
+Hemberg, 2018). Given the difficulty of assessing successful expres-        are selected as HVGs in each bin. There exist different flavours of
+sion recovery in a practical application, this scenario represents a        this algorithm that expect either count data (Seurat) or log-trans-
+challenge to the user pondering whether or not to denoise their data.       formed data (Cell Ranger). Optimally, HVGs should be selected after
+Furthermore, scalability to large datasets is still an issue for            technical data correction to avoid selecting genes that are highly
+currently available expression recovery methods. There is currently         variable only due to, e.g., batch effects. Other methods for HVG
+no consensus on how denoised data should be used in the light of            selection are reviewed in Yip et al (2018).
+these considerations (see “Stages of processed data” section). A
+prudent approach would be to use expression recovery only for               Dimensionality reduction
+visual display of data rather than to generate hypotheses during            After feature selection, the dimensions of single-cell expression
+exploratory data analysis. Thorough experimental validation is              matrices can be further reduced by dedicated dimensionality reduc-
+particularly important here.                                                tion algorithms. These algorithms embed the expression matrix into
+                                                                            a low-dimensional space, which is designed to capture the underly-
+                                                                            ing structure in the data in as few dimensions as possible. This
+ Pitfalls & recommendations:                                                approach works as single-cell RNA-seq data are inherently low-
+ • Regress out biological covariates only for trajectory inference and if   dimensional (Heimberg et al, 2016). In other words, the biological
+   other biological processes of interest are not masked by the regressed   manifold on which cellular expression profiles lie can be sufficiently
+   out biological covariate.                                                described by far fewer dimensions than the number of genes.
+ • Regress out technical and biological covariates jointly rather than      Dimensionality reduction aims to find these dimensions.
+   serially.                                                                    There are two main objectives of dimensionality reduction meth-
+ • Plate-based dataset pre-processing may require regressing out counts,    ods: visualization and summarization. Visualization is the attempt
+   normalization via non-linear normalization methods or downsam-
+                                                                            to optimally describe the dataset in two or three dimensions. These
+   pling.
+ • We recommend performing batch correction via ComBat when cell            reduced dimensions are used as coordinates on a scatter plot to
+                                                                            obtain a visual representation of the data. Summarization does not
+   type and state compositions between batches are consistent
+ • Data integration and batch correction should be performed by dif-        prescribe the number of output components. Instead, higher compo-
+   ferent methods. Data integration tools may over-correct simple batch     nents become less important for describing the variability present in
+   effects.                                                                 the data. Summarization techniques can be used to reduce the data
+ • Users should be cautious of signals found only after expression recov-   to its essential components by finding the inherent dimensionality
+   ery. Exploratory analysis may be best performed without this step.       of the data, and are thus helpful for downstream analysis. While a
+                                                                            2-dimensional visualization output should not be used to summa-
+                                                                            rize a dataset, a summarization method can be used to visualize the
+Feature selection, dimensionality reduction and visualization               data using the leading reduced components. However, a dedicated
+A human single-cell RNA-seq dataset can contain expression values           visualization technique will typically provide a better representation
+for up to 25,000 genes. Many of these genes will not be informative         of the variability.
+for a given scRNA-seq dataset, and many genes will mostly contain               Reduced dimensions are generated through linear or non-linear
+zero counts. Even after filtering out these zero count genes in the QC      combinations of feature space dimensions (gene expression vectors).
+step, the feature space for a single-cell dataset can have over 15,000      Especially in the non-linear case, the interpretability of the reduced
+dimensions. To ease the computational burden on downstream anal-            dimensions is sacrificed in this process. An example application of
+ysis tools, reduce the noise in the data, and to visualize the data, one    some commonly used dimensionality reduction methods is shown in
+can use several approaches to reduce the dimensionality of the              Fig 4. With a growing list of methods to choose from, it is out of the
+dataset.                                                                    scope of this tutorial to review these methods in detail. Rather, we
+                                                                            briefly outline the practical considerations that may aid users in
+Feature selection                                                           choosing between common dimensionality reduction methods. A
+The first step of reducing the dimensionality of scRNA-seq datasets         more detailed review of dimensionality reduction for single-cell anal-
+commonly is feature selection. In this step, the dataset is filtered        ysis can be found in Moon et al (2018).
+
+
+8 of 23        Molecular Systems Biology 15: e8746 | 2019                                                                        ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                                                                   Molecular Systems Biology
+
+
+
+
+                                                                                                                                                                                        35,000
+A                                                   B                                                                C
+                                                                                                                                                                                        30,000
+
+
+                                                                                                                                                                                        25,000
+
+
+
+
+                                                                                                                                                                                                 Count depth
+                                                                                                                                                                                        20,000
+
+
+
+
+                                                      tSNE2
+                                                                                                                                                                                        15,000
+
+
+
+
+                                                                                                                              DC2
+ PC2
+
+
+
+
+                                                                                                                                                                                        10,000
+
+
+                                                                                                                                                                                        5,000
+              PC1                                                  tSNE1                                                                      DC1
+
+
+
+
+                                                                                                                                     PC1
+                                                                                                         F                    0.10
+D                                                   E
+                                                                                                                              0.08
+
+
+
+
+                                                                                                                                                                                                               © EMBO
+                                                                                                             Variance ratio
+                                                                                                                              0.06
+
+
+
+                                                                                                                              0.04
+
+
+
+
+                                                                                                                                                       PC2
+                                                                                                                                                               Elbow
+ UMAP2
+
+
+
+
+                                                                                                                                                     PC3
+                                                      FA2
+
+
+
+
+                                                                                                                                                  PC4
+                                                                                                                              0.02
+
+
+
+
+                                                                                                                                               PC5
+                                                                                                                                              PC6
+
+
+                                                                                                                                            PC10
+                                                                                                                                              PC7
+
+
+                                                                                                                                            PC11
+                                                                                                                                            PC12
+                                                                                                                                           PC13
+                                                                                                                                           PC14
+                                                                                                                                           PC15
+                                                                                                                                             PC8
+                                                                                                                                            PC9
+
+
+
+
+                                                                                                                                           PC16
+                                                                                                                                           PC17
+                                                                                                                                           PC19
+                                                                                                                                           PC18
+
+                                                                                                                                           PC21
+                                                                                                                                           PC20
+                                                                                                                                           PC22
+                                                                                                                                           PC23
+                                                                                                                                           PC24
+
+                                                                                                                                           PC27
+                                                                                                                                           PC25
+
+                                                                                                                                           PC28
+                                                                                                                                           PC26
+
+                                                                                                                                           PC29
+                                                                                                                                           PC30
+                                                                                                                                           PC31
+                                                                                                                                     0           5        10       15       20          25       30
+             UMAP1                                                  FA1                                                                                         Ranking
+
+
+   Figure 4. Common visualization methods for scRNA-seq data.
+   Mouse intestinal epithelium regions data from Haber et al (2017) visualized on the first two components for: (A) PCA, (B) t-SNE, (C) diffusion maps, (D) UMAP and (E) A force-
+   directed graph layout via ForceAtlas2. Cells are coloured by count depth. (F) Variance explained by the first 31 principal components (PCs). The “elbow” of this plot, which is
+   used to select relevant PCs to analyse the dataset, lies between PCs 5 and 7.
+
+
+
+
+   Two popular dimensionality reduction techniques that are princi-                          summarization technique. As diffusion components emphasize tran-
+pally summarization methods are principal component analysis                                 sitions in the data, they are principally used when continuous
+(PCA; Pearson, 1901) and diffusion maps (Coifman et al, 2005)                                processes such as differentiation are of interest. Typically, each dif-
+which were popularized for single-cell analysis by Haghverdi et al                           fusion component (i.e. diffusion map dimension) highlights the
+(2015). Principal component analysis is a linear approach that                               heterogeneity of a different cell population.
+generates reduced dimensions by maximizing the captured residual
+variance in each further dimension. While PCA does not capture the                           Visualization
+structure of the data in few dimensions as well as non-linear meth-                          For visualization purposes, it is standard practice to use non-linear
+ods, it is the basis of many currently available analysis tools for                          dimensionality reduction methods (Fig 4). The most common
+clustering or trajectory inference. Indeed, PCA is commonly used as                          dimensionality reduction method for scRNA-seq visualization is the
+a pre-processing step for non-linear dimensionality reduction meth-                          t-distributed stochastic neighbour embedding (t-SNE; van der
+ods. Typically, PCA summarizes a dataset via its top N principal                             Maaten & Hinton, 2008). t-SNE dimensions focus on capturing local
+components, where N can be determined by “elbow” heuristics (see                             similarity at the expense of global structure. Thus, these visualiza-
+Fig 4F) or the permutation-test-based jackstraw method (Chung &                              tions may exaggerate differences between cell populations and over-
+Storey, 2015; Macosko et al, 2015). The simple linearity of PCA has                          look potential connections between these populations. A further
+the advantage that distances in reduced dimensional space have a                             difficulty is the choice of its perplexity parameter, as t-SNE graphs
+consistent interpretation in all regions of this space. Thus, we can                         may show strongly different numbers of clusters depending on its
+correlate quantities of interest with principal components to assess                         value (Wattenberg et al, 2016). Common alternatives to t-SNE are
+their importance. For example, principal components can be                                   the Uniform Approximation and Projection method (UMAP;
+projected onto technical nuisance covariates to investigate the                              preprint: McInnes & Healy, 2018) or graph-based tools such as
+performance of QC, data correction and normalization steps (But-                             SPRING (Weinreb et al, 2018). UMAP and SPRING’s force-directed
+tner et al, 2019), or show the importance of genes in the dataset                            layout algorithm ForceAtlas2 arguably represent the best approxi-
+(Chung & Storey, 2015). Diffusion maps are a non-linear data                                 mation of the underlying topology (Wolf et al, 2019, Supplemental
+
+
+ª 2019 The Authors                                                                                                                         Molecular Systems Biology 15: e8746 | 2019        9 of 23
+Molecular Systems Biology                                                                                              Malte D Luecken & Fabian J Theis
+
+
+
+
+ Table 1. Stages of data processing and appropriate downstream applications.
+ Pre-processing layer           Stage of data processing                   Appropriate applications
+ Measured                       1) Raw                                     Statistical testing (Differential expression: marker genes, genes over condition,
+                                                                           genes over time)
+                                2) Normalized (+ log transformed)
+ Corrected                      3.1) Corrected (technical correction)      Visual comparison of data (plotting)
+                                3.2) Corrected (biological correction)     Pre-processing for trajectory inference
+ Reduced                        4) Feature selected                        Visualization, trajectory inference
+                                5) Dimensionality reduced (summarized)     Visualization, clustering, KNN graph inference, trajectory inference
+
+
+
+
+Note 4). What sets UMAP apart in this comparison is its speed and          characterization. While the order of the layers represent the typi-
+ability to scale to large numbers of cells (Becht et al, 2018). Thus, in   cal workflow in scRNA-seq analysis, it is also possible to skip
+the absence of particular biological questions, we regard UMAP as          layers or have slight alterations in the order of processing stages.
+best practice for exploratory data visualization. Moreover, UMAP           For example, data correction may not be necessary for single
+can also summarize data in more than two dimensions. While we              batch datasets. In Table 1, we summarize the appropriate down-
+are not aware of any applications of UMAP for data summarization,          stream applications for each layer of pre-processed data.
+it may prove a suitable alternative to PCA.                                    The stages of pre-processing in Table 1 are divided into three
+    An alternative to classical visualization on the cell level is         groups: measured data, corrected data and reduced data. We define
+partition-based graph abstraction (PAGA; Wolf et al, 2019). This           measured data as raw data and processed data that retain the struc-
+tool has been shown to adequately approximate the topology of              ture of zeros. By scaling count data with a cell-specific factor, global
+the data while coarse-graining the visualization using clusters. In        scaling normalization methods retain zero expression values even
+combination with any of the above visualization methods, PAGA              after log(x+1)-transformation. In contrast, correcting data for
+produces coarse-grained visualizations, which can simplify the             unwanted variability replaces zero expression values. The corrected
+interpretation of single-cell data especially with large numbers of        data layer represents the “cleanest” version of the data, which is the
+cells.                                                                     closest approximation of the underlying biological signal. We call
+                                                                           the final pre-processing layer reduced data. This data layer empha-
+                                                                           sizes dominant aspects of the data, which can be described using a
+ Pitfalls & recommendations:                                               reduced set of features.
+
+ • We recommend selecting between 1,000 and 5,000 highly variable              The aforementioned characteristics determine the suitability of
+                                                                           the pre-processed data for particular downstream applications. As
+   genes depending on dataset complexity.
+ • Feature selection methods that use gene expression means and vari-      the final pre-processing stage, reduced data would be the natural
+   ances cannot be used when gene expression values have been              candidate for a broadly applicable data layer. However, testing for
+   normalized to zero mean and unit variance, or when residuals from       differential expression is only biologically interpretable in gene
+   model fitting are used as normalized expression values. Thus, one       space, which is not (fully) represented in reduced data. The
+   must consider what pre-processing to perform before selecting HVGs.
+                                                                           strength of reduced data lies in the summarization of the biology
+ • Dimensionality reduction methods should be considered separately        and the reduction of noise, which can mask biological signals.
+   for summarization and visualization.
+ • We recommend UMAP for exploratory visualization; PCA for general        Thus, reduced data are used for exploratory methods that require
+                                                                           data summaries (visualization, neighbourhood graph inference,
+   purpose summarization; and diffusion maps as an alternative to PCA
+   for trajectory inference summarization.                                 clustering) and for computationally complex downstream analysis
+ • PAGA with UMAP is a suitable alternative to visualize particularly      tools (trajectory inference). Indeed, many trajectory inference
+   complex datasets.                                                       methods incorporate dimensionality reduction in the tools them-
+                                                                           selves.
+                                                                               The expression profiles of individual genes can only be
+Stages of pre-processed data                                               compared in gene space, which is captured in measured and
+While we have outlined common pre-processing steps in scRNA-               corrected data. Comparison of expression profiles can be
+seq as a sequential pipeline above, downstream analyses often              performed visually and statistically. We argue that visual and
+prefer to take different levels of pre-processed data, and it is           statistical comparison should be performed on different data
+recommended to adapt pre-processing depending on the down-                 layers. For visual inspection of gene expression, corrected data
+stream application. To clarify this situation to a new user, we            are most appropriate. Should raw data be presented for visual
+delineated pre-processing into five stages of data processing: (i)         comparison, the user is required to inherently understand the
+raw data, (ii) normalized data, (iii) corrected data, (iv) feature-        biases in the data in order to interpret the results. Corrected data
+selected data, and (v) dimensionality-reduced data. These stages           facilitate this interpretation. However, one should consider
+of data processing are grouped into three pre-processing layers:           corrected data for technical and biological covariates separately
+measured data, corrected data, and reduced data. Cell and gene             here. While correction for biological covariates may increase the
+QC should always be performed and is therefore omitted from this           strength of a particular biological signal, it produces a less
+
+
+10 of 23      Molecular Systems Biology 15: e8746 | 2019                                                                                  ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                       Molecular Systems Biology
+
+
+
+
+accurate representation of the underlying biology and will mask           Broadly, cluster analysis methods attempt to explain the hetero-
+other signals that may be relevant. Thus, biologically corrected          geneity in the data based on a categorization of cells into groups.
+data are appropriate mainly for analysis tools that focus on              In contrast, in trajectory analysis the data are regarded as a snap-
+particular biological processes such as trajectory inference meth-        shot of a dynamic process. Trajectory analysis methods investi-
+ods.                                                                      gate this underlying process.
+   Statistical comparison of gene expression is most appropriate on          Here, we describe cell- and gene-level cluster and trajectory anal-
+the measured data layer. No perfect data correction method exists         ysis tools before detailing gene-level analyses that are performed
+for denoising, batch correction or correcting for other sources of        independently of these cellular structures.
+variation. Thus, data correction methods inevitably over- or under-
+correct the data and therefore alter the variance of at least some        Cluster analysis
+gene expression profiles in an unintended way. Statistical tests of       Clustering
+gene expression rely on assessing the background variance as a null       Organizing cells into clusters is typically the first intermediate
+model for noise in the data. As data correction tends to reduce back-     result of any single-cell analysis. Clusters allow us to infer the
+ground variation (Fig EV2), genes whose background variation is           identity of member cells. Clusters are obtained by grouping
+over-corrected by data correction methods will be more likely             cells based on the similarity of their gene expression profiles.
+assessed as significantly differentially expressed. Furthermore,          Expression profile similarity is determined via distance metrics,
+certain data correction methods (e.g. ComBat) interpret expression        which often take dimensionality-reduced representations as
+signals that do not conform to the experimental design as noise,          input. A common example of similarity scoring is Euclidean
+which is subsequently removed from the data. In addition to an            distances that are calculated on the PC-reduced expression
+underestimation of the noise, this optimization of the experimental       space. Two approaches exist to generate cell clusters from these
+design signal can lead to an overestimation of the effect size. In the    similarity scores: clustering algorithms and community detection
+light of these considerations, using measured data as input, as           methods.
+opposed to corrected data, constitutes a more conservative approach          Clustering is a classical unsupervised machine learning prob-
+to differential testing. With measured data, technical covariates can     lem, based directly on a distance matrix. Cells are assigned to clus-
+and should be taken into consideration in the differential testing        ters by minimizing intracluster distances or finding dense regions
+model.                                                                    in the reduced expression space. The popular k-means clustering
+   The above view is supported by a recent comparison of                  algorithm divides cells into k clusters by determining cluster
+scRNA-seq differential expression methods, which uses only raw            centroids and assigning cells to the nearest cluster centroid.
+and normalized data as input (Soneson & Robinson, 2018). The              Centroid positions are iteratively optimized (MacQueen, 1967).
+normalized data used in this study revolve only around global             This approach requires an input of the number of clusters
+scaling methods. However, many currently available non-linear             expected, which is usually unknown and must be calibrated
+normalization methods blur the line between normalization and             heuristically. Applications of k-means to single-cell data vary in
+data correction (see “Normalization” section). Such normalized            the distance metrics used. Alternatives to standard Euclidean
+data may no longer be appropriate as input for differential               distances include cosine similarity (Haghverdi et al, 2018), correla-
+testing.                                                                  tion-based distance metrics (Kim et al, 2018) or the SIMLR
+                                                                          method, which learns a distance metric for each dataset using
+                                                                          Gaussian kernels (Wang et al, 2017). A recent comparison has
+ Pitfalls & recommendations:                                              suggested that correlation-based distances may outperform other
+                                                                          distance metrics when used with k-means or as the basis for Gaus-
+ • Use measured data for statistical testing, corrected data for visual   sian kernels (Kim et al, 2018).
+    comparison of data and reduced data for other downstream analysis
+    based on finding the underlying biological data manifold.                Community detection methods are graph-partitioning algorithms
+                                                                          and thus rely on a graph representation of single-cell data. This
+                                                                          graph representation is obtained using a K-Nearest Neighbour
+Downstream analysis                                                       approach (KNN graph). Cells are represented as nodes in the
+After pre-processing, methods that we call downstream analysis            graph. Each cell is connected to its K most similar cells, which are
+are used to extract biological insights and describe the underly-         typically obtained using Euclidean distances on the PC-reduced
+ing biological system. These descriptions are obtained by fitting         expression space. Depending on the size of the dataset, K is
+interpretable models to the data. Examples of such models are             commonly set to be between 5 and 100 nearest neighbours. The
+groups of cells with similar gene expression profiles represent-          resulting graph captures the underlying topology of the expression
+ing cell-type clusters; small changes in gene expression between          data (Wolf et al, 2019). Densely sampled regions of expression
+similar cells denoting continuous (differentiation) trajectories; or      space are represented as densely connected regions of the graph.
+genes with correlated expression profiles indicating co-regula-           These dense regions are detected using community detection meth-
+tion.                                                                     ods. Community detection is often faster than clustering as only
+   Downstream analysis can be divided into cell- and gene-level           neighbouring cell pairs have to be considered as belonging to the
+approaches as shown in Fig 5. Cell-level analysis typically focuses       same cluster. This approach thus greatly reduces the search space
+on the description of two structures: clusters and trajectories.          for possible clusters.
+These structures can in turn be analysed on the cell and the gene            After the pioneering PhenoGraph method (Levine et al, 2015),
+level leading to cluster analysis and trajectory analysis methods.        the standard approach to clustering single-cell datasets has become
+
+
+ª 2019 The Authors                                                                            Molecular Systems Biology 15: e8746 | 2019   11 of 23
+Molecular Systems Biology                                                                                                                               Malte D Luecken & Fabian J Theis
+
+
+
+
+                                                      CELL LEVEL                                                                                    GENE LEVEL
+
+              CLUSTER ANALYSIS                                      TRAJECTORY ANALYSIS                             Differential
+                                                                                                                                                                                                          Fabp1
+                                                                                                                    expression
+                                                                                                                                                  400
+   Clustering                                                 Trajectory                                            analysis                                      Tspan1     Krt8
+
+
+                                                              inference                                                                                           Guca2a
+                                                                                                                                                                                                      Rbp2
+                                                                                                                                                  300
+
+
+
+
+                                                                                                                                      –log2 FDR
+                                                                                                                                                                               Suox
+                                                                                                                                                                          Cd9
+                                                                                                                                                          Reg3g       Slc51a  Lgals4         Casp6
+                                                                                                                                                                            Phgr1
+                                                                                                                                                  200
+
+
+                                                                                                                                                  100
+
+
+                                                                                                                                                   0
+                                                                                                                                                        –2.0                           0.0                      2.0
+                                                                                                                                                                                log2 FC
+
+
+   Compositional                                              Metastable                                            Gene set analysis
+   analysis                                                   states                                                                                                                                 Gene
+                                                                                                                         GO:0002181
+                                                                                                                                                                                                     overlap
+                                                                                                                         GO:0006518                                                                     5
+                                                                                                                         GO:0006412                                                                     25
+                                                                                                                         GO:0043604                                                                     50
+                                                                                                                         GO:0043043
+                                                                                                                         GO:0043603                                                                     75
+                                                                                                                         GO:1901566
+                                                                                                                         GO:0042742                                                                  Adjusted
+                                                                                                                         GO:0042274                                                                  p-value
+                                                                                                                         GO:0000028
+                                                                                                                         GO:0009617                                                                     10 –4
+                                                                                                                         GO:0042254
+                                                                                                                         GO:0019730                                                                     10 –6
+                                                                                    Pseudotime                           GO:0009605
+                                                                                                                         GO:0051707                                                                     10 –8
+                                                                                                                         GO:0043207
+                                                                                                                         GO:0002487                                                                     10 –10
+   Cluster                                                    Gene expression                                            GO:0022613
+                                     Goblet                                                                                                                                                             10 –12
+   annotation           Tuft          cells                   dynamics                                                   GO:0098542
+                                                                                                                         GO:0006959
+                        cells                                                                                                                                                                           10 –14
+                                                                                                                                      0.05         0.10        0.15     0.20        0.25     0.30
+               EEC
+                                                Paneth                                                                                                      Gene ratio
+                                                 cells
+
+                                                                                                                    Gene regulatory
+                   TA        EP                                                                                     networks
+                           (early)                                                                                                                                    Gene                           Gene
+                                         Stem cells                                                                                                                        A                           B
+                                  EP
+                                (late)
+
+
+                          Enterocytes                                                                                                                                                      TF
+
+
+
+
+                                                                                                                                                                                                                      © EMBO
+                                                                                   Pseudotime
+
+
+
+  Figure 5. Overview of downstream analysis methods.
+  Methods are divided into cell- and gene-level analysis. Cell-level analysis approaches are again subdivided into cluster and trajectory analysis branches, which include also
+  gene-level analysis methods. All methods with a blue background are gene-level approaches.
+
+
+
+
+multi-resolution modularity optimization (Newman & Girvan,
+2004; Reichardt & Bornholdt, 2006) as implemented in the Louvain                             Pitfalls & recommendations:
+algorithm (Blondel et al, 2008) on single-cell KNN graphs. This                              • We recommend clustering by Louvain community detection on a
+method is the default clustering method implemented in the                                     single-cell KNN graph.
+Scanpy and Seurat single-cell analysis platforms. It has been                                • Clustering does not have to be performed at a single resolution.
+shown to outperform other clustering methods for single-cell RNA-                              Subclustering particular cell clusters is a valid approach to focus on
+seq data (Duò et al, 2018; Freytag et al, 2018), and flow and mass                            more detailed substructures in a dataset.
+cytometry data (Weber & Robinson, 2016). Conceptually, the
+Louvain algorithm detects communities as groups of cells that
+have more links between them than expected from the number of                              Cluster annotation
+links the cells have in total. The optimized modularity function                           On a gene level, clustered data are analysed by finding the gene
+includes a resolution parameter, which allows the user to deter-                           signatures of each cluster. These so-called marker genes characterize
+mine the scale of the cluster partition. By subsetting the KNN                             the cluster and are used to annotate it with a meaningful biological
+graph, it is also possible to subcluster only particular clusters.                         label. This label represents the identity of cells within the cluster. As
+Such subclustering can allow the user to identify cell states within                       any clustering algorithm will produce a partition of the data, the
+cell-type clusters (Wagner et al, 2016), but may also lead to                              validity of the identified clusters can only be determined by success-
+patterns that arise only from noise in the data.                                           ful annotation of the represented biology.
+
+
+12 of 23        Molecular Systems Biology 15: e8746 | 2019                                                                                                                                   ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                                                 Molecular Systems Biology
+
+
+
+
+   While it may be tempting to assume that the clusters detected in                         may be detected in separate clusters. For the above reasons, it is best
+single-cell data represent cell types, there are several axes of variation                  to use the term “cell identities” rather than “cell types”. Before clus-
+that determine cellular identity (Wagner et al, 2016; Clevers et al,                        tering and annotating clusters, the user must decide which level of
+2017). Firstly, it is not always clear what constitutes a cell type. For                    annotation detail, and thus which cluster resolution, is of interest.
+example, while “T cells” may be a satisfactory label of a cell type to                          Identifying and annotating clusters relies on using external
+some, others may look for T-cell subtypes within a dataset and distin-                      sources of information describing the expected expression profiles
+guish between CD4+ and CD8+ T cells (Wagner et al, 2016; Clevers                            of individual cell identities. Thanks to recent and ongoing efforts
+et al, 2017). Furthermore, cells of the same cell type in different states                  such as the mouse brain atlas (Zeisel et al, 2018) or the Human Cell
+
+
+
+
+   A                      Tuft cells                                                                                      C
+
+       Enteroendocrine                                                      Goblet
+             cells                                                           cells
+
+
+
+
+         TA
+                                                                                         Paneth
+                                                                                          cells
+
+                                         EP
+                                       (early)
+                                                                      Stem cells
+
+
+
+                                                                           EP (early)
+                                                                           TA
+                                                 EP (stress)
+                                                                           Goblet cells
+                                                                           Stem cells
+                                                                           EP (stress)
+                                                                           Enterocytes
+                         Enterocytes
+                                                                           Paneth cells
+                                                                           Enteroendocrine cells
+                                                                           Tuft cells
+
+
+
+   B            Slc12a2                                        Arg2                                      Tff3                                     Defa24
+
+                                                                                                                                                                                © EMBO
+
+
+
+
+  Figure 6. Cluster analysis results of mouse intestinal epithelium dataset from Haber et al (2017).
+  (A) Annotated cell-identity clusters found by Louvain clustering visualized in a UMAP representation. (B) Cell-identity marker expression to identify stem cells (Slc12a2),
+  enterocytes (Arg2), goblet cells (Tff3) and Paneth cells (Defa24). Corrected expression levels are visualized from low expression (grey) to high expression (red). Marker genes
+  may be expressed also in other cell-identity populations as shown for goblet and Paneth cells. (C) Cell-identity composition heat maps of proximal (upper) and distal (lower)
+  intestinal epithelium regions. High relative cell density is shown as dark red.
+
+
+
+
+ª 2019 The Authors                                                                                                   Molecular Systems Biology 15: e8746 | 2019         13 of 23
+Molecular Systems Biology                                                                                            Malte D Luecken & Fabian J Theis
+
+
+
+
+Atlas (Regev et al, 2017), reference databases are increasingly            unsupervised clustering approach. When instead determining
+becoming available. These databases greatly facilitate cell identity       cell-identity clusters via the expression of individual genes, the
+annotation. In the absence of a relevant reference database, cell          P-values can be interpreted as expected for all other genes. This
+identities can be annotated by comparing data-derived marker genes         univariate approach to cluster annotation, although common, is
+with marker genes from the literature (see case study on project           however not recommended outside specific cases (e.g. insulin in
+github) or by directly visualizing the expression values of literature-    beta cells or haemoglobin in erythrocytes). Secondly, marker
+derived marker genes (Fig 6B). It should be noted that the latter          genes differentiate a cluster from others in the dataset and are
+method constrains the user to the classical understanding of cell          thus dependent not only on the cell cluster, but also on the
+types derived from bulk expression studies, rather than cell identi-       dataset composition. If the dataset composition does not accu-
+ties. Furthermore, it has been shown that commonly used cell               rately represent background gene expression, detected marker
+surface markers are limited in their ability to define cell identities     genes will be biased towards what is missing. This aspect must
+(Tabula Muris Consortium et al, 2018).                                     be considered especially when computing marker genes for data-
+    There are two ways to use reference database information to            sets with low cellular diversity.
+annotate clusters: using data-derived marker genes or using full               Recently, automated cluster annotation has become available.
+gene expression profiles. Marker gene sets can be found by applying        By directly comparing the gene expression profiles of annotated
+differential expression (DE) testing between two groups: the cells in      reference clusters to individual cells, tools such as scmap (Kiselev
+one cluster and all other cells in the dataset (see “Differential          et al, 2018b) or Garnett (preprint: Pliner et al, 2019) can transfer
+expression testing”). Typically, we focus on genes that are up-regu-       annotations between the reference and the dataset. Thus, these
+lated in the cluster of interest. As marker genes are expected to have     methods can perform annotation and cluster assignment simultane-
+strong differential expression effects, simple statistical tests such as   ously, without the need for a data-driven clustering step. As cell
+the Wilcoxon rank-sum test or the t-test are often used to rank genes      type and state compositions differ between experimental conditions
+by their difference in expression between these two groups. The            (Segerstolpe et al, 2016; Tanay & Regev, 2017), clustering based on
+top-ranked genes from the respective test statistic are regarded as        reference data should not replace the data-driven approach.
+marker genes. Clusters can be annotated by comparing marker                    The iteration of clustering, cluster annotation, re- or subcluster-
+genes from the dataset and marker genes from reference dataset via         ing and re-annotation can be time-consuming. Automated cluster
+enrichment tests, the Jaccard index or other overlap statistics. Refer-    annotation methods offer a vast speedup of this process. However,
+ence webtools such as www.mousebrain.org (Zeisel et al, 2018) or           there are benefits and limitations to automated and manual
+http://dropviz.org/ (Saunders et al, 2018) allow users to visualize        approaches that make it difficult to recommend one over the other.
+the expression of dataset marker genes in the reference dataset to         Increases in speed go together with compromises in flexibility. As
+facilitate cell-identity annotation.                                       mentioned above, reference atlases will not contain exactly the
+    Two aspects should be noted when detecting marker genes.               same cell identities as the dataset under investigation. Thus, one
+Firstly, the P-values obtained for marker genes are based on the           should not forgo marker gene calculation for manual annotation.
+assumption that the obtained cell clusters represent the biological        Especially for large datasets that contain many clusters, the current
+ground truth. If one considers that there is uncertainty in the            best practice is a combination of both approaches. In the interest of
+cluster assignment, the relationship between cluster assignment            speed, automated cell-identity annotation can be used to coarsely
+and marker gene detection must be accounted for in the statisti-           label cells and identify where subclustering may be needed. Subse-
+cal test. This relationship arises as both clusters and marker             quently, marker genes should be calculated for the dataset clusters
+genes are typically determined based on the same gene expres-              and compared to known marker gene sets from the reference dataset
+sion data. The null hypothesis implicit in DE tests is that genes          or literature. For smaller datasets and datasets that lack reference
+have the same distribution of expression values between the two            atlases, manual annotation will suffice.
+groups. Yet, as the two groups are defined by the output of a
+clustering method in marker gene detection, there are differences
+in their gene expression profiles by design. We thus find signifi-          Pitfalls & recommendations:
+cant marker genes even when clustering random data generated
+by splatter (Zappia et al, 2017) (see Appendix Supplementary                • Do not use marker gene P-values to validate a cell-identity cluster,
+                                                                              especially when the detected marker genes do not help to annotate
+Text S3). To obtain an appropriate measure of significance in
+                                                                              the community. P-values may be inflated.
+clustered data, one can use a permutation test to account for
+the clustering step. This test is elaborated on in Appendix
+                                                                            • Note that marker genes for the same cell-identity cluster may differ
+                                                                              between datasets purely due to dataset cell type and state compositions.
+Supplementary Text S3. A recent differential expression tool also
+                                                                            • If relevant reference atlases exist, we recommend using automated
+specifically addresses this issue (preprint: Zhang et al, 2018).              cluster annotation combined with data-derived marker-gene-based
+With the current set-up, the P-values are often inflated, which               manual annotation to annotate clusters.
+can lead to an overestimation of the number of marker genes.
+However, the ranking of genes based on P-values is unaffected.
+Assuming the clustering is biologically meaningful, the top-               Compositional analysis
+ranked marker genes will still be the best marker gene candi-              At the cell level, we can analyse clustered data in terms of its compo-
+dates. In the first instance, we can loosely verify marker genes           sitional structure. Compositional data analysis revolves around the
+via visual inspection. We emphasize that inflated P-values occur           proportions of cells that fall into each cell-identity cluster. These
+specifically when defining cell-identity clusters via an                   proportions can change in response to disease. For example,
+
+
+14 of 23      Molecular Systems Biology 15: e8746 | 2019                                                                               ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                                                          Molecular Systems Biology
+
+
+
+
+        A                                                           B                                                    E
+                                                                                                                                                                 Rps8            Enterocyte
+                                                                                                                                                                 Rps3a1
+                                                                                    EP                                                                           Rps4x           EP (early)
+                             Distal enterocytes                                   (late)            Imm. ent.                                                    Rpl37a
+                                                                                            EP                                                                   Rpl34
+                                                                                                                                                                                 EP (stress)
+                                                                                                      (dist)
+                                                                                           (dist)            Mat. ent.                                           Rpl22           Stem cell
+                                                                                                                                                                 Rps20
+                                                                                                              (dist)                                             Eef1b2          TA
+                                                                                                                                                                 Ptma
+                                                                    Stem
+
+
+
+
+                                                            PC2
+  PC2
+
+
+
+
+                                                                                                                                                                 Cox6a1
+                                                                    cells                                                                                        Rrbp1
+                                                                                                                                                                 Plac8
+                                                                                                                                                                 Khk
+                                                                                                                                                                 Glod5
+                                                                                                                                                                 Dbi
+                                                                      EP                                                                                         Ckmt1
+                                                                                                                                                                 Maoa
+                                                                    (early) EP                                                                                   Fam213b             High
+                                                                           (prox) Imm. ent.             Imm. ent.
+                         Proximal enterocytes                                                             (prox)
+                                                                                                                                                                 Agpat2
+                                                                                                                                                                 Scp2
+                                                                                    (prox)                                                                       Cgref1
+                                                                                                                                                                 Vil1
+                                PC1                                                        PC1                                                                   Slc5a1
+                                                                                                                                                                 Mttp
+                                                                                                                                                                 Sdcbp2
+                                                                                                                                                                 Sult1b1
+        C                                                           D                                                                                            Mall
+                                                                                                                                                                 Guca2a
+ 600                                                                                                                                                             Cdkn2b
+            Stem                                                                                                                                                 Enpep
+            cells                                                                                                                                                Sis
+                                                                                                                                                                                     Low
+                                                                                                                                                                 Fabp2
+                                                                                                                                                                 Slc6a8
+                                                                                                                                                                 Slc27a4
+               EP                                                              EP                                                                                Fmo5
+ 400           (early)                                               TA      (early)                                                                             Mpp1
+                                                                                                                                                                 Adh6a
+                                                            UMAP2
+
+
+
+
+                                                                                                                                                                 Rhoc
+                                                                                                                                                                 Alpi
+                      EP                                                                     Stem                                                                Ace2
+                                                                                                                                                                 Guca2b
+                    (late)                                                                   cells
+ 200                          EP                                                 EP
+                                                                                                                                                                 Espn
+                                                                                                                                                                 Xpnpep2
+                             (dist)                                            (late)
+                                       Imm. ent.                                                                                                                 Slc34a2
+                                                                                                                                                                 Plb1
+                                         (dist) Mat. ent.                                                                                                        Fam151a
+                                                                    Enterocytes
+
+
+
+
+                                                                                                                                                                                               © EMBO
+                                                                                                                                                                 2010106E10Rik
+                                                 (dist)                                                                                                          Pdzk1
+    0                                                                                                                                                            Lct
+                                                                                                                                                                 Bst1
+        0           10            20         30        40
+                             Pseudotime                                              UMAP1
+
+
+  Figure 7. Trajectory analysis and graph abstraction of mouse intestinal epithelium data from Haber et al (2017).
+  (A) Distal and proximal enterocyte differentiation trajectories inferred by Slingshot. The Distal lineage is shown coloured by pseudotime from red to blue. Other cells in the
+  dataset are grey. (B) Slingshot trajectories over clusters in PCA space. Clusters are abbreviated as follows: EP—enterocyte progenitors; Imm. Ent.—immature enterocytes;
+  Mat. Ent.—mature enterocytes; Prox.—proximal; Dist.—distal. (C) Density over pseudotime for the distal enterocyte trajectory from Fig 7A. Colours represent the dominant
+  cluster labels in each pseudotime bin. (D) Abstracted graph representation of the dataset projected onto a UMAP representation. Clusters are shown as coloured nodes.
+  Clusters that appear in other trajectories are labelled for comparison. “TA” denotes transit amplifying cells. (E) Gene expression dynamics over pseudotime in a general
+  enterocyte trajectory using the “GAM” R library.
+
+
+
+salmonella infection has been shown to increase the proportion of                                        the microbiome literature (Gloor et al, 2017), where compositional
+enterocytes in the mouse intestinal epithelium (Haber et al, 2017).                                      data analysis has received more attention.
+    Investigating compositional changes in single-cell data requires
+sufficient cell numbers to robustly assess cell-identity cluster                                           Pitfalls & recommendations:
+proportions, and sufficient sample numbers to evaluate expected
+background variation in cell-identity cluster compositions. As appro-                                      • Consider that statistical tests over changes in the proportion of a cell-
+                                                                                                             identity cluster between samples are dependent on one another.
+priate datasets have only recently become available, dedicated tools
+are yet to be developed. In the mouse study mentioned above, cell-
+identity counts were modelled using a Poisson process, including                                         Trajectory analysis
+the condition as a covariate, and the total number of cells detected                                     Trajectory inference
+as an offset. Here, a statistical test can be performed over the regres-                                 Cellular diversity cannot sufficiently be described by a discrete clas-
+sion coefficient to assess whether a particular cell identity has signif-                                sification system such as clustering. The biological processes that
+icantly changed in frequency. However, tests over other cell                                             drive the development of the observed heterogeneity are continuous
+identities in the same dataset are not independent of each other. If                                     processes (Tanay & Regev, 2017). Thus, in order to capture transi-
+the proportion of one cell-identity cluster changes, the proportions                                     tions between cell identities, branching differentiation processes, or
+of all others must have changed as well. Thus, one cannot assess                                         gradual, unsynchronized changes in biological function, we require
+whether the overall composition has significantly changed using this                                     dynamic models of gene expression. This class of methods is known
+model. In the absence of dedicated tools, visual comparison of                                           as trajectory inference (TI).
+compositional data can be informative of changes in compositions                                             Trajectory inference methods interpret single-cell data as a snapshot
+between samples (Fig 6C). Future developments in this field will                                         of a continuous process. This process is reconstructed by finding paths
+likely borrow from the mass cytometry (e.g. Tibshirani et al, 2002;                                      through cellular space that minimize transcriptional changes between
+Arvaniti & Claassen, 2017; Lun et al, 2017; Weber et al, 2018) or                                        neighbouring cells (Fig 7A and B). The ordering of cells along these
+
+
+ª 2019 The Authors                                                                                                              Molecular Systems Biology 15: e8746 | 2019          15 of 23
+Molecular Systems Biology                                                                                              Malte D Luecken & Fabian J Theis
+
+
+
+
+paths is described by a pseudotime variable. While this variable is             Regulator genes help us understand how and why biological processes
+related to transcriptional distances from a root cell, it is often inter-       are triggered and represent potential drug targets (Gashaw et al, 2012).
+preted as a proxy for developmental time (Moignard et al, 2015; Hagh-               While early approaches to find trajectory-associated genes
+verdi et al, 2016; Fischer et al, 2018; Griffiths et al, 2018).                 involved DE testing between cell clusters along a trajectory (Hagh-
+    Since Monocle (Trapnell et al, 2014) and Wanderlust (Bendall                verdi et al, 2016; Alpert et al, 2018), we now detect genes that vary
+et al, 2014) established the TI field, the number of available meth-            across a trajectory by regressing gene expression against pseudo-
+ods has exploded. Currently available TI methods differ in the                  time. In order to enforce smooth variation of expression along this
+complexity of the paths that are modelled. Models range from                    covariate, pseudotime is smoothed by fitting a spline or via an addi-
+simple linear or bifurcating trajectories, to complex graphs, trees,            tional local regression step (e.g. loess). Regression frameworks dif-
+or multifurcating trajectories. In a recent comprehensive compar-               fer in their noise model assumptions and the class of function used
+ison of TI methods (Saelens et al, 2018), it was concluded that no              to describe the expression as a function of pseudotime. Potential
+individual method performs optimally for all types of trajectories.             regulatory genes are obtained by performing model selection for the
+Instead, TI methods should be selected based on the complexity of               genes’ dependence on pseudotime. This DE test over pseudotime is
+the expected trajectory. The comparison revealed that Slingshot                 confounded by the trajectory inference method in the same way that
+(Street et al, 2018) outperformed other methods for simple trajec-              DE testing between clusters is confounded by the clustering method
+tories that range from linear to bi- and multifurcating models. If              (see “Cluster annotation” section). Thus, P-values obtained in this
+more complex trajectories are expected, PAGA (Wolf et al, 2019)                 set-up should not be regarded as an evaluation of significance.
+was recommended by the authors. If the exact trajectory model is                    Currently few dedicated gene temporal dynamics tools exist.
+known, one can alternatively use more specialized methods to                    BEAM is a tool integrated into the Monocle TI pipeline (Qiu et al,
+improve performance (Saelens et al, 2018). Generally, any inferred              2017a), which allows for detection of branch-specific gene dynam-
+trajectory should be confirmed with an alternative method to avoid              ics. Outside of this pipeline, users can opt for LineagePulse (https://
+method bias.                                                                    github.com/YosefLab/LineagePulse), which considers dropout noise
+    In a typical workflow, TI methods are applied to reduced data               but is still in development, or write their own testing framework
+or to corrected data when there is an inbuilt dimensionality                    using the limma package (Ritchie et al, 2015) or standard R
+reduction step. As multiple biological processes are typically                  libraries. An example of this can be found in the online Slingshot
+occurring simultaneously within cells, it may be useful to regress              tutorial (Street et al, 2018) and in Fig 7E.
+out the biological effects of other processes to isolate the expected               Given the few available tools, a best practice for investigating gene
+trajectory. For example, T cells may be undergoing cell cycle                   temporal dynamics cannot yet be determined. Exploratory investiga-
+transitions during maturation (Buettner et al, 2015). Furthermore,              tion of gene dynamics is surely possible using all above methods. In
+as several top-performing TI methods rely on clustered data, TI is              future, Gaussian processes may provide a natural model to investigate
+typically performed after clustering. Clusters in inferred trajecto-            gene temporal dynamics. Furthermore, testing for regulatory modules
+ries may represent stable or metastable states (see “Metastable                 rather than individual genes would likely improve the signal-to-noise
+states”; Fig 7B and C). Subsequently, RNA velocities can be over-               ratio and facilitate the biological interpretation.
+layed onto the trajectory to add directionality (La Manno et al,
+2018).                                                                          Metastable states
+    Inferred trajectories do not have to represent biological processes.        Cell-level analysis of trajectories investigates cellular densities across
+In the first instance, these only denote transcriptional similarity. Few        pseudotime. Assuming that cells were sampled in an unbiased manner,
+TI methods include an evaluation of uncertainty in their model (Grif-           dense regions along a trajectory indicate preferred transcriptomic
+fiths et al, 2018). Thus, further information is needed to validate             states. When interpreting the trajectory as a temporal process, these
+whether a biological process was indeed captured. This information              dense regions may represent metastable states in, for example, devel-
+can come in the form of perturbation experiments, inferred regulatory           opment (Haghverdi et al, 2016). We can find these metastable states
+gene dynamics, and support from RNA velocity.                                   by plotting histograms of the pseudotime coordinate (Fig 7C).
+
+                                                                                Cell-level analysis unification
+                                                                                Clustering and trajectory inference represent two distinct views of
+ Pitfalls & recommendations:
+                                                                                single-cell data. These two views can be reconciled in coarse-
+ • We recommend using the Saelens et al (2018) review as a guide.               grained graph representations. By representing single-cell clusters as
+ • Inferred trajectories do not have to represent a biological process.         nodes, and trajectories between the clusters as edges, one can repre-
+   Further sources of evidence should be collected to interpret a trajectory.   sent both the static and dynamic nature of the data. This unification
+                                                                                was proposed by the partition-based graph abstraction tool (PAGA;
+                                                                                Fig 7D; Wolf et al, 2019). Using a statistical model for cell cluster
+Gene expression dynamics                                                        interactions, PAGA places an edge between cluster nodes whose
+One approach to garner support that an inferred trajectory is not the           cells are more similar than expected. PAGA has been favourably
+result of fitting transcriptional noise is to analyse the trajectory on the     compared to other TI methods in a recent review (Saelens et al,
+gene level. Genes that vary smoothly across pseudotime characterize             2018). It was the only reviewed method able to cope with discon-
+the trajectory and can be used to identify the underlying biological            nected topologies and complex graphs containing cycles. This
+process. Furthermore, this group of trajectory-associated genes is              feature makes PAGA a helpful tool to visualize the topology of the
+expected to contain genes that regulate the modelled process.                   entire dataset also for exploratory analysis.
+
+
+16 of 23      Molecular Systems Biology 15: e8746 | 2019                                                                                ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                           Molecular Systems Biology
+
+
+
+
+Gene-level analysis                                                          vigilant which variables are added to the model. For example, in
+While we have so far focused on gene-level analysis methods that             most single-cell experimental set-ups the sample and condition
+characterize cellular structures, gene-level analysis of single-cell         covariates are confounded, since it is rarely possible to obtain a
+data has a broader scope. Differential expression testing, gene set          single sample under multiple conditions. If we incorporate both the
+analyses and gene regulatory network inference directly investigate          sample and condition covariates into the model, the variability asso-
+molecular signals in the data. Rather than describing the cellular           ciated with these covariates can no longer unambiguously be
+heterogeneity, these approaches use this heterogeneity as context in         assigned. Thus, when testing over condition, we cannot include the
+which gene expression is to be understood.                                   sample covariate in the model in the given form. When correcting
+                                                                             for multiple categorical batch covariates, it becomes increasingly dif-
+Differential expression testing                                              ficult to visually spot confounding groups of covariates. In this situa-
+A common question asked of expression data is whether any genes              tion, it is helpful to test whether the model design matrix is full rank.
+are differentially expressed between two experimental conditions.            Even when design matrices are not full rank, DE testing tools will
+DE testing is a well-documented problem that originates from bulk            often adapt the matrix and run without outputting a warning. This
+gene expression analysis (Scholtens & von Heydebreck, 2005). An              will not deliver the intended results.
+advantage over bulk differential testing is that we can account for              In the scenario we describe here, the condition covariate is deter-
+cellular heterogeneity in the single-cell setting by performing tests        mined in the experimental set-up. Thus, a DE test over this covariate
+within cell-identity clusters. This set-up tells us how individual cell      (within the same cluster) is independent of the clustering procedure.
+identities react transcriptionally under particular experimental             This set-up distinguishes DE testing over conditions and DE testing
+conditions (Kang et al, 2018).                                               over clusters. Obtained P-values for DE tests over conditions repre-
+    Although designed to answer the same question, bulk and single-cell      sent the expected measures of significance and must be corrected
+DE tools differ methodologically. While bulk methods were developed          for multiple testing. To reduce the multiple testing burden, tran-
+to accurately estimate gene variance from few samples, single-cell data      scripts that may not be of interest can be excluded from the dataset.
+do not present this problem. On the other hand, single-cell data contain     While pseudogenes or non-coding RNAs can be informative (An
+unique technical noise artefacts such as dropout, and high cell-to-cell      et al, 2017), they are often ignored in the analysis.
+variability (Hicks et al, 2017; Vallejos et al, 2017). These artefacts are
+taken into account in methods designed specifically for single-cell data
+(Kharchenko et al, 2014; Finak et al, 2015). Yet, a recent, large-scale
+                                                                              Pitfalls & recommendations:
+comparison study of DE analysis has suggested that bulk DE testing
+packages perform comparably to the best-performing single-cell tools          • DE testing should not be performed on corrected data (denoised,
+(Soneson & Robinson, 2018). Furthermore, when bulk tools are                    batch corrected, etc.), but instead on measured data with technical
+adapted to model single-cell data via introducing gene weights into the         covariates included in the model.
+
+tests, these tools have been suggested to outperform their single-cell        • Users should not rely on DE testing tools to correct models with
+                                                                                confounded covariates. Model specification should be performed care-
+counterparts (Van den Berge et al, 2018). According to this compar-             fully ensuring a full-rank design matrix.
+ison, the top-performing DE analysis tools are DESeq2 (Love et al,
+2014) and EdgeR (Robinson et al, 2010) in combination with weights
+                                                                              • We recommend using MAST or limma for DE testing.
+estimated by ZINB-wave (Risso et al, 2018). Independent comparison
+studies that include weighted bulk DE testing methods are required to        Gene set analysis
+confirm these results.                                                       Gene-level analysis methods often produce long lists of candidate
+    The improved performance of weighted bulk DE testing comes at            genes that are difficult to interpret. For example, thousands of genes
+the cost of computational efficiency. Given the trend of increasing cell     may be differentially expressed between treated and control cells.
+numbers in single-cell experiments, algorithm runtime is becoming an         We can facilitate the interpretation of these results by grouping
+increasingly important consideration in method choice. Thus, the             the genes into sets based on shared characteristics and testing
+single-cell tool MAST (Finak et al, 2015) represents a potent alternative    whether these characteristics are overrepresented in the candidate
+to weighted bulk DE tools. MAST uses a hurdle model to account for           gene list.
+dropout while modelling changes in gene expression dependent upon               Gene set information can be found in curated label databases for
+condition and technical covariates. It was the best-performing single-       various applications. To interpret DE results, we typically group
+cell DE testing method in the aforementioned study (Soneson & Robin-         genes based on involvement in common biological processes.
+son, 2018), and outperformed bulk and single-cell methods in a small-        Biological process labels are stored in databases such as MSigDB
+scale comparison on a single dataset (Vieth et al, 2017). While MAST         (Liberzon et al, 2011), the Gene Ontology (Ashburner et al, 2000;
+has a 10-fold to 100-fold faster runtime than weighted bulk methods          The Gene Ontology Consortium, 2017), or the pathway databases
+(Van den Berge et al, 2018), a further 10-fold speedup can be achieved       KEGG (Kanehisa et al, 2017) and Reactome (Fabregat et al, 2018).
+using limma–voom (Law et al, 2014). Although limma is a bulk DE              Enrichment of annotations on the gene list can be tested using a vast
+testing method, limma–voom was shown to achieve comparable                   array of tools, which are reviewed and compared in Huang et al
+performance to MAST.                                                         (2009) and Tarca et al (2013).
+    As uncorrected, measured data should be used for DE testing,                A recent development in the single-cell analysis field is the use of
+accounting for confounding factors is crucial to robust estimation of        paired gene labels to perform ligand–receptor analysis. Here, inter-
+differentially expressed genes. While DE testing tools typically allow       action between cell clusters is inferred from the expression of recep-
+the user the flexibility to incorporate confounders, users must be           tors and their cognate ligands. Ligand–receptor pair labels can be
+
+
+ª 2019 The Authors                                                                                Molecular Systems Biology 15: e8746 | 2019   17 of 23
+Molecular Systems Biology                                                                                          Malte D Luecken & Fabian J Theis
+
+
+
+
+obtained from the recent CellPhoneDB (Vento-Tormo et al, 2018)              cells. It leverages the increasing number of tools written in Python,
+and used to interpret the highly expressed genes across clusters            which is particularly popular for machine learning applications.
+using statistical models (Zepp et al, 2017; Zhou et al, 2017; Cohen             Graphical user interface platforms enable non-expert users to
+et al, 2018; Vento-Tormo et al, 2018).                                      build single-cell analysis workflows. Users are often guided
+                                                                            through prescribed workflows that facilitate the analysis, but also
+Gene regulatory networks                                                    limit user flexibility. These platforms are especially useful for
+Genes do not function independently. Instead, the expression level          exploratory analysis. Platforms such as Granatum (Zhu et al,
+of a gene is determined by a complex interplay of regulatory interac-       2017) and ASAP (Gardeux et al, 2017) differ in the tools they
+tions with other genes and small molecules. Uncovering these regu-          integrate, with Granatum including the larger variety of methods.
+latory interactions is the goal of gene regulatory network (GRN)            As Web servers, these two platforms are readily available, yet
+inference methods.                                                          computational infrastructure will limit their ability to scale to
+    Gene regulatory network inference is performed based on                 large datasets. For example, ASAP was tested on a dataset of
+measurements of gene co-expression such as correlation, mutual              only 92 cells. Alternatives to the Web-based GUI platforms are
+information, or via regression models (Chen & Mar, 2018). If two            packages such as FASTGenomics (preprint: Scholz et al, 2018),
+genes show a co-expression signal even when all other genes are             iSEE (Rue-Albrecht et al, 2018), IS-CellR (Patel, 2018), and
+taken into account as potential confounders, these genes are said to        Granatum run on a local server. These are platforms and GUI
+have a causal regulatory relationship. Inferring gene regulatory rela-      wrappers that can scale with the locally available computational
+tionships is related to the detection of trajectory-associated regula-      power. In future, the ongoing development of the Human Cell
+tory genes. Indeed, several single-cell GRN inference methods use           Atlas portals (https://www.humancellatlas.org/data-sharing)
+trajectories with mechanistic differential equation models (Ocone           will lead to more powerful visual data exploration tools that
+et al, 2015; Matsumoto et al, 2017).                                        scale to large cell numbers.
+    While there exist GRN inference methods that were specifically
+developed for scRNA-seq data (SCONE: Matsumoto et al, 2017;
+PIDC: Chan et al, 2017; SCENIC: Aibar et al, 2017), a recent                Conclusions and outlook
+comparison has shown both bulk and single-cell methods to
+perform poorly on these data (Chen & Mar, 2018). GRN inference              We have reviewed the steps of a typical scRNA-seq analysis work-
+methods may still offer valuable insights to identify causal regula-        flow and implemented these in a case study tutorial (https://www.
+tors of biological processes, yet we recommend that these methods           github.com/theislab/single-cell-tutorial). The tutorial was designed
+be used with care.                                                          to follow current best practices as determined by available method
+                                                                            comparisons. While aggregating individual best-practice tools does
+                                                                            not guarantee an optimal pipeline, we hope that our workflow repre-
+                                                                            sents a current snapshot of the state of the art in the single-cell analy-
+ Pitfalls & recommendations:
+                                                                            sis field. It thus provides a suitable entry point into this field for
+ • Users should be wary of uncertainty in the inferred regulatory rela-     newcomers and contributes to the efforts of the Human Cell Atlas to
+   tionships. Modules of genes that are enriched for regulatory relation-   establish best practices in scRNA-seq analysis (preprint: Regev et al,
+   ships will be more reliable than individual edges.
+                                                                            2018). It should be noted that available method comparisons neces-
+                                                                            sarily lag behind the latest method developments. Thus, we have
+                                                                            mentioned new developments that have not yet been independently
+Analysis platforms                                                          evaluated where possible. With the future development of new and
+                                                                            better tools, and further comparative studies, the individual tool
+Single-cell analysis workflows are collations of independently devel-       recommendations presented here will require updates, yet the
+oped tools. To facilitate the movement of data between these tools,         general considerations regarding the stages of data processing should
+single-cell platforms have been developed around consistent data            remain the same.
+formats. These platforms provide a basis for the construction of                Two avenues of development that are of particular interest due
+analysis pipelines. Currently available platforms exist on the              to their potential for disruption to analysis pipelines are deep learn-
+command line in R (McCarthy et al, 2017; Butler et al, 2018) or             ing workflows and single-cell omic integration. Due to its flexibility
+Python (Wolf et al, 2018), and as local applications (Patel, 2018;          to scale to large data, deep learning has revolutionized fields from
+preprint: Scholz et al, 2018) or Web servers (Gardeux et al, 2017;          computer vision to natural language processing, and is starting to
+Zhu et al, 2017) with graphical user interfaces (GUIs). An overview         have a strong impact in genomics (Webb, 2018). First applications
+of platforms is available in Zhu et al (2017) and Zappia et al (2018).      to scRNA-seq are starting to emerge from dimensionality reduction
+   Among command line platforms, Scater (McCarthy et al, 2017)              to denoising (e.g. scVis: Ding et al, 2018; scGen: preprint: Lotfollahi
+and Seurat (Butler et al, 2018) easily interface with the large variety     et al, 2018; DCA: Eraslan et al, 2019). Recently, deep learning has
+of analysis tools available via the R Bioconductor project (Huber           been used to produce an embedded workflow that can fit the data,
+et al, 2015). Scater has a particular strength in QC and pre-proces-        denoise it and perform downstream analysis such as clustering and
+sing, while Seurat is arguably the most popular and comprehensive           differential expression within the framework of the model (scVI:
+platform, which includes a large array of tools and tutorials. A recent     Lopez et al, 2018). In this set-up, it is possible to include noise and
+addition to this group is scanpy (Wolf et al, 2018), a growing Python-      batch effect estimates into downstream statistical tests while
+based platform, which exhibits improved scaling to larger numbers of        preserving accurate estimates of variation in the data. Integrated
+
+
+18 of 23      Molecular Systems Biology 15: e8746 | 2019                                                                            ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                                      Molecular Systems Biology
+
+
+
+
+modelling approaches such as this have the potential to replace                        SCENIC: single-cell regulatory network inference and clustering. Nat
+current pipelines, which are often an agglomeration of individual                      Methods 14: 1083 – 1086
+tools.                                                                              Alpert A, Moore LS, Dubovik T, Shen-Orr SS (2018) Alignment of single-cell
+    As single-cell omic technologies improve, the need for integrated                  trajectories to compare cellular expression dynamics. Nat Methods 15:
+omic analysis pipelines will grow (Tanay & Regev, 2017). Future                        267 – 270
+single-cell platforms will have to be able to deal with different data              An Y, Furber KL, Ji S (2017) Pseudogenes regulate parental gene expression
+sources such as DNA methylation (Smallwood et al, 2014), chro-                         via ceRNA network. J Cell Mol Med 21: 185 – 192
+matin accessibility (Buenrostro et al, 2015), or protein abundance                  Andrews TS, Hemberg M (2018) False signals induced by single-cell
+(Stoeckius et al, 2017), and include tools that integrate these modali-                imputation. F1000Res 7: 1740
+ties. For this set-up, it will no longer be possible to use only a single           Angelidis I, Simon LM, Fernandez IE, Strunz M, Mayr CH, Greiffo FR, Tsitsiridis
+read or count matrix, which we use as the starting point of our tuto-                  G, Graf E, Strom TM, Eickelberg O et al (2019) An atlas of the aging lung
+rial. However, platforms are already adapting to multi-modal data                      mapped by single cell transcriptomics and deep tissue proteomics. Nat
+structures for the integration of RNA velocity, which is calculated                    Commun 10: 963
+from unspliced and spliced read data (La Manno et al, 2018). Single-                Angerer P, Simon L, Tritschler S, Alexander Wolf F, Fischer D, Theis FJ (2017)
+cell multi-omic integration can occur via consensus clustering                         Single cells make big data: new challenges and opportunities in
+approaches, multi-omic factor analysis (Argelaguet et al, 2018), or                    transcriptomics. Curr Opin Syst Biol 4: 85 – 91
+multi-omic gene regulatory network inference (Colomé-Tatché &                     Argelaguet R, Velten B, Arnol D, Dietrich S, Zenz T, Marioni JC, Buettner F,
+Theis, 2018). Analysis workflows with these capabilities will be the                   Huber W, Stegle O (2018) Multi-Omics Factor Analysis—a framework for
+next stage of development. We envisage that such multi-omic analy-                     unsupervised integration of multi-omics data sets. Mol Syst Biol 14:
+sis workflows will build upon the foundation we have laid for scRNA-                   e8124
+seq.                                                                                Arvaniti E, Claassen M (2017) Sensitive detection of rare disease-associated
+                                                                                       cell subsets via representation learning. Nat Commun 8: 14825
+Expanded View for this article is available online.                                 Ashburner M, Ball CA, Blake JA, Botstein D, Butler H, Cherry JM, Davis AP,
+                                                                                       Dolinski K, Dwight SS, Eppig JT et al (2000) Gene ontology: tool for the
+Acknowledgements                                                                       unification of biology. The Gene Ontology Consortium. Nat Genet 25: 25 – 29
+Special thanks to Leander Dony, who debugged, updated, and tested the case          Azizi E, Carr AJ, Plitas G, Cornish AE, Konopacki C, Prabhakaran S, Nainys J,
+study to work with the latest methods. Furthermore, we would like to thank             Wu K, Kiseliovas V, Setty M et al (2018) Single-cell map of diverse
+the many people who proofread the case study notebook and the manuscript               immune phenotypes in the breast tumor microenvironment. Cell 174:
+and improved it with their comments and expertise. For this, we acknowledge            1293 – 1308.e36
+the input of Maren Buttner, David Fischer, Alex Wolf, Lukas Simon, Luis Ospina-     Becht E, McInnes L, Healy J, Dutertre C-A, Kwok IWH, Ng LG, Ginhoux F,
+Forero, Sophie Tritschler, Niklas Koehler, Goekcen Eraslan, Benjamin Schubert,         Newell EW (2018) Dimensionality reduction for visualizing single-cell data
+Meromit Singer, Dana Pe’er, and Rahul Satija. Special thanks for this also to the      using UMAP. Nat Biotechnol 37: 38 – 44
+anonymous reviewers of the manuscript and the editor, Thomas Lemberger, for         Bendall SC, Davis KL, Amir E-AD, Tadmor MD, Simonds EF, Chen TJ, Shenfeld
+their thorough, constructive, and extensive comments. The case study notebook          DK, Nolan GP, Pe’er D (2014) Single-cell trajectory detection uncovers
+was tested and improved by the early adopters Marius Lange, Hananeh Aliee,             progression and regulatory coordination in human B cell development.
+Subarna Palit and Lisa Thiergart. Volker Bergen and Alex Wolf also contributed         Cell 157: 714 – 725
+to the workflow by making scanpy adaptations. The choice of dataset to opti-        Blasi T, Buettner F, Strasser MK, Marr C, Theis FJ (2017) cgCorrect: a method
+mally show all aspects of the analysis workflow was facilitated by the kind            to correct for confounding cell-cell variation due to cell growth in single-
+input from Adam Haber and Aviv Regev. This work was supported by the BMBF              cell transcriptomics. Phys Biol 14: 036001
+grant# 01IS18036A and grant# 01IS18053A, by the German Research Founda-             Blondel VD, Guillaume J-L, Lambiotte R, Lefebvre E (2008) Fast unfolding
+tion (DFG) within the Collaborative Research Centre 1243, Subproject A17, by           of communities in large networks. J Stat Mech: Theory Exp 2008:
+the Helmholtz Association (Incubator grant sparse2big, grant # ZT-I-0007) and          P10008
+by the Chan Zuckerberg Initiative DAF (advised fund of Silicon Valley Commu-        Brennecke P, Anders S, Kim JK, Kołodziejczyk AA, Zhang X, Proserpio V, Baying
+nity Foundation, 182835).                                                              B, Benes V, Teichmann SA, Marioni JC et al (2013) Accounting for technical
+                                                                                       noise in single-cell RNA-seq experiments. Nat Methods 10: 1093 – 1095
+Author contributions                                                                Briggs JA, Weinreb C, Wagner DE, Megason S, Peshkin L, Kirschner MW, Klein
+MDL reviewed the literature and wrote the paper, and FJT supervised the work           AM (2018) The dynamics of gene expression in vertebrate embryogenesis
+and critically reviewed the manuscript. Both authors read and approved the             at single-cell resolution. Science 360 : eaar5780
+final paper.                                                                        Buenrostro JD, Wu B, Litzenburger UM, Ruff D, Gonzales ML, Snyder MP,
+                                                                                       Chang HY, Greenleaf WJ (2015) Single-cell chromatin accessibility reveals
+Conflict of interest                                                                   principles of regulatory variation. Nature 523: 486 – 490
+The authors declare that they have no conflict of interest.                         Buettner F, Natarajan KN, Casale FP, Proserpio V, Scialdone A, Theis FJ,
+                                                                                       Teichmann SA, Marioni JC, Stegle O (2015) Computational analysis of cell-
+                                                                                       to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden
+References                                                                             subpopulations of cells. Nat Biotechnol 33: 155 – 160
+                                                                                    Buettner F, Pratanwanich N, McCarthy DJ, Marioni JC, Stegle O (2017) f-
+Aibar S, González-Blas CB, Moerman T, Huynh-Thu VA, Imrichova H,                       scLVM: scalable and versatile factor analysis for single-cell RNA-seq.
+   Hulselmans G, Rambow F, Marine J-C, Geurts P, Aerts J et al (2017)                  Genome Biol 18: 212
+
+
+
+ª 2019 The Authors                                                                                           Molecular Systems Biology 15: e8746 | 2019    19 of 23
+Molecular Systems Biology                                                                                                        Malte D Luecken & Fabian J Theis
+
+
+
+
+Butler A, Hoffman P, Smibert P, Papalexi E, Satija R (2018) Integrating single-     Gardeux V, David FPA, Shajkofci A, Schwalie PC, Deplancke B (2017) ASAP: a
+   cell transcriptomic data across different conditions, technologies, and             web-based platform for the analysis and interactive visualization of
+   species. Nat Biotechnol 36: 411 – 420                                               single-cell RNA-seq data. Bioinformatics 33: 3123 – 3125
+Buttner M, Miao Z, Wolf A, Teichmann SA, Theis FJ (2019) A test metric for          Gashaw I, Ellinghaus P, Sommer A, Asadullah K (2012) What makes a good
+   assessing single-cell RNA-seq batch correction. Nat Methods 16: 43 – 49             drug target?. Drug Discov Today 17: S24 – S30
+Chan TE, Stumpf MPH, Babtie AC (2017) Gene regulatory network inference             Gehring J, Park JH, Chen S, Thomson M, Pachter L (2018) Highly Multiplexed
+   from single-cell data using multivariate information measures. Cell Syst 5:         Single-Cell RNA-seq for Defining Cell Population and Transcriptional
+   251 – 267.e3                                                                        Spaces. bioRxiv https://doi.org/10.1101/315333 [PREPRINT]
+Chen S, Mar JC (2018) Evaluating methods of inferring gene regulatory               Gloor GB, Macklaim JM, Pawlowsky-Glahn V, Egozcue JJ (2017) Microbiome
+   networks highlights their lack of performance for single cell gene                  datasets are compositional: and this is not optional. Front Microbiol 8:
+   expression data. BMC Bioinformatics 19: 232                                         2224
+Chung NC, Storey JD (2015) Statistical significance of variables driving            Griffiths JA, Scialdone A, Marioni JC (2018) Using single-cell genomics to
+   systematic variation in high-dimensional data. Bioinformatics 31: 545 – 554         understand developmental processes and cell fate decisions. Mol Syst Biol
+Clevers H, Rafelski S, Elowitz M, Klein AM, Shendure J, Trapnell C, Lein E,            14: e8046
+   Lundberg E, Uhlén M, Martinez-Arias A et al (2017) What is your                  Grün D, Kester L, van Oudenaarden A (2014) Validation of noise models for
+   conceptual definition of ‘cell type’ in the context of a mature organism?           single-cell transcriptomics. Nat Methods 11: 637
+   Cell Syst 4: 255 – 259                                                           Haber AL, Biton M, Rogel N, Herbst RH, Shekhar K, Smillie C, Burgin G,
+Cohen M, Giladi A, Gorki A-D, Solodkin DG, Zada M, Hladik A, Miklosi A,                Delorey TM, Howitt MR, Katz Y et al (2017) A single-cell survey of the
+   Salame T-M, Halpern KB, David E et al (2018) Lung single-cell signaling             small intestinal epithelium. Nature 551: 333 – 339
+   interaction map reveals basophil role in macrophage imprinting. Cell 175:        Haghverdi L, Buettner F, Theis FJ (2015) Diffusion maps for high-
+   1031 – 1044                                                                         dimensional single-cell analysis of differentiation data. Bioinformatics 31:
+Coifman RR, Lafon S, Lee AB, Maggioni M, Nadler B, Warner F, Zucker SW                 2989 – 2998
+   (2005) Geometric diffusions as a tool for harmonic analysis and structure        Haghverdi L, Büttner M, Wolf FA, Buettner F, Theis FJ (2016) Diffusion
+   definition of data: diffusion maps. Proc Natl Acad Sci USA 102: 7426 – 7431         pseudotime robustly reconstructs lineage branching. Nat Methods 13:
+Cole MB, Risso D, Wagner A, DeTomaso D, Ngai J, Purdom E, Dudoit S, Yosef              845 – 848
+   N (2019) Performance assessment and selection of normalization                   Haghverdi L, Lun ATL, Morgan MD, Marioni JC (2018) Batch effects in single-
+   procedures for single-cell RNA-seq. Cell Syst 8: 315 – 328                          cell RNA-sequencing data are corrected by matching mutual nearest
+Colomé-Tatché M, Theis FJ (2018) Statistical single cell multi-omics                   neighbors. Nat Biotechnol 36: 421 – 427
+   integration. Curr Opin Syst Biol 7: 54 – 59                                      Heimberg G, Bhatnagar R, El-Samad H, Thomson M (2016) Low
+DePasquale EAK, Schnell DJ, Valiente I, Blaxall BC, Grimes HL, Singh H,                dimensionality in gene expression data enables the accurate extraction of
+   Salomonis N (2018) DoubletDecon: Cell-State Aware Removal of Single-                transcriptional programs from shallow sequencing. Cell Syst 2: 239 – 250
+   Cell RNA-Seq Doublets. bioRxiv https://doi.org/10.1101/364810 [PREPRINT]         Hicks SC, Townes FW, Teng M, Irizarry RA (2017) Missing data and technical
+van Dijk D, Sharma R, Nainys J, Yim K, Kathail P, Carr AJ, Burdziak C, Moon            variability in single-cell RNA-sequencing experiments. Biostatistics 19:
+   KR, Chaffer CL, Pattabiraman D et al (2018) Recovering gene interactions            562 – 578
+   from single-cell data using data diffusion. Cell 174: 716 – 729.e27              Hie BL, Bryson B, Berger B (2018) Panoramic stitching of heterogeneous
+Dillies M-A, Rau A, Aubert J, Hennequet-Antier C, Jeanmougin M, Servant N,             single-cell transcriptomic data. bioRxiv https://doi.org/10.1101/371179
+   Keime C, Marot G, Castel D, Estelle J et al (2013) A comprehensive                  [PREPRINT]
+   evaluation of normalization methods for Illumina high-throughput RNA             Huang DW, Sherman BT, Lempicki RA (2009) Bioinformatics enrichment tools:
+   sequencing data analysis. Brief Bioinform 14: 671 – 683                             paths toward the comprehensive functional analysis of large gene lists.
+Ding J, Condon A, Shah SP (2018) Interpretable dimensionality reduction of single      Nucleic Acids Res 37: 1 – 13
+   cell transcriptome data with deep generative models. Nat Commun 9: 2002          Huang M, Wang J, Torre E, Dueck H, Shaffer S, Bonasio R, Murray JI, Raj A, Li
+Duò A, Robinson MD, Soneson C (2018) A systematic performance                          M, Zhang NR (2018) SAVER: gene expression recovery for single-cell RNA
+   evaluation of clustering methods for single-cell RNA-seq data. F1000Res             sequencing. Nat Methods 15: 539 – 542
+   7: 1141 .                                                                        Huber W, Carey VJ, Gentleman R, Anders S, Carlson M, Carvalho BS, Bravo HC,
+Eraslan G, Simon LM, Mircea M, Mueller NS, Theis FJ (2019) Single cell RNA-            Davis S, Gatto L, Girke T et al (2015) Orchestrating high-throughput
+   seq denoising using a deep count autoencoder. Nat Commun 10: 390                    genomic analysis with Bioconductor. Nat Methods 12: 115 – 121
+Fabregat A, Jupe S, Matthews L, Sidiropoulos K, Gillespie M, Garapati P, Haw        Ilicic T, Kim JK, Kolodziejczyk AA, Bagger FO, McCarthy DJ, Marioni JC,
+   R, Jassal B, Korninger F, May B et al (2018) The reactome pathway                   Teichmann SA (2016) Classification of low quality cells from single-cell
+   knowledgebase. Nucleic Acids Res 46: D649 – D655                                    RNA-seq data. Genome Biol 17: 29
+Finak G, McDavid A, Yajima M, Deng J, Gersuk V, Shalek AK, Slichter CK, Miller      Johnson WE, Li C, Rabinovic A (2006) Adjusting batch effects in microarray
+   HW, Juliana McElrath M, Prlic M et al (2015) MAST: a flexible statistical           expression data using empirical Bayes methods. Biostatistics 8: 118 – 127
+   framework for assessing transcriptional changes and characterizing               Kanehisa M, Furumichi M, Tanabe M, Sato Y, Morishima K (2017) KEGG: new
+   heterogeneity in single-cell RNA sequencing data. Genome Biol 16: 278               perspectives on genomes, pathways, diseases and drugs. Nucleic Acids Res
+Fischer DS, Theis FJ, Yosef N (2018) Impulse model-based differential expression       45: D353 – D361
+   analysis of time course sequencing data. Nucleic Acids Res 46: e119              Kang HM, Subramaniam M, Targ S, Nguyen M, Maliskova L, McCarthy E, Wan
+Freytag S, Tian L, Lönnstedt I, Ng M, Bahlo M (2018) Comparison of                     E, Wong S, Byrnes L, Lanata CM et al (2018) Multiplexed droplet single-
+   clustering tools in R for medium-sized 10x Genomics single-cell RNA-                cell RNA-sequencing using natural genetic variation. Nat Biotechnol 36:
+   sequencing data. F1000Res 7: 1297                                                   89 – 94
+
+
+
+20 of 23          Molecular Systems Biology 15: e8746 | 2019                                                                                      ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                                    Molecular Systems Biology
+
+
+
+
+Kharchenko PV, Silberstein L, Scadden DT (2014) Bayesian approach to single-          genome-wide expression profiling of individual cells using nanoliter
+   cell differential expression analysis. Nat Methods 11: 740 – 742                   droplets. Cell 161: 1202 – 1214
+Kim T, Chen IR, Lin Y, Wang AY-Y, Yang JYH, Yang P (2018) Impact of                MacQueen J (1967) Some methods for classification and analysis of
+   similarity metrics on single-cell RNA-seq data clustering. Brief Bioinform         multivariate observations. In Proceedings of the fifth Berkeley
+   https://doi.org/10.1093/bib/bby076                                                 symposium on mathematical statistics and probability, pp 281 – 297.
+Kiselev VY, Yiu A, Hemberg M (2018b) Scmap: projection of single-cell RNA-            Oakland, CA.
+   seq data across data sets. Nat Methods 15: 359 – 362                            Matsumoto H, Kiryu H, Furusawa C, Ko MSH, Ko SBH, Gouda N, Hayashi T,
+Klein AM, Mazutis L, Akartuna I, Tallapragada N, Veres A, Li V, Peshkin L,            Nikaido I (2017) SCODE: an efficient regulatory network inference
+   Weitz DA, Kirschner MW (2015) Droplet barcoding for single-cell                    algorithm from single-cell RNA-Seq during differentiation. Bioinformatics
+   transcriptomics applied to embryonic stem cells. Cell 161: 1187 – 1201             33: 2314 – 2321
+Korsunsky I, Fan J, Slowikowski K, Zhang F, Wei K (2018) Fast, sensitive, and      Mayer C, Hafemeister C, Bandler RC, Machold R, Batista Brito R, Jaglin X,
+   accurate integration of single cell data with Harmony. bioRxiv https://doi.        Allaway K, Butler A, Fishell G, Satija R (2018) Developmental diversification
+   org/10.1101/461954 [PREPRINT]                                                      of cortical inhibitory interneurons. Nature 555: 457 – 462
+Kowalczyk MS, Tirosh I, Heckl D, Rao TN, Dixit A, Haas BJ, Schneider RK,           McCarthy DJ, Campbell KR, Lun ATL, Wills QF (2017) Scater: pre-processing,
+   Wagers AJ, Ebert BL, Regev A (2015) Single-cell RNA-seq reveals changes in         quality control, normalization and visualization of single-cell RNA-seq
+   cell cycle and differentiation programs upon aging of hematopoietic stem           data in R. Bioinformatics 33: 1179 – 1186
+   cells. Genome Res 25: 1860 – 1872                                               McDavid A, Finak G, Gottardo R (2016) The contribution of cell cycle to
+La Manno G, Soldatov R, Zeisel A, Braun E, Hochgerner H, Petukhov V,                  heterogeneity in single-cell RNA-seq data. Nat Biotechnol 34:
+   Lidschreiber K, Kastriti ME, Lönnerberg P, Furlan A et al (2018) RNA               591 – 593
+   velocity of single cells. Nature 560: 494 – 498                                 McGinnis CS, Murrow LM, Gartner ZJ (2018) DoubletFinder: doublet detection
+Law CW, Chen Y, Shi W, Smyth GK (2014) voom: precision weights unlock                 in single-cell RNA sequencing data using artificial nearest neighbors. Cell
+   linear model analysis tools for RNA-seq read counts. Genome Biol 15: R29           Syst 8: 329 – 337
+Levine JH, Simonds EF, Bendall SC, Davis KL, Amir E-AD, Tadmor MD, Litvin O,       McInnes L, Healy J (2018) UMAP: uniform manifold approximation and
+   Fienberg HG, Jager A, Zunder ER et al (2015) Data-driven phenotypic                projection for dimension reduction. arXiv https://arxiv.org/abs/1802.
+   dissection of AML reveals progenitor-like cells that correlate with                03426v2 [PREPRINT]
+   prognosis. Cell 162: 184 – 197                                                  Moignard V, Woodhouse S, Haghverdi L, Lilly AJ, Tanaka Y, Wilkinson AC,
+Li B, Ruotti V, Stewart RM, Thomson JA, Dewey CN (2009) RNA-Seq gene                  Buettner F, Macaulay IC, Jawaid W, Diamanti E et al (2015) Decoding the
+   expression estimation with read mapping uncertainty. Bioinformatics 26:            regulatory network of early blood development from single-cell gene
+   493 – 500                                                                          expression measurements. Nat Biotechnol 33: 269 – 276
+Li WV, Li JJ (2018) An accurate and robust imputation method scImpute for          Montoro DT, Haber AL, Biton M, Vinarsky V, Lin B, Birket SE, Yuan F, Chen S,
+   single-cell RNA-seq data. Nat Commun 9: 997                                        Leung HM, Villoria J et al (2018) A revised airway epithelial hierarchy
+Liberzon A, Subramanian A, Pinchback R, Thorvaldsdottir H, Tamayo P,                  includes CFTR-expressing ionocytes. Nature 560: 319 – 324
+   Mesirov JP (2011) Molecular signatures database (MSigDB) 3.0.                   Moon KR, Stanley JS, Burkhardt D, van Dijk D, Wolf G, Krishnaswamy S (2018)
+   Bioinformatics 27: 1739 – 1740                                                     Manifold learning-based methods for analyzing single-cell RNA-
+Liu Y, Wang T, Zheng D (2018) RISC: robust integration of single-cell RNA-seq         sequencing data. Curr Opin Syst Biol 7: 36 – 46
+   datasets with different extents of cell cluster overlap. bioRxiv https://doi.   Newman MEJ, Girvan M (2004) Finding and evaluating community
+   org/10.1101/483297 [PREPRINT]                                                      structure in networks. Phys Rev E Stat Nonlin Soft Matter Phys 69:
+Lopez R, Regier J, Cole MB, Jordan M, Yosef N (2018) Deep generative                  026113
+   modeling fro single-cell transcriptomics. Nat Methods 15: 1053 – 1058           Ocone A, Haghverdi L, Mueller NS, Theis FJ (2015) Reconstructing gene
+Lotfollahi M, Wolf FA, Theis FJ (2018) Generative modeling and latent                 regulatory dynamics from high-dimensional single-cell snapshot data.
+   space arithmetics predict single-cell perturbation response across cell            Bioinformatics 31: i89 – i96
+   types, studies and species. bioRxiv https://doi.org/10.1101/478503              Pachter L (2011) Models for transcript quantification from RNA-Seq. arXiv
+   [PREPRINT]                                                                         https://arxiv.org/abs/1104.3889v2 [PREPRINT]
+Love MI, Huber W, Anders S (2014) Moderated estimation of fold change and          Parekh S, Ziegenhain C, Vieth B, Enard W, Hellmann I (2018) zUMIs - A fast
+   dispersion for RNA-seq data with DESeq2. Genome Biol 15: 550                       and flexible pipeline to process RNA sequencing data with UMIs.
+Lun ATL, Bach K, Marioni JC (2016a) Pooling across cells to normalize single-         Gigascience 7: giy059
+   cell RNA sequencing data with many zero counts. Genome Biol 17: 75              Park JE, Polanski K, Meyer K, Teichmann SA (2018) Fast batch alignment of
+Lun ATL, McCarthy DJ, Marioni JC (2016b) A step-by-step workflow for low-             single cell transcriptomes unifies multiple mouse cell atlases into an
+   level analysis of single-cell RNA-seq data. F1000Res 5: 2122                       integrated landscape. bioRxiv https://doi.org/10.1101/397042
+Lun ATL, Richard AC, Marioni JC (2017) Testing for differential abundance in          [PREPRINT]
+   mass cytometry data. Nat Methods 14: 707 – 709                                  Patel AP, Tirosh I, Trombetta JJ, Shalek AK, Gillespie SM, Wakimoto H, Cahill
+Lun ATL (2018) Overcoming systematic errors caused by log-transformation              DP, Nahed BV, Curry WT, Martuza RL et al (2014) Single-cell RNA-seq
+   of normalized single-cell RNA sequencing data. bioRxiv https://doi.org/10.         highlights intratumoral heterogeneity in primary glioblastoma. Science
+   1101/404962 [PREPRINT]                                                             344: 1396 – 1401
+van der Maaten L, Hinton G (2008) Visualizing data using t-SNE. J Mach             Patel MV (2018) iS-CellR: a user-friendly tool for analyzing and visualizing
+   Learn Res 9: 2579 – 2605                                                           single-cell RNA sequencing data. Bioinformatics 34: 4305 – 4306
+Macosko EZ, Basu A, Satija R, Nemesh J, Shekhar K, Goldman M, Tirosh I,            Pearson K (1901) On Lines and Planes of Closest Fit to Systems of Points in
+   Bialas AR, Kamitaki N, Martersteck EM et al (2015) Highly parallel                 Space. Philos Mag 2: 559 – 572
+
+
+
+ª 2019 The Authors                                                                                         Molecular Systems Biology 15: e8746 | 2019   21 of 23
+Molecular Systems Biology                                                                                                      Malte D Luecken & Fabian J Theis
+
+
+
+
+Plass M, Solana J, Alexander Wolf F, Ayoub S, Misios A, Glazar P, Obermayer B,    Street K, Risso D, Fletcher RB, Das D, Ngai J, Yosef N, Purdom E, Dudoit S
+   Theis FJ, Kocks C, Rajewsky N (2018) Cell type atlas and lineage tree of a         (2018) Slingshot: cell lineage and pseudotime inference for single-cell
+   whole complex animal by single-cell transcriptomics. Science 360: eaaq1723         transcriptomics. BMC Genom 19: 477
+                
+Plasschaert LW, Zilionis R, Choo-Wing R, Savova V, Knehr J, Roma G, Klein          Svensson V, Natarajan KN, Ly L-H, Miragaia RJ, Labalette C, Macaulay IC,
+   AM, Jaffe AB (2018) A single-cell atlas of the airway epithelium reveals the       Cvejic A, Teichmann SA (2017) Power analysis of single-cell RNA-
+   CFTR-rich pulmonary ionocyte. Nature 560: 377 – 381                                sequencing experiments. Nat Methods 14: 381 – 387
+Pliner HA, Shendure J, Trapnell C (2019) Supervised classification enables rapid   Tabula Muris Consortium, Overall coordination, Logistical coordination, Organ
+   annotation of cell atlases. bioRxiv https://doi.org/10.1101/538652 [PREPRINT]      collection and processing, Library preparation and sequencing,
+Qiu X, Hill A, Packer J, Lin D, Ma Y-A, Trapnell C (2017a) Single-cell mRNA           Computational data analysis, Cell type annotation, Writing group,
+   quantification and differential analysis with census. Nat Methods 14:              Supplemental text writing group & Principal investigators (2018) Single-
+   309 – 315                                                                          cell transcriptomics of 20 mouse organs creates a Tabula Muris. Nature
+Regev A, Teichmann SA, Lander ES, Amit I, Benoist C, Birney E, Bodenmiller B,         562: 367 – 372
+   Campbell PJ, Carninci P, Clatworthy M et al (2017) Science forum: the           Tanay A, Regev A (2017) Scaling single-cell genomics from phenomenology to
+   human cell atlas. Elife 6: e27041                                                  mechanism. Nature 541: 331 – 338
+Regev A, Teichmann S, Rozenblatt-Rosen O, Stubbington M, Ardlie K, Amit            Tarca AL, Bhatti G, Romero R (2013) A comparison of gene set analysis
+   I, Arlotta P, Bader G, Benoist C, Biton M et al (2018) The human cell              methods in terms of sensitivity, prioritization and specificity. PLoS One 8:
+   atlas white paper. arXiv https://arxiv.org/abs/1810.05192 [PREPRINT]               e79217
+Reichardt J, Bornholdt S (2006) Statistical mechanics of community detection.      The Gene Ontology Consortium (2017) Expansion of the gene ontology
+   Phys. Rev. E Stat. Nonlin. Soft Matter Phys 74: 016110                             knowledgebase and resources. Nucleic Acids Res 45: D331 – D338
+Risso D, Perraudeau F, Gribkova S, Dudoit S, Vert J-P (2018) A general and         Tibshirani R, Hastie T, Narasimhan B, Chu G (2002) Diagnosis of multiple
+   flexible method for signal extraction from single-cell RNA-seq data. Nat           cancer types by shrunken centroids of gene expression. Proc Natl Acad Sci
+   Commun 9: 284                                                                      USA 99: 6567 – 6572
+Ritchie ME, Phipson B, Wu D, Hu Y, Law CW, Shi W, Smyth GK (2015) limma            Trapnell C, Cacchiarelli D, Grimsby J, Pokharel P, Li S, Morse M, Lennon NJ,
+   powers differential expression analyses for RNA-sequencing and                     Livak KJ, Mikkelsen TS, Rinn JL (2014) The dynamics and regulators of cell
+   microarray studies. Nucleic Acids Res 43: e47                                      fate decisions are revealed by pseudotemporal ordering of single cells. Nat
+Robinson MD, McCarthy DJ, Smyth GK (2010) edgeR: a bioconductor package               Biotechnol 32: 381 – 386
+   for differential expression analysis of digital gene expression data.           Vallejos CA, Risso D, Scialdone A, Dudoit S, Marioni JC (2017) Normalizing
+   Bioinformatics 26: 139 – 140                                                       single-cell RNA sequencing data: challenges and opportunities. Nat
+Rostom R, Svensson V, Teichmann SA, Kar G (2017) Computational                        Methods 14: 565 – 571
+   approaches for interpreting scRNA-seq data. FEBS Lett 591: 2213 – 2225          Van den Berge K, Perraudeau F, Soneson C, Love MI, Risso D, Vert J-P,
+Rue-Albrecht K, Marini F, Soneson C, Lun ATL (2018) iSEE: interactive                 Robinson MD, Dudoit S, Clement L (2018) Observation weights unlock bulk
+   summarizedexperiment explorer. F1000Res 7: 741                                     RNA-seq tools for zero inflation and single-cell applications. Genome Biol
+Saelens W, Cannoodt R, Todorov H, Saeys Y (2018) A comparison of single-              19: 24
+   cell trajectory inference methods. Nat Biotechnol 37: 547 – 554                 Vento-Tormo R, Efremova M, Botting RA, Turco MY, Vento-Tormo M, Meyer
+Saunders A, Macosko EZ, Wysoker A, Goldman M, Krienen FM, de Rivera H,                                              ski K, Goncalves A et al (2018) Single-cell
+                                                                                      KB, Park J, Stephenson E, Polan
+   Bien E, Baum M, Bortolin L, Wang S et al (2018) Molecular diversity and            reconstruction of the early maternal-fetal interface in humans. Nature
+   specializations among the cells of the adult mouse brain. Cell 174:                563: 347 – 353
+   1015 – 1030.e16                                                                 Vieth B, Ziegenhain C, Parekh S, Enard W, Hellmann I (2017) powsimR: power
+Scholtens D, von Heydebreck A (2005) Analysis of Differential Gene Expression         analysis for bulk and single cell RNA-seq experiments. Bioinformatics 33:
+   Studies. In Statistics for Biology and Health, pp 229 – 248.                       3486 – 3488
+Scholz CJ, Biernat P, Becker M, Baßler K, Günther P, Balfer J, Dickten H, Flöer    Vieth B, Parekh S, Ziegenhain C, Enard W, Hellmann I (2019) A systematic
+   L, Heikamp K, Angerer P et al (2018) FASTGenomics: An analytical                   evaluation of single cell RNA-seq analysis pipelines: library preparation
+   ecosystem for single-cell RNA sequencing data. bioRxiv https://doi.org/10.         and normalisation methods have the biggest impact on the performance
+   1101/272476 [PREPRINT]                                                             of scRNA-seq studies. bioRxiv https://doi.org/10.1101/583013 [PREPRINT]
+Segerstolpe Å, Palasantza A, Eliasson P, Andersson E-M, Andréasson A-C, Sun        Wagner A, Regev A, Yosef N (2016) Revealing the vectors of cellular identity
+   X, Picelli S, Sabirsh A, Clausen M, Bjursell MK et al (2016) Single-cell           with single-cell genomics. Nat Biotechnol 34: 1145 – 1160
+   transcriptome profiling of human pancreatic islets in health and type 2         Wagner DE, Weinreb C, Collins ZM, Briggs JA, Megason SG, Klein AM (2018)
+   diabetes. Cell Metab 24: 593 – 607                                                 Single-cell mapping of gene expression landscapes and lineage in the
+Smallwood SA, Lee HJ, Angermueller C, Krueger F, Saadeh H, Peat J,                    zebrafish embryo. Science 360: 981 – 987
+   Andrews SR, Stegle O, Reik W, Kelsey G (2014) Single-cell genome-wide           Wang B, Zhu J, Pierson E, Ramazzotti D, Batzoglou S (2017) Visualization and
+   bisulfite sequencing for assessing epigenetic heterogeneity. Nat Methods           analysis of single-cell RNA-seq data by kernel-based similarity learning.
+   11: 817 – 820                                                                      Nat Methods 14: 414 – 416
+Soneson C, Robinson MD (2018) Bias, robustness and scalability in single-cell      Wattenberg M, Viégas F, Johnson I (2016) How to use t-SNE effectively. Distill.
+   differential expression analysis. Nat Methods 15: 255 – 261                        https://doi.org/10.23915/distill.00002
+Stoeckius M, Hafemeister C, Stephenson W, Houck-Loomis B,                          Webb S (2018) Deep learning for biology. Nature 554: 555 – 557
+   Chattopadhyay PK, Swerdlow H, Satija R, Smibert P (2017)                        Weber LM, Robinson MD (2016) Comparison of clustering methods for high-
+   Simultaneous epitope and transcriptome measurement in single cells.                dimensional single-cell flow and mass cytometry data. Cytometry A 89:
+   Nat Methods 14: 865 – 868                                                          1084 – 1096
+
+
+
+22 of 23        Molecular Systems Biology 15: e8746 | 2019                                                                                       ª 2019 The Authors
+Malte D Luecken & Fabian J Theis                                                                                                  Molecular Systems Biology
+
+
+
+
+Weber LM, Nowicka M, Soneson C & Robinson MD (2018) diffcyt: Differential         Zeisel A, Hochgerner H, Lonnerberg P, Johnsson A, Memic F, van der Zwan J,
+   discovery in high-dimensional cytometry via high-resolution clustering.           Haring M, Braun E, Borm L, La Manno G et al (2018) Molecular
+   Commun Biol 2: 183                                                                architecture of the mouse nervous system. Cell 174: 999 – 1014
+Weinreb C, Wolock S, Klein AM (2018) SPRING: a kinetic interface for              Zepp JA, Zacharias WJ, Frank DB, Cavanaugh CA, Zhou S, Morley MP,
+   visualizing high dimensional single-cell expression data. Bioinformatics 34:      Morrisey EE (2017) Distinct mesenchymal lineages and niches promote
+   1246 – 1248                                                                       epithelial self-renewal and myofibrogenesis in the lung. Cell 170:
+Welch J, Kozareva V, Ferreira A, Vanderburg C (2018) Integrative inference of        1134 – 1148.e10
+   brain cell similarities and differences from single-cell genomics. bioRxiv     Zhang JM, Kamath GM, Tse DN (2018) Towards a post-clustering test for
+   https://doi.org/10.1101/459891 [PREPRINT]                                         differential expression. bioRxiv https://doi.org/10.1101/463265 [PREPRINT]
+Wolf FA, Angerer P, Theis FJ (2018) SCANPY: large-scale single-cell gene          Zheng GXY, Terry JM, Belgrader P, Ryvkin P, Bent ZW, Wilson R, Ziraldo SB,
+   expression data analysis. Genome Biol 19: 15                                      Wheeler TD, McDermott GP, Zhu J et al (2017) Massively parallel digital
+Wolf FA, Hamey F, Plass M, Solana J, Dahlin JS, Gottgens B, Rajewsky N,              transcriptional profiling of single cells. Nat Commun 8: 14049
+   Simon L, Theis FJ (2019) Graph abstraction reconciles clustering with          Zhou JX, Taramelli R, Pedrini E, Knijnenburg T, Huang S (2017) Extracting
+   trajectory inference through a topology preserving map of single cells.           intercellular signaling network of cancer tissues using ligand-receptor
+   Genome Biol 20: 59                                                                expression patterns from whole-tumor and single-cell transcriptomes. Sci
+Wolock SL, Lopez R, Klein AM (2019) Scrublet: computational                          Rep 7: 8815
+   identification of cell doublets in single-cell transcriptomic data. Cell       Zhu X, Wolfgruber TK, Tasato A, Arisdakessian C, Garmire DG, Garmire LX
+   Syst 8: 281 – 291.                                                                (2017) Granatum: a graphical single-cell RNA-Seq analysis pipeline for
+Yip SH, Sham PC, Wang J (2018) Evaluation of tools for highly variable gene          genomics scientists. Genome Med 9: 108
+   discovery from single-cell RNA-seq data. Brief Bioinform: bby011               Ziegenhain C, Vieth B, Parekh S, Reinius B, Guillaumet-Adkins A, Smets M,
+Young MD, Behjati S (2018) SoupX removes ambient RNA contamination                   Leonhardt H, Heyn H, Hellmann I, Enard W (2017) Comparative analysis
+   from droplet based single cell RNA sequencing data. bioRxiv https://doi.          of single-cell RNA sequencing methods. Mol Cell 65: 631 – 643.e4
+   org/10.1101/303727 [PREPRINT]
+Zappia L, Phipson B, Oshlack A (2017) Splatter: simulation of single-cell RNA                             License: This is an open access article under the
+   sequencing data. Genome Biol 18: 174                                                                   terms of the Creative Commons Attribution 4.0
+Zappia L, Phipson B, Oshlack A (2018) Exploring the single-cell RNA-seq                                   License, which permits use, distribution and reproduc-
+   analysis landscape with the scRNA-tools database. PLoS Comput Biol 14:                                 tion in any medium, provided the original work is
+   e1006245                                                                                               properly cited.
+
+
+
+
+ª 2019 The Authors                                                                                       Molecular Systems Biology 15: e8746 | 2019     23 of 23
+

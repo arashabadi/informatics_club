@@ -1,0 +1,427 @@
+{
+  "page": 20,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.770361,
+      "y1": 41.169976
+    },
+    {
+      "text": "Butler A, Hoffman P, Smibert P, Papalexi E, Satija R (2018) Integrating single- Gardeux V, David FPA, Shajkofci A, Schwalie PC, Deplancke B (2017) ASAP: a",
+      "x0": 42.519699,
+      "y0": 82.509272,
+      "x1": 544.190704,
+      "y1": 89.423295
+    },
+    {
+      "text": "cell transcriptomic data across different conditions, technologies, and web-based platform for the analysis and interactive visualization of",
+      "x0": 52.440755,
+      "y0": 93.847728,
+      "x1": 530.73997,
+      "y1": 100.761752
+    },
+    {
+      "text": "species. Nat Biotechnol 36: 411 \u2013 420 single-cell RNA-seq data. Bioinformatics 33: 3123 \u2013 3125",
+      "x0": 52.440755,
+      "y0": 103.452727,
+      "x1": 488.135767,
+      "y1": 113.168675
+    },
+    {
+      "text": "Buttner M, Miao Z, Wolf A, Teichmann SA, Theis FJ (2019) A test metric for Gashaw I, Ellinghaus P, Sommer A, Asadullah K (2012) What makes a good",
+      "x0": 42.518952,
+      "y0": 116.52464,
+      "x1": 542.68289,
+      "y1": 123.438664
+    },
+    {
+      "text": "assessing single-cell RNA-seq batch correction. Nat Methods 16: 43 \u2013 49 drug target?. Drug Discov Today 17: S24 \u2013 S30",
+      "x0": 52.440009,
+      "y0": 126.129639,
+      "x1": 458.544445,
+      "y1": 135.845588
+    },
+    {
+      "text": "Chan TE, Stumpf MPH, Babtie AC (2017) Gene regulatory network inference Gehring J, Park JH, Chen S, Thomson M, Pachter L (2018) Highly Multiplexed",
+      "x0": 42.519701,
+      "y0": 139.201553,
+      "x1": 547.089014,
+      "y1": 146.115577
+    },
+    {
+      "text": "from single-cell data using multivariate information measures. Cell Syst 5: Single-Cell RNA-seq for Defining Cell Population and Transcriptional",
+      "x0": 52.440753,
+      "y0": 150.517594,
+      "x1": 531.560379,
+      "y1": 157.454033
+    },
+    {
+      "text": "251 \u2013 267.e3 Spaces. bioRxiv https://doi.org/10.1101/315333 [PREPRINT]",
+      "x0": 52.440746,
+      "y0": 160.145008,
+      "x1": 496.247158,
+      "y1": 169.858348
+    },
+    {
+      "text": "Chen S, Mar JC (2018) Evaluating methods of inferring gene regulatory Gloor GB, Macklaim JM, Pawlowsky-Glahn V, Egozcue JJ (2017) Microbiome",
+      "x0": 42.51969,
+      "y0": 173.216922,
+      "x1": 542.64704,
+      "y1": 180.130946
+    },
+    {
+      "text": "networks highlights their lack of performance for single cell gene datasets are compositional: and this is not optional. Front Microbiol 8:",
+      "x0": 52.441492,
+      "y0": 184.535572,
+      "x1": 537.586395,
+      "y1": 191.469402
+    },
+    {
+      "text": "expression data. BMC Bioinformatics 19: 232 2224",
+      "x0": 52.441492,
+      "y0": 195.871419,
+      "x1": 330.926131,
+      "y1": 202.805249
+    },
+    {
+      "text": "Chung NC, Storey JD (2015) Statistical significance of variables driving Griffiths JA, Scialdone A, Marioni JC (2018) Using single-cell genomics to",
+      "x0": 42.519689,
+      "y0": 207.232291,
+      "x1": 533.280403,
+      "y1": 214.146314
+    },
+    {
+      "text": "systematic variation in high-dimensional data. Bioinformatics 31: 545 \u2013 554 understand developmental processes and cell fate decisions. Mol Syst Biol",
+      "x0": 52.440745,
+      "y0": 216.837289,
+      "x1": 549.052622,
+      "y1": 226.550629
+    },
+    {
+      "text": "Clevers H, Rafelski S, Elowitz M, Klein AM, Shendure J, Trapnell C, Lein E, 14: e8046",
+      "x0": 42.518945,
+      "y0": 229.909203,
+      "x1": 347.098095,
+      "y1": 236.823227
+    },
+    {
+      "text": "Lundberg E, Uhl\u00e9n M, Martinez-Arias A et al (2017) What is your Gr\u00fcn D, Kester L, van Oudenaarden A (2014) Validation of noise models for",
+      "x0": 52.440001,
+      "y0": 241.225244,
+      "x1": 543.221634,
+      "y1": 248.161683
+    },
+    {
+      "text": "conceptual definition of \u2018cell type\u2019 in the context of a mature organism? single-cell transcriptomics. Nat Methods 11: 637",
+      "x0": 52.440001,
+      "y0": 250.852658,
+      "x1": 466.951748,
+      "y1": 260.565998
+    },
+    {
+      "text": "Cell Syst 4: 255 \u2013 259 Haber AL, Biton M, Rogel N, Herbst RH, Shekhar K, Smillie C, Burgin G,",
+      "x0": 52.440001,
+      "y0": 262.191114,
+      "x1": 528.585131,
+      "y1": 271.904454
+    },
+    {
+      "text": "Cohen M, Giladi A, Gorki A-D, Solodkin DG, Zada M, Hladik A, Miklosi A, Delorey TM, Howitt MR, Katz Y et al (2017) A single-cell survey of the",
+      "x0": 42.518945,
+      "y0": 275.243222,
+      "x1": 536.579957,
+      "y1": 282.177052
+    },
+    {
+      "text": "Salame T-M, Halpern KB, David E et al (2018) Lung single-cell signaling small intestinal epithelium. Nature 551: 333 \u2013 339",
+      "x0": 52.440001,
+      "y0": 284.870636,
+      "x1": 469.18806,
+      "y1": 294.583976
+    },
+    {
+      "text": "interaction map reveals basophil role in macrophage imprinting. Cell 175: Haghverdi L, Buettner F, Theis FJ (2015) Diffusion maps for high-",
+      "x0": 52.439999,
+      "y0": 297.917525,
+      "x1": 519.409014,
+      "y1": 304.853965
+    },
+    {
+      "text": "1031 \u2013 1044 dimensional single-cell analysis of differentiation data. Bioinformatics 31:",
+      "x0": 52.439251,
+      "y0": 307.54494,
+      "x1": 551.986062,
+      "y1": 317.258279
+    },
+    {
+      "text": "Coifman RR, Lafon S, Lee AB, Maggioni M, Nadler B, Warner F, Zucker SW 2989 \u2013 2998",
+      "x0": 42.518195,
+      "y0": 318.885983,
+      "x1": 351.28496,
+      "y1": 328.599322
+    },
+    {
+      "text": "(2005) Geometric diffusions as a tool for harmonic analysis and structure Haghverdi L, B\u00fcttner M, Wolf FA, Buettner F, Theis FJ (2016) Diffusion",
+      "x0": 52.439251,
+      "y0": 331.95531,
+      "x1": 526.151225,
+      "y1": 338.869311
+    },
+    {
+      "text": "definition of data: diffusion maps. Proc Natl Acad Sci USA 102: 7426 \u2013 7431 pseudotime robustly reconstructs lineage branching. Nat Methods 13:",
+      "x0": 52.439251,
+      "y0": 341.560308,
+      "x1": 535.203309,
+      "y1": 351.273648
+    },
+    {
+      "text": "Cole MB, Risso D, Wagner A, DeTomaso D, Ngai J, Purdom E, Dudoit S, Yosef 845 \u2013 848",
+      "x0": 42.517449,
+      "y0": 352.901351,
+      "x1": 345.12072,
+      "y1": 362.614691
+    },
+    {
+      "text": "N (2019) Performance assessment and selection of normalization Haghverdi L, Lun ATL, Morgan MD, Marioni JC (2018) Batch effects in single-",
+      "x0": 52.438505,
+      "y0": 365.970678,
+      "x1": 547.977098,
+      "y1": 372.88468
+    },
+    {
+      "text": "procedures for single-cell RNA-seq. Cell Syst 8: 315 \u2013 328 cell RNA-sequencing data are corrected by matching mutual nearest",
+      "x0": 52.438505,
+      "y0": 375.575677,
+      "x1": 533.455654,
+      "y1": 385.289017
+    },
+    {
+      "text": "Colom\u00e9-Tatch\u00e9 M, Theis FJ (2018) Statistical single cell multi-omics neighbors. Nat Biotechnol 36: 421 \u2013 427",
+      "x0": 42.520531,
+      "y0": 386.91672,
+      "x1": 438.463673,
+      "y1": 396.63006
+    },
+    {
+      "text": "integration. Curr Opin Syst Biol 7: 54 \u2013 59 Heimberg G, Bhatnagar R, El-Samad H, Thomson M (2016) Low",
+      "x0": 52.442334,
+      "y0": 398.255797,
+      "x1": 506.474979,
+      "y1": 407.969136
+    },
+    {
+      "text": "DePasquale EAK, Schnell DJ, Valiente I, Blaxall BC, Grimes HL, Singh H, dimensionality in gene expression data enables the accurate extraction of",
+      "x0": 42.521273,
+      "y0": 411.32709,
+      "x1": 550.239555,
+      "y1": 418.239125
+    },
+    {
+      "text": "Salomonis N (2018) DoubletDecon: Cell-State Aware Removal of Single- transcriptional programs from shallow sequencing. Cell Syst 2: 239 \u2013 250",
+      "x0": 52.442329,
+      "y0": 420.932089,
+      "x1": 543.136856,
+      "y1": 430.645429
+    },
+    {
+      "text": "Cell RNA-Seq Doublets. bioRxiv https://doi.org/10.1101/364810 [PREPRINT] Hicks SC, Townes FW, Teng M, Irizarry RA (2017) Missing data and technical",
+      "x0": 52.443076,
+      "y0": 433.982208,
+      "x1": 547.505624,
+      "y1": 440.916038
+    },
+    {
+      "text": "van Dijk D, Sharma R, Nainys J, Yim K, Kathail P, Carr AJ, Burdziak C, Moon variability in single-cell RNA-sequencing experiments. Biostatistics 19:",
+      "x0": 42.522763,
+      "y0": 445.320044,
+      "x1": 535.545508,
+      "y1": 452.254494
+    },
+    {
+      "text": "KR, Chaffer CL, Pattabiraman D et al (2018) Recovering gene interactions 562 \u2013 578",
+      "x0": 52.443819,
+      "y0": 454.947458,
+      "x1": 343.557611,
+      "y1": 464.660798
+    },
+    {
+      "text": "from single-cell data using data diffusion. Cell 174: 716 \u2013 729.e27 Hie BL, Bryson B, Berger B (2018) Panoramic stitching of heterogeneous",
+      "x0": 52.443821,
+      "y0": 466.286534,
+      "x1": 532.677084,
+      "y1": 475.999874
+    },
+    {
+      "text": "Dillies M-A, Rau A, Aubert J, Hennequet-Antier C, Jeanmougin M, Servant N, single-cell transcriptomic data. bioRxiv https://doi.org/10.1101/371179",
+      "x0": 42.522014,
+      "y0": 479.335413,
+      "x1": 534.261104,
+      "y1": 486.269863
+    },
+    {
+      "text": "Keime C, Marot G, Castel D, Estelle J et al (2013) A comprehensive [PREPRINT]",
+      "x0": 52.44307,
+      "y0": 490.674489,
+      "x1": 351.512835,
+      "y1": 497.608319
+    },
+    {
+      "text": "evaluation of normalization methods for Illumina high-throughput RNA Huang DW, Sherman BT, Lempicki RA (2009) Bioinformatics enrichment tools:",
+      "x0": 52.442322,
+      "y0": 502.03474,
+      "x1": 551.707009,
+      "y1": 508.946776
+    },
+    {
+      "text": "sequencing data analysis. Brief Bioinform 14: 671 \u2013 683 paths toward the comprehensive functional analysis of large gene lists.",
+      "x0": 52.442322,
+      "y0": 511.640359,
+      "x1": 541.584962,
+      "y1": 521.353699
+    },
+    {
+      "text": "Ding J, Condon A, Shah SP (2018) Interpretable dimensionality reduction of single Nucleic Acids Res 37: 1 \u2013 13",
+      "x0": 42.521263,
+      "y0": 522.978195,
+      "x1": 398.958016,
+      "y1": 532.691535
+    },
+    {
+      "text": "cell transcriptome data with deep generative models. Nat Commun 9: 2002 Huang M, Wang J, Torre E, Dueck H, Shaffer S, Bonasio R, Murray JI, Raj A, Li",
+      "x0": 52.442319,
+      "y0": 536.028314,
+      "x1": 548.485171,
+      "y1": 542.962144
+    },
+    {
+      "text": "Du\u00f2 A, Robinson MD, Soneson C (2018) A systematic performance M, Zhang NR (2018) SAVER: gene expression recovery for single-cell RNA",
+      "x0": 42.521263,
+      "y0": 547.388566,
+      "x1": 545.304424,
+      "y1": 554.300601
+    },
+    {
+      "text": "evaluation of clustering methods for single-cell RNA-seq data. F1000Res sequencing. Nat Methods 15: 539 \u2013 542",
+      "x0": 52.443068,
+      "y0": 556.993564,
+      "x1": 436.413402,
+      "y1": 566.706904
+    },
+    {
+      "text": "7: 1141 . Huber W, Carey VJ, Gentleman R, Anders S, Carlson M, Carvalho BS, Bravo HC,",
+      "x0": 52.443068,
+      "y0": 570.065478,
+      "x1": 552.53339,
+      "y1": 576.977513
+    },
+    {
+      "text": "Eraslan G, Simon LM, Mircea M, Mueller NS, Theis FJ (2019) Single cell RNA- Davis S, Gatto L, Girke T et al (2015) Orchestrating high-throughput",
+      "x0": 42.521265,
+      "y0": 581.381519,
+      "x1": 529.898318,
+      "y1": 588.315969
+    },
+    {
+      "text": "seq denoising using a deep count autoencoder. Nat Commun 10: 390 genomic analysis with Bioconductor. Nat Methods 12: 115 \u2013 121",
+      "x0": 52.443068,
+      "y0": 591.008933,
+      "x1": 516.563397,
+      "y1": 600.722273
+    },
+    {
+      "text": "Fabregat A, Jupe S, Matthews L, Sidiropoulos K, Gillespie M, Garapati P, Haw Ilicic T, Kim JK, Kolodziejczyk AA, Bagger FO, McCarthy DJ, Marioni JC,",
+      "x0": 42.522012,
+      "y0": 604.080847,
+      "x1": 524.717375,
+      "y1": 610.992882
+    },
+    {
+      "text": "R, Jassal B, Korninger F, May B et al (2018) The reactome pathway Teichmann SA (2016) Classification of low quality cells from single-cell",
+      "x0": 52.443068,
+      "y0": 615.397508,
+      "x1": 539.557863,
+      "y1": 622.331338
+    },
+    {
+      "text": "knowledgebase. Nucleic Acids Res 46: D649 \u2013 D655 RNA-seq data. Genome Biol 17: 29",
+      "x0": 52.443068,
+      "y0": 625.024922,
+      "x1": 422.096686,
+      "y1": 634.738262
+    },
+    {
+      "text": "Finak G, McDavid A, Yajima M, Deng J, Gersuk V, Shalek AK, Slichter CK, Miller Johnson WE, Li C, Rabinovic A (2006) Adjusting batch effects in microarray",
+      "x0": 42.522758,
+      "y0": 638.096216,
+      "x1": 541.836014,
+      "y1": 645.008251
+    },
+    {
+      "text": "HW, Juliana McElrath M, Prlic M et al (2015) MAST: a flexible statistical expression data using empirical Bayes methods. Biostatistics 8: 118 \u2013 127",
+      "x0": 52.443814,
+      "y0": 647.704792,
+      "x1": 544.90194,
+      "y1": 657.418132
+    },
+    {
+      "text": "framework for assessing transcriptional changes and characterizing Kanehisa M, Furumichi M, Tanabe M, Sato Y, Morishima K (2017) KEGG: new",
+      "x0": 52.443066,
+      "y0": 660.773749,
+      "x1": 549.256505,
+      "y1": 667.688121
+    },
+    {
+      "text": "heterogeneity in single-cell RNA sequencing data. Genome Biol 16: 278 perspectives on genomes, pathways, diseases and drugs. Nucleic Acids Res",
+      "x0": 52.443066,
+      "y0": 672.089789,
+      "x1": 548.654279,
+      "y1": 679.026577
+    },
+    {
+      "text": "Fischer DS, Theis FJ, Yosef N (2018) Impulse model-based differential expression 45: D353 \u2013 D361",
+      "x0": 42.521371,
+      "y0": 681.720161,
+      "x1": 364.002195,
+      "y1": 691.433501
+    },
+    {
+      "text": "analysis of time course sequencing data. Nucleic Acids Res 46: e119 Kang HM, Subramaniam M, Targ S, Nguyen M, Maliskova L, McCarthy E, Wan",
+      "x0": 52.443174,
+      "y0": 694.769848,
+      "x1": 552.455184,
+      "y1": 701.703678
+    },
+    {
+      "text": "Freytag S, Tian L, L\u00f6nnstedt I, Ng M, Bahlo M (2018) Comparison of E, Wong S, Byrnes L, Lanata CM et al (2018) Multiplexed droplet single-",
+      "x0": 42.522119,
+      "y0": 706.108116,
+      "x1": 543.045199,
+      "y1": 713.042134
+    },
+    {
+      "text": "clustering tools in R for medium-sized 10x Genomics single-cell RNA- cell RNA-sequencing using natural genetic variation. Nat Biotechnol 36:",
+      "x0": 52.443923,
+      "y0": 717.446572,
+      "x1": 540.419609,
+      "y1": 724.380591
+    },
+    {
+      "text": "sequencing data. F1000Res 7: 1297 89 \u2013 94",
+      "x0": 52.444671,
+      "y0": 727.073986,
+      "x1": 337.316662,
+      "y1": 736.787326
+    },
+    {
+      "text": "20 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.837172,
+      "y1": 768.492305
+    }
+  ]
+}

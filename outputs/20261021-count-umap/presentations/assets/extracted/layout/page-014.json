@@ -1,0 +1,462 @@
+{
+  "page": 14,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.770361,
+      "y1": 41.169976
+    },
+    {
+      "text": "Atlas (Regev et al, 2017), reference databases are increasingly unsupervised clustering approach. When instead determining",
+      "x0": 42.519699,
+      "y0": 81.908859,
+      "x1": 552.791869,
+      "y1": 89.78414
+    },
+    {
+      "text": "becoming available. These databases greatly facilitate cell identity cell-identity clusters via the expression of individual genes, the",
+      "x0": 42.518874,
+      "y0": 93.247174,
+      "x1": 552.738121,
+      "y1": 101.122456
+    },
+    {
+      "text": "annotation. In the absence of a relevant reference database, cell P-values can be interpreted as expected for all other genes. This",
+      "x0": 42.518874,
+      "y0": 104.58549,
+      "x1": 552.763755,
+      "y1": 112.460771
+    },
+    {
+      "text": "identities can be annotated by comparing data-derived marker genes univariate approach to cluster annotation, although common, is",
+      "x0": 42.518874,
+      "y0": 115.923806,
+      "x1": 552.764582,
+      "y1": 123.799087
+    },
+    {
+      "text": "with marker genes from the literature (see case study on project however not recommended outside specific cases (e.g. insulin in",
+      "x0": 42.518874,
+      "y0": 127.262121,
+      "x1": 552.773677,
+      "y1": 135.137403
+    },
+    {
+      "text": "github) or by directly visualizing the expression values of literature- beta cells or haemoglobin in erythrocytes). Secondly, marker",
+      "x0": 42.518874,
+      "y0": 138.600437,
+      "x1": 552.786907,
+      "y1": 146.475718
+    },
+    {
+      "text": "derived marker genes (Fig 6B). It should be noted that the latter genes differentiate a cluster from others in the dataset and are",
+      "x0": 42.518874,
+      "y0": 149.938753,
+      "x1": 552.776985,
+      "y1": 157.814034
+    },
+    {
+      "text": "method constrains the user to the classical understanding of cell thus dependent not only on the cell cluster, but also on the",
+      "x0": 42.518874,
+      "y0": 161.277069,
+      "x1": 552.738121,
+      "y1": 169.15235
+    },
+    {
+      "text": "types derived from bulk expression studies, rather than cell identi- dataset composition. If the dataset composition does not accu-",
+      "x0": 42.518874,
+      "y0": 172.615384,
+      "x1": 552.775331,
+      "y1": 180.490665
+    },
+    {
+      "text": "ties. Furthermore, it has been shown that commonly used cell rately represent background gene expression, detected marker",
+      "x0": 42.518874,
+      "y0": 183.9537,
+      "x1": 552.78608,
+      "y1": 191.828981
+    },
+    {
+      "text": "surface markers are limited in their ability to define cell identities genes will be biased towards what is missing. This aspect must",
+      "x0": 42.518874,
+      "y0": 195.292016,
+      "x1": 552.793523,
+      "y1": 203.167297
+    },
+    {
+      "text": "(Tabula Muris Consortium et al, 2018). be considered especially when computing marker genes for data-",
+      "x0": 42.518874,
+      "y0": 206.630331,
+      "x1": 552.771197,
+      "y1": 214.505612
+    },
+    {
+      "text": "There are two ways to use reference database information to sets with low cellular diversity.",
+      "x0": 53.629798,
+      "y0": 217.968647,
+      "x1": 424.286548,
+      "y1": 225.843928
+    },
+    {
+      "text": "annotate clusters: using data-derived marker genes or using full Recently, automated cluster annotation has become available.",
+      "x0": 42.51805,
+      "y0": 229.306963,
+      "x1": 552.718276,
+      "y1": 237.182244
+    },
+    {
+      "text": "gene expression profiles. Marker gene sets can be found by applying By directly comparing the gene expression profiles of annotated",
+      "x0": 42.51805,
+      "y0": 240.645278,
+      "x1": 552.721584,
+      "y1": 248.520559
+    },
+    {
+      "text": "differential expression (DE) testing between two groups: the cells in reference clusters to individual cells, tools such as scmap (Kiselev",
+      "x0": 42.51805,
+      "y0": 251.983594,
+      "x1": 552.812541,
+      "y1": 259.858875
+    },
+    {
+      "text": "one cluster and all other cells in the dataset (see \u201cDifferential et al, 2018b) or Garnett (preprint: Pliner et al, 2019) can transfer",
+      "x0": 42.51805,
+      "y0": 263.32191,
+      "x1": 552.802612,
+      "y1": 271.197191
+    },
+    {
+      "text": "expression testing\u201d). Typically, we focus on genes that are up-regu- annotations between the reference and the dataset. Thus, these",
+      "x0": 42.51805,
+      "y0": 274.660225,
+      "x1": 552.745557,
+      "y1": 282.535506
+    },
+    {
+      "text": "lated in the cluster of interest. As marker genes are expected to have methods can perform annotation and cluster assignment simultane-",
+      "x0": 42.51805,
+      "y0": 285.998541,
+      "x1": 552.776152,
+      "y1": 293.873822
+    },
+    {
+      "text": "strong differential expression effects, simple statistical tests such as ously, without the need for a data-driven clustering step. As cell",
+      "x0": 42.51805,
+      "y0": 297.336857,
+      "x1": 552.78442,
+      "y1": 305.212138
+    },
+    {
+      "text": "the Wilcoxon rank-sum test or the t-test are often used to rank genes type and state compositions differ between experimental conditions",
+      "x0": 42.51805,
+      "y0": 308.675172,
+      "x1": 552.791862,
+      "y1": 316.550453
+    },
+    {
+      "text": "by their difference in expression between these two groups. The (Segerstolpe et al, 2016; Tanay & Regev, 2017), clustering based on",
+      "x0": 42.51805,
+      "y0": 320.013488,
+      "x1": 552.767882,
+      "y1": 327.888769
+    },
+    {
+      "text": "top-ranked genes from the respective test statistic are regarded as reference data should not replace the data-driven approach.",
+      "x0": 42.51805,
+      "y0": 331.351804,
+      "x1": 521.99021,
+      "y1": 339.227085
+    },
+    {
+      "text": "marker genes. Clusters can be annotated by comparing marker The iteration of clustering, cluster annotation, re- or subcluster-",
+      "x0": 42.51805,
+      "y0": 342.690119,
+      "x1": 552.721577,
+      "y1": 350.5654
+    },
+    {
+      "text": "genes from the dataset and marker genes from reference dataset via ing and re-annotation can be time-consuming. Automated cluster",
+      "x0": 42.51805,
+      "y0": 354.028435,
+      "x1": 552.78194,
+      "y1": 361.903716
+    },
+    {
+      "text": "enrichment tests, the Jaccard index or other overlap statistics. Refer- annotation methods offer a vast speedup of this process. However,",
+      "x0": 42.51805,
+      "y0": 365.366751,
+      "x1": 552.794343,
+      "y1": 373.242032
+    },
+    {
+      "text": "ence webtools such as www.mousebrain.org (Zeisel et al, 2018) or there are benefits and limitations to automated and manual",
+      "x0": 42.51805,
+      "y0": 376.705066,
+      "x1": 552.764574,
+      "y1": 384.580348
+    },
+    {
+      "text": "http://dropviz.org/ (Saunders et al, 2018) allow users to visualize approaches that make it difficult to recommend one over the other.",
+      "x0": 42.51805,
+      "y0": 388.043382,
+      "x1": 552.741422,
+      "y1": 395.918663
+    },
+    {
+      "text": "the expression of dataset marker genes in the reference dataset to Increases in speed go together with compromises in flexibility. As",
+      "x0": 42.518051,
+      "y0": 399.381698,
+      "x1": 552.719923,
+      "y1": 407.256979
+    },
+    {
+      "text": "facilitate cell-identity annotation. mentioned above, reference atlases will not contain exactly the",
+      "x0": 42.518051,
+      "y0": 410.720013,
+      "x1": 552.739769,
+      "y1": 418.595295
+    },
+    {
+      "text": "Two aspects should be noted when detecting marker genes. same cell identities as the dataset under investigation. Thus, one",
+      "x0": 53.629799,
+      "y0": 422.058329,
+      "x1": 552.761268,
+      "y1": 429.93361
+    },
+    {
+      "text": "Firstly, the P-values obtained for marker genes are based on the should not forgo marker gene calculation for manual annotation.",
+      "x0": 42.518051,
+      "y0": 433.396645,
+      "x1": 552.772843,
+      "y1": 441.271926
+    },
+    {
+      "text": "assumption that the obtained cell clusters represent the biological Especially for large datasets that contain many clusters, the current",
+      "x0": 42.51805,
+      "y0": 444.734961,
+      "x1": 552.773671,
+      "y1": 452.610242
+    },
+    {
+      "text": "ground truth. If one considers that there is uncertainty in the best practice is a combination of both approaches. In the interest of",
+      "x0": 42.51805,
+      "y0": 456.073276,
+      "x1": 552.773671,
+      "y1": 463.948557
+    },
+    {
+      "text": "cluster assignment, the relationship between cluster assignment speed, automated cell-identity annotation can be used to coarsely",
+      "x0": 42.51805,
+      "y0": 467.411592,
+      "x1": 552.767056,
+      "y1": 475.286873
+    },
+    {
+      "text": "and marker gene detection must be accounted for in the statisti- label cells and identify where subclustering may be needed. Subse-",
+      "x0": 42.51805,
+      "y0": 478.749908,
+      "x1": 552.773671,
+      "y1": 486.625189
+    },
+    {
+      "text": "cal test. This relationship arises as both clusters and marker quently, marker genes should be calculated for the dataset clusters",
+      "x0": 42.51805,
+      "y0": 490.088223,
+      "x1": 552.796824,
+      "y1": 497.963504
+    },
+    {
+      "text": "genes are typically determined based on the same gene expres- and compared to known marker gene sets from the reference dataset",
+      "x0": 42.51805,
+      "y0": 501.426539,
+      "x1": 552.779459,
+      "y1": 509.30182
+    },
+    {
+      "text": "sion data. The null hypothesis implicit in DE tests is that genes or literature. For smaller datasets and datasets that lack reference",
+      "x0": 42.51805,
+      "y0": 512.764855,
+      "x1": 552.78442,
+      "y1": 520.640136
+    },
+    {
+      "text": "have the same distribution of expression values between the two atlases, manual annotation will suffice.",
+      "x0": 42.51805,
+      "y0": 524.10317,
+      "x1": 447.235219,
+      "y1": 531.978451
+    },
+    {
+      "text": "groups. Yet, as the two groups are defined by the output of a",
+      "x0": 42.51805,
+      "y0": 535.453043,
+      "x1": 289.124762,
+      "y1": 543.316767
+    },
+    {
+      "text": "clustering method in marker gene detection, there are differences",
+      "x0": 42.51805,
+      "y0": 546.791359,
+      "x1": 289.204143,
+      "y1": 554.655083
+    },
+    {
+      "text": "in their gene expression profiles by design. We thus find signifi-",
+      "x0": 42.51805,
+      "y0": 558.129674,
+      "x1": 289.162798,
+      "y1": 565.993398
+    },
+    {
+      "text": "Pitfalls & recommendations:",
+      "x0": 311.6409,
+      "y0": 562.210261,
+      "x1": 408.739927,
+      "y1": 569.09926
+    },
+    {
+      "text": "cant marker genes even when clustering random data generated",
+      "x0": 42.51805,
+      "y0": 569.46799,
+      "x1": 289.162799,
+      "y1": 577.331714
+    },
+    {
+      "text": "by splatter (Zappia et al, 2017) (see Appendix Supplementary \u2022 Do not use marker gene P-values to validate a cell-identity cluster,",
+      "x0": 42.51805,
+      "y0": 573.503769,
+      "x1": 538.701989,
+      "y1": 590.340719
+    },
+    {
+      "text": "especially when the detected marker genes do not help to annotate",
+      "x0": 319.067687,
+      "y0": 588.152883,
+      "x1": 538.743832,
+      "y1": 595.064298
+    },
+    {
+      "text": "Text S3). To obtain an appropriate measure of significance in",
+      "x0": 42.518051,
+      "y0": 592.144622,
+      "x1": 289.100783,
+      "y1": 600.008345
+    },
+    {
+      "text": "the community. P-values may be inflated.",
+      "x0": 319.067687,
+      "y0": 597.597985,
+      "x1": 449.088212,
+      "y1": 604.531816
+    },
+    {
+      "text": "clustered data, one can use a permutation test to account for",
+      "x0": 42.518051,
+      "y0": 603.482937,
+      "x1": 289.135514,
+      "y1": 611.346661
+    },
+    {
+      "text": "\u2022 Note that marker genes for the same cell-identity cluster may differ",
+      "x0": 311.6409,
+      "y0": 603.721176,
+      "x1": 538.768491,
+      "y1": 620.558126
+    },
+    {
+      "text": "the clustering step. This test is elaborated on in Appendix",
+      "x0": 42.518051,
+      "y0": 614.821253,
+      "x1": 289.178511,
+      "y1": 622.684977
+    },
+    {
+      "text": "between datasets purely due to dataset cell type and state compositions.",
+      "x0": 319.067688,
+      "y0": 618.427061,
+      "x1": 538.17,
+      "y1": 625.338476
+    },
+    {
+      "text": "Supplementary Text S3. A recent differential expression tool also \u2022 If relevant reference atlases exist, we recommend using automated",
+      "x0": 42.518051,
+      "y0": 624.527481,
+      "x1": 538.749064,
+      "y1": 641.364431
+    },
+    {
+      "text": "specifically addresses this issue (preprint: Zhang et al, 2018). cluster annotation combined with data-derived marker-gene-based",
+      "x0": 42.518051,
+      "y0": 637.497884,
+      "x1": 538.648942,
+      "y1": 646.144781
+    },
+    {
+      "text": "With the current set-up, the P-values are often inflated, which manual annotation to annotate clusters.",
+      "x0": 42.518051,
+      "y0": 648.700883,
+      "x1": 445.559282,
+      "y1": 656.699924
+    },
+    {
+      "text": "can lead to an overestimation of the number of marker genes.",
+      "x0": 42.518051,
+      "y0": 660.174516,
+      "x1": 289.175204,
+      "y1": 668.03824
+    },
+    {
+      "text": "However, the ranking of genes based on P-values is unaffected.",
+      "x0": 42.518051,
+      "y0": 671.512831,
+      "x1": 289.17603,
+      "y1": 679.376555
+    },
+    {
+      "text": "Assuming the clustering is biologically meaningful, the top- Compositional analysis",
+      "x0": 42.518057,
+      "y0": 681.779724,
+      "x1": 382.652998,
+      "y1": 690.714871
+    },
+    {
+      "text": "ranked marker genes will still be the best marker gene candi- At the cell level, we can analyse clustered data in terms of its compo-",
+      "x0": 42.518057,
+      "y0": 693.126308,
+      "x1": 552.725252,
+      "y1": 702.053187
+    },
+    {
+      "text": "dates. In the first instance, we can loosely verify marker genes sitional structure. Compositional data analysis revolves around the",
+      "x0": 42.518057,
+      "y0": 704.464624,
+      "x1": 552.746752,
+      "y1": 713.391502
+    },
+    {
+      "text": "via visual inspection. We emphasize that inflated P-values occur proportions of cells that fall into each cell-identity cluster. These",
+      "x0": 42.518057,
+      "y0": 715.80294,
+      "x1": 552.745925,
+      "y1": 724.729818
+    },
+    {
+      "text": "specifically when defining cell-identity clusters via an proportions can change in response to disease. For example,",
+      "x0": 42.51805,
+      "y0": 727.141255,
+      "x1": 552.827787,
+      "y1": 736.068134
+    },
+    {
+      "text": "14 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.836744,
+      "y1": 768.492305
+    }
+  ]
+}

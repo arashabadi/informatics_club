@@ -1,0 +1,462 @@
+{
+  "page": 8,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.770361,
+      "y1": 41.169976
+    },
+    {
+      "text": "recent tools (MAGIC: van Dijk et al, 2018; DCA: Eraslan et al, to keep only genes that are \u201cinformative\u201d of the variability in the",
+      "x0": 42.519699,
+      "y0": 81.920416,
+      "x1": 552.738117,
+      "y1": 89.784718
+    },
+    {
+      "text": "2019; scVI: Lopez et al, 2018; SAVER: Huang et al, 2018; scIm- data. Thus, highly variable genes (HVGs) are often used (Bren-",
+      "x0": 42.519699,
+      "y0": 93.258732,
+      "x1": 552.76375,
+      "y1": 101.123034
+    },
+    {
+      "text": "pute: Li & Li, 2018). Performing expression recovery has been necke et al, 2013). Depending on the task and the complexity of",
+      "x0": 42.519702,
+      "y0": 104.597047,
+      "x1": 552.767884,
+      "y1": 112.46135
+    },
+    {
+      "text": "shown to improve the estimation of gene\u2013gene correlations (van the dataset, typically between 1,000 and 5,000 HVGs are selected",
+      "x0": 42.519702,
+      "y0": 115.935363,
+      "x1": 552.789383,
+      "y1": 123.799665
+    },
+    {
+      "text": "Dijk et al, 2018; Eraslan et al, 2019). Furthermore, this step can be for downstream analysis (see Fig EV1 and Dataset EV1). Prelimi-",
+      "x0": 42.519702,
+      "y0": 127.273679,
+      "x1": 552.809229,
+      "y1": 135.137981
+    },
+    {
+      "text": "integrated with normalization, batch correction and other down- nary results from Klein et al (2015) suggest that downstream anal-",
+      "x0": 42.518874,
+      "y0": 138.611994,
+      "x1": 552.738944,
+      "y1": 146.476297
+    },
+    {
+      "text": "stream analysis as implemented in the scVI tool (Lopez et al, 2018). ysis is robust to the exact choice of the number of HVGs. While",
+      "x0": 42.518874,
+      "y0": 149.95031,
+      "x1": 552.755482,
+      "y1": 157.814612
+    },
+    {
+      "text": "While most data correction methods take normalized data as input, varying the number of HVGs between 200 and 2,400, the authors",
+      "x0": 42.518874,
+      "y0": 161.288626,
+      "x1": 552.761271,
+      "y1": 169.152928
+    },
+    {
+      "text": "some expression recovery methods are based on expected negative reported similar low-dimensional representations in the PCA space.",
+      "x0": 42.518874,
+      "y0": 172.626941,
+      "x1": 552.799308,
+      "y1": 180.491244
+    },
+    {
+      "text": "binomial noise distributions and therefore run on raw count data. Based on this result, we prefer to err on the side of higher",
+      "x0": 42.518874,
+      "y0": 183.965257,
+      "x1": 552.771193,
+      "y1": 191.829559
+    },
+    {
+      "text": "When applying expression recovery, one should take into considera- numbers of HVGs.",
+      "x0": 42.518874,
+      "y0": 195.303573,
+      "x1": 373.648627,
+      "y1": 203.167875
+    },
+    {
+      "text": "tion that no method is perfect. Thus, any method may over- or A simple, yet popular, method of selecting HVGs is implemented",
+      "x0": 42.518874,
+      "y0": 206.641888,
+      "x1": 552.744733,
+      "y1": 214.506191
+    },
+    {
+      "text": "under-correct noise in the data. Indeed, false correlation signals have in both Scanpy and Seurat. Here, genes are binned by their mean",
+      "x0": 42.518874,
+      "y0": 217.980204,
+      "x1": 552.796826,
+      "y1": 225.844506
+    },
+    {
+      "text": "been reported as a result of expression recovery (Andrews & expression, and the genes with the highest variance-to-mean ratio",
+      "x0": 42.518874,
+      "y0": 229.31852,
+      "x1": 552.751348,
+      "y1": 237.182822
+    },
+    {
+      "text": "Hemberg, 2018). Given the difficulty of assessing successful expres- are selected as HVGs in each bin. There exist different flavours of",
+      "x0": 42.518874,
+      "y0": 240.656835,
+      "x1": 552.718273,
+      "y1": 248.521138
+    },
+    {
+      "text": "sion recovery in a practical application, this scenario represents a this algorithm that expect either count data (Seurat) or log-trans-",
+      "x0": 42.518874,
+      "y0": 251.995151,
+      "x1": 552.790211,
+      "y1": 259.859453
+    },
+    {
+      "text": "challenge to the user pondering whether or not to denoise their data. formed data (Cell Ranger). Optimally, HVGs should be selected after",
+      "x0": 42.518874,
+      "y0": 263.333467,
+      "x1": 552.780289,
+      "y1": 271.197769
+    },
+    {
+      "text": "Furthermore, scalability to large datasets is still an issue for technical data correction to avoid selecting genes that are highly",
+      "x0": 42.518874,
+      "y0": 274.671782,
+      "x1": 552.78525,
+      "y1": 282.536085
+    },
+    {
+      "text": "currently available expression recovery methods. There is currently variable only due to, e.g., batch effects. Other methods for HVG",
+      "x0": 42.518874,
+      "y0": 286.010098,
+      "x1": 552.754656,
+      "y1": 293.8744
+    },
+    {
+      "text": "no consensus on how denoised data should be used in the light of selection are reviewed in Yip et al (2018).",
+      "x0": 42.518874,
+      "y0": 297.348414,
+      "x1": 456.804819,
+      "y1": 305.212716
+    },
+    {
+      "text": "these considerations (see \u201cStages of processed data\u201d section). A",
+      "x0": 42.518874,
+      "y0": 308.68673,
+      "x1": 289.14047,
+      "y1": 316.550453
+    },
+    {
+      "text": "prudent approach would be to use expression recovery only for Dimensionality reduction",
+      "x0": 42.518874,
+      "y0": 320.017355,
+      "x1": 389.788692,
+      "y1": 327.888769
+    },
+    {
+      "text": "visual display of data rather than to generate hypotheses during After feature selection, the dimensions of single-cell expression",
+      "x0": 42.518874,
+      "y0": 331.363361,
+      "x1": 552.789383,
+      "y1": 339.227663
+    },
+    {
+      "text": "exploratory data analysis. Thorough experimental validation is matrices can be further reduced by dedicated dimensionality reduc-",
+      "x0": 42.518874,
+      "y0": 342.701677,
+      "x1": 552.796825,
+      "y1": 350.565979
+    },
+    {
+      "text": "particularly important here. tion algorithms. These algorithms embed the expression matrix into",
+      "x0": 42.518874,
+      "y0": 354.039992,
+      "x1": 552.741423,
+      "y1": 361.904294
+    },
+    {
+      "text": "a low-dimensional space, which is designed to capture the underly-",
+      "x0": 306.1405,
+      "y0": 365.378886,
+      "x1": 552.765403,
+      "y1": 373.24261
+    },
+    {
+      "text": "ing structure in the data in as few dimensions as possible. This",
+      "x0": 306.1405,
+      "y0": 376.717202,
+      "x1": 552.76623,
+      "y1": 384.580926
+    },
+    {
+      "text": "Pitfalls & recommendations: approach works as single-cell RNA-seq data are inherently low-",
+      "x0": 48.018902,
+      "y0": 385.895365,
+      "x1": 552.738117,
+      "y1": 395.919242
+    },
+    {
+      "text": "\u2022 Regress out biological covariates only for trajectory inference and if dimensional (Heimberg et al, 2016). In other words, the biological",
+      "x0": 48.018902,
+      "y0": 397.188873,
+      "x1": 552.804265,
+      "y1": 414.025823
+    },
+    {
+      "text": "other biological processes of interest are not masked by the regressed manifold on which cellular expression profiles lie can be sufficiently",
+      "x0": 55.445702,
+      "y0": 410.732149,
+      "x1": 552.814192,
+      "y1": 418.749387
+    },
+    {
+      "text": "out biological covariate. described by far fewer dimensions than the number of genes.",
+      "x0": 55.445702,
+      "y0": 421.30549,
+      "x1": 552.797654,
+      "y1": 429.934189
+    },
+    {
+      "text": "\u2022 Regress out technical and biological covariates jointly rather than Dimensionality reduction aims to find these dimensions.",
+      "x0": 48.018902,
+      "y0": 427.406189,
+      "x1": 509.306547,
+      "y1": 444.243139
+    },
+    {
+      "text": "serially.",
+      "x0": 55.445702,
+      "y0": 442.112074,
+      "x1": 78.615753,
+      "y1": 449.023489
+    },
+    {
+      "text": "There are two main objectives of dimensionality reduction meth-",
+      "x0": 317.251422,
+      "y0": 444.747096,
+      "x1": 552.743079,
+      "y1": 452.61082
+    },
+    {
+      "text": "\u2022 Plate-based dataset pre-processing may require regressing out counts,",
+      "x0": 48.018902,
+      "y0": 448.212463,
+      "x1": 275.171161,
+      "y1": 465.049413
+    },
+    {
+      "text": "ods: visualization and summarization. Visualization is the attempt",
+      "x0": 306.139674,
+      "y0": 456.085412,
+      "x1": 552.7745,
+      "y1": 463.949136
+    },
+    {
+      "text": "normalization via non-linear normalization methods or downsam-",
+      "x0": 55.445702,
+      "y0": 462.918379,
+      "x1": 275.145758,
+      "y1": 469.829793
+    },
+    {
+      "text": "to optimally describe the dataset in two or three dimensions. These",
+      "x0": 306.140501,
+      "y0": 467.423727,
+      "x1": 552.752175,
+      "y1": 475.287451
+    },
+    {
+      "text": "pling.",
+      "x0": 55.445702,
+      "y0": 472.385896,
+      "x1": 72.406687,
+      "y1": 479.297311
+    },
+    {
+      "text": "\u2022 We recommend performing batch correction via ComBat when cell",
+      "x0": 48.018902,
+      "y0": 478.486481,
+      "x1": 275.143516,
+      "y1": 495.323431
+    },
+    {
+      "text": "reduced dimensions are used as coordinates on a scatter plot to",
+      "x0": 306.140501,
+      "y0": 478.762043,
+      "x1": 552.7745,
+      "y1": 486.625767
+    },
+    {
+      "text": "type and state compositions between batches are consistent obtain a visual representation of the data. Summarization does not",
+      "x0": 55.445702,
+      "y0": 490.100359,
+      "x1": 552.742252,
+      "y1": 500.10378
+    },
+    {
+      "text": "\u2022 Data integration and batch correction should be performed by dif- prescribe the number of output components. Instead, higher compo-",
+      "x0": 48.018902,
+      "y0": 499.292786,
+      "x1": 552.762924,
+      "y1": 516.129736
+    },
+    {
+      "text": "ferent methods. Data integration tools may over-correct simple batch nents become less important for describing the variability present in",
+      "x0": 55.445702,
+      "y0": 512.77699,
+      "x1": 552.719099,
+      "y1": 520.910177
+    },
+    {
+      "text": "effects. the data. Summarization techniques can be used to reduce the data",
+      "x0": 55.445702,
+      "y0": 523.466279,
+      "x1": 552.744732,
+      "y1": 531.97903
+    },
+    {
+      "text": "\u2022 Users should be cautious of signals found only after expression recov- to its essential components by finding the inherent dimensionality",
+      "x0": 48.018902,
+      "y0": 529.566773,
+      "x1": 552.742252,
+      "y1": 546.403723
+    },
+    {
+      "text": "ery. Exploratory analysis may be best performed without this step. of the data, and are thus helpful for downstream analysis. While a",
+      "x0": 55.445702,
+      "y0": 544.272672,
+      "x1": 552.748867,
+      "y1": 554.655661
+    },
+    {
+      "text": "2-dimensional visualization output should not be used to summa-",
+      "x0": 306.140501,
+      "y0": 558.130253,
+      "x1": 552.765405,
+      "y1": 565.993977
+    },
+    {
+      "text": "rize a dataset, a summarization method can be used to visualize the",
+      "x0": 306.140501,
+      "y0": 569.468568,
+      "x1": 552.740598,
+      "y1": 577.332292
+    },
+    {
+      "text": "Feature selection, dimensionality reduction and visualization data using the leading reduced components. However, a dedicated",
+      "x0": 42.519699,
+      "y0": 580.806884,
+      "x1": 552.836517,
+      "y1": 588.670608
+    },
+    {
+      "text": "A human single-cell RNA-seq dataset can contain expression values visualization technique will typically provide a better representation",
+      "x0": 42.519699,
+      "y0": 592.1452,
+      "x1": 552.834037,
+      "y1": 600.190037
+    },
+    {
+      "text": "for up to 25,000 genes. Many of these genes will not be informative of the variability.",
+      "x0": 42.519699,
+      "y0": 603.483516,
+      "x1": 367.980297,
+      "y1": 611.528352
+    },
+    {
+      "text": "for a given scRNA-seq dataset, and many genes will mostly contain Reduced dimensions are generated through linear or non-linear",
+      "x0": 42.519699,
+      "y0": 614.821831,
+      "x1": 552.730675,
+      "y1": 622.866668
+    },
+    {
+      "text": "zero counts. Even after filtering out these zero count genes in the QC combinations of feature space dimensions (gene expression vectors).",
+      "x0": 42.519699,
+      "y0": 626.160147,
+      "x1": 552.783597,
+      "y1": 634.204984
+    },
+    {
+      "text": "step, the feature space for a single-cell dataset can have over 15,000 Especially in the non-linear case, the interpretability of the reduced",
+      "x0": 42.519699,
+      "y0": 637.498463,
+      "x1": 552.790212,
+      "y1": 645.543299
+    },
+    {
+      "text": "dimensions. To ease the computational burden on downstream anal- dimensions is sacrificed in this process. An example application of",
+      "x0": 42.519699,
+      "y0": 648.836778,
+      "x1": 552.717446,
+      "y1": 656.881615
+    },
+    {
+      "text": "ysis tools, reduce the noise in the data, and to visualize the data, one some commonly used dimensionality reduction methods is shown in",
+      "x0": 42.519699,
+      "y0": 660.175094,
+      "x1": 552.775328,
+      "y1": 668.219931
+    },
+    {
+      "text": "can use several approaches to reduce the dimensionality of the Fig 4. With a growing list of methods to choose from, it is out of the",
+      "x0": 42.519699,
+      "y0": 671.51341,
+      "x1": 552.739771,
+      "y1": 679.558246
+    },
+    {
+      "text": "dataset. scope of this tutorial to review these methods in detail. Rather, we",
+      "x0": 42.519699,
+      "y0": 682.851725,
+      "x1": 552.763751,
+      "y1": 690.896562
+    },
+    {
+      "text": "briefly outline the practical considerations that may aid users in",
+      "x0": 306.140501,
+      "y0": 694.190041,
+      "x1": 552.718272,
+      "y1": 702.053765
+    },
+    {
+      "text": "Feature selection choosing between common dimensionality reduction methods. A",
+      "x0": 42.519699,
+      "y0": 705.418404,
+      "x1": 552.762924,
+      "y1": 713.392081
+    },
+    {
+      "text": "The first step of reducing the dimensionality of scRNA-seq datasets more detailed review of dimensionality reduction for single-cell anal-",
+      "x0": 42.519699,
+      "y0": 716.764989,
+      "x1": 552.794346,
+      "y1": 724.730396
+    },
+    {
+      "text": "commonly is feature selection. In this step, the dataset is filtered ysis can be found in Moon et al (2018).",
+      "x0": 42.519699,
+      "y0": 728.103305,
+      "x1": 446.46208,
+      "y1": 736.068712
+    },
+    {
+      "text": "8 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.836152,
+      "y1": 768.492305
+    }
+  ]
+}

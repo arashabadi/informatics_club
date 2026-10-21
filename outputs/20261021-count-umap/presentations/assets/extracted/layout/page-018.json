@@ -1,0 +1,448 @@
+{
+  "page": 18,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.770361,
+      "y1": 41.169976
+    },
+    {
+      "text": "obtained from the recent CellPhoneDB (Vento-Tormo et al, 2018) cells. It leverages the increasing number of tools written in Python,",
+      "x0": 42.519699,
+      "y0": 81.919141,
+      "x1": 552.79931,
+      "y1": 89.78414
+    },
+    {
+      "text": "and used to interpret the highly expressed genes across clusters which is particularly popular for machine learning applications.",
+      "x0": 42.519699,
+      "y0": 93.257457,
+      "x1": 530.836285,
+      "y1": 101.122456
+    },
+    {
+      "text": "using statistical models (Zepp et al, 2017; Zhou et al, 2017; Cohen Graphical user interface platforms enable non-expert users to",
+      "x0": 42.519699,
+      "y0": 104.595772,
+      "x1": 552.716621,
+      "y1": 112.460771
+    },
+    {
+      "text": "et al, 2018; Vento-Tormo et al, 2018). build single-cell analysis workflows. Users are often guided",
+      "x0": 42.518876,
+      "y0": 115.934088,
+      "x1": 552.763754,
+      "y1": 123.799087
+    },
+    {
+      "text": "through prescribed workflows that facilitate the analysis, but also",
+      "x0": 306.139677,
+      "y0": 127.272404,
+      "x1": 552.754658,
+      "y1": 135.136128
+    },
+    {
+      "text": "Gene regulatory networks limit user flexibility. These platforms are especially useful for",
+      "x0": 42.518047,
+      "y0": 138.604552,
+      "x1": 552.756312,
+      "y1": 146.474443
+    },
+    {
+      "text": "Genes do not function independently. Instead, the expression level exploratory analysis. Platforms such as Granatum (Zhu et al,",
+      "x0": 42.518047,
+      "y0": 149.949035,
+      "x1": 552.721575,
+      "y1": 157.814861
+    },
+    {
+      "text": "of a gene is determined by a complex interplay of regulatory interac- 2017) and ASAP (Gardeux et al, 2017) differ in the tools they",
+      "x0": 42.518047,
+      "y0": 161.287351,
+      "x1": 552.732325,
+      "y1": 169.153176
+    },
+    {
+      "text": "tions with other genes and small molecules. Uncovering these regu- integrate, with Granatum including the larger variety of methods.",
+      "x0": 42.518047,
+      "y0": 172.625666,
+      "x1": 552.781111,
+      "y1": 180.491492
+    },
+    {
+      "text": "latory interactions is the goal of gene regulatory network (GRN) As Web servers, these two platforms are readily available, yet",
+      "x0": 42.518047,
+      "y0": 183.963982,
+      "x1": 552.761266,
+      "y1": 191.829808
+    },
+    {
+      "text": "inference methods. computational infrastructure will limit their ability to scale to",
+      "x0": 42.518047,
+      "y0": 195.302298,
+      "x1": 552.716614,
+      "y1": 203.168124
+    },
+    {
+      "text": "Gene regulatory network inference is performed based on large datasets. For example, ASAP was tested on a dataset of",
+      "x0": 53.629795,
+      "y0": 206.640613,
+      "x1": 552.772842,
+      "y1": 214.506439
+    },
+    {
+      "text": "measurements of gene co-expression such as correlation, mutual only 92 cells. Alternatives to the Web-based GUI platforms are",
+      "x0": 42.518047,
+      "y0": 217.978929,
+      "x1": 552.77863,
+      "y1": 225.844755
+    },
+    {
+      "text": "information, or via regression models (Chen & Mar, 2018). If two packages such as FASTGenomics (preprint: Scholz et al, 2018),",
+      "x0": 42.518047,
+      "y0": 229.317245,
+      "x1": 552.750516,
+      "y1": 237.183071
+    },
+    {
+      "text": "genes show a co-expression signal even when all other genes are iSEE (Rue-Albrecht et al, 2018), IS-CellR (Patel, 2018), and",
+      "x0": 42.518047,
+      "y0": 240.65556,
+      "x1": 552.7439,
+      "y1": 248.521386
+    },
+    {
+      "text": "taken into account as potential confounders, these genes are said to Granatum run on a local server. These are platforms and GUI",
+      "x0": 42.518047,
+      "y0": 251.993876,
+      "x1": 552.7439,
+      "y1": 259.859702
+    },
+    {
+      "text": "have a causal regulatory relationship. Inferring gene regulatory rela- wrappers that can scale with the locally available computational",
+      "x0": 42.518047,
+      "y0": 263.332192,
+      "x1": 552.743899,
+      "y1": 271.198018
+    },
+    {
+      "text": "tionships is related to the detection of trajectory-associated regula- power. In future, the ongoing development of the Human Cell",
+      "x0": 42.518047,
+      "y0": 274.670507,
+      "x1": 552.749688,
+      "y1": 282.536333
+    },
+    {
+      "text": "tory genes. Indeed, several single-cell GRN inference methods use Atlas portals (https://www.humancellatlas.org/data-sharing)",
+      "x0": 42.518047,
+      "y0": 286.008823,
+      "x1": 552.781935,
+      "y1": 293.874649
+    },
+    {
+      "text": "trajectories with mechanistic differential equation models (Ocone will lead to more powerful visual data exploration tools that",
+      "x0": 42.518047,
+      "y0": 297.347139,
+      "x1": 552.662037,
+      "y1": 305.212965
+    },
+    {
+      "text": "et al, 2015; Matsumoto et al, 2017). scale to large cell numbers.",
+      "x0": 42.518047,
+      "y0": 308.685454,
+      "x1": 413.038354,
+      "y1": 316.55128
+    },
+    {
+      "text": "While there exist GRN inference methods that were specifically",
+      "x0": 53.628969,
+      "y0": 320.025872,
+      "x1": 289.212411,
+      "y1": 327.889596
+    },
+    {
+      "text": "developed for scRNA-seq data (SCONE: Matsumoto et al, 2017;",
+      "x0": 42.517222,
+      "y0": 331.364188,
+      "x1": 289.096646,
+      "y1": 339.227912
+    },
+    {
+      "text": "PIDC: Chan et al, 2017; SCENIC: Aibar et al, 2017), a recent Conclusions and outlook",
+      "x0": 42.517222,
+      "y0": 341.544545,
+      "x1": 408.694416,
+      "y1": 350.566227
+    },
+    {
+      "text": "comparison has shown both bulk and single-cell methods to",
+      "x0": 42.516391,
+      "y0": 354.040819,
+      "x1": 289.094162,
+      "y1": 361.904543
+    },
+    {
+      "text": "perform poorly on these data (Chen & Mar, 2018). GRN inference We have reviewed the steps of a typical scRNA-seq analysis work-",
+      "x0": 42.516391,
+      "y0": 365.044684,
+      "x1": 552.774039,
+      "y1": 373.242859
+    },
+    {
+      "text": "methods may still offer valuable insights to identify causal regula- flow and implemented these in a case study tutorial (https://www.",
+      "x0": 42.516391,
+      "y0": 376.382999,
+      "x1": 552.731868,
+      "y1": 384.581174
+    },
+    {
+      "text": "tors of biological processes, yet we recommend that these methods github.com/theislab/single-cell-tutorial). The tutorial was designed",
+      "x0": 42.516391,
+      "y0": 387.721315,
+      "x1": 552.760809,
+      "y1": 395.91949
+    },
+    {
+      "text": "be used with care. to follow current best practices as determined by available method",
+      "x0": 42.516391,
+      "y0": 399.059631,
+      "x1": 552.796365,
+      "y1": 407.257806
+    },
+    {
+      "text": "comparisons. While aggregating individual best-practice tools does",
+      "x0": 306.141693,
+      "y0": 410.397946,
+      "x1": 552.784789,
+      "y1": 418.26167
+    },
+    {
+      "text": "not guarantee an optimal pipeline, we hope that our workflow repre-",
+      "x0": 306.141693,
+      "y0": 421.736262,
+      "x1": 552.760808,
+      "y1": 429.599986
+    },
+    {
+      "text": "sents a current snapshot of the state of the art in the single-cell analy-",
+      "x0": 306.141693,
+      "y0": 433.074578,
+      "x1": 552.788096,
+      "y1": 440.938301
+    },
+    {
+      "text": "Pitfalls & recommendations:",
+      "x0": 48.018902,
+      "y0": 438.619761,
+      "x1": 145.117929,
+      "y1": 445.50876
+    },
+    {
+      "text": "sis field. It thus provides a suitable entry point into this field for",
+      "x0": 306.141693,
+      "y0": 444.412893,
+      "x1": 552.758328,
+      "y1": 452.276617
+    },
+    {
+      "text": "\u2022 Users should be wary of uncertainty in the inferred regulatory rela- newcomers and contributes to the efforts of the Human Cell Atlas to",
+      "x0": 48.018902,
+      "y0": 449.913269,
+      "x1": 552.776519,
+      "y1": 466.750219
+    },
+    {
+      "text": "tionships. Modules of genes that are enriched for regulatory relation- et al,",
+      "x0": 55.445702,
+      "y0": 464.562368,
+      "x1": 552.723591,
+      "y1": 474.688644
+    },
+    {
+      "text": "establish best practices in scRNA-seq analysis (preprint: Regev",
+      "x0": 306.141693,
+      "y0": 467.089525,
+      "x1": 531.87274,
+      "y1": 474.953249
+    },
+    {
+      "text": "ships will be more reliable than individual edges.",
+      "x0": 55.445702,
+      "y0": 474.029886,
+      "x1": 208.176015,
+      "y1": 480.9413
+    },
+    {
+      "text": "2018). It should be noted that available method comparisons neces-",
+      "x0": 306.142513,
+      "y0": 478.42784,
+      "x1": 552.795531,
+      "y1": 486.291564
+    },
+    {
+      "text": "sarily lag behind the latest method developments. Thus, we have",
+      "x0": 306.142513,
+      "y0": 489.766156,
+      "x1": 552.760801,
+      "y1": 497.62988
+    },
+    {
+      "text": "mentioned new developments that have not yet been independently",
+      "x0": 306.142513,
+      "y0": 501.104472,
+      "x1": 552.79553,
+      "y1": 508.968196
+    },
+    {
+      "text": "Analysis platforms evaluated where possible. With the future development of new and",
+      "x0": 42.519699,
+      "y0": 511.22646,
+      "x1": 552.745917,
+      "y1": 520.306511
+    },
+    {
+      "text": "better tools, and further comparative studies, the individual tool",
+      "x0": 306.142513,
+      "y0": 523.781103,
+      "x1": 552.77155,
+      "y1": 531.644827
+    },
+    {
+      "text": "Single-cell analysis workflows are collations of independently devel- recommendations presented here will require updates, yet the",
+      "x0": 42.519699,
+      "y0": 534.726599,
+      "x1": 552.741783,
+      "y1": 542.983143
+    },
+    {
+      "text": "oped tools. To facilitate the movement of data between these tools, general considerations regarding the stages of data processing should",
+      "x0": 42.519699,
+      "y0": 546.064914,
+      "x1": 552.784781,
+      "y1": 554.321458
+    },
+    {
+      "text": "single-cell platforms have been developed around consistent data remain the same.",
+      "x0": 42.519699,
+      "y0": 557.40323,
+      "x1": 367.884735,
+      "y1": 565.659774
+    },
+    {
+      "text": "formats. These platforms provide a basis for the construction of Two avenues of development that are of particular interest due",
+      "x0": 42.519699,
+      "y0": 568.741546,
+      "x1": 552.742609,
+      "y1": 576.99809
+    },
+    {
+      "text": "analysis pipelines. Currently available platforms exist on the to their potential for disruption to analysis pipelines are deep learn-",
+      "x0": 42.519699,
+      "y0": 580.079862,
+      "x1": 552.775685,
+      "y1": 588.336405
+    },
+    {
+      "text": "command line in R (McCarthy et al, 2017; Butler et al, 2018) or ing workflows and single-cell omic integration. Due to its flexibility",
+      "x0": 42.519699,
+      "y0": 591.418177,
+      "x1": 552.754186,
+      "y1": 599.674721
+    },
+    {
+      "text": "Python (Wolf et al, 2018), and as local applications (Patel, 2018; to scale to large data, deep learning has revolutionized fields from",
+      "x0": 42.519699,
+      "y0": 602.756493,
+      "x1": 552.792223,
+      "y1": 611.013037
+    },
+    {
+      "text": "preprint: Scholz et al, 2018) or Web servers (Gardeux et al, 2017; computer vision to natural language processing, and is starting to",
+      "x0": 42.519699,
+      "y0": 614.094809,
+      "x1": 552.719457,
+      "y1": 622.351352
+    },
+    {
+      "text": "Zhu et al, 2017) with graphical user interfaces (GUIs). An overview have a strong impact in genomics (Webb, 2018). First applications",
+      "x0": 42.518876,
+      "y0": 625.433124,
+      "x1": 552.798838,
+      "y1": 633.689668
+    },
+    {
+      "text": "of platforms is available in Zhu et al (2017) and Zappia et al (2018). to scRNA-seq are starting to emerge from dimensionality reduction",
+      "x0": 42.518877,
+      "y0": 636.77144,
+      "x1": 552.721111,
+      "y1": 645.027984
+    },
+    {
+      "text": "Among command line platforms, Scater (McCarthy et al, 2017) to denoising (e.g. scVis: Ding et al, 2018; scGen: preprint: Lotfollahi",
+      "x0": 53.630624,
+      "y0": 648.109756,
+      "x1": 552.791393,
+      "y1": 656.366299
+    },
+    {
+      "text": "and Seurat (Butler et al, 2018) easily interface with the large variety et al, 2018; DCA: Eraslan et al, 2019). Recently, deep learning has",
+      "x0": 42.518878,
+      "y0": 659.448071,
+      "x1": 552.732684,
+      "y1": 667.704615
+    },
+    {
+      "text": "of analysis tools available via the R Bioconductor project (Huber been used to produce an embedded workflow that can fit the data,",
+      "x0": 42.518877,
+      "y0": 670.786387,
+      "x1": 552.769893,
+      "y1": 679.042931
+    },
+    {
+      "text": "et al, 2015). Scater has a particular strength in QC and pre-proces- denoise it and perform downstream analysis such as clustering and",
+      "x0": 42.518877,
+      "y0": 682.124703,
+      "x1": 552.745087,
+      "y1": 690.381246
+    },
+    {
+      "text": "sing, while Seurat is arguably the most popular and comprehensive differential expression within the framework of the model (scVI:",
+      "x0": 42.518877,
+      "y0": 693.463018,
+      "x1": 552.770721,
+      "y1": 701.719562
+    },
+    {
+      "text": "platform, which includes a large array of tools and tutorials. A recent Lopez et al, 2018). In this set-up, it is possible to include noise and",
+      "x0": 42.518877,
+      "y0": 704.801334,
+      "x1": 552.74426,
+      "y1": 713.057878
+    },
+    {
+      "text": "addition to this group is scanpy (Wolf et al, 2018), a growing Python- batch effect estimates into downstream statistical tests while",
+      "x0": 42.518877,
+      "y0": 716.13965,
+      "x1": 552.787259,
+      "y1": 724.396193
+    },
+    {
+      "text": "based platform, which exhibits improved scaling to larger numbers of preserving accurate estimates of variation in the data. Integrated",
+      "x0": 42.518876,
+      "y0": 727.477965,
+      "x1": 552.793873,
+      "y1": 735.734509
+    },
+    {
+      "text": "18 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.836042,
+      "y1": 768.492305
+    }
+  ]
+}

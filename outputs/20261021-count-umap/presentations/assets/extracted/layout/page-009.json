@@ -1,0 +1,399 @@
+{
+  "page": 9,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Malte D Luecken & Fabian J Theis Molecular Systems Biology",
+      "x0": 42.519692,
+      "y0": 31.602909,
+      "x1": 552.762082,
+      "y1": 41.170026
+    },
+    {
+      "text": "35,000",
+      "x0": 513.691772,
+      "y0": 94.499785,
+      "x1": 532.147719,
+      "y1": 100.088473
+    },
+    {
+      "text": "A B C",
+      "x0": 45.422713,
+      "y0": 99.610181,
+      "x1": 359.085573,
+      "y1": 108.860089
+    },
+    {
+      "text": "30,000",
+      "x0": 513.691772,
+      "y0": 114.897856,
+      "x1": 532.147719,
+      "y1": 120.486544
+    },
+    {
+      "text": "25,000",
+      "x0": 513.691772,
+      "y0": 135.295989,
+      "x1": 532.147719,
+      "y1": 140.884676
+    },
+    {
+      "text": "depth",
+      "x0": 540.519125,
+      "y0": 140.424232,
+      "x1": 547.018153,
+      "y1": 160.005809
+    },
+    {
+      "text": "20,000",
+      "x0": 513.691772,
+      "y0": 155.69406,
+      "x1": 532.147719,
+      "y1": 161.282748
+    },
+    {
+      "text": "Count",
+      "x0": 540.519125,
+      "y0": 162.104087,
+      "x1": 547.018153,
+      "y1": 182.734803
+    },
+    {
+      "text": "tSNE2 15,000",
+      "x0": 195.584815,
+      "y0": 170.250734,
+      "x1": 531.845954,
+      "y1": 191.275757
+    },
+    {
+      "text": "PC2 DC2",
+      "x0": 47.676657,
+      "y0": 176.7857,
+      "x1": 362.854152,
+      "y1": 191.27649
+    },
+    {
+      "text": "10,000",
+      "x0": 513.691772,
+      "y0": 196.778166,
+      "x1": 531.845954,
+      "y1": 202.366854
+    },
+    {
+      "text": "5,000",
+      "x0": 513.691772,
+      "y0": 216.889006,
+      "x1": 528.792093,
+      "y1": 222.477694
+    },
+    {
+      "text": "PC1 tSNE1 DC1",
+      "x0": 82.989693,
+      "y0": 223.713889,
+      "x1": 408.48607,
+      "y1": 230.212917
+    },
+    {
+      "text": "F 0.10 PC1",
+      "x0": 338.787795,
+      "y0": 243.71279,
+      "x1": 381.521611,
+      "y1": 255.672589
+    },
+    {
+      "text": "D E",
+      "x0": 45.354712,
+      "y0": 253.358656,
+      "x1": 197.595195,
+      "y1": 262.608563
+    },
+    {
+      "text": "0.08",
+      "x0": 356.757571,
+      "y0": 272.329208,
+      "x1": 368.502265,
+      "y1": 277.917895
+    },
+    {
+      "text": "EMBO",
+      "x0": 548.257955,
+      "y0": 276.988897,
+      "x1": 552.728868,
+      "y1": 291.700422
+    },
+    {
+      "text": "ratio \u00a9",
+      "x0": 348.041131,
+      "y0": 288.834896,
+      "x1": 552.728868,
+      "y1": 304.494525
+    },
+    {
+      "text": "0.06",
+      "x0": 357.059329,
+      "y0": 298.329299,
+      "x1": 368.502257,
+      "y1": 303.917987
+    },
+    {
+      "text": "Variance",
+      "x0": 348.041131,
+      "y0": 306.592803,
+      "x1": 354.540159,
+      "y1": 336.03206
+    },
+    {
+      "text": "0.04",
+      "x0": 357.059329,
+      "y0": 324.335403,
+      "x1": 368.502257,
+      "y1": 329.92409
+    },
+    {
+      "text": "PC2 Elbow",
+      "x0": 381.787172,
+      "y0": 326.932944,
+      "x1": 458.311618,
+      "y1": 338.556932
+    },
+    {
+      "text": "UMAP2 FA2 PC3",
+      "x0": 47.676657,
+      "y0": 330.297948,
+      "x1": 392.816075,
+      "y1": 355.618104
+    },
+    {
+      "text": "0.02 PC4",
+      "x0": 357.059329,
+      "y0": 344.859,
+      "x1": 398.261113,
+      "y1": 356.482987
+    },
+    {
+      "text": "PC5",
+      "x0": 398.118684,
+      "y0": 352.136985,
+      "x1": 403.707372,
+      "y1": 363.760972
+    },
+    {
+      "text": "PC6 PC7 PC8 PC9 PC10 PC11 PC12 PC13 PC14 PC15 PC16 PC17 PC18 PC19 PC20 PC21 PC22 PC23 PC24 PC25 PC26 PC27 PC28 PC29 PC30 PC31",
+      "x0": 403.563722,
+      "y0": 356.190879,
+      "x1": 545.289464,
+      "y1": 375.721726
+    },
+    {
+      "text": "0 5 10 15 20 25 30",
+      "x0": 376.854526,
+      "y0": 378.780441,
+      "x1": 545.476577,
+      "y1": 384.369128
+    },
+    {
+      "text": "UMAP1 FA1 Ranking",
+      "x0": 80.842827,
+      "y0": 383.478049,
+      "x1": 473.450922,
+      "y1": 392.820202
+    },
+    {
+      "text": "Figure 4. Common visualization methods for scRNA-seq data.",
+      "x0": 50.513394,
+      "y0": 408.933931,
+      "x1": 249.801586,
+      "y1": 417.999871
+    },
+    {
+      "text": "Mouse intestinal epithelium regions data from Haber et al (2017) visualized on the first two components for: (A) PCA, (B) t-SNE, (C) diffusion maps, (D) UMAP and (E) A force-",
+      "x0": 50.513394,
+      "y0": 420.272646,
+      "x1": 544.74451,
+      "y1": 429.338586
+    },
+    {
+      "text": "directed graph layout via ForceAtlas2. Cells are coloured by count depth. (F) Variance explained by the first 31 principal components (PCs). The \u201celbow\u201d of this plot, which is",
+      "x0": 50.512692,
+      "y0": 429.513612,
+      "x1": 544.803099,
+      "y1": 438.579552
+    },
+    {
+      "text": "used to select relevant PCs to analyse the dataset, lies between PCs 5 and 7.",
+      "x0": 50.512692,
+      "y0": 440.372531,
+      "x1": 274.349356,
+      "y1": 446.816323
+    },
+    {
+      "text": "Two popular dimensionality reduction techniques that are princi- summarization technique. As diffusion components emphasize tran-",
+      "x0": 53.6315,
+      "y0": 478.766577,
+      "x1": 552.753068,
+      "y1": 486.634421
+    },
+    {
+      "text": "pally summarization methods are principal component analysis sitions in the data, they are principally used when continuous",
+      "x0": 42.519749,
+      "y0": 490.104864,
+      "x1": 552.734049,
+      "y1": 497.972738
+    },
+    {
+      "text": "(PCA; Pearson, 1901) and diffusion maps (Coifman et al, 2005) processes such as differentiation are of interest. Typically, each dif-",
+      "x0": 42.519749,
+      "y0": 501.443182,
+      "x1": 552.780355,
+      "y1": 509.311056
+    },
+    {
+      "text": "which were popularized for single-cell analysis by Haghverdi et al fusion component (i.e. diffusion map dimension) highlights the",
+      "x0": 42.518929,
+      "y0": 512.7815,
+      "x1": 552.73901,
+      "y1": 520.649374
+    },
+    {
+      "text": "(2015). Principal component analysis is a linear approach that heterogeneity of a different cell population.",
+      "x0": 42.518929,
+      "y0": 524.119818,
+      "x1": 461.619867,
+      "y1": 531.987677
+    },
+    {
+      "text": "generates reduced dimensions by maximizing the captured residual",
+      "x0": 42.518929,
+      "y0": 535.462271,
+      "x1": 289.168639,
+      "y1": 543.325995
+    },
+    {
+      "text": "variance in each further dimension. While PCA does not capture the Visualization",
+      "x0": 42.518929,
+      "y0": 546.788185,
+      "x1": 348.559197,
+      "y1": 554.664313
+    },
+    {
+      "text": "structure of the data in few dimensions as well as non-linear meth- For visualization purposes, it is standard practice to use non-linear",
+      "x0": 42.518929,
+      "y0": 558.134771,
+      "x1": 552.758856,
+      "y1": 566.00263
+    },
+    {
+      "text": "ods, it is the basis of many currently available analysis tools for dimensionality reduction methods (Fig 4). The most common",
+      "x0": 42.518929,
+      "y0": 569.473089,
+      "x1": 552.816738,
+      "y1": 577.340948
+    },
+    {
+      "text": "clustering or trajectory inference. Indeed, PCA is commonly used as dimensionality reduction method for scRNA-seq visualization is the",
+      "x0": 42.518929,
+      "y0": 580.811407,
+      "x1": 552.739011,
+      "y1": 588.679251
+    },
+    {
+      "text": "a pre-processing step for non-linear dimensionality reduction meth- t-distributed stochastic neighbour embedding (t-SNE; van der",
+      "x0": 42.518929,
+      "y0": 592.14971,
+      "x1": 552.755549,
+      "y1": 600.017569
+    },
+    {
+      "text": "ods. Typically, PCA summarizes a dataset via its top N principal Maaten & Hinton, 2008). t-SNE dimensions focus on capturing local",
+      "x0": 42.518929,
+      "y0": 603.488028,
+      "x1": 552.784489,
+      "y1": 611.355887
+    },
+    {
+      "text": "components, where N can be determined by \u201celbow\u201d heuristics (see similarity at the expense of global structure. Thus, these visualiza-",
+      "x0": 42.518929,
+      "y0": 614.826345,
+      "x1": 552.799373,
+      "y1": 622.694205
+    },
+    {
+      "text": "Fig 4F) or the permutation-test-based jackstraw method (Chung & tions may exaggerate differences between cell populations and over-",
+      "x0": 42.518929,
+      "y0": 626.164663,
+      "x1": 552.8002,
+      "y1": 634.032522
+    },
+    {
+      "text": "Storey, 2015; Macosko et al, 2015). The simple linearity of PCA has look potential connections between these populations. A further",
+      "x0": 42.518929,
+      "y0": 637.502981,
+      "x1": 552.758028,
+      "y1": 645.37084
+    },
+    {
+      "text": "the advantage that distances in reduced dimensional space have a difficulty is the choice of its perplexity parameter, as t-SNE graphs",
+      "x0": 42.518929,
+      "y0": 648.841292,
+      "x1": 552.795239,
+      "y1": 656.709158
+    },
+    {
+      "text": "consistent interpretation in all regions of this space. Thus, we can may show strongly different numbers of clusters depending on its",
+      "x0": 42.518929,
+      "y0": 660.179609,
+      "x1": 552.737356,
+      "y1": 668.047468
+    },
+    {
+      "text": "correlate quantities of interest with principal components to assess value (Wattenberg et al, 2016). Common alternatives to t-SNE are",
+      "x0": 42.518929,
+      "y0": 671.51792,
+      "x1": 552.778678,
+      "y1": 679.385786
+    },
+    {
+      "text": "their importance. For example, principal components can be the Uniform Approximation and Projection method (UMAP;",
+      "x0": 42.518929,
+      "y0": 682.856245,
+      "x1": 552.753867,
+      "y1": 690.724096
+    },
+    {
+      "text": "projected onto technical nuisance covariates to investigate the preprint: McInnes & Healy, 2018) or graph-based tools such as",
+      "x0": 42.518929,
+      "y0": 694.194555,
+      "x1": 552.762136,
+      "y1": 702.062414
+    },
+    {
+      "text": "performance of QC, data correction and normalization steps (But- SPRING (Weinreb et al, 2018). UMAP and SPRING\u2019s force-directed",
+      "x0": 42.518929,
+      "y0": 705.532873,
+      "x1": 552.722461,
+      "y1": 713.400725
+    },
+    {
+      "text": "tner et al, 2019), or show the importance of genes in the dataset layout algorithm ForceAtlas2 arguably represent the best approxi-",
+      "x0": 42.518929,
+      "y0": 716.871183,
+      "x1": 552.800175,
+      "y1": 724.739046
+    },
+    {
+      "text": "(Chung & Storey, 2015). Diffusion maps are a non-linear data mation of the underlying topology (Wolf et al, 2019, Supplemental",
+      "x0": 42.518929,
+      "y0": 728.209501,
+      "x1": 552.744792,
+      "y1": 736.077357
+    },
+    {
+      "text": "\u00aa 2019 The Authors Molecular Systems Biology 15: e8746 | 2019 9 of 23",
+      "x0": 42.519322,
+      "y0": 756.836165,
+      "x1": 552.760262,
+      "y1": 768.492355
+    }
+  ]
+}

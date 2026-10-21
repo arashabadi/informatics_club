@@ -1,0 +1,61 @@
+Molecular Systems Biology                                                                                                              Malte D Luecken & Fabian J Theis
+
+
+
+
+                                                                 Expanded View Figures
+
+
+
+
+                    4000
+   Number of HVGs
+
+
+
+
+                                                                                                                                            Technology type
+                                                                                                                                                    Droplet
+                                                                                                                                                    Microfluidics chip
+                                                                                                                                                    Plate
+
+
+
+                    2000
+
+
+
+
+                       0
+                                                  3                     4                      5                           6
+                                                                 Log 10 Number of Cells
+
+
+  Figure EV1. The number of highly variable genes (HVGs) used for datasets of different sizes.
+  The data were obtained by a brief manual survey of recent scRNA-seq analysis papers. The plotted data, along with further information on scRNA-seq technology, publication
+  year, reference and the number of reads per cell, are available in Dataset EV1.
+
+
+
+
+EV1                 Molecular Systems Biology 15: e8746 | 2019                                                                                            ª 2019 The Authors
+A                                                                                          B
+
+
+
+
+C                                                                                          D
+
+
+
+
+  Figure EV2. Change in coefficient of variation (CoV) of gene expression data upon batch correction and denoising.
+  Negative values represent a reduction in CoV upon data correction. The top row shows CoV changes upon ComBat batch correction for (A) mouse intestinal epithelium (mIE)
+  and (B) mouse embryonic stem cell (mESC) data. The lower row depicts CoV changes upon DCA denoising for (C) mIE and (D) mESC data. mIE data were obtained from Haber
+  et al (2017) and mESC from Klein et al (2015).
+
+
+
+
+ª 2019 The Authors                                                                                                    Molecular Systems Biology 15: e8746 | 2019      EV2
+

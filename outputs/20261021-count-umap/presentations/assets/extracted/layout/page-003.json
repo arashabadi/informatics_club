@@ -1,0 +1,546 @@
+{
+  "page": 3,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Malte D Luecken & Fabian J Theis Molecular Systems Biology",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.762111,
+      "y1": 41.169976
+    },
+    {
+      "text": "assigned to the same barcode may not correspond to reads from the",
+      "x0": 306.139676,
+      "y0": 81.920246,
+      "x1": 552.73812,
+      "y1": 89.78397
+    },
+    {
+      "text": "Box 1: Key elements of an experimental scRNA-seq workflow",
+      "x0": 53.915,
+      "y0": 87.068661,
+      "x1": 265.556719,
+      "y1": 96.782001
+    },
+    {
+      "text": "same cell. A barcode may mistakenly tag multiple cells (doublet) or",
+      "x0": 306.139676,
+      "y0": 93.258561,
+      "x1": 552.783598,
+      "y1": 101.122285
+    },
+    {
+      "text": "Generating single-cell data from a biological sample requires multiple may not tag any cells (empty droplet/well).",
+      "x0": 53.915001,
+      "y0": 104.596877,
+      "x1": 462.768353,
+      "y1": 114.648568
+    },
+    {
+      "text": "steps. Typical workflows incorporate single-cell dissociation, single-cell While read and count data differ in the level of measurement",
+      "x0": 53.915001,
+      "y0": 115.935193,
+      "x1": 552.806752,
+      "y1": 124.0593
+    },
+    {
+      "text": "isolation, library construction, and sequencing. We give a brief over- noise, the processing steps in a typical analysis pipeline are the",
+      "x0": 53.915001,
+      "y0": 126.615403,
+      "x1": 552.739773,
+      "y1": 135.137232
+    },
+    {
+      "text": "view of these stages here. A more detailed explanation and compar-",
+      "x0": 53.915001,
+      "y0": 136.082921,
+      "x1": 277.765641,
+      "y1": 142.994335
+    },
+    {
+      "text": "same. For simplicity, we will refer to the data as count matrices in",
+      "x0": 306.139676,
+      "y0": 138.611824,
+      "x1": 552.772849,
+      "y1": 146.475548
+    },
+    {
+      "text": "ison of different protocols can be found in Ziegenhain et al (2017);",
+      "x0": 53.915001,
+      "y0": 145.528023,
+      "x1": 277.723799,
+      "y1": 152.461853
+    },
+    {
+      "text": "this tutorial. Where results for read and count matrices differ, read",
+      "x0": 306.139676,
+      "y0": 149.95014,
+      "x1": 552.75135,
+      "y1": 157.813864
+    },
+    {
+      "text": "Macosko et al (2015); Svensson et al (2017).",
+      "x0": 53.915003,
+      "y0": 154.99554,
+      "x1": 191.942309,
+      "y1": 161.929371
+    },
+    {
+      "text": "Input material for a single-cell experiment is typically obtained in matrices are specifically mentioned.",
+      "x0": 61.340485,
+      "y0": 161.288455,
+      "x1": 435.312298,
+      "y1": 171.396888
+    },
+    {
+      "text": "the form of biological tissue samples. As a first step, a single-cell",
+      "x0": 53.913516,
+      "y0": 173.952991,
+      "x1": 277.750707,
+      "y1": 180.864406
+    },
+    {
+      "text": "suspension is generated in a process called single-cell dissociation in Quality control",
+      "x0": 53.913516,
+      "y0": 183.398093,
+      "x1": 360.377045,
+      "y1": 191.622088
+    },
+    {
+      "text": "which the tissue is digested. Before analysing the single-cell gene expression data, we must",
+      "x0": 53.913521,
+      "y0": 192.888026,
+      "x1": 552.795175,
+      "y1": 203.167126
+    },
+    {
+      "text": "To profile the mRNA in each cell separately, cells must be isolated.",
+      "x0": 61.34049,
+      "y0": 202.355544,
+      "x1": 277.715594,
+      "y1": 209.266959
+    },
+    {
+      "text": "ensure that all cellular barcode data correspond to viable cells. Cell",
+      "x0": 306.139676,
+      "y0": 206.641718,
+      "x1": 552.750523,
+      "y1": 214.505442
+    },
+    {
+      "text": "Single-cell isolation is performed differently depending on the experi-",
+      "x0": 53.913521,
+      "y0": 211.800646,
+      "x1": 277.771631,
+      "y1": 218.734476
+    },
+    {
+      "text": "mental protocol. While plate-based techniques isolate cells into wells QC is commonly performed based on three QC covariates: the",
+      "x0": 53.913521,
+      "y0": 217.980034,
+      "x1": 552.7406,
+      "y1": 228.201994
+    },
+    {
+      "text": "on a plate, droplet-based methods rely on capturing each cell in its number of counts per barcode (count depth), the number of genes",
+      "x0": 53.913521,
+      "y0": 229.31835,
+      "x1": 552.771196,
+      "y1": 237.669511
+    },
+    {
+      "text": "own microfluidic droplet. In both cases, errors can occur that lead to per barcode, and the fraction of counts from mitochondrial genes",
+      "x0": 53.913521,
+      "y0": 240.225614,
+      "x1": 552.772849,
+      "y1": 248.520389
+    },
+    {
+      "text": "multiple cells being captured together (doublets or multiplets), non- per barcode (Ilicic et al, 2016; Griffiths et al, 2018). The distribu-",
+      "x0": 53.913521,
+      "y0": 249.670716,
+      "x1": 552.77533,
+      "y1": 259.858705
+    },
+    {
+      "text": "viable cells being captured, or no cell being captured at all (empty",
+      "x0": 53.912772,
+      "y0": 259.160649,
+      "x1": 277.700649,
+      "y1": 266.072064
+    },
+    {
+      "text": "tions of these QC covariates are examined for outlier peaks that are",
+      "x0": 306.138856,
+      "y0": 263.333297,
+      "x1": 552.77699,
+      "y1": 271.197021
+    },
+    {
+      "text": "droplets/wells). Empty droplets are especially common as droplet-",
+      "x0": 53.912772,
+      "y0": 268.605751,
+      "x1": 277.718582,
+      "y1": 275.539582
+    },
+    {
+      "text": "based methods rely on a low concentration flow of input cells to filtered out by thresholding (Fig 2). These outlier barcodes can",
+      "x0": 53.912772,
+      "y0": 274.671612,
+      "x1": 552.757971,
+      "y1": 285.007099
+    },
+    {
+      "text": "control doublet rates. correspond to dying cells, cells whose membranes are broken, or",
+      "x0": 53.912772,
+      "y0": 286.009928,
+      "x1": 552.72655,
+      "y1": 294.417831
+    },
+    {
+      "text": "Each well or droplet contains the necessary chemicals to break doublets. For example, barcodes with a low count depth, few",
+      "x0": 61.339741,
+      "y0": 296.973934,
+      "x1": 552.791874,
+      "y1": 305.211968
+    },
+    {
+      "text": "down the cell membranes and perform library construction. Library detected genes, and a high fraction of mitochondrial counts are",
+      "x0": 53.912772,
+      "y0": 306.419036,
+      "x1": 552.777817,
+      "y1": 316.550283
+    },
+    {
+      "text": "construction is the process in which the intracellular mRNA is",
+      "x0": 53.912769,
+      "y0": 315.908969,
+      "x1": 277.739499,
+      "y1": 322.820384
+    },
+    {
+      "text": "indicative of cells whose cytoplasmic mRNA has leaked out through",
+      "x0": 306.138856,
+      "y0": 320.024875,
+      "x1": 552.768721,
+      "y1": 327.888599
+    },
+    {
+      "text": "captured, reverse-transcribed to cDNA molecules and amplified. As",
+      "x0": 53.912769,
+      "y0": 325.376487,
+      "x1": 277.716337,
+      "y1": 332.287902
+    },
+    {
+      "text": "a broken membrane, and thus, only mRNA located in the mitochon-",
+      "x0": 306.138856,
+      "y0": 331.363191,
+      "x1": 552.723242,
+      "y1": 339.226915
+    },
+    {
+      "text": "cells undergo this process in isolation, the mRNA from each cell can",
+      "x0": 53.912769,
+      "y0": 334.844004,
+      "x1": 277.752949,
+      "y1": 341.755419
+    },
+    {
+      "text": "be labelled with a well- or droplet-specific cellular barcode. Further- dria is still conserved (Fig 2). In contrast, cells with unexpectedly",
+      "x0": 53.912769,
+      "y0": 342.701506,
+      "x1": 552.776163,
+      "y1": 351.222937
+    },
+    {
+      "text": "more, many experimental protocols also label captured molecules high counts and a large number of detected genes may represent",
+      "x0": 53.912769,
+      "y0": 353.779039,
+      "x1": 552.79022,
+      "y1": 361.903546
+    },
+    {
+      "text": "with a unique molecular identifier (UMI). Cellular cDNA is amplified doublets. Thus, high-count depth thresholds are commonly used to",
+      "x0": 53.912769,
+      "y0": 363.224142,
+      "x1": 552.716627,
+      "y1": 373.241862
+    },
+    {
+      "text": "before sequencing to increase its probability of being measured. UMIs",
+      "x0": 53.912765,
+      "y0": 372.714075,
+      "x1": 277.714092,
+      "y1": 379.62549
+    },
+    {
+      "text": "filter out potential doublets. Three recent doublet detection tools",
+      "x0": 306.138856,
+      "y0": 376.716453,
+      "x1": 552.72655,
+      "y1": 384.580177
+    },
+    {
+      "text": "allow us to distinguish between amplified copies of the same mRNA",
+      "x0": 53.912765,
+      "y0": 382.181592,
+      "x1": 277.761912,
+      "y1": 389.093007
+    },
+    {
+      "text": "offer more elegant and potentially better solutions (DoubletDecon:",
+      "x0": 306.138856,
+      "y0": 388.054769,
+      "x1": 552.727376,
+      "y1": 395.918493
+    },
+    {
+      "text": "molecule and reads from separate mRNA molecules transcribed from",
+      "x0": 53.912765,
+      "y0": 391.64911,
+      "x1": 277.714092,
+      "y1": 398.560525
+    },
+    {
+      "text": "the same gene. preprint: DePasquale et al, 2018; Scrublet: Wolock et al, 2019;",
+      "x0": 53.912765,
+      "y0": 399.393085,
+      "x1": 552.740606,
+      "y1": 408.028042
+    },
+    {
+      "text": "After library construction, cellular cDNA libraries are labelled with Doublet Finder: McGinnis et al, 2018).",
+      "x0": 61.339735,
+      "y0": 410.584145,
+      "x1": 444.863707,
+      "y1": 418.595124
+    },
+    {
+      "text": "cellular barcodes and, depending on the protocol, UMIs. These Considering any of these three QC covariates in isolation can lead",
+      "x0": 53.912765,
+      "y0": 420.051663,
+      "x1": 552.83239,
+      "y1": 429.93344
+    },
+    {
+      "text": "libraries are pooled together (multiplexed) for sequencing. Sequencing",
+      "x0": 53.912765,
+      "y0": 429.496765,
+      "x1": 277.687192,
+      "y1": 436.430595
+    },
+    {
+      "text": "to misinterpretation of cellular signals. For example, cells with a",
+      "x0": 306.138028,
+      "y0": 433.408032,
+      "x1": 552.747221,
+      "y1": 441.271756
+    },
+    {
+      "text": "produces read data, which undergo quality control, grouping based on",
+      "x0": 53.912022,
+      "y0": 438.986698,
+      "x1": 277.738006,
+      "y1": 445.898113
+    },
+    {
+      "text": "comparatively high fraction of mitochondrial counts may be involved",
+      "x0": 306.138028,
+      "y0": 444.746347,
+      "x1": 552.826603,
+      "y1": 452.610071
+    },
+    {
+      "text": "their assigned barcodes (demultiplexing) and alignment in read",
+      "x0": 53.912022,
+      "y0": 448.454215,
+      "x1": 277.722313,
+      "y1": 455.36563
+    },
+    {
+      "text": "processing pipelines. For UMI-based protocols, read data can be in respiratory processes. Likewise, other QC covariates also have",
+      "x0": 53.91202,
+      "y0": 456.084663,
+      "x1": 552.743913,
+      "y1": 464.776362
+    },
+    {
+      "text": "further demultiplexed to produce counts of captured mRNA molecules biological interpretations. Cells with low counts and/or genes may",
+      "x0": 53.91202,
+      "y0": 467.332465,
+      "x1": 552.743087,
+      "y1": 475.286703
+    },
+    {
+      "text": "(count data). correspond to quiescent cell populations, and cells with high counts",
+      "x0": 53.91202,
+      "y0": 476.777567,
+      "x1": 552.851409,
+      "y1": 486.625018
+    },
+    {
+      "text": "may be larger in size. Indeed, molecular counts can differ strongly",
+      "x0": 306.138028,
+      "y0": 490.09961,
+      "x1": 552.740606,
+      "y1": 497.963334
+    },
+    {
+      "text": "between cells (see case study on project github). Thus, QC covariates",
+      "x0": 306.138028,
+      "y0": 501.437926,
+      "x1": 552.814199,
+      "y1": 509.30165
+    },
+    {
+      "text": "integrates R and Python tools in a Jupyter\u2013Ipython notebook with should be considered jointly when univariate thresholding decisions",
+      "x0": 42.519699,
+      "y0": 512.776242,
+      "x1": 552.765413,
+      "y1": 520.650229
+    },
+    {
+      "text": "rpy2. With the available documentation, it is readily adaptable as a are made (Fig 2D), and these thresholds should be set as permissive",
+      "x0": 42.519699,
+      "y0": 524.114557,
+      "x1": 552.743086,
+      "y1": 531.988544
+    },
+    {
+      "text": "workflow template. as possible to avoid filtering out viable cell populations unintention-",
+      "x0": 42.519699,
+      "y0": 535.452873,
+      "x1": 552.802623,
+      "y1": 543.32686
+    },
+    {
+      "text": "ally. In future, filtering models that account for multivariate QC",
+      "x0": 306.138028,
+      "y0": 546.791189,
+      "x1": 552.853063,
+      "y1": 554.654913
+    },
+    {
+      "text": "dependencies may provide more sensitive QC options.",
+      "x0": 306.138028,
+      "y0": 558.129504,
+      "x1": 497.72596,
+      "y1": 565.993228
+    },
+    {
+      "text": "Pre-processing and visualization Datasets that contain heterogeneous mixtures of cell types may",
+      "x0": 42.519699,
+      "y0": 568.599553,
+      "x1": 552.767893,
+      "y1": 577.335378
+    },
+    {
+      "text": "exhibit multiple QC covariate peaks. For example, Fig 2D shows",
+      "x0": 306.138028,
+      "y0": 580.806136,
+      "x1": 552.763759,
+      "y1": 588.66986
+    },
+    {
+      "text": "Raw data generated by sequencing machines are processed to obtain two populations of cells with different QC distributions. If no previ-",
+      "x0": 42.519699,
+      "y0": 592.099798,
+      "x1": 552.776162,
+      "y1": 600.008175
+    },
+    {
+      "text": "matrices of molecular counts (count matrices) or, alternatively, read ous filtering step was performed (note that Cell Ranger also",
+      "x0": 42.519699,
+      "y0": 603.438114,
+      "x1": 552.755489,
+      "y1": 611.346491
+    },
+    {
+      "text": "counts (read matrices), depending on whether unique molecular performs cell QC), then only the lowest count depth and gene per",
+      "x0": 42.519699,
+      "y0": 614.77643,
+      "x1": 552.753009,
+      "y1": 622.684807
+    },
+    {
+      "text": "identifiers (UMIs) were incorporated in the single-cell library barcode peak should be considered as non-viable cells. A further",
+      "x0": 42.519699,
+      "y0": 626.114745,
+      "x1": 552.754663,
+      "y1": 634.023122
+    },
+    {
+      "text": "construction protocol (see Box 1 for an overview of the experimen- thresholding guideline is the proportion of cells that are filtered out",
+      "x0": 42.519699,
+      "y0": 637.453061,
+      "x1": 552.740606,
+      "y1": 645.361438
+    },
+    {
+      "text": "tal steps that precede the analysis). Raw data processing pipelines with the chosen threshold. For high-count filtering, this proportion",
+      "x0": 42.519699,
+      "y0": 648.791377,
+      "x1": 552.716626,
+      "y1": 656.699754
+    },
+    {
+      "text": "such as Cell Ranger (Zheng et al, 2017), indrops (Klein et al, 2015), should not exceed the expected doublet rate.",
+      "x0": 42.519699,
+      "y0": 660.129692,
+      "x1": 466.828388,
+      "y1": 668.038069
+    },
+    {
+      "text": "SEQC (Azizi et al, 2018), or zUMIs (Parekh et al, 2018) take care of In addition to checking the integrity of cells, QC steps must also be",
+      "x0": 42.519702,
+      "y0": 671.468008,
+      "x1": 552.827429,
+      "y1": 679.376385
+    },
+    {
+      "text": "read quality control (QC), assigning reads to their cellular barcodes performed at the level of transcripts. Raw count matrices often",
+      "x0": 42.518875,
+      "y0": 682.806324,
+      "x1": 552.820814,
+      "y1": 690.714701
+    },
+    {
+      "text": "and mRNA molecules of origin (also called \u201cdemultiplexing\u201d), include over 20,000 genes. This number can be drastically reduced",
+      "x0": 42.518875,
+      "y0": 694.144639,
+      "x1": 552.721587,
+      "y1": 702.053016
+    },
+    {
+      "text": "genome alignment, and quantification. The resulting read or count by filtering out genes that are not expressed in more than a few cells",
+      "x0": 42.518875,
+      "y0": 705.482955,
+      "x1": 552.820814,
+      "y1": 713.391332
+    },
+    {
+      "text": "matrices have the dimension number of barcodes x number of tran- and are thus not informative of the cellular heterogeneity. A guideline",
+      "x0": 42.518875,
+      "y0": 716.821271,
+      "x1": 552.824948,
+      "y1": 724.729648
+    },
+    {
+      "text": "scripts. The term \u201cbarcode\u201d is used here instead of \u201ccell\u201d as all reads to setting this threshold is to use the minimum cell cluster size that is",
+      "x0": 42.518875,
+      "y0": 728.159586,
+      "x1": 552.824121,
+      "y1": 736.067963
+    },
+    {
+      "text": "\u00aa 2019 The Authors Molecular Systems Biology 15: e8746 | 2019 3 of 23",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.760885,
+      "y1": 768.492305
+    }
+  ]
+}

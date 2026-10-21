@@ -1,0 +1,427 @@
+{
+  "page": 19,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Malte D Luecken & Fabian J Theis Molecular Systems Biology",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.762111,
+      "y1": 41.169976
+    },
+    {
+      "text": "modelling approaches such as this have the potential to replace SCENIC: single-cell regulatory network inference and clustering. Nat",
+      "x0": 42.519699,
+      "y0": 81.920416,
+      "x1": 530.844404,
+      "y1": 89.78414
+    },
+    {
+      "text": "current pipelines, which are often an agglomeration of individual Methods 14: 1083 \u2013 1086",
+      "x0": 42.519699,
+      "y0": 92.11785,
+      "x1": 393.211609,
+      "y1": 101.831189
+    },
+    {
+      "text": "tools. Alpert A, Moore LS, Dubovik T, Shen-Orr SS (2018) Alignment of single-cell",
+      "x0": 42.519699,
+      "y0": 104.597047,
+      "x1": 539.878554,
+      "y1": 112.460771
+    },
+    {
+      "text": "As single-cell omic technologies improve, the need for integrated trajectories to compare cellular expression dynamics. Nat Methods 15:",
+      "x0": 53.631447,
+      "y0": 115.935363,
+      "x1": 537.072892,
+      "y1": 123.799087
+    },
+    {
+      "text": "omic analysis pipelines will grow (Tanay & Regev, 2017). Future 267 \u2013 270",
+      "x0": 42.519699,
+      "y0": 126.133218,
+      "x1": 344.32586,
+      "y1": 135.846558
+    },
+    {
+      "text": "single-cell platforms will have to be able to deal with different data An Y, Furber KL, Ji S (2017) Pseudogenes regulate parental gene expression",
+      "x0": 42.519699,
+      "y0": 138.611994,
+      "x1": 541.98037,
+      "y1": 146.475718
+    },
+    {
+      "text": "sources such as DNA methylation (Smallwood et al, 2014), chro- via ceRNA network. J Cell Mol Med 21: 185 \u2013 192",
+      "x0": 42.519699,
+      "y0": 148.810131,
+      "x1": 466.606348,
+      "y1": 158.523471
+    },
+    {
+      "text": "matin accessibility (Buenrostro et al, 2015), or protein abundance Andrews TS, Hemberg M (2018) False signals induced by single-cell",
+      "x0": 42.519702,
+      "y0": 161.288626,
+      "x1": 518.805833,
+      "y1": 169.15235
+    },
+    {
+      "text": "(Stoeckius et al, 2017), and include tools that integrate these modali- imputation. F1000Res 7: 1740",
+      "x0": 42.519704,
+      "y0": 172.626941,
+      "x1": 409.852793,
+      "y1": 180.490665
+    },
+    {
+      "text": "ties. For this set-up, it will no longer be possible to use only a single Angelidis I, Simon LM, Fernandez IE, Strunz M, Mayr CH, Greiffo FR, Tsitsiridis",
+      "x0": 42.519705,
+      "y0": 183.965257,
+      "x1": 551.78262,
+      "y1": 191.828981
+    },
+    {
+      "text": "read or count matrix, which we use as the starting point of our tuto- G, Graf E, Strom TM, Eickelberg O et al (2019) An atlas of the aging lung",
+      "x0": 42.519705,
+      "y0": 195.303573,
+      "x1": 545.629593,
+      "y1": 203.167297
+    },
+    {
+      "text": "rial. However, platforms are already adapting to multi-modal data mapped by single cell transcriptomics and deep tissue proteomics. Nat",
+      "x0": 42.519705,
+      "y0": 206.641888,
+      "x1": 540.255125,
+      "y1": 214.505612
+    },
+    {
+      "text": "structures for the integration of RNA velocity, which is calculated Commun 10: 963",
+      "x0": 42.519705,
+      "y0": 217.980204,
+      "x1": 368.302865,
+      "y1": 225.843928
+    },
+    {
+      "text": "from unspliced and spliced read data (La Manno et al, 2018). Single- Angerer P, Simon L, Tritschler S, Alexander Wolf F, Fischer D, Theis FJ (2017)",
+      "x0": 42.519705,
+      "y0": 229.31852,
+      "x1": 545.441305,
+      "y1": 237.182244
+    },
+    {
+      "text": "cell multi-omic integration can occur via consensus clustering Single cells make big data: new challenges and opportunities in",
+      "x0": 42.519706,
+      "y0": 240.656835,
+      "x1": 518.214067,
+      "y1": 248.520559
+    },
+    {
+      "text": "approaches, multi-omic factor analysis (Argelaguet et al, 2018), or transcriptomics. Curr Opin Syst Biol 4: 85 \u2013 91",
+      "x0": 42.519706,
+      "y0": 250.856237,
+      "x1": 457.982391,
+      "y1": 260.569577
+    },
+    {
+      "text": "multi-omic gene regulatory network inference (Colome\u0301-Tatche\u0301 & Argelaguet R, Velten B, Arnol D, Dietrich S, Zenz T, Marioni JC, Buettner F,",
+      "x0": 42.518879,
+      "y0": 263.333467,
+      "x1": 544.032126,
+      "y1": 271.197191
+    },
+    {
+      "text": "Theis, 2018). Analysis workflows with these capabilities will be the Huber W, Stegle O (2018) Multi-Omics Factor Analysis\u2014a framework for",
+      "x0": 42.518052,
+      "y0": 274.671782,
+      "x1": 549.339341,
+      "y1": 282.535506
+    },
+    {
+      "text": "next stage of development. We envisage that such multi-omic analy- unsupervised integration of multi-omics data sets. Mol Syst Biol 14:",
+      "x0": 42.518052,
+      "y0": 286.010098,
+      "x1": 533.614932,
+      "y1": 293.873822
+    },
+    {
+      "text": "sis workflows will build upon the foundation we have laid for scRNA- e8124",
+      "x0": 42.518052,
+      "y0": 297.348414,
+      "x1": 334.82695,
+      "y1": 305.212138
+    },
+    {
+      "text": "seq. Arvaniti E, Claassen M (2017) Sensitive detection of rare disease-associated",
+      "x0": 42.518052,
+      "y0": 308.68673,
+      "x1": 543.247577,
+      "y1": 316.550453
+    },
+    {
+      "text": "cell subsets via representation learning. Nat Commun 8: 14825",
+      "x0": 316.063019,
+      "y0": 320.598017,
+      "x1": 513.347675,
+      "y1": 327.531848
+    },
+    {
+      "text": "Expanded View for this article is available online. Ashburner M, Ball CA, Blake JA, Botstein D, Butler H, Cherry JM, Davis AP,",
+      "x0": 42.519699,
+      "y0": 331.50445,
+      "x1": 527.993903,
+      "y1": 338.870304
+    },
+    {
+      "text": "Dolinski K, Dwight SS, Eppig JT et al (2000) Gene ontology: tool for the",
+      "x0": 316.062278,
+      "y0": 343.27493,
+      "x1": 532.211734,
+      "y1": 350.20876
+    },
+    {
+      "text": "Acknowledgements unification of biology. The Gene Ontology Consortium. Nat Genet 25: 25 \u2013 29",
+      "x0": 42.519699,
+      "y0": 352.713032,
+      "x1": 548.856668,
+      "y1": 362.615684
+    },
+    {
+      "text": "Special thanks to Leander Dony, who debugged, updated, and tested the case Azizi E, Carr AJ, Plitas G, Cornish AE, Konopacki C, Prabhakaran S, Nainys J,",
+      "x0": 42.519699,
+      "y0": 365.463434,
+      "x1": 541.547759,
+      "y1": 372.885673
+    },
+    {
+      "text": "study to work with the latest methods. Furthermore, we would like to thank Wu K, Kiseliovas V, Setty M et al (2018) Single-cell map of diverse",
+      "x0": 42.519699,
+      "y0": 376.801891,
+      "x1": 524.347833,
+      "y1": 384.224129
+    },
+    {
+      "text": "the many people who proofread the case study notebook and the manuscript immune phenotypes in the breast tumor microenvironment. Cell 174:",
+      "x0": 42.519699,
+      "y0": 388.140347,
+      "x1": 536.053908,
+      "y1": 395.562213
+    },
+    {
+      "text": "and improved it with their comments and expertise. For this, we acknowledge 1293 \u2013 1308.e36",
+      "x0": 42.519699,
+      "y0": 398.255797,
+      "x1": 363.478494,
+      "y1": 407.969136
+    },
+    {
+      "text": "the input of Maren Buttner, David Fischer, Alex Wolf, Lukas Simon, Luis Ospina- Becht E, McInnes L, Healy J, Dutertre C-A, Kwok IWH, Ng LG, Ginhoux F,",
+      "x0": 42.519699,
+      "y0": 410.817259,
+      "x1": 533.204911,
+      "y1": 418.239125
+    },
+    {
+      "text": "Forero, Sophie Tritschler, Niklas Koehler, Goekcen Eraslan, Benjamin Schubert, Newell EW (2018) Dimensionality reduction for visualizing single-cell data",
+      "x0": 42.519699,
+      "y0": 422.155716,
+      "x1": 551.058029,
+      "y1": 429.577582
+    },
+    {
+      "text": "Meromit Singer, Dana Pe\u2019er, and Rahul Satija. Special thanks for this also to the using UMAP. Nat Biotechnol 37: 38 \u2013 44",
+      "x0": 42.519699,
+      "y0": 432.271166,
+      "x1": 438.661985,
+      "y1": 441.984505
+    },
+    {
+      "text": "anonymous reviewers of the manuscript and the editor, Thomas Lemberger, for Bendall SC, Davis KL, Amir E-AD, Tadmor MD, Simonds EF, Chen TJ, Shenfeld",
+      "x0": 42.519696,
+      "y0": 444.832628,
+      "x1": 546.823012,
+      "y1": 452.254494
+    },
+    {
+      "text": "their thorough, constructive, and extensive comments. The case study notebook DK, Nolan GP, Pe\u2019er D (2014) Single-cell trajectory detection uncovers",
+      "x0": 42.519696,
+      "y0": 456.171084,
+      "x1": 535.558525,
+      "y1": 463.59295
+    },
+    {
+      "text": "was tested and improved by the early adopters Marius Lange, Hananeh Aliee, progression and regulatory coordination in human B cell development.",
+      "x0": 42.519696,
+      "y0": 467.509541,
+      "x1": 540.211215,
+      "y1": 474.931407
+    },
+    {
+      "text": "Subarna Palit and Lisa Thiergart. Volker Bergen and Alex Wolf also contributed Cell 157: 714 \u2013 725",
+      "x0": 42.519696,
+      "y0": 477.624991,
+      "x1": 372.595582,
+      "y1": 487.33833
+    },
+    {
+      "text": "to the workflow by making scanpy adaptations. The choice of dataset to opti- Blasi T, Buettner F, Strasser MK, Marr C, Theis FJ (2017) cgCorrect: a method",
+      "x0": 42.519696,
+      "y0": 490.186453,
+      "x1": 547.349018,
+      "y1": 497.608319
+    },
+    {
+      "text": "mally show all aspects of the analysis workflow was facilitated by the kind to correct for confounding cell-cell variation due to cell growth in single-",
+      "x0": 42.519696,
+      "y0": 501.52491,
+      "x1": 548.548995,
+      "y1": 508.946776
+    },
+    {
+      "text": "input from Adam Haber and Aviv Regev. This work was supported by the BMBF cell transcriptomics. Phys Biol 14: 036001",
+      "x0": 42.519696,
+      "y0": 512.863366,
+      "x1": 446.428168,
+      "y1": 520.285232
+    },
+    {
+      "text": "grant# 01IS18036A and grant# 01IS18053A, by the German Research Founda- Blondel VD, Guillaume J-L, Lambiotte R, Lefebvre E (2008) Fast unfolding",
+      "x0": 42.519696,
+      "y0": 524.201822,
+      "x1": 543.907512,
+      "y1": 531.623688
+    },
+    {
+      "text": "tion (DFG) within the Collaborative Research Centre 1243, Subproject A17, by of communities in large networks. J Stat Mech: Theory Exp 2008:",
+      "x0": 42.52119,
+      "y0": 535.540278,
+      "x1": 527.948491,
+      "y1": 542.962144
+    },
+    {
+      "text": "the Helmholtz Association (Incubator grant sparse2big, grant # ZT-I-0007) and P10008",
+      "x0": 42.521185,
+      "y0": 546.878735,
+      "x1": 339.706212,
+      "y1": 554.300601
+    },
+    {
+      "text": "by the Chan Zuckerberg Initiative DAF (advised fund of Silicon Valley Commu- Brennecke P, Anders S, Kim JK, Ko\u0142odziejczyk AA, Zhang X, Proserpio V, Baying",
+      "x0": 42.52119,
+      "y0": 558.217191,
+      "x1": 550.241357,
+      "y1": 565.639057
+    },
+    {
+      "text": "nity Foundation, 182835). B, Benes V, Teichmann SA, Marioni JC et al (2013) Accounting for technical",
+      "x0": 42.52119,
+      "y0": 569.555647,
+      "x1": 551.587028,
+      "y1": 576.977513
+    },
+    {
+      "text": "noise in single-cell RNA-seq experiments. Nat Methods 10: 1093 \u2013 1095",
+      "x0": 316.063941,
+      "y0": 579.671097,
+      "x1": 538.614488,
+      "y1": 589.384437
+    },
+    {
+      "text": "Author contributions Briggs JA, Weinreb C, Wagner DE, Megason S, Peshkin L, Kirschner MW, Klein",
+      "x0": 42.519699,
+      "y0": 590.823247,
+      "x1": 549.091446,
+      "y1": 599.654426
+    },
+    {
+      "text": "MDL reviewed the literature and wrote the paper, and FJT supervised the work AM (2018) The dynamics of gene expression in vertebrate embryogenesis",
+      "x0": 42.519699,
+      "y0": 603.573648,
+      "x1": 546.751278,
+      "y1": 610.992882
+    },
+    {
+      "text": "and critically reviewed the manuscript. Both authors read and approved the at single-cell resolution. Science 360 : eaar5780",
+      "x0": 42.519699,
+      "y0": 614.912105,
+      "x1": 462.96849,
+      "y1": 622.331338
+    },
+    {
+      "text": "final paper. Buenrostro JD, Wu B, Litzenburger UM, Ruff D, Gonzales ML, Snyder MP,",
+      "x0": 42.519699,
+      "y0": 626.250561,
+      "x1": 534.830771,
+      "y1": 633.669795
+    },
+    {
+      "text": "Chang HY, Greenleaf WJ (2015) Single-cell chromatin accessibility reveals",
+      "x0": 316.063944,
+      "y0": 638.096836,
+      "x1": 546.512183,
+      "y1": 645.008251
+    },
+    {
+      "text": "Conflict of interest principles of regulatory variation. Nature 523: 486 \u2013 490",
+      "x0": 42.519699,
+      "y0": 647.516148,
+      "x1": 490.573807,
+      "y1": 657.415174
+    },
+    {
+      "text": "The authors declare that they have no conflict of interest. Buettner F, Natarajan KN, Casale FP, Proserpio V, Scialdone A, Theis FJ,",
+      "x0": 42.519699,
+      "y0": 660.26655,
+      "x1": 529.328538,
+      "y1": 667.685163
+    },
+    {
+      "text": "Teichmann SA, Marioni JC, Stegle O (2015) Computational analysis of cell-",
+      "x0": 316.063197,
+      "y0": 672.112205,
+      "x1": 549.843856,
+      "y1": 679.02362
+    },
+    {
+      "text": "to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden",
+      "x0": 316.063944,
+      "y0": 683.450661,
+      "x1": 541.937201,
+      "y1": 690.362076
+    },
+    {
+      "text": "References subpopulations of cells. Nat Biotechnol 33: 155 \u2013 160",
+      "x0": 42.519699,
+      "y0": 690.203724,
+      "x1": 478.995506,
+      "y1": 702.769
+    },
+    {
+      "text": "Buettner F, Pratanwanich N, McCarthy DJ, Marioni JC, Stegle O (2017) f-",
+      "x0": 306.142141,
+      "y0": 706.127574,
+      "x1": 533.977811,
+      "y1": 713.042566
+    },
+    {
+      "text": "Aibar S, Gonz\u00e1lez-Blas CB, Moerman T, Huynh-Thu VA, Imrichova H, scLVM: scalable and versatile factor analysis for single-cell RNA-seq.",
+      "x0": 42.519699,
+      "y0": 716.789446,
+      "x1": 530.778393,
+      "y1": 724.381022
+    },
+    {
+      "text": "Hulselmans G, Rambow F, Marine J-C, Geurts P, Aerts J et al (2017) Genome Biol 18: 212",
+      "x0": 52.440755,
+      "y0": 728.105487,
+      "x1": 379.076199,
+      "y1": 735.719479
+    },
+    {
+      "text": "\u00aa 2019 The Authors Molecular Systems Biology 15: e8746 | 2019 19 of 23",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.760334,
+      "y1": 768.492305
+    }
+  ]
+}

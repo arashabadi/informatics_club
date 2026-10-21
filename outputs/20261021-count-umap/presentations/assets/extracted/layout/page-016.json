@@ -1,0 +1,427 @@
+{
+  "page": 16,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.770361,
+      "y1": 41.169976
+    },
+    {
+      "text": "paths is described by a pseudotime variable. While this variable is Regulator genes help us understand how and why biological processes",
+      "x0": 42.519699,
+      "y0": 81.920416,
+      "x1": 552.872073,
+      "y1": 89.785811
+    },
+    {
+      "text": "related to transcriptional distances from a root cell, it is often inter- are triggered and represent potential drug targets (Gashaw et al, 2012).",
+      "x0": 42.518873,
+      "y0": 93.258732,
+      "x1": 552.267616,
+      "y1": 101.124126
+    },
+    {
+      "text": "preted as a proxy for developmental time (Moignard et al, 2015; Hagh- While early approaches to find trajectory-associated genes",
+      "x0": 42.518873,
+      "y0": 104.597047,
+      "x1": 552.772019,
+      "y1": 112.462442
+    },
+    {
+      "text": "verdi et al, 2016; Fischer et al, 2018; Griffiths et al, 2018). involved DE testing between cell clusters along a trajectory (Hagh-",
+      "x0": 42.518046,
+      "y0": 115.935363,
+      "x1": 552.789384,
+      "y1": 123.800758
+    },
+    {
+      "text": "Since Monocle (Trapnell et al, 2014) and Wanderlust (Bendall verdi et al, 2016; Alpert et al, 2018), we now detect genes that vary",
+      "x0": 53.628138,
+      "y0": 127.273679,
+      "x1": 552.773673,
+      "y1": 135.139073
+    },
+    {
+      "text": "et al, 2014) established the TI field, the number of available meth- across a trajectory by regressing gene expression against pseudo-",
+      "x0": 42.51639,
+      "y0": 138.611994,
+      "x1": 552.808402,
+      "y1": 146.477389
+    },
+    {
+      "text": "ods has exploded. Currently available TI methods differ in the time. In order to enforce smooth variation of expression along this",
+      "x0": 42.51639,
+      "y0": 149.95031,
+      "x1": 552.76127,
+      "y1": 157.815705
+    },
+    {
+      "text": "complexity of the paths that are modelled. Models range from covariate, pseudotime is smoothed by fitting a spline or via an addi-",
+      "x0": 42.51639,
+      "y0": 161.288626,
+      "x1": 552.776153,
+      "y1": 169.15402
+    },
+    {
+      "text": "simple linear or bifurcating trajectories, to complex graphs, trees, tional local regression step (e.g. loess). Regression frameworks dif-",
+      "x0": 42.51639,
+      "y0": 172.626941,
+      "x1": 552.721579,
+      "y1": 180.492336
+    },
+    {
+      "text": "or multifurcating trajectories. In a recent comprehensive compar- fer in their noise model assumptions and the class of function used",
+      "x0": 42.51639,
+      "y0": 183.965257,
+      "x1": 552.756308,
+      "y1": 191.830652
+    },
+    {
+      "text": "ison of TI methods (Saelens et al, 2018), it was concluded that no to describe the expression as a function of pseudotime. Potential",
+      "x0": 42.51639,
+      "y0": 195.303573,
+      "x1": 552.781115,
+      "y1": 203.168967
+    },
+    {
+      "text": "individual method performs optimally for all types of trajectories. regulatory genes are obtained by performing model selection for the",
+      "x0": 42.51639,
+      "y0": 206.641888,
+      "x1": 552.73977,
+      "y1": 214.507283
+    },
+    {
+      "text": "Instead, TI methods should be selected based on the complexity of genes\u2019 dependence on pseudotime. This DE test over pseudotime is",
+      "x0": 42.51639,
+      "y0": 217.980204,
+      "x1": 552.766231,
+      "y1": 225.845599
+    },
+    {
+      "text": "the expected trajectory. The comparison revealed that Slingshot confounded by the trajectory inference method in the same way that",
+      "x0": 42.51639,
+      "y0": 229.31852,
+      "x1": 552.772019,
+      "y1": 237.183915
+    },
+    {
+      "text": "(Street et al, 2018) outperformed other methods for simple trajec- DE testing between clusters is confounded by the clustering method",
+      "x0": 42.51639,
+      "y0": 240.656835,
+      "x1": 552.795172,
+      "y1": 248.52223
+    },
+    {
+      "text": "tories that range from linear to bi- and multifurcating models. If (see \u201cCluster annotation\u201d section). Thus, P-values obtained in this",
+      "x0": 42.51639,
+      "y0": 251.995151,
+      "x1": 552.762922,
+      "y1": 259.860546
+    },
+    {
+      "text": "more complex trajectories are expected, PAGA (Wolf et al, 2019) set-up should not be regarded as an evaluation of significance.",
+      "x0": 42.51639,
+      "y0": 263.333467,
+      "x1": 531.057886,
+      "y1": 271.198862
+    },
+    {
+      "text": "was recommended by the authors. If the exact trajectory model is Currently few dedicated gene temporal dynamics tools exist.",
+      "x0": 42.516384,
+      "y0": 274.671782,
+      "x1": 552.744731,
+      "y1": 282.537177
+    },
+    {
+      "text": "known, one can alternatively use more specialized methods to BEAM is a tool integrated into the Monocle TI pipeline (Qiu et al,",
+      "x0": 42.516384,
+      "y0": 286.010098,
+      "x1": 552.720743,
+      "y1": 293.875493
+    },
+    {
+      "text": "improve performance (Saelens et al, 2018). Generally, any inferred 2017a), which allows for detection of branch-specific gene dynam-",
+      "x0": 42.516384,
+      "y0": 297.348414,
+      "x1": 552.812527,
+      "y1": 305.213809
+    },
+    {
+      "text": "trajectory should be confirmed with an alternative method to avoid ics. Outside of this pipeline, users can opt for LineagePulse (https://",
+      "x0": 42.516384,
+      "y0": 308.68673,
+      "x1": 552.766221,
+      "y1": 316.552124
+    },
+    {
+      "text": "method bias. github.com/YosefLab/LineagePulse), which considers dropout noise",
+      "x0": 42.516384,
+      "y0": 320.025045,
+      "x1": 552.776971,
+      "y1": 327.89044
+    },
+    {
+      "text": "In a typical workflow, TI methods are applied to reduced data but is still in development, or write their own testing framework",
+      "x0": 53.628131,
+      "y0": 331.363361,
+      "x1": 552.774491,
+      "y1": 339.228756
+    },
+    {
+      "text": "or to corrected data when there is an inbuilt dimensionality using the limma package (Ritchie et al, 2015) or standard R",
+      "x0": 42.516384,
+      "y0": 342.701677,
+      "x1": 552.760429,
+      "y1": 350.567071
+    },
+    {
+      "text": "reduction step. As multiple biological processes are typically libraries. An example of this can be found in the online Slingshot",
+      "x0": 42.516384,
+      "y0": 354.039992,
+      "x1": 552.76787,
+      "y1": 361.905387
+    },
+    {
+      "text": "occurring simultaneously within cells, it may be useful to regress tutorial (Street et al, 2018) and in Fig 7E.",
+      "x0": 42.516384,
+      "y0": 365.378308,
+      "x1": 454.542433,
+      "y1": 373.243703
+    },
+    {
+      "text": "out the biological effects of other processes to isolate the expected Given the few available tools, a best practice for investigating gene",
+      "x0": 42.516384,
+      "y0": 376.716624,
+      "x1": 552.6612,
+      "y1": 384.582018
+    },
+    {
+      "text": "trajectory. For example, T cells may be undergoing cell cycle temporal dynamics cannot yet be determined. Exploratory investiga-",
+      "x0": 42.516384,
+      "y0": 388.054939,
+      "x1": 552.72239,
+      "y1": 395.920334
+    },
+    {
+      "text": "transitions during maturation (Buettner et al, 2015). Furthermore, tion of gene dynamics is surely possible using all above methods. In",
+      "x0": 42.516384,
+      "y0": 399.393255,
+      "x1": 552.716602,
+      "y1": 407.25865
+    },
+    {
+      "text": "as several top-performing TI methods rely on clustered data, TI is future, Gaussian processes may provide a natural model to investigate",
+      "x0": 42.516386,
+      "y0": 410.731571,
+      "x1": 552.740582,
+      "y1": 418.596965
+    },
+    {
+      "text": "typically performed after clustering. Clusters in inferred trajecto- gene temporal dynamics. Furthermore, testing for regulatory modules",
+      "x0": 42.516386,
+      "y0": 422.069886,
+      "x1": 552.870404,
+      "y1": 429.935281
+    },
+    {
+      "text": "ries may represent stable or metastable states (see \u201cMetastable rather than individual genes would likely improve the signal-to-noise",
+      "x0": 42.516386,
+      "y0": 433.408202,
+      "x1": 552.739755,
+      "y1": 441.273597
+    },
+    {
+      "text": "states\u201d; Fig 7B and C). Subsequently, RNA velocities can be over- ratio and facilitate the biological interpretation.",
+      "x0": 42.516386,
+      "y0": 444.746518,
+      "x1": 469.095697,
+      "y1": 452.611912
+    },
+    {
+      "text": "layed onto the trajectory to add directionality (La Manno et al,",
+      "x0": 42.516386,
+      "y0": 456.084833,
+      "x1": 289.097465,
+      "y1": 463.948557
+    },
+    {
+      "text": "2018). Metastable states",
+      "x0": 42.516386,
+      "y0": 467.416551,
+      "x1": 365.874191,
+      "y1": 475.286873
+    },
+    {
+      "text": "Inferred trajectories do not have to represent biological processes. Cell-level analysis of trajectories investigates cellular densities across",
+      "x0": 53.628134,
+      "y0": 478.761465,
+      "x1": 552.786061,
+      "y1": 486.626859
+    },
+    {
+      "text": "In the first instance, these only denote transcriptional similarity. Few pseudotime. Assuming that cells were sampled in an unbiased manner,",
+      "x0": 42.516386,
+      "y0": 490.09978,
+      "x1": 552.872057,
+      "y1": 497.965175
+    },
+    {
+      "text": "TI methods include an evaluation of uncertainty in their model (Grif- dense regions along a trajectory indicate preferred transcriptomic",
+      "x0": 42.516386,
+      "y0": 501.438096,
+      "x1": 552.738928,
+      "y1": 509.303491
+    },
+    {
+      "text": "fiths et al, 2018). Thus, further information is needed to validate states. When interpreting the trajectory as a temporal process, these",
+      "x0": 42.516386,
+      "y0": 512.776412,
+      "x1": 552.743062,
+      "y1": 520.641807
+    },
+    {
+      "text": "whether a biological process was indeed captured. This information dense regions may represent metastable states in, for example, devel-",
+      "x0": 42.516386,
+      "y0": 524.114727,
+      "x1": 552.723217,
+      "y1": 531.980122
+    },
+    {
+      "text": "can come in the form of perturbation experiments, inferred regulatory opment (Haghverdi et al, 2016). We can find these metastable states",
+      "x0": 42.516386,
+      "y0": 535.453043,
+      "x1": 552.853039,
+      "y1": 543.318438
+    },
+    {
+      "text": "gene dynamics, and support from RNA velocity. by plotting histograms of the pseudotime coordinate (Fig 7C).",
+      "x0": 42.516386,
+      "y0": 546.791359,
+      "x1": 520.389337,
+      "y1": 554.656754
+    },
+    {
+      "text": "Cell-level analysis unification",
+      "x0": 306.138004,
+      "y0": 569.462219,
+      "x1": 410.676745,
+      "y1": 577.127489
+    },
+    {
+      "text": "Clustering and trajectory inference represent two distinct views of",
+      "x0": 306.138004,
+      "y0": 580.808804,
+      "x1": 552.772003,
+      "y1": 588.672527
+    },
+    {
+      "text": "Pitfalls & recommendations:",
+      "x0": 48.018902,
+      "y0": 587.722056,
+      "x1": 145.117929,
+      "y1": 594.611055
+    },
+    {
+      "text": "single-cell data. These two views can be reconciled in coarse-",
+      "x0": 306.138004,
+      "y0": 592.147119,
+      "x1": 552.804253,
+      "y1": 600.010843
+    },
+    {
+      "text": "\u2022 We recommend using the Saelens et al (2018) review as a guide. grained graph representations. By representing single-cell clusters as",
+      "x0": 48.018902,
+      "y0": 599.015579,
+      "x1": 552.7596,
+      "y1": 615.852529
+    },
+    {
+      "text": "\u2022 Inferred trajectories do not have to represent a biological process. nodes, and trajectories between the clusters as edges, one can repre-",
+      "x0": 48.018902,
+      "y0": 610.354172,
+      "x1": 552.812521,
+      "y1": 627.191122
+    },
+    {
+      "text": "Further sources of evidence should be collected to interpret a trajectory. sent both the static and dynamic nature of the data. This unification",
+      "x0": 55.445702,
+      "y0": 625.003286,
+      "x1": 552.715775,
+      "y1": 634.02579
+    },
+    {
+      "text": "was proposed by the partition-based graph abstraction tool (PAGA;",
+      "x0": 306.138004,
+      "y0": 637.500382,
+      "x1": 552.784407,
+      "y1": 645.364106
+    },
+    {
+      "text": "Fig 7D; Wolf et al, 2019). Using a statistical model for cell cluster",
+      "x0": 306.138004,
+      "y0": 648.838698,
+      "x1": 552.781099,
+      "y1": 656.702422
+    },
+    {
+      "text": "Gene expression dynamics interactions, PAGA places an edge between cluster nodes whose",
+      "x0": 42.519699,
+      "y0": 659.952926,
+      "x1": 552.740584,
+      "y1": 668.040737
+    },
+    {
+      "text": "One approach to garner support that an inferred trajectory is not the cells are more similar than expected. PAGA has been favourably",
+      "x0": 42.519699,
+      "y0": 671.299511,
+      "x1": 552.785235,
+      "y1": 679.379053
+    },
+    {
+      "text": "result of fitting transcriptional noise is to analyse the trajectory on the compared to other TI methods in a recent review (Saelens et al,",
+      "x0": 42.519699,
+      "y0": 682.637826,
+      "x1": 552.718258,
+      "y1": 690.717369
+    },
+    {
+      "text": "gene level. Genes that vary smoothly across pseudotime characterize 2018). It was the only reviewed method able to cope with discon-",
+      "x0": 42.519699,
+      "y0": 693.976142,
+      "x1": 552.772832,
+      "y1": 702.055684
+    },
+    {
+      "text": "the trajectory and can be used to identify the underlying biological nected topologies and complex graphs containing cycles. This",
+      "x0": 42.519699,
+      "y0": 705.314458,
+      "x1": 552.762084,
+      "y1": 713.394
+    },
+    {
+      "text": "process. Furthermore, this group of trajectory-associated genes is feature makes PAGA a helpful tool to visualize the topology of the",
+      "x0": 42.519699,
+      "y0": 716.652773,
+      "x1": 552.737276,
+      "y1": 724.732316
+    },
+    {
+      "text": "expected to contain genes that regulate the modelled process. entire dataset also for exploratory analysis.",
+      "x0": 42.519699,
+      "y0": 727.991089,
+      "x1": 461.026079,
+      "y1": 736.070631
+    },
+    {
+      "text": "16 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.836042,
+      "y1": 768.492305
+    }
+  ]
+}

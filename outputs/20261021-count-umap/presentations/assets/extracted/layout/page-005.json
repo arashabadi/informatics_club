@@ -1,0 +1,448 @@
+{
+  "page": 5,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Malte D Luecken & Fabian J Theis Molecular Systems Biology",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.762111,
+      "y1": 41.169976
+    },
+    {
+      "text": "for datasets containing heterogeneous cell populations where cell calculating their size factors. This approach allows for molecular",
+      "x0": 42.519699,
+      "y0": 81.914543,
+      "x1": 552.735647,
+      "y1": 89.78414
+    },
+    {
+      "text": "types or states may be misinterpreted as low-quality outlier cells. In count variability in few highly expressed genes. More cellular hetero-",
+      "x0": 42.519699,
+      "y0": 93.252858,
+      "x1": 552.832393,
+      "y1": 101.122456
+    },
+    {
+      "text": "low-quality datasets, stringent QC thresholds may be necessary. The geneity is permitted by Scran\u2019s pooling-based size factor estimation",
+      "x0": 42.519699,
+      "y0": 104.591174,
+      "x1": 552.829085,
+      "y1": 112.460771
+    },
+    {
+      "text": "quality of a dataset can be determined by experimental QC metrics method (Lun et al, 2016a). Here, size factors are estimated based on",
+      "x0": 42.519699,
+      "y0": 115.92949,
+      "x1": 552.826604,
+      "y1": 123.799087
+    },
+    {
+      "text": "(see Appendix Supplementary Text S2). In this iterative QC opti- a linear regression over genes, after cells are pooled to avoid technical",
+      "x0": 42.519699,
+      "y0": 127.267805,
+      "x1": 552.752185,
+      "y1": 135.137403
+    },
+    {
+      "text": "mization, one should be aware of data peeking. QC thresholds dropout effects. This method limits variability to fewer than 50% of",
+      "x0": 42.519699,
+      "y0": 138.606121,
+      "x1": 552.722417,
+      "y1": 146.475718
+    },
+    {
+      "text": "should not be adapted to improve the outcome of a statistical test. genes being differentially expressed between cells, and is consistently",
+      "x0": 42.519699,
+      "y0": 149.944437,
+      "x1": 552.743915,
+      "y1": 157.814034
+    },
+    {
+      "text": "Instead, QC can be evaluated from the distribution of QC covariates a top-performing normalization method in independent comparisons.",
+      "x0": 42.519699,
+      "y0": 161.282752,
+      "x1": 552.718282,
+      "y1": 169.15235
+    },
+    {
+      "text": "in dataset visualizations and clustering. Scran has been shown to perform better than other tested normaliza-",
+      "x0": 42.519699,
+      "y0": 172.621068,
+      "x1": 552.83322,
+      "y1": 180.490665
+    },
+    {
+      "text": "tion methods for batch correction (Buttner et al, 2019) and differen-",
+      "x0": 306.140511,
+      "y0": 183.959384,
+      "x1": 552.725717,
+      "y1": 191.823108
+    },
+    {
+      "text": "tial expression analysis (preprint: Vieth et al, 2019). The method was",
+      "x0": 306.14051,
+      "y0": 195.297699,
+      "x1": 552.821642,
+      "y1": 203.161423
+    },
+    {
+      "text": "Pitfalls & recommendations: also shown to give robust size factor estimates in a small-scale",
+      "x0": 48.018902,
+      "y0": 206.636015,
+      "x1": 552.743914,
+      "y1": 214.768648
+    },
+    {
+      "text": "comparison from the original authors (Vallejos et al, 2017).",
+      "x0": 306.14051,
+      "y0": 217.974331,
+      "x1": 515.807558,
+      "y1": 225.838055
+    },
+    {
+      "text": "\u2022 Perform QC by finding outlier peaks in the number of genes, the count",
+      "x0": 48.018902,
+      "y0": 219.173187,
+      "x1": 275.105409,
+      "y1": 236.010137
+    },
+    {
+      "text": "CPM, high-count filtering CPM, and scran use linear, global scal-",
+      "x0": 317.252253,
+      "y0": 229.312646,
+      "x1": 552.780293,
+      "y1": 237.17637
+    },
+    {
+      "text": "depth and the fraction of mitochondrial reads. Consider these covari-",
+      "x0": 55.445702,
+      "y0": 233.822286,
+      "x1": 275.112882,
+      "y1": 240.733701
+    },
+    {
+      "text": "ates jointly instead of separately. ing to normalize count data. Non-linear normalization methods,",
+      "x0": 55.445702,
+      "y0": 240.650962,
+      "x1": 552.779466,
+      "y1": 250.201219
+    },
+    {
+      "text": "\u2022 Be as permissive of QC thresholding as possible, and revisit QC if which can account for more complex unwanted variation, also exist",
+      "x0": 48.018902,
+      "y0": 249.390472,
+      "x1": 552.778639,
+      "y1": 266.227422
+    },
+    {
+      "text": "downstream clustering cannot be interpreted. (Cole et al, 2019). Many such methods involve the parametric",
+      "x0": 55.445702,
+      "y0": 263.327593,
+      "x1": 552.82908,
+      "y1": 271.191317
+    },
+    {
+      "text": "\u2022 If the distribution of QC covariates differ between samples, QC thresh- modelling of count data. For example, Mayer et al (2018) fit a nega-",
+      "x0": 48.018902,
+      "y0": 270.196777,
+      "x1": 552.79021,
+      "y1": 287.033727
+    },
+    {
+      "text": "olds should be determined separately for each sample to account for tive binomial model to count data, using technical covariates such",
+      "x0": 55.445702,
+      "y0": 284.902662,
+      "x1": 552.747215,
+      "y1": 293.867949
+    },
+    {
+      "text": "sample quality differences as in Plasschaert et al (2018).",
+      "x0": 55.445702,
+      "y0": 294.347764,
+      "x1": 230.664638,
+      "y1": 301.281594
+    },
+    {
+      "text": "as the read depth and the number of counts per gene to fit the model",
+      "x0": 306.139676,
+      "y0": 297.342541,
+      "x1": 552.797656,
+      "y1": 305.206264
+    },
+    {
+      "text": "parameters. The residuals of the model fit serve as a normalized",
+      "x0": 306.139676,
+      "y0": 308.680856,
+      "x1": 552.796002,
+      "y1": 316.54458
+    },
+    {
+      "text": "quantification of gene expression. Such an approach can combine",
+      "x0": 306.139676,
+      "y0": 320.019172,
+      "x1": 552.809232,
+      "y1": 327.882896
+    },
+    {
+      "text": "Normalization technical and biological data correction (e.g. batch correction or",
+      "x0": 42.519699,
+      "y0": 331.247535,
+      "x1": 552.728198,
+      "y1": 339.221211
+    },
+    {
+      "text": "Each count in a count matrix represents the successful capture, correction for cell cycle effects) with count depth normalization.",
+      "x0": 42.519699,
+      "y0": 342.59412,
+      "x1": 552.736466,
+      "y1": 350.559527
+    },
+    {
+      "text": "reverse transcription and sequencing of a molecule of cellular Non-linear normalization methods have been shown to outperform",
+      "x0": 42.519699,
+      "y0": 353.932435,
+      "x1": 552.784425,
+      "y1": 361.897843
+    },
+    {
+      "text": "mRNA (Box 1). Count depths for identical cells can differ due to the global scaling methods especially in situations with strong batch",
+      "x0": 42.519699,
+      "y0": 365.270751,
+      "x1": 552.761273,
+      "y1": 373.236158
+    },
+    {
+      "text": "variability inherent in each of these steps. Thus, when gene expres- effects (Cole et al, 2019). Thus, non-linear normalization methods",
+      "x0": 42.519699,
+      "y0": 376.609067,
+      "x1": 552.810886,
+      "y1": 384.574474
+    },
+    {
+      "text": "sion is compared between cells based on count data, any difference are particularly relevant for plate-based scRNA-seq data, which tend",
+      "x0": 42.519699,
+      "y0": 387.947383,
+      "x1": 552.767889,
+      "y1": 395.91279
+    },
+    {
+      "text": "may have arisen solely due to sampling effects. Normalization to have batch effects between plates. Furthermore, plate-based data",
+      "x0": 42.519699,
+      "y0": 399.285698,
+      "x1": 552.743083,
+      "y1": 407.251106
+    },
+    {
+      "text": "addresses this issue by e.g. scaling count data to obtain correct rela- can exhibit larger variations in count depths per cell than droplet-",
+      "x0": 42.519699,
+      "y0": 410.624014,
+      "x1": 552.776985,
+      "y1": 418.589421
+    },
+    {
+      "text": "tive gene expression abundances between cells. based data (Svensson et al, 2017). While non-linear normalization",
+      "x0": 42.519699,
+      "y0": 421.96233,
+      "x1": 552.717449,
+      "y1": 429.927737
+    },
+    {
+      "text": "Many normalization methods exist for bulk gene expression methods, or alternative approaches such as downsampling, appear",
+      "x0": 53.631447,
+      "y0": 433.300645,
+      "x1": 552.774504,
+      "y1": 441.266053
+    },
+    {
+      "text": "(preprint: Pachter, 2011; Dillies et al, 2013). While some of these better suited to these conditions, comparative studies are needed to",
+      "x0": 42.519699,
+      "y0": 444.638961,
+      "x1": 552.715795,
+      "y1": 452.604368
+    },
+    {
+      "text": "methods have been applied to scRNA-seq analysis, sources of variation confirm this hypothesis. In this tutorial, we prefer to separate the",
+      "x0": 42.519699,
+      "y0": 455.977277,
+      "x1": 552.738121,
+      "y1": 463.942684
+    },
+    {
+      "text": "specific to single-cell data such as technical dropouts (zero counts due normalization and data correction (batch correction, noise correc-",
+      "x0": 42.519699,
+      "y0": 467.315592,
+      "x1": 552.765408,
+      "y1": 475.281
+    },
+    {
+      "text": "to sampling) have prompted the development of scRNA-seq-specific tion, etc.) steps to emphasize different processing stages of the data",
+      "x0": 42.519706,
+      "y0": 478.653908,
+      "x1": 552.799311,
+      "y1": 486.619315
+    },
+    {
+      "text": "normalization methods (Lun et al, 2016a; Vallejos et al, 2017). (see \u201cStages of pre-processed data\u201d section). Thus, we focus on",
+      "x0": 42.519706,
+      "y0": 489.992224,
+      "x1": 552.768715,
+      "y1": 497.957631
+    },
+    {
+      "text": "The most commonly used normalization protocol is count depth global scaling normalization methods.",
+      "x0": 53.631458,
+      "y0": 501.330539,
+      "x1": 443.645696,
+      "y1": 509.295947
+    },
+    {
+      "text": "scaling, also referred to as \u201ccounts per million\u201d or CPM normaliza- We cannot expect that a single normalization method is appro-",
+      "x0": 42.51971,
+      "y0": 512.668855,
+      "x1": 552.81006,
+      "y1": 520.634262
+    },
+    {
+      "text": "tion. This protocol comes from bulk expression analysis and normal- priate for all types of scRNA-seq data. For example, Vieth et al",
+      "x0": 42.51971,
+      "y0": 524.007171,
+      "x1": 552.745563,
+      "y1": 531.972578
+    },
+    {
+      "text": "izes count data using a so-called size factor proportional to the count (2017) showed that read and count data are best fit by different",
+      "x0": 42.51971,
+      "y0": 535.345486,
+      "x1": 552.795176,
+      "y1": 543.310894
+    },
+    {
+      "text": "depth per cell. Variations of this method scale the size factors with models. Indeed Cole et al (2019) find that different normalization",
+      "x0": 42.51971,
+      "y0": 546.683802,
+      "x1": 552.817499,
+      "y1": 554.649209
+    },
+    {
+      "text": "different factors of 10, or by the median count depth per cell in the methods perform optimally for different datasets and argue that",
+      "x0": 42.51971,
+      "y0": 558.022118,
+      "x1": 552.771193,
+      "y1": 565.987525
+    },
+    {
+      "text": "dataset. CPM normalization assumes that all cells in the dataset initi- their scone tool should be used to select the appropriate normaliza-",
+      "x0": 42.51971,
+      "y0": 569.360433,
+      "x1": 552.856363,
+      "y1": 577.325841
+    },
+    {
+      "text": "ally contained an equal number of mRNA molecules and count depth tion method for a specific dataset. Furthermore, scRNA-seq tech-",
+      "x0": 42.51971,
+      "y0": 580.698749,
+      "x1": 552.756309,
+      "y1": 588.664156
+    },
+    {
+      "text": "differences arise only due to sampling. This assumption is shared niques can be divided into full-length and 3 0 enrichment methods",
+      "x0": 42.51971,
+      "y0": 589.606607,
+      "x1": 552.814988,
+      "y1": 600.020209
+    },
+    {
+      "text": "with the downsampling protocol, which is the process of randomly (Svensson et al, 2017; Ziegenhain et al, 2017). Data from full-",
+      "x0": 42.51971,
+      "y0": 603.37538,
+      "x1": 552.776951,
+      "y1": 611.358524
+    },
+    {
+      "text": "sampling reads or counts from the data to leave all cells with a pre- length protocols may benefit from normalization methods that take",
+      "x0": 42.51971,
+      "y0": 614.713696,
+      "x1": 552.76455,
+      "y1": 622.69684
+    },
+    {
+      "text": "specified number of counts or fewer. While downsampling throws into account gene length (e.g. Patel et al, 2014; Kowalczyk et al,",
+      "x0": 42.51971,
+      "y0": 626.052012,
+      "x1": 552.722379,
+      "y1": 634.035156
+    },
+    {
+      "text": "away data, it also increases technical dropout rates which CPM and 2015; Soneson & Robinson, 2018), while 3 0 enrichment data do",
+      "x0": 42.51971,
+      "y0": 634.961007,
+      "x1": 552.779084,
+      "y1": 645.374518
+    },
+    {
+      "text": "other global scaling normalization methods do not. Thus, downsam- not. A commonly used normalization method for full-length",
+      "x0": 42.51971,
+      "y0": 648.728643,
+      "x1": 552.784877,
+      "y1": 656.712833
+    },
+    {
+      "text": "pling can deliver a more realistic representation of what cellular scRNA-seq data is TPM normalization (Li et al, 2009), which",
+      "x0": 42.51971,
+      "y0": 660.066959,
+      "x1": 552.755102,
+      "y1": 668.051149
+    },
+    {
+      "text": "expression profiles would look like at similar count depths. comes from bulk RNA-seq analysis.",
+      "x0": 42.51971,
+      "y0": 671.405275,
+      "x1": 436.710187,
+      "y1": 679.389465
+    },
+    {
+      "text": "As single-cell datasets typically consist of heterogeneous cell popu- In the same way that cellular count data can be normalized to",
+      "x0": 53.631458,
+      "y0": 682.74359,
+      "x1": 552.73195,
+      "y1": 690.72778
+    },
+    {
+      "text": "lations with varying sizes and molecule counts, more complex make them comparable between cells, gene counts can be scaled",
+      "x0": 42.51971,
+      "y0": 694.081906,
+      "x1": 552.787351,
+      "y1": 702.066096
+    },
+    {
+      "text": "normalization methods are usually appropriate. For example, Wein- to improve comparisons between genes. Gene normalization",
+      "x0": 42.51971,
+      "y0": 705.420222,
+      "x1": 552.778256,
+      "y1": 713.404412
+    },
+    {
+      "text": "reb et al (2018) used a simple extension of CPM that excludes genes constitutes scaling gene counts to have zero mean and unit vari-",
+      "x0": 42.51971,
+      "y0": 716.758537,
+      "x1": 552.700528,
+      "y1": 724.742727
+    },
+    {
+      "text": "that account for at least 5% of the total counts in any cell, when ance (z scores). This scaling has the effect that all genes are",
+      "x0": 42.51971,
+      "y0": 728.096853,
+      "x1": 552.746834,
+      "y1": 736.081043
+    },
+    {
+      "text": "\u00aa 2019 The Authors Molecular Systems Biology 15: e8746 | 2019 5 of 23",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.760885,
+      "y1": 768.492305
+    }
+  ]
+}

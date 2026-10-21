@@ -1,0 +1,427 @@
+{
+  "page": 4,
+  "width": 595.276,
+  "height": 782.362,
+  "lines": [
+    {
+      "text": "Molecular Systems Biology Malte D Luecken & Fabian J Theis",
+      "x0": 42.519699,
+      "y0": 31.602858,
+      "x1": 552.770371,
+      "y1": 41.169976
+    },
+    {
+      "text": "A 3000 B",
+      "x0": 65.1968,
+      "y0": 77.94495,
+      "x1": 309.247355,
+      "y1": 87.194858
+    },
+    {
+      "text": "160",
+      "x0": 147.502991,
+      "y0": 90.608538,
+      "x1": 157.957051,
+      "y1": 99.007968
+    },
+    {
+      "text": "800",
+      "x0": 324.438293,
+      "y0": 95.103533,
+      "x1": 334.892999,
+      "y1": 103.502963
+    },
+    {
+      "text": "2500 140",
+      "x0": 77.683052,
+      "y0": 103.1877,
+      "x1": 157.957051,
+      "y1": 112.350802
+    },
+    {
+      "text": "700",
+      "x0": 324.438293,
+      "y0": 112.334673,
+      "x1": 334.892999,
+      "y1": 120.734103
+    },
+    {
+      "text": "120",
+      "x0": 147.502991,
+      "y0": 115.766802,
+      "x1": 157.957051,
+      "y1": 124.166232
+    },
+    {
+      "text": "2000 100 600",
+      "x0": 77.683052,
+      "y0": 128.345903,
+      "x1": 334.892999,
+      "y1": 138.173922
+    },
+    {
+      "text": "Frequency 1500 60 Frequency",
+      "x0": 66.686513,
+      "y0": 138.510993,
+      "x1": 320.126778,
+      "y1": 177.888733
+    },
+    {
+      "text": "80",
+      "x0": 150.772949,
+      "y0": 140.952165,
+      "x1": 157.957692,
+      "y1": 149.351595
+    },
+    {
+      "text": "500",
+      "x0": 324.438293,
+      "y0": 146.796892,
+      "x1": 334.892999,
+      "y1": 155.196322
+    },
+    {
+      "text": "40 400",
+      "x0": 150.772949,
+      "y0": 164.027971,
+      "x1": 334.892999,
+      "y1": 174.508517
+    },
+    {
+      "text": "1000 20 300",
+      "x0": 78.004822,
+      "y0": 178.687578,
+      "x1": 334.892999,
+      "y1": 189.814242
+    },
+    {
+      "text": "0",
+      "x0": 154.365326,
+      "y0": 191.26668,
+      "x1": 157.957698,
+      "y1": 199.66611
+    },
+    {
+      "text": "0 1000 2000 3000 4000 200",
+      "x0": 160.051086,
+      "y0": 197.627642,
+      "x1": 334.892999,
+      "y1": 206.88901
+    },
+    {
+      "text": "500 Count depth",
+      "x0": 81.587433,
+      "y0": 207.261492,
+      "x1": 245.273058,
+      "y1": 215.660922
+    },
+    {
+      "text": "100",
+      "x0": 324.438293,
+      "y0": 215.720659,
+      "x1": 334.892999,
+      "y1": 224.120089
+    },
+    {
+      "text": "0 0",
+      "x0": 88.458878,
+      "y0": 232.962725,
+      "x1": 334.891688,
+      "y1": 241.4733
+    },
+    {
+      "text": "0 10000 20000 30000 40000 50000 0 1000 2000 3000 4000",
+      "x0": 99.241814,
+      "y0": 239.398027,
+      "x1": 486.982104,
+      "y1": 248.128268
+    },
+    {
+      "text": "Count depth Number of genes",
+      "x0": 161.340805,
+      "y0": 251.606115,
+      "x1": 451.88534,
+      "y1": 258.425911
+    },
+    {
+      "text": "C D",
+      "x0": 65.1968,
+      "y0": 270.23206,
+      "x1": 282.258623,
+      "y1": 279.481967
+    },
+    {
+      "text": "4000 0.2",
+      "x0": 285.86615,
+      "y0": 288.149584,
+      "x1": 516.40724,
+      "y1": 296.611697
+    },
+    {
+      "text": "counts",
+      "x0": 523.531956,
+      "y0": 297.306817,
+      "x1": 530.347481,
+      "y1": 321.737112
+    },
+    {
+      "text": "10 4 genes",
+      "x0": 82.9916,
+      "y0": 320.870733,
+      "x1": 282.765449,
+      "y1": 342.203398
+    },
+    {
+      "text": "3000 0.15",
+      "x0": 285.86615,
+      "y0": 321.033373,
+      "x1": 519.350271,
+      "y1": 330.319918
+    },
+    {
+      "text": "of mitochondrial",
+      "x0": 275.949925,
+      "y0": 323.930928,
+      "x1": 530.347481,
+      "y1": 373.436888
+    },
+    {
+      "text": "depth",
+      "x0": 74.46124,
+      "y0": 326.246598,
+      "x1": 81.276764,
+      "y1": 346.772919
+    },
+    {
+      "text": "Count 0.1",
+      "x0": 74.46124,
+      "y0": 348.971166,
+      "x1": 516.089353,
+      "y1": 370.597718
+    },
+    {
+      "text": "2000",
+      "x0": 285.87326,
+      "y0": 352.205583,
+      "x1": 300.242747,
+      "y1": 360.605013
+    },
+    {
+      "text": "Number",
+      "x0": 275.949925,
+      "y0": 353.279548,
+      "x1": 282.765449,
+      "y1": 381.442505
+    },
+    {
+      "text": "1000 Fraction",
+      "x0": 286.19632,
+      "y0": 375.630704,
+      "x1": 530.347481,
+      "y1": 405.254975
+    },
+    {
+      "text": "0.05",
+      "x0": 507.425018,
+      "y0": 389.466753,
+      "x1": 519.998319,
+      "y1": 397.866183
+    },
+    {
+      "text": "10 3",
+      "x0": 82.98632,
+      "y0": 402.664893,
+      "x1": 92.869466,
+      "y1": 412.224032
+    },
+    {
+      "text": "0",
+      "x0": 296.641968,
+      "y0": 419.401018,
+      "x1": 300.234339,
+      "y1": 427.800448
+    },
+    {
+      "text": "0",
+      "x0": 507.425018,
+      "y0": 423.237627,
+      "x1": 511.01739,
+      "y1": 431.637057
+    },
+    {
+      "text": "EMBO 0 2000 4000 6000 8000 10000 12000 14000 0 10000 20000 30000 40000 50000",
+      "x0": 66.625181,
+      "y0": 427.646872,
+      "x1": 488.493939,
+      "y1": 441.134339
+    },
+    {
+      "text": "\u00a9 Barcode rank Count depth",
+      "x0": 66.625623,
+      "y0": 442.052404,
+      "x1": 419.618304,
+      "y1": 448.867928
+    },
+    {
+      "text": "Figure 2. Plots of quality control metrics with filtering decisions for a mouse intestinal epithelium dataset from Haber et al (2017).",
+      "x0": 50.513401,
+      "y0": 465.059796,
+      "x1": 471.498709,
+      "y1": 474.125736
+    },
+    {
+      "text": "(A) Histograms of count depth per cell. The smaller histogram is zoomed-in on count depths below 4,000. A threshold is applied here at 1,500 based on the peak detected at",
+      "x0": 50.512699,
+      "y0": 477.959914,
+      "x1": 544.758469,
+      "y1": 484.403705
+    },
+    {
+      "text": "around 1,200 counts. (B) Histogram of the number of genes detected per cell. A small noise peak is visible at approx. 400 genes. These cells are filtered out using the depicted",
+      "x0": 50.512699,
+      "y0": 487.200912,
+      "x1": 544.73406,
+      "y1": 493.644703
+    },
+    {
+      "text": "threshold (red line) at 700 genes. (C) Count depth distribution from high to low count depths. This visualization is related to the log\u2013log plot shown in Cell Ranger outputs",
+      "x0": 50.512699,
+      "y0": 496.441878,
+      "x1": 544.78426,
+      "y1": 502.885669
+    },
+    {
+      "text": "that is used to filter out empty droplets. It shows an \u201celbow\u201d where count depths start to decrease rapidly around 1,500 counts. (D) Number of genes versus the count depth",
+      "x0": 50.512699,
+      "y0": 504.064954,
+      "x1": 544.748694,
+      "y1": 513.130894
+    },
+    {
+      "text": "coloured by the fraction of mitochondrial reads. Mitochondrial read fractions are only high in particularly low count cells with few detected genes. These cells are filtered out",
+      "x0": 50.512699,
+      "y0": 514.923842,
+      "x1": 544.754267,
+      "y1": 521.367634
+    },
+    {
+      "text": "by our count and gene number thresholds. Jointly visualizing the count and gene thresholds shows the joint filtering effect, indicating that a lower gene threshold may have",
+      "x0": 50.512699,
+      "y0": 524.16484,
+      "x1": 544.770313,
+      "y1": 530.608631
+    },
+    {
+      "text": "sufficed. [Correction added on 5 July 2019, after first online publication: the x-axis label in panel B was corrected from \u201cCount depth\u201d to \u201cNumber of genes\u201d.]",
+      "x0": 50.512699,
+      "y0": 531.7879,
+      "x1": 511.220771,
+      "y1": 540.85384
+    },
+    {
+      "text": "of interest and leaving some leeway for dropout effects. For example, empty droplets, which can be used to model ambient RNA expres-",
+      "x0": 42.519699,
+      "y0": 580.815405,
+      "x1": 552.784425,
+      "y1": 588.681616
+    },
+    {
+      "text": "filtering out genes expressed in fewer than 20 cells may make it diffi- sion profiles. The recently developed SoupX (preprint: Young &",
+      "x0": 42.519699,
+      "y0": 592.153738,
+      "x1": 552.755484,
+      "y1": 600.019934
+    },
+    {
+      "text": "cult to detect cell clusters with fewer than 20 cells. For datasets with Behjati, 2018) uses this approach to directly correct the count data.",
+      "x0": 42.519699,
+      "y0": 603.492041,
+      "x1": 552.79104,
+      "y1": 611.358252
+    },
+    {
+      "text": "high dropout rates, this threshold may also complicate the detection Pragmatic approaches that ignore strongly ambient genes in down-",
+      "x0": 42.519699,
+      "y0": 614.830359,
+      "x1": 552.791868,
+      "y1": 622.69657
+    },
+    {
+      "text": "of larger clusters. The choice of threshold should scale with the stream analysis have also been used to tackle this problem (Ange-",
+      "x0": 42.519699,
+      "y0": 626.168676,
+      "x1": 552.755484,
+      "y1": 634.034872
+    },
+    {
+      "text": "number of cells in the dataset and the intended downstream analysis. lidis et al, 2019).",
+      "x0": 42.519699,
+      "y0": 637.506994,
+      "x1": 367.083939,
+      "y1": 645.37319
+    },
+    {
+      "text": "Further QC can be performed on the count data directly. Ambient Quality control is performed to ensure that the data quality is suf-",
+      "x0": 53.631451,
+      "y0": 648.845305,
+      "x1": 552.791875,
+      "y1": 656.711508
+    },
+    {
+      "text": "gene expression refers to counts that do not originate from a ficient for downstream analysis. As \u201csufficient data quality\u201d cannot",
+      "x0": 42.519699,
+      "y0": 660.183622,
+      "x1": 552.75135,
+      "y1": 668.049826
+    },
+    {
+      "text": "barcoded cell, but from other lysed cells whose mRNA contaminated be determined a priori, it is judged based on downstream analysis",
+      "x0": 42.519699,
+      "y0": 671.521933,
+      "x1": 552.791025,
+      "y1": 679.388144
+    },
+    {
+      "text": "the cell suspension prior to library construction. These added ambi- performance (e.g., cluster annotation). Thus, it may be necessary to",
+      "x0": 42.519699,
+      "y0": 682.860251,
+      "x1": 552.718272,
+      "y1": 690.726454
+    },
+    {
+      "text": "ent counts can distort downstream analysis such as marker gene revisit quality control decisions multiple times when analysing the",
+      "x0": 42.519699,
+      "y0": 694.198568,
+      "x1": 552.73977,
+      "y1": 702.064779
+    },
+    {
+      "text": "identification or other differential expression tests especially when data. Often it is beneficial to start with permissive QC thresholds",
+      "x0": 42.519699,
+      "y0": 705.536879,
+      "x1": 552.802614,
+      "y1": 713.403082
+    },
+    {
+      "text": "levels vary between samples. It is possible to correct for these effects and investigate the effects of these thresholds before going back to",
+      "x0": 42.519699,
+      "y0": 716.8752,
+      "x1": 552.719098,
+      "y1": 724.741408
+    },
+    {
+      "text": "in droplet-based scRNA-seq datasets due to the large numbers of perform more stringent QC. This approach is particularly relevant",
+      "x0": 42.519699,
+      "y0": 728.213511,
+      "x1": 552.762923,
+      "y1": 736.079714
+    },
+    {
+      "text": "4 of 23 Molecular Systems Biology 15: e8746 | 2019 \u00aa 2019 The Authors",
+      "x0": 42.519699,
+      "y0": 756.836115,
+      "x1": 552.836974,
+      "y1": 768.492305
+    }
+  ]
+}
