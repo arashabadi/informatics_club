@@ -1,0 +1,877 @@
+[
+  {
+    "number": 5,
+    "title": "The same counts become comparable expression",
+    "kind": "table",
+    "short": "We will keep the same six cells throughout the numerical example. Dividing by each cell’s total count and applying log1p gives the expression values shown here. A and B become identical because their counts have the same proportions.",
+    "fa": "در تمام مثال عددی همین شش سلول را دنبال می‌کنیم. با تقسیم بر شمارش کل هر سلول و اعمال log1p، مقدارهای بیان این جدول به دست می‌آیند. A و B یکسان می‌شوند چون نسبت شمارش‌هایشان یکسان است.",
+    "explain": "For cell A and CD3D, 4 / 1000 × 10000 = 40 and ln(1 + 40) = 3.713572. For cell B, 8 / 2000 × 10000 gives the same result. The operation uses each cell’s full library total, including omitted genes, rather than the sum of the four displayed genes. The logarithm is natural. A zero stays zero under this operation and means no detected molecule. We treat these four genes as already selected features for arithmetic and do not estimate highly variable genes from six cells. All observations are hypothetical, and no cell-type assignments follow from the gene names.",
+    "explainfa": "برای سلول A و ژن CD3D، محاسبهٔ ۴ تقسیم بر ۱۰۰۰ ضرب در ۱۰۰۰۰ برابر ۴۰ و لگاریتم طبیعیِ ۱ به‌علاوهٔ ۴۰ برابر ۳٫۷۱۳۵۷۲ است. برای B نیز ۸ تقسیم بر ۲۰۰۰ ضرب در ۱۰۰۰۰ همین نتیجه را می‌دهد. مخرج، مجموع کل کتابخانه شامل ژن‌های نشان‌داده‌نشده است، نه مجموع چهار ژن جدول. لگاریتم طبیعی است. صفر با این تبدیل صفر می‌ماند و یعنی مولکولی شناسایی نشده است. این چهار ژن را برای محاسبه، ازپیش‌انتخاب‌شده در نظر می‌گیریم و از روی شش سلول HVG تخمین نمی‌زنیم. همهٔ مشاهده‌ها فرضی‌اند و نام ژن‌ها مجوز تعیین نوع سلولی نیست.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Cell",
+        "CD3D",
+        "MS4A1",
+        "NKG7",
+        "LST1"
+      ],
+      [
+        "A",
+        "3.714",
+        "0.000",
+        "2.398",
+        "0.000"
+      ],
+      [
+        "B",
+        "3.714",
+        "0.000",
+        "2.398",
+        "0.000"
+      ],
+      [
+        "C",
+        "0.000",
+        "3.932",
+        "0.000",
+        "0.000"
+      ],
+      [
+        "D",
+        "1.792",
+        "3.932",
+        "1.792",
+        "0.000"
+      ],
+      [
+        "E",
+        "0.000",
+        "0.000",
+        "4.394",
+        "3.995"
+      ],
+      [
+        "F",
+        "1.792",
+        "0.000",
+        "4.394",
+        "3.932"
+      ]
+    ],
+    "equation": "A, CD3D: 4 / 1,000 × 10,000 = 40     ln(41) = 3.714",
+    "bottom": "A and B remain the same observation pattern in every later step",
+    "seconds": 75,
+    "notes": "We will keep the same six cells throughout the numerical example. Dividing by each cell’s total count and applying log1p gives the expression values shown here. A and B become identical because their counts have the same proportions.\n\nدر تمام مثال عددی همین شش سلول را دنبال می‌کنیم. با تقسیم بر شمارش کل هر سلول و اعمال log1p، مقدارهای بیان این جدول به دست می‌آیند. A و B یکسان می‌شوند چون نسبت شمارش‌هایشان یکسان است.\n\nInterpretation\nFor cell A and CD3D, 4 / 1000 × 10000 = 40 and ln(1 + 40) = 3.713572. For cell B, 8 / 2000 × 10000 gives the same result. The operation uses each cell’s full library total, including omitted genes, rather than the sum of the four displayed genes. The logarithm is natural. A zero stays zero under this operation and means no detected molecule. We treat these four genes as already selected features for arithmetic and do not estimate highly variable genes from six cells. All observations are hypothetical, and no cell-type assignments follow from the gene names.\n\nبرای سلول A و ژن CD3D، محاسبهٔ ۴ تقسیم بر ۱۰۰۰ ضرب در ۱۰۰۰۰ برابر ۴۰ و لگاریتم طبیعیِ ۱ به‌علاوهٔ ۴۰ برابر ۳٫۷۱۳۵۷۲ است. برای B نیز ۸ تقسیم بر ۲۰۰۰ ضرب در ۱۰۰۰۰ همین نتیجه را می‌دهد. مخرج، مجموع کل کتابخانه شامل ژن‌های نشان‌داده‌نشده است، نه مجموع چهار ژن جدول. لگاریتم طبیعی است. صفر با این تبدیل صفر می‌ماند و یعنی مولکولی شناسایی نشده است. این چهار ژن را برای محاسبه، ازپیش‌انتخاب‌شده در نظر می‌گیریم و از روی شش سلول HVG تخمین نمی‌زنیم. همهٔ مشاهده‌ها فرضی‌اند و نام ژن‌ها مجوز تعیین نوع سلولی نیست.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n75 seconds. Cumulative 03:45."
+  },
+  {
+    "number": 6,
+    "title": "Centering and scaling define the PCA input",
+    "kind": "table",
+    "short": "We subtract each gene’s mean and divide by its sample standard deviation. The resulting numbers express how far each cell lies above or below that gene’s mean. PCA will operate on this standardized matrix rather than on raw counts.",
+    "fa": "میانگین هر ژن را کم می‌کنیم و بر انحراف معیار نمونه‌ای آن تقسیم می‌کنیم. عدد حاصل نشان می‌دهد هر سلول چقدر بالاتر یا پایین‌تر از میانگین همان ژن است. PCA روی این ماتریس استانداردشده اجرا می‌شود، نه روی count خام.",
+    "explain": "For CD3D, the mean of the six log values is 1.835111 and the sample standard deviation is 1.661099. Cell A therefore has z = (3.713572 − 1.835111) / 1.661099 = 1.130854. Here z, pronounced zee, is a standardized deviation with no count unit. The sample standard deviation uses a divisor of n − 1, where n is the number of cells, six. We deliberately choose unit-variance scaling for this example. It weights genes in standardized units, which is a modeling choice rather than a mandatory step in every normalization method. Negative values mean below the gene mean and are not negative molecule counts.",
+    "explainfa": "برای CD3D، میانگین شش مقدار لگاریتمی ۱٫۸۳۵۱۱۱ و انحراف معیار نمونه‌ای ۱٫۶۶۱۰۹۹ است. پس z برای A از رابطهٔ ۳٫۷۱۳۵۷۲ منهای ۱٫۸۳۵۱۱۱ تقسیم بر ۱٫۶۶۱۰۹۹ برابر ۱٫۱۳۰۸۵۴ می‌شود. z با تلفظ زی، انحراف استانداردشده و بدون واحد count است. در انحراف معیار نمونه‌ای، مقسوم‌علیه n منهای ۱ است و n تعداد سلول‌ها، یعنی شش است. در این مثال scaling با واریانس واحد را آگاهانه انتخاب کرده‌ایم. این کار ژن‌ها را با واحد استاندارد وزن می‌دهد و یک انتخاب مدل‌سازی است، نه مرحلهٔ اجباری همهٔ روش‌های نرمال‌سازی. مقدار منفی یعنی پایین‌تر از میانگین ژن، نه شمارش منفی مولکول.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Cell",
+        "CD3D",
+        "MS4A1",
+        "NKG7",
+        "LST1"
+      ],
+      [
+        "A",
+        "1.131",
+        "-0.645",
+        "-0.099",
+        "-0.645"
+      ],
+      [
+        "B",
+        "1.131",
+        "-0.645",
+        "-0.099",
+        "-0.645"
+      ],
+      [
+        "C",
+        "-1.105",
+        "1.291",
+        "-1.536",
+        "-0.645"
+      ],
+      [
+        "D",
+        "-0.026",
+        "1.291",
+        "-0.462",
+        "-0.645"
+      ],
+      [
+        "E",
+        "-1.105",
+        "-0.645",
+        "1.098",
+        "1.306"
+      ],
+      [
+        "F",
+        "-0.026",
+        "-0.645",
+        "1.098",
+        "1.275"
+      ]
+    ],
+    "equation": "A, CD3D: (3.714 − 1.835) / 1.661 = 1.131",
+    "bottom": "PCA input: 6 cells × 4 standardized gene features",
+    "seconds": 75,
+    "notes": "We subtract each gene’s mean and divide by its sample standard deviation. The resulting numbers express how far each cell lies above or below that gene’s mean. PCA will operate on this standardized matrix rather than on raw counts.\n\nمیانگین هر ژن را کم می‌کنیم و بر انحراف معیار نمونه‌ای آن تقسیم می‌کنیم. عدد حاصل نشان می‌دهد هر سلول چقدر بالاتر یا پایین‌تر از میانگین همان ژن است. PCA روی این ماتریس استانداردشده اجرا می‌شود، نه روی count خام.\n\nInterpretation\nFor CD3D, the mean of the six log values is 1.835111 and the sample standard deviation is 1.661099. Cell A therefore has z = (3.713572 − 1.835111) / 1.661099 = 1.130854. Here z, pronounced zee, is a standardized deviation with no count unit. The sample standard deviation uses a divisor of n − 1, where n is the number of cells, six. We deliberately choose unit-variance scaling for this example. It weights genes in standardized units, which is a modeling choice rather than a mandatory step in every normalization method. Negative values mean below the gene mean and are not negative molecule counts.\n\nبرای CD3D، میانگین شش مقدار لگاریتمی ۱٫۸۳۵۱۱۱ و انحراف معیار نمونه‌ای ۱٫۶۶۱۰۹۹ است. پس z برای A از رابطهٔ ۳٫۷۱۳۵۷۲ منهای ۱٫۸۳۵۱۱۱ تقسیم بر ۱٫۶۶۱۰۹۹ برابر ۱٫۱۳۰۸۵۴ می‌شود. z با تلفظ زی، انحراف استانداردشده و بدون واحد count است. در انحراف معیار نمونه‌ای، مقسوم‌علیه n منهای ۱ است و n تعداد سلول‌ها، یعنی شش است. در این مثال scaling با واریانس واحد را آگاهانه انتخاب کرده‌ایم. این کار ژن‌ها را با واحد استاندارد وزن می‌دهد و یک انتخاب مدل‌سازی است، نه مرحلهٔ اجباری همهٔ روش‌های نرمال‌سازی. مقدار منفی یعنی پایین‌تر از میانگین ژن، نه شمارش منفی مولکول.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n75 seconds. Cumulative 05:00."
+  },
+  {
+    "number": 7,
+    "title": "Correlated genes share information",
+    "kind": "table",
+    "short": "The four gene columns do not contribute four independent patterns. In this example, NKG7 and LST1 have a correlation of about 0.850. PCA can combine shared variation into new axes before we compare cells.",
+    "fa": "چهار ستون ژن الزاماً چهار الگوی مستقل نمی‌دهند. در این مثال هم‌بستگی NKG7 و LST1 حدود ۰٫۸۵۰ است. PCA می‌تواند تغییرات مشترک را در محورهای تازه ترکیب کند تا بعد سلول‌ها را مقایسه کنیم.",
+    "explain": "This is the correlation matrix of the standardized gene columns, computed across the same six cells. The diagonal is one because each gene correlates perfectly with itself. The value 0.850 describes a positive association between NKG7 and LST1, while −0.774 describes an opposing pattern between MS4A1 and NKG7. Neither number establishes regulation or mechanism. Because the columns are standardized, this matrix also gives their sample covariance. PCA uses this joint variation, rather than ranking genes one at a time, to choose orthogonal axes. The numerical patterns reflect this chosen tiny table and do not establish relationships between these genes in real biology.",
+    "explainfa": "این ماتریس هم‌بستگی ستون‌های استانداردشدهٔ ژن‌ها در همان شش سلول است. قطر یک است چون هر ژن با خودش هم‌بستگی کامل دارد. مقدار ۰٫۸۵۰ همراهی مثبت NKG7 و LST1 و مقدار منفی ۰٫۷۷۴ الگوی مخالف MS4A1 و NKG7 را توصیف می‌کند. هیچ‌یک تنظیم ژنی یا مکانیسم را ثابت نمی‌کنند. چون ستون‌ها استانداردشده‌اند، همین ماتریس کوواریانس نمونه‌ای آن‌ها را هم می‌دهد. PCA از این تغییرات مشترک برای انتخاب محورهای عمود بر هم استفاده می‌کند و ژن‌ها را تک‌تک رتبه‌بندی نمی‌کند. الگوها حاصل همین جدول کوچکِ انتخاب‌شده‌اند و رابطهٔ واقعی این ژن‌ها در زیست‌شناسی را اثبات نمی‌کنند.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Gene",
+        "CD3D",
+        "MS4A1",
+        "NKG7",
+        "LST1"
+      ],
+      [
+        "CD3D",
+        "1.000",
+        "-0.438",
+        "0.049",
+        "-0.441"
+      ],
+      [
+        "MS4A1",
+        "-0.438",
+        "1.000",
+        "-0.774",
+        "-0.500"
+      ],
+      [
+        "NKG7",
+        "0.049",
+        "-0.774",
+        "1.000",
+        "0.850"
+      ],
+      [
+        "LST1",
+        "-0.441",
+        "-0.500",
+        "0.850",
+        "1.000"
+      ]
+    ],
+    "bottom": "Correlation describes this teaching table, not a gene-regulatory mechanism",
+    "seconds": 60,
+    "notes": "The four gene columns do not contribute four independent patterns. In this example, NKG7 and LST1 have a correlation of about 0.850. PCA can combine shared variation into new axes before we compare cells.\n\nچهار ستون ژن الزاماً چهار الگوی مستقل نمی‌دهند. در این مثال هم‌بستگی NKG7 و LST1 حدود ۰٫۸۵۰ است. PCA می‌تواند تغییرات مشترک را در محورهای تازه ترکیب کند تا بعد سلول‌ها را مقایسه کنیم.\n\nInterpretation\nThis is the correlation matrix of the standardized gene columns, computed across the same six cells. The diagonal is one because each gene correlates perfectly with itself. The value 0.850 describes a positive association between NKG7 and LST1, while −0.774 describes an opposing pattern between MS4A1 and NKG7. Neither number establishes regulation or mechanism. Because the columns are standardized, this matrix also gives their sample covariance. PCA uses this joint variation, rather than ranking genes one at a time, to choose orthogonal axes. The numerical patterns reflect this chosen tiny table and do not establish relationships between these genes in real biology.\n\nاین ماتریس هم‌بستگی ستون‌های استانداردشدهٔ ژن‌ها در همان شش سلول است. قطر یک است چون هر ژن با خودش هم‌بستگی کامل دارد. مقدار ۰٫۸۵۰ همراهی مثبت NKG7 و LST1 و مقدار منفی ۰٫۷۷۴ الگوی مخالف MS4A1 و NKG7 را توصیف می‌کند. هیچ‌یک تنظیم ژنی یا مکانیسم را ثابت نمی‌کنند. چون ستون‌ها استانداردشده‌اند، همین ماتریس کوواریانس نمونه‌ای آن‌ها را هم می‌دهد. PCA از این تغییرات مشترک برای انتخاب محورهای عمود بر هم استفاده می‌کند و ژن‌ها را تک‌تک رتبه‌بندی نمی‌کند. الگوها حاصل همین جدول کوچکِ انتخاب‌شده‌اند و رابطهٔ واقعی این ژن‌ها در زیست‌شناسی را اثبات نمی‌کنند.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n60 seconds. Cumulative 06:00."
+  },
+  {
+    "number": 8,
+    "title": "PCA learns gene weights for new axes",
+    "kind": "table",
+    "short": "PCA chooses PC1 to capture the greatest variation in the standardized data. It then finds additional perpendicular axes that capture the remaining variation. These calculated weights define the same coordinate system for every cell.",
+    "fa": "PCA محور PC1 را برای گرفتن بیشترین تغییرات دادهٔ استانداردشده انتخاب می‌کند. سپس محورهای عمود دیگری پیدا می‌کند که تغییرات باقی‌مانده را بگیرند. این وزن‌های محاسبه‌شده یک دستگاه مختصات مشترک برای همهٔ سلول‌ها تعریف می‌کنند.",
+    "explain": "Each column is a loading vector, meaning one weight per gene for a principal component. The first PC maximizes the variance of the cell scores among directions with unit length. A unit length prevents arbitrarily increasing variance by simply multiplying all weights. Later loading vectors are perpendicular to earlier ones. We computed the vectors by singular-value decomposition of the centered standardized matrix, without whitening. The sign of an entire loading vector is arbitrary, so we make its largest absolute weight positive for a consistent display. Changing a whole PC’s sign also changes its scores and preserves cell distances.",
+    "explainfa": "هر ستون یک بردار loading است، یعنی برای یک مؤلفهٔ اصلی به هر ژن یک وزن می‌دهد. PC اول در میان جهت‌های با طول واحد، واریانس score سلول‌ها را بیشینه می‌کند. طول واحد جلوی افزایش دلخواه واریانس با ضرب‌کردن همهٔ وزن‌ها در یک عدد را می‌گیرد. بردارهای بعدی بر بردارهای قبلی عمودند. این بردارها با تجزیهٔ مقدار منفردِ ماتریس مرکزدهی و استانداردشده و بدون whitening محاسبه شده‌اند. علامت کل یک بردار loading دلخواه است؛ برای نمایش منسجم، بزرگ‌ترین وزن از نظر قدرمطلق را مثبت کرده‌ایم. برعکس‌کردن علامت کل یک PC، score آن را هم برعکس می‌کند و فاصلهٔ سلول‌ها را حفظ می‌کند.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Gene",
+        "PC1 weight",
+        "PC2 weight",
+        "PC3 weight"
+      ],
+      [
+        "CD3D",
+        "0.015",
+        "0.829",
+        "0.399"
+      ],
+      [
+        "MS4A1",
+        "-0.541",
+        "-0.390",
+        "0.739"
+      ],
+      [
+        "NKG7",
+        "0.628",
+        "0.002",
+        "0.532"
+      ],
+      [
+        "LST1",
+        "0.559",
+        "-0.401",
+        "0.108"
+      ]
+    ],
+    "bottom": "Loadings: gene contributions     Scores: cell coordinates",
+    "seconds": 75,
+    "notes": "PCA chooses PC1 to capture the greatest variation in the standardized data. It then finds additional perpendicular axes that capture the remaining variation. These calculated weights define the same coordinate system for every cell.\n\nPCA محور PC1 را برای گرفتن بیشترین تغییرات دادهٔ استانداردشده انتخاب می‌کند. سپس محورهای عمود دیگری پیدا می‌کند که تغییرات باقی‌مانده را بگیرند. این وزن‌های محاسبه‌شده یک دستگاه مختصات مشترک برای همهٔ سلول‌ها تعریف می‌کنند.\n\nInterpretation\nEach column is a loading vector, meaning one weight per gene for a principal component. The first PC maximizes the variance of the cell scores among directions with unit length. A unit length prevents arbitrarily increasing variance by simply multiplying all weights. Later loading vectors are perpendicular to earlier ones. We computed the vectors by singular-value decomposition of the centered standardized matrix, without whitening. The sign of an entire loading vector is arbitrary, so we make its largest absolute weight positive for a consistent display. Changing a whole PC’s sign also changes its scores and preserves cell distances.\n\nهر ستون یک بردار loading است، یعنی برای یک مؤلفهٔ اصلی به هر ژن یک وزن می‌دهد. PC اول در میان جهت‌های با طول واحد، واریانس score سلول‌ها را بیشینه می‌کند. طول واحد جلوی افزایش دلخواه واریانس با ضرب‌کردن همهٔ وزن‌ها در یک عدد را می‌گیرد. بردارهای بعدی بر بردارهای قبلی عمودند. این بردارها با تجزیهٔ مقدار منفردِ ماتریس مرکزدهی و استانداردشده و بدون whitening محاسبه شده‌اند. علامت کل یک بردار loading دلخواه است؛ برای نمایش منسجم، بزرگ‌ترین وزن از نظر قدرمطلق را مثبت کرده‌ایم. برعکس‌کردن علامت کل یک PC، score آن را هم برعکس می‌کند و فاصلهٔ سلول‌ها را حفظ می‌کند.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n75 seconds. Cumulative 07:15."
+  },
+  {
+    "number": 9,
+    "title": "One cell’s PC1 score is a weighted sum",
+    "kind": "calculation",
+    "short": "For cell A, we multiply each standardized gene value by its PC1 loading. Adding the four contributions gives a PC1 score of approximately −0.057. Repeating the calculation for every cell and retained PC produces the PCA representation.",
+    "fa": "برای A، مقدار استانداردشدهٔ هر ژن را در loading همان ژن برای PC1 ضرب می‌کنیم. جمع چهار سهم، score حدود منفی ۰٫۰۵۷ را می‌دهد. با تکرار محاسبه برای همهٔ سلول‌ها و PCهای نگه‌داشته‌شده، نمایش PCA ساخته می‌شود.",
+    "explain": "The exact four contributions for A are 0.016466, 0.349325, −0.061995 and −0.361103. Their sum is −0.057308. Products calculated from the rounded slide values may differ slightly because the calculation uses full precision. A score is a coordinate in the PC basis, not a gene count, cell label or probability. In matrix notation T = ZV, T (tee) is the cell-by-component score matrix, Z (zee) the cell-by-gene standardized matrix, and V (vee) the gene-by-component loading matrix. Matrix multiplication here means taking the weighted sum across genes for each cell and component. No biological labels enter this calculation.",
+    "explainfa": "چهار سهم دقیق برای A برابر ۰٫۰۱۶۴۶۶، ۰٫۳۴۹۳۲۵، منفی ۰٫۰۶۱۹۹۵ و منفی ۰٫۳۶۱۱۰۳ هستند و جمع آن‌ها منفی ۰٫۰۵۷۳۰۸ است. محاسبه از روی اعداد گرد‌شدهٔ اسلاید می‌تواند کمی فرق کند چون محاسبهٔ اصلی با دقت کامل انجام شده است. score یک مختصات در مبنای PC است، نه count ژن، برچسب سلولی یا احتمال. در رابطهٔ ماتریسی T=ZV، تی ماتریس سلول در مؤلفه، زی ماتریس استانداردشدهٔ سلول در ژن و وی ماتریس وزن ژن در مؤلفه است. ضرب ماتریسی در اینجا یعنی برای هر سلول و مؤلفه، جمع وزن‌دار را روی ژن‌ها بگیریم. هیچ برچسب زیستی در این محاسبه وارد نمی‌شود.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Gene",
+        "A standardized",
+        "PC1 loading",
+        "Contribution"
+      ],
+      [
+        "CD3D",
+        "1.131",
+        "0.015",
+        "0.016"
+      ],
+      [
+        "MS4A1",
+        "-0.645",
+        "-0.541",
+        "0.349"
+      ],
+      [
+        "NKG7",
+        "-0.099",
+        "0.628",
+        "-0.062"
+      ],
+      [
+        "LST1",
+        "-0.645",
+        "0.559",
+        "-0.361"
+      ]
+    ],
+    "equation": "0.016466 + 0.349325 − 0.061995 − 0.361103 = −0.057308",
+    "bottom": "The same weights transform every cell",
+    "seconds": 75,
+    "notes": "For cell A, we multiply each standardized gene value by its PC1 loading. Adding the four contributions gives a PC1 score of approximately −0.057. Repeating the calculation for every cell and retained PC produces the PCA representation.\n\nبرای A، مقدار استانداردشدهٔ هر ژن را در loading همان ژن برای PC1 ضرب می‌کنیم. جمع چهار سهم، score حدود منفی ۰٫۰۵۷ را می‌دهد. با تکرار محاسبه برای همهٔ سلول‌ها و PCهای نگه‌داشته‌شده، نمایش PCA ساخته می‌شود.\n\nInterpretation\nThe exact four contributions for A are 0.016466, 0.349325, −0.061995 and −0.361103. Their sum is −0.057308. Products calculated from the rounded slide values may differ slightly because the calculation uses full precision. A score is a coordinate in the PC basis, not a gene count, cell label or probability. In matrix notation T = ZV, T (tee) is the cell-by-component score matrix, Z (zee) the cell-by-gene standardized matrix, and V (vee) the gene-by-component loading matrix. Matrix multiplication here means taking the weighted sum across genes for each cell and component. No biological labels enter this calculation.\n\nچهار سهم دقیق برای A برابر ۰٫۰۱۶۴۶۶، ۰٫۳۴۹۳۲۵، منفی ۰٫۰۶۱۹۹۵ و منفی ۰٫۳۶۱۱۰۳ هستند و جمع آن‌ها منفی ۰٫۰۵۷۳۰۸ است. محاسبه از روی اعداد گرد‌شدهٔ اسلاید می‌تواند کمی فرق کند چون محاسبهٔ اصلی با دقت کامل انجام شده است. score یک مختصات در مبنای PC است، نه count ژن، برچسب سلولی یا احتمال. در رابطهٔ ماتریسی T=ZV، تی ماتریس سلول در مؤلفه، زی ماتریس استانداردشدهٔ سلول در ژن و وی ماتریس وزن ژن در مؤلفه است. ضرب ماتریسی در اینجا یعنی برای هر سلول و مؤلفه، جمع وزن‌دار را روی ژن‌ها بگیریم. هیچ برچسب زیستی در این محاسبه وارد نمی‌شود.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n75 seconds. Cumulative 08:30."
+  },
+  {
+    "number": 10,
+    "title": "PCA gives the same cells new coordinates",
+    "kind": "table",
+    "short": "Each cell now has a score on each principal component. Keeping all four PCs changes the axes without losing the input’s Euclidean distances. Keeping only the first three removes the fourth direction and creates the first dimensional reduction.",
+    "fa": "اکنون هر سلول روی هر مؤلفهٔ اصلی یک score دارد. با نگه‌داشتن هر چهار PC، محورها عوض می‌شوند ولی فاصله‌های اقلیدسیِ ورودی حفظ می‌شوند. نگه‌داشتن فقط سه PC اول، جهت چهارم را حذف می‌کند و اولین کاهش بُعد را می‌سازد.",
+    "explain": "The rows are still A through F, in the same order as the count table. These are computed scores, not hand-chosen coordinates. A and B remain identical because their normalized and standardized expression vectors are identical. The four-component transform is an orthonormal change of basis of the centered input, and we checked that pairwise distances match the standardized gene-space distances. Discarding PC4 changes that geometry by removing one squared-distance contribution. This is the distinction between finding new axes and actually reducing dimension. UMAP will receive the first three score columns, not the original gene counts or only the first two scores.",
+    "explainfa": "ردیف‌ها همچنان A تا F و با همان ترتیب جدول count هستند. این scoreها محاسبه شده‌اند و مختصات دست‌چین نیستند. A و B یکسان باقی می‌مانند چون بردار بیان نرمال‌شده و استانداردشدهٔ آن‌ها یکسان است. تبدیل چهارتایی، تغییر مبنای متعامدِ ورودی مرکزدهی‌شده است و بررسی کرده‌ایم فاصله‌های جفتی با فاصلهٔ فضای ژنی استانداردشده برابرند. حذف PC4 هندسه را با کنارگذاشتن یک سهم از مربع فاصله تغییر می‌دهد. این تفاوتِ پیداکردن محور تازه با کاهش واقعی بُعد است. UMAP سه ستون score اول را دریافت می‌کند، نه count خام و نه صرفاً دو score اول.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Cell",
+        "PC1",
+        "PC2",
+        "PC3",
+        "PC4, discarded"
+      ],
+      [
+        "A",
+        "-0.057",
+        "1.448",
+        "-0.148",
+        "-0.022"
+      ],
+      [
+        "B",
+        "-0.057",
+        "1.448",
+        "-0.148",
+        "-0.022"
+      ],
+      [
+        "C",
+        "-2.040",
+        "-1.163",
+        "-0.373",
+        "0.096"
+      ],
+      [
+        "D",
+        "-1.350",
+        "-0.267",
+        "0.628",
+        "-0.091"
+      ],
+      [
+        "E",
+        "1.753",
+        "-1.186",
+        "-0.193",
+        "-0.180"
+      ],
+      [
+        "F",
+        "1.751",
+        "-0.279",
+        "0.234",
+        "0.221"
+      ]
+    ],
+    "bottom": "Four selected genes become three retained PC coordinates",
+    "seconds": 75,
+    "notes": "Each cell now has a score on each principal component. Keeping all four PCs changes the axes without losing the input’s Euclidean distances. Keeping only the first three removes the fourth direction and creates the first dimensional reduction.\n\nاکنون هر سلول روی هر مؤلفهٔ اصلی یک score دارد. با نگه‌داشتن هر چهار PC، محورها عوض می‌شوند ولی فاصله‌های اقلیدسیِ ورودی حفظ می‌شوند. نگه‌داشتن فقط سه PC اول، جهت چهارم را حذف می‌کند و اولین کاهش بُعد را می‌سازد.\n\nInterpretation\nThe rows are still A through F, in the same order as the count table. These are computed scores, not hand-chosen coordinates. A and B remain identical because their normalized and standardized expression vectors are identical. The four-component transform is an orthonormal change of basis of the centered input, and we checked that pairwise distances match the standardized gene-space distances. Discarding PC4 changes that geometry by removing one squared-distance contribution. This is the distinction between finding new axes and actually reducing dimension. UMAP will receive the first three score columns, not the original gene counts or only the first two scores.\n\nردیف‌ها همچنان A تا F و با همان ترتیب جدول count هستند. این scoreها محاسبه شده‌اند و مختصات دست‌چین نیستند. A و B یکسان باقی می‌مانند چون بردار بیان نرمال‌شده و استانداردشدهٔ آن‌ها یکسان است. تبدیل چهارتایی، تغییر مبنای متعامدِ ورودی مرکزدهی‌شده است و بررسی کرده‌ایم فاصله‌های جفتی با فاصلهٔ فضای ژنی استانداردشده برابرند. حذف PC4 هندسه را با کنارگذاشتن یک سهم از مربع فاصله تغییر می‌دهد. این تفاوتِ پیداکردن محور تازه با کاهش واقعی بُعد است. UMAP سه ستون score اول را دریافت می‌کند، نه count خام و نه صرفاً دو score اول.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n75 seconds. Cumulative 09:45."
+  },
+  {
+    "number": 11,
+    "title": "Low variance can still affect a local distance",
+    "kind": "table",
+    "short": "The first three PCs retain 99.50 percent of the variance in this example. PC3 contributes only 3.35 percent overall, yet retaining it changes the C–D distance from 1.131 to 1.510. A small variance contribution does not automatically make a component irrelevant to local relationships.",
+    "fa": "در این مثال سه PC اول، ۹۹٫۵۰ درصد واریانس را نگه می‌دارند. سهم کلی PC3 فقط ۳٫۳۵ درصد است، اما نگه‌داشتن آن فاصلهٔ C و D را از ۱٫۱۳۱ به ۱٫۵۱۰ تغییر می‌دهد. سهم کم از واریانس الزاماً به معنی بی‌اهمیت‌بودن برای رابطه‌های محلی نیست.",
+    "explain": "Variance explained is the variance along a component divided by the sum over all four components. Its cumulative value adds the contributions up to the selected component. We deliberately retain three PCs so the example demonstrates a real four-to-three compression followed by a three-to-two embedding. This is a teaching choice, not a recommended PC count for real datasets. The C–D distance uses differences in their scores, so it can change materially even when the added component contributes a small fraction of global variance. These differences do not prove a rare cell population or identify which retained variation is biological.",
+    "explainfa": "واریانس توضیح‌داده‌شده، واریانس یک مؤلفه تقسیم بر مجموع واریانس چهار مؤلفه است. مقدار تجمعی سهم مؤلفه‌ها را تا رتبهٔ انتخاب‌شده جمع می‌کند. عمداً سه PC نگه می‌داریم تا مثال فشرده‌سازی واقعی چهار به سه و سپس نمایش سه به دو را نشان دهد. این انتخاب آموزشی است و تعداد PC پیشنهادی برای دادهٔ واقعی نیست. فاصلهٔ C و D از اختلاف scoreهای آن‌ها ساخته می‌شود، پس با اضافه‌شدن مؤلفه‌ای با سهم کلی کوچک هم می‌تواند به‌طور قابل‌توجه تغییر کند. این اختلاف‌ها جمعیت نادر را ثابت نمی‌کنند و تعیین نمی‌کنند کدام تغییرات زیستی‌اند.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Component",
+        "Variance explained",
+        "Cumulative"
+      ],
+      [
+        "PC1",
+        "60.65%",
+        "60.65%"
+      ],
+      [
+        "PC2",
+        "35.50%",
+        "96.15%"
+      ],
+      [
+        "PC3",
+        "3.35%",
+        "99.50%"
+      ],
+      [
+        "PC4",
+        "0.50%",
+        "100.00%"
+      ]
+    ],
+    "equation": "C–D distance: two PCs = 1.131     three PCs = 1.510",
+    "bottom": "Retained for UMAP: PC1, PC2 and PC3",
+    "seconds": 75,
+    "notes": "The first three PCs retain 99.50 percent of the variance in this example. PC3 contributes only 3.35 percent overall, yet retaining it changes the C–D distance from 1.131 to 1.510. A small variance contribution does not automatically make a component irrelevant to local relationships.\n\nدر این مثال سه PC اول، ۹۹٫۵۰ درصد واریانس را نگه می‌دارند. سهم کلی PC3 فقط ۳٫۳۵ درصد است، اما نگه‌داشتن آن فاصلهٔ C و D را از ۱٫۱۳۱ به ۱٫۵۱۰ تغییر می‌دهد. سهم کم از واریانس الزاماً به معنی بی‌اهمیت‌بودن برای رابطه‌های محلی نیست.\n\nInterpretation\nVariance explained is the variance along a component divided by the sum over all four components. Its cumulative value adds the contributions up to the selected component. We deliberately retain three PCs so the example demonstrates a real four-to-three compression followed by a three-to-two embedding. This is a teaching choice, not a recommended PC count for real datasets. The C–D distance uses differences in their scores, so it can change materially even when the added component contributes a small fraction of global variance. These differences do not prove a rare cell population or identify which retained variation is biological.\n\nواریانس توضیح‌داده‌شده، واریانس یک مؤلفه تقسیم بر مجموع واریانس چهار مؤلفه است. مقدار تجمعی سهم مؤلفه‌ها را تا رتبهٔ انتخاب‌شده جمع می‌کند. عمداً سه PC نگه می‌داریم تا مثال فشرده‌سازی واقعی چهار به سه و سپس نمایش سه به دو را نشان دهد. این انتخاب آموزشی است و تعداد PC پیشنهادی برای دادهٔ واقعی نیست. فاصلهٔ C و D از اختلاف scoreهای آن‌ها ساخته می‌شود، پس با اضافه‌شدن مؤلفه‌ای با سهم کلی کوچک هم می‌تواند به‌طور قابل‌توجه تغییر کند. این اختلاف‌ها جمعیت نادر را ثابت نمی‌کنند و تعیین نمی‌کنند کدام تغییرات زیستی‌اند.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n75 seconds. Cumulative 11:00."
+  },
+  {
+    "number": 12,
+    "title": "Distances use every retained PC",
+    "kind": "table",
+    "short": "We calculate Euclidean distances using PC1, PC2 and PC3 together. A is closest to its identical partner B, followed by D and F among the distinct profiles. These calculated distances define the starting point for neighbor construction.",
+    "fa": "فاصلهٔ اقلیدسی را با PC1، PC2 و PC3 با هم حساب می‌کنیم. A به همتای یکسان خود، B، نزدیک‌ترین است و در میان پروفایل‌های متفاوت، D و بعد F نزدیک‌ترند. این فاصله‌های محاسبه‌شده نقطهٔ شروع ساخت همسایگی‌اند.",
+    "explain": "For C and D, the score differences are approximately −0.689, −0.896 and −1.001. Squaring them, adding them and taking the square root gives 1.510. Euclidean distance, denoted d (dee), measures separation in the chosen PC coordinates. The summation would run across every retained PC in a real analysis, not only the two plotted axes. All values are dimensionless distances in the standardized representation. A–B is exactly zero before rounding. This duplication is handled explicitly at the next step, so it is not mistaken for extra independent geometric information.",
+    "explainfa": "برای C و D، اختلاف scoreها تقریباً منفی ۰٫۶۸۹، منفی ۰٫۸۹۶ و منفی ۱٫۰۰۱ است. مربع‌کردن، جمع و گرفتن ریشهٔ دوم، فاصلهٔ ۱٫۵۱۰ را می‌دهد. فاصلهٔ اقلیدسی با نماد d و تلفظ دی، جدایی در مختصات PC انتخاب‌شده را می‌سنجد. در دادهٔ واقعی جمع روی همهٔ PCهای نگه‌داشته‌شده است، نه فقط دو محور رسم‌شده. همهٔ مقدارها فاصله‌های بدون واحد در نمایش استانداردشده‌اند. فاصلهٔ A و B پیش از گردکردن دقیقاً صفر است. در گام بعد این تکرار را صریح مدیریت می‌کنیم تا با اطلاعات هندسی مستقلِ اضافه اشتباه نشود.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Cell",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      [
+        "A",
+        "0.000",
+        "0.000",
+        "3.286",
+        "2.284",
+        "3.196",
+        "2.530"
+      ],
+      [
+        "B",
+        "0.000",
+        "0.000",
+        "3.286",
+        "2.284",
+        "3.196",
+        "2.530"
+      ],
+      [
+        "C",
+        "3.286",
+        "3.286",
+        "0.000",
+        "1.510",
+        "3.797",
+        "3.940"
+      ],
+      [
+        "D",
+        "2.284",
+        "2.284",
+        "1.510",
+        "0.000",
+        "3.339",
+        "3.126"
+      ],
+      [
+        "E",
+        "3.196",
+        "3.196",
+        "3.797",
+        "3.339",
+        "0.000",
+        "1.002"
+      ],
+      [
+        "F",
+        "2.530",
+        "2.530",
+        "3.940",
+        "3.126",
+        "1.002",
+        "0.000"
+      ]
+    ],
+    "equation": "C–D: √(0.689² + 0.896² + 1.001²) = 1.510",
+    "bottom": "Distances come from three PCs, even when a plot shows only two",
+    "seconds": 75,
+    "notes": "We calculate Euclidean distances using PC1, PC2 and PC3 together. A is closest to its identical partner B, followed by D and F among the distinct profiles. These calculated distances define the starting point for neighbor construction.\n\nفاصلهٔ اقلیدسی را با PC1، PC2 و PC3 با هم حساب می‌کنیم. A به همتای یکسان خود، B، نزدیک‌ترین است و در میان پروفایل‌های متفاوت، D و بعد F نزدیک‌ترند. این فاصله‌های محاسبه‌شده نقطهٔ شروع ساخت همسایگی‌اند.\n\nInterpretation\nFor C and D, the score differences are approximately −0.689, −0.896 and −1.001. Squaring them, adding them and taking the square root gives 1.510. Euclidean distance, denoted d (dee), measures separation in the chosen PC coordinates. The summation would run across every retained PC in a real analysis, not only the two plotted axes. All values are dimensionless distances in the standardized representation. A–B is exactly zero before rounding. This duplication is handled explicitly at the next step, so it is not mistaken for extra independent geometric information.\n\nبرای C و D، اختلاف scoreها تقریباً منفی ۰٫۶۸۹، منفی ۰٫۸۹۶ و منفی ۱٫۰۰۱ است. مربع‌کردن، جمع و گرفتن ریشهٔ دوم، فاصلهٔ ۱٫۵۱۰ را می‌دهد. فاصلهٔ اقلیدسی با نماد d و تلفظ دی، جدایی در مختصات PC انتخاب‌شده را می‌سنجد. در دادهٔ واقعی جمع روی همهٔ PCهای نگه‌داشته‌شده است، نه فقط دو محور رسم‌شده. همهٔ مقدارها فاصله‌های بدون واحد در نمایش استانداردشده‌اند. فاصلهٔ A و B پیش از گردکردن دقیقاً صفر است. در گام بعد این تکرار را صریح مدیریت می‌کنیم تا با اطلاعات هندسی مستقلِ اضافه اشتباه نشود.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n75 seconds. Cumulative 12:15."
+  },
+  {
+    "number": 13,
+    "title": "The PC distances define local neighbors",
+    "kind": "table",
+    "short": "For this tiny example, identical A and B share one unique profile during UMAP fitting. Each unique profile then connects to its two nearest other profiles. The graph is built from the three-dimensional PC distances, not from a two-dimensional drawing.",
+    "fa": "در این مثال کوچک، A و B یکسان هنگام برازش UMAP یک پروفایل یکتا دارند. هر پروفایل یکتا سپس به دو پروفایل متفاوتِ نزدیک‌تر وصل می‌شود. گراف از فاصله‌های سه‌بعدیِ PCA ساخته می‌شود، نه از یک تصویر دوبعدی.",
+    "explain": "We use umap-learn with unique=True, which fits the five distinct PC profiles and maps the duplicate rows back to the same output coordinate. PCA itself was fitted on all six cells. In this implementation and this run, n_neighbors=3 gives a stored neighbor list containing the point itself plus two other profiles. The self-edge receives zero graph weight. The table shows only the other profiles, with exact distances rounded for display. The setting is chosen for this tiny calculation and is not a recommendation for a real dataset. A and B remain two rows in the original data even though their geometry is deduplicated here.",
+    "explainfa": "از umap-learn با unique=True استفاده کرده‌ایم؛ پنج پروفایل PC متفاوت برازش می‌شوند و ردیف‌های تکراری به همان مختصات خروجی بازمی‌گردند. خود PCA روی هر شش سلول برازش شده است. در این پیاده‌سازی و اجرا، n_neighbors=3 فهرستی ذخیره می‌کند که خود نقطه و دو پروفایل دیگر را دارد. یالِ نقطه به خودش وزن صفر می‌گیرد. جدول فقط پروفایل‌های دیگر و فاصله‌های گرد‌شدهٔ آن‌ها را نشان می‌دهد. تنظیم برای این محاسبهٔ کوچک انتخاب شده و توصیهٔ دادهٔ واقعی نیست. A و B در دادهٔ اصلی همچنان دو ردیف‌اند، هرچند هندسهٔ تکراری آن‌ها اینجا ادغام می‌شود.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.",
+    "values": [
+      [
+        "Profile",
+        "Nearest",
+        "Distance",
+        "Next nearest",
+        "Distance"
+      ],
+      [
+        "A/B",
+        "D",
+        "2.284",
+        "F",
+        "2.530"
+      ],
+      [
+        "C",
+        "D",
+        "1.510",
+        "A/B",
+        "3.286"
+      ],
+      [
+        "D",
+        "C",
+        "1.510",
+        "A/B",
+        "2.284"
+      ],
+      [
+        "E",
+        "F",
+        "1.002",
+        "A/B",
+        "3.196"
+      ],
+      [
+        "F",
+        "E",
+        "1.002",
+        "A/B",
+        "2.530"
+      ]
+    ],
+    "bottom": "Actual run: unique=True, n_neighbors=3     Self-links are omitted here",
+    "seconds": 75,
+    "notes": "For this tiny example, identical A and B share one unique profile during UMAP fitting. Each unique profile then connects to its two nearest other profiles. The graph is built from the three-dimensional PC distances, not from a two-dimensional drawing.\n\nدر این مثال کوچک، A و B یکسان هنگام برازش UMAP یک پروفایل یکتا دارند. هر پروفایل یکتا سپس به دو پروفایل متفاوتِ نزدیک‌تر وصل می‌شود. گراف از فاصله‌های سه‌بعدیِ PCA ساخته می‌شود، نه از یک تصویر دوبعدی.\n\nInterpretation\nWe use umap-learn with unique=True, which fits the five distinct PC profiles and maps the duplicate rows back to the same output coordinate. PCA itself was fitted on all six cells. In this implementation and this run, n_neighbors=3 gives a stored neighbor list containing the point itself plus two other profiles. The self-edge receives zero graph weight. The table shows only the other profiles, with exact distances rounded for display. The setting is chosen for this tiny calculation and is not a recommendation for a real dataset. A and B remain two rows in the original data even though their geometry is deduplicated here.\n\nاز umap-learn با unique=True استفاده کرده‌ایم؛ پنج پروفایل PC متفاوت برازش می‌شوند و ردیف‌های تکراری به همان مختصات خروجی بازمی‌گردند. خود PCA روی هر شش سلول برازش شده است. در این پیاده‌سازی و اجرا، n_neighbors=3 فهرستی ذخیره می‌کند که خود نقطه و دو پروفایل دیگر را دارد. یالِ نقطه به خودش وزن صفر می‌گیرد. جدول فقط پروفایل‌های دیگر و فاصله‌های گرد‌شدهٔ آن‌ها را نشان می‌دهد. تنظیم برای این محاسبهٔ کوچک انتخاب شده و توصیهٔ دادهٔ واقعی نیست. A و B در دادهٔ اصلی همچنان دو ردیف‌اند، هرچند هندسهٔ تکراری آن‌ها اینجا ادغام می‌شود.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.\n\nTiming\n75 seconds. Cumulative 13:30."
+  },
+  {
+    "number": 14,
+    "title": "Local distance becomes a connection weight",
+    "kind": "weights",
+    "short": "UMAP converts each local distance into a connection strength using a local distance offset and scale. For A/B, D receives weight 1 and F receives about 0.585. A larger weight means a stronger graph relationship, rather than a gene-expression value or biological probability.",
+    "fa": "UMAP هر فاصلهٔ محلی را با یک مبدأ و مقیاس فاصلهٔ محلی به شدت اتصال تبدیل می‌کند. برای A/B، وزن D برابر ۱ و وزن F حدود ۰٫۵۸۵ می‌شود. وزن بیشتر یعنی رابطهٔ قوی‌تر در گراف، نه مقدار بیان ژن یا احتمال زیستی.",
+    "explain": "For profile A/B, rho (rho, رو) is the nearest positive distance, 2.283793, and sigma (sigma, سیگما) is the fitted local scale, 0.459045. For F, d = 2.529937. The directed weight is exp(−max(0, d − rho) / sigma), giving exp(−0.5362) ≈ 0.585. Here exp is the exponential function, max clips negative offset distances to zero, and the indices of a directed weight specify the reference profile and its candidate neighbor. Rho and sigma are derived from the PC distances, not measured biological quantities. The local scale is selected to match a neighborhood-size target. Pairs absent from a directed neighbor list receive zero directed weight.",
+    "explainfa": "برای A/B، رو یا rho نزدیک‌ترین فاصلهٔ مثبت و برابر ۲٫۲۸۳۷۹۳ و سیگما یا sigma مقیاس محلیِ برازش‌شده و برابر ۰٫۴۵۹۰۴۵ است. برای F، فاصلهٔ d برابر ۲٫۵۲۹۹۳۷ است. وزن جهت‌دار برابر نمای منفیِ بیشینهٔ صفر و d منهای رو، تقسیم بر سیگماست و exp(−0.5362) تقریباً ۰٫۵۸۵ می‌شود. exp تابع نمایی است، max فاصلهٔ تعدیل‌شدهٔ منفی را صفر می‌کند و اندیس‌های وزن جهت‌دار، پروفایل مرجع و همسایهٔ نامزد را تعیین می‌کنند. رو و سیگما از فاصله‌های PCA به دست می‌آیند و کمیت زیستی اندازه‌گیری‌شده نیستند. مقیاس محلی برای رسیدن به هدف اندازهٔ همسایگی انتخاب می‌شود. جفت‌هایی که در فهرست همسایهٔ جهت‌دار نیستند وزن جهت‌دار صفر می‌گیرند.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.",
+    "equation": "A/B to F: exp[−(2.530 − 2.284) / 0.459] = 0.585",
+    "values": [
+      [
+        "A/B candidate",
+        "Distance",
+        "Offset distance",
+        "Directed weight"
+      ],
+      [
+        "D",
+        "2.284",
+        "0.000",
+        "1.000"
+      ],
+      [
+        "F",
+        "2.530",
+        "0.246",
+        "0.585"
+      ]
+    ],
+    "bottom": "The same local rule applies to every profile",
+    "seconds": 90,
+    "notes": "UMAP converts each local distance into a connection strength using a local distance offset and scale. For A/B, D receives weight 1 and F receives about 0.585. A larger weight means a stronger graph relationship, rather than a gene-expression value or biological probability.\n\nUMAP هر فاصلهٔ محلی را با یک مبدأ و مقیاس فاصلهٔ محلی به شدت اتصال تبدیل می‌کند. برای A/B، وزن D برابر ۱ و وزن F حدود ۰٫۵۸۵ می‌شود. وزن بیشتر یعنی رابطهٔ قوی‌تر در گراف، نه مقدار بیان ژن یا احتمال زیستی.\n\nInterpretation\nFor profile A/B, rho (rho, رو) is the nearest positive distance, 2.283793, and sigma (sigma, سیگما) is the fitted local scale, 0.459045. For F, d = 2.529937. The directed weight is exp(−max(0, d − rho) / sigma), giving exp(−0.5362) ≈ 0.585. Here exp is the exponential function, max clips negative offset distances to zero, and the indices of a directed weight specify the reference profile and its candidate neighbor. Rho and sigma are derived from the PC distances, not measured biological quantities. The local scale is selected to match a neighborhood-size target. Pairs absent from a directed neighbor list receive zero directed weight.\n\nبرای A/B، رو یا rho نزدیک‌ترین فاصلهٔ مثبت و برابر ۲٫۲۸۳۷۹۳ و سیگما یا sigma مقیاس محلیِ برازش‌شده و برابر ۰٫۴۵۹۰۴۵ است. برای F، فاصلهٔ d برابر ۲٫۵۲۹۹۳۷ است. وزن جهت‌دار برابر نمای منفیِ بیشینهٔ صفر و d منهای رو، تقسیم بر سیگماست و exp(−0.5362) تقریباً ۰٫۵۸۵ می‌شود. exp تابع نمایی است، max فاصلهٔ تعدیل‌شدهٔ منفی را صفر می‌کند و اندیس‌های وزن جهت‌دار، پروفایل مرجع و همسایهٔ نامزد را تعیین می‌کنند. رو و سیگما از فاصله‌های PCA به دست می‌آیند و کمیت زیستی اندازه‌گیری‌شده نیستند. مقیاس محلی برای رسیدن به هدف اندازهٔ همسایگی انتخاب می‌شود. جفت‌هایی که در فهرست همسایهٔ جهت‌دار نیستند وزن جهت‌دار صفر می‌گیرند.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.\n\nTiming\n90 seconds. Cumulative 15:00."
+  },
+  {
+    "number": 15,
+    "title": "Two directed neighborhoods form one graph",
+    "kind": "table",
+    "short": "Neighbor relationships can differ depending on which cell is the reference. UMAP combines the two directions into a symmetric graph. A/B and F each give the other about 0.585, which combines into an undirected weight of about 0.828.",
+    "fa": "رابطهٔ همسایگی می‌تواند با عوض‌شدن سلول مرجع فرق کند. UMAP دو جهت را در یک گراف متقارن ترکیب می‌کند. A/B و F هر کدام به دیگری حدود ۰٫۵۸۵ می‌دهند و ترکیب آن‌ها وزن بدون جهتِ حدود ۰٫۸۲۸ می‌سازد.",
+    "explain": "With the default fuzzy-union setting, the combined weight is w = u + v − uv. The quantities u and v are the directed membership strengths in opposite directions, while w is the resulting symmetric strength. For the A/B–F pair, 0.584963 + 0.584956 − (0.584963 × 0.584956) = 0.827741. These values are fuzzy membership strengths, not independent biological-event probabilities. A zero in this sparse graph means no stored connection for that pair, not proof that the cells have no biological relation. This exact graph was verified against the fitted UMAP object. It is the relationship structure that the layout stage tries to approximate.",
+    "explainfa": "در تنظیم پیش‌فرضِ اجتماع فازی، وزن ترکیبی w برابر u به‌علاوهٔ v منهای حاصل‌ضرب uv است. u و v شدت عضویت جهت‌دار در دو جهت مخالف و w شدت متقارن حاصل است. برای جفت A/B و F، محاسبهٔ ۰٫۵۸۴۹۶۳ به‌علاوهٔ ۰٫۵۸۴۹۵۶ منهای حاصل‌ضربشان برابر ۰٫۸۲۷۷۴۱ می‌شود. این مقدارها شدت عضویت فازی‌اند، نه احتمال رویدادهای زیستی مستقل. صفر در گراف تنک یعنی اتصال ذخیره‌شده‌ای برای آن جفت نیست و نبود رابطهٔ زیستی را ثابت نمی‌کند. این گراف دقیقاً با گراف object برازش‌شدهٔ UMAP تطبیق داده شده است. مرحلهٔ چیدمان می‌کوشد همین ساختار رابطه‌ها را تقریب بزند.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.",
+    "values": [
+      [
+        "Profile",
+        "A/B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      [
+        "A/B",
+        "0.000",
+        "0.585",
+        "1.000",
+        "0.585",
+        "0.828"
+      ],
+      [
+        "C",
+        "0.585",
+        "0.000",
+        "1.000",
+        "0.000",
+        "0.000"
+      ],
+      [
+        "D",
+        "1.000",
+        "1.000",
+        "0.000",
+        "0.000",
+        "0.000"
+      ],
+      [
+        "E",
+        "0.585",
+        "0.000",
+        "0.000",
+        "0.000",
+        "1.000"
+      ],
+      [
+        "F",
+        "0.828",
+        "0.000",
+        "0.000",
+        "1.000",
+        "0.000"
+      ]
+    ],
+    "equation": "0.585 + 0.585 − (0.585 × 0.585) = 0.828",
+    "bottom": "Fixed graph target before fitting the two-dimensional layout",
+    "seconds": 60,
+    "notes": "Neighbor relationships can differ depending on which cell is the reference. UMAP combines the two directions into a symmetric graph. A/B and F each give the other about 0.585, which combines into an undirected weight of about 0.828.\n\nرابطهٔ همسایگی می‌تواند با عوض‌شدن سلول مرجع فرق کند. UMAP دو جهت را در یک گراف متقارن ترکیب می‌کند. A/B و F هر کدام به دیگری حدود ۰٫۵۸۵ می‌دهند و ترکیب آن‌ها وزن بدون جهتِ حدود ۰٫۸۲۸ می‌سازد.\n\nInterpretation\nWith the default fuzzy-union setting, the combined weight is w = u + v − uv. The quantities u and v are the directed membership strengths in opposite directions, while w is the resulting symmetric strength. For the A/B–F pair, 0.584963 + 0.584956 − (0.584963 × 0.584956) = 0.827741. These values are fuzzy membership strengths, not independent biological-event probabilities. A zero in this sparse graph means no stored connection for that pair, not proof that the cells have no biological relation. This exact graph was verified against the fitted UMAP object. It is the relationship structure that the layout stage tries to approximate.\n\nدر تنظیم پیش‌فرضِ اجتماع فازی، وزن ترکیبی w برابر u به‌علاوهٔ v منهای حاصل‌ضرب uv است. u و v شدت عضویت جهت‌دار در دو جهت مخالف و w شدت متقارن حاصل است. برای جفت A/B و F، محاسبهٔ ۰٫۵۸۴۹۶۳ به‌علاوهٔ ۰٫۵۸۴۹۵۶ منهای حاصل‌ضربشان برابر ۰٫۸۲۷۷۴۱ می‌شود. این مقدارها شدت عضویت فازی‌اند، نه احتمال رویدادهای زیستی مستقل. صفر در گراف تنک یعنی اتصال ذخیره‌شده‌ای برای آن جفت نیست و نبود رابطهٔ زیستی را ثابت نمی‌کند. این گراف دقیقاً با گراف object برازش‌شدهٔ UMAP تطبیق داده شده است. مرحلهٔ چیدمان می‌کوشد همین ساختار رابطه‌ها را تقریب بزند.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.\n\nTiming\n60 seconds. Cumulative 16:00."
+  },
+  {
+    "number": 16,
+    "title": "UMAP fits coordinates to the graph",
+    "kind": "text",
+    "short": "The graph specifies relationship strengths, but it does not yet provide two-dimensional positions. UMAP moves points so the strengths implied by their positions better match the graph. This optimization creates a nonlinear layout of the PCA-derived relationships.",
+    "fa": "گراف شدت رابطه‌ها را مشخص می‌کند، اما هنوز موقعیت دوبعدی نمی‌دهد. UMAP نقاط را جابه‌جا می‌کند تا شدت رابطهٔ ناشی از موقعیتشان با گراف سازگارتر شود. این بهینه‌سازی چیدمانی غیرخطی از رابطه‌های حاصل از PCA می‌سازد.",
+    "explain": "The layout begins from an initialization, random in this run, and iteratively adjusts two coordinates per unique profile. For a distance r in the display, UMAP uses a decreasing curve q = 1 / (1 + a r^(2b)) to describe low-dimensional membership strength. Here r (ar, آر) is a distance between display coordinates, q (cue, کیو) a derived membership strength, and a and b chosen curve coefficients derived from min_dist and spread. The exponent 2b means twice b, not b squared. The curve parameters in this run are a = 1.262058 and b = 1.003005. This relation is nonlinear and operates on display distances. It is not a second gene-loading matrix.",
+    "explainfa": "چیدمان از یک مقداردهی اولیه شروع می‌شود که در این اجرا تصادفی است و دو مختصات هر پروفایل یکتا را به‌تدریج تغییر می‌دهد. برای فاصلهٔ نمایشی r، تابع کاهشی q=1/(1+a r^(2b)) شدت عضویت در فضای کم‌بُعد را می‌دهد. r با تلفظ آر، فاصلهٔ دو مختصات نمایشی، q با تلفظ کیو شدت عضویتِ حاصل، و a و b ضریب‌های منحنی‌اند که از min_dist و spread به دست می‌آیند. توان 2b یعنی دو برابر b، نه مربع b. در این اجرا a برابر ۱٫۲۶۲۰۵۸ و b برابر ۱٫۰۰۳۰۰۵ است. رابطه غیرخطی است و روی فاصلهٔ نمایشی کار می‌کند؛ یک ماتریس loading ژنیِ دوم نیست.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.",
+    "lines": [
+      "Input: fixed weighted graph from three PCs",
+      "Variables: two display coordinates per unique profile",
+      "Goal: approximate graph relationships in the display",
+      "Iteration: attraction and sampled repulsion update positions"
+    ],
+    "equation": "Display distance r gives a fitted strength q = 1 / (1 + a r²ᵇ)",
+    "bottom": "This run uses a = 1.262 and b = 1.003",
+    "seconds": 60,
+    "notes": "The graph specifies relationship strengths, but it does not yet provide two-dimensional positions. UMAP moves points so the strengths implied by their positions better match the graph. This optimization creates a nonlinear layout of the PCA-derived relationships.\n\nگراف شدت رابطه‌ها را مشخص می‌کند، اما هنوز موقعیت دوبعدی نمی‌دهد. UMAP نقاط را جابه‌جا می‌کند تا شدت رابطهٔ ناشی از موقعیتشان با گراف سازگارتر شود. این بهینه‌سازی چیدمانی غیرخطی از رابطه‌های حاصل از PCA می‌سازد.\n\nInterpretation\nThe layout begins from an initialization, random in this run, and iteratively adjusts two coordinates per unique profile. For a distance r in the display, UMAP uses a decreasing curve q = 1 / (1 + a r^(2b)) to describe low-dimensional membership strength. Here r (ar, آر) is a distance between display coordinates, q (cue, کیو) a derived membership strength, and a and b chosen curve coefficients derived from min_dist and spread. The exponent 2b means twice b, not b squared. The curve parameters in this run are a = 1.262058 and b = 1.003005. This relation is nonlinear and operates on display distances. It is not a second gene-loading matrix.\n\nچیدمان از یک مقداردهی اولیه شروع می‌شود که در این اجرا تصادفی است و دو مختصات هر پروفایل یکتا را به‌تدریج تغییر می‌دهد. برای فاصلهٔ نمایشی r، تابع کاهشی q=1/(1+a r^(2b)) شدت عضویت در فضای کم‌بُعد را می‌دهد. r با تلفظ آر، فاصلهٔ دو مختصات نمایشی، q با تلفظ کیو شدت عضویتِ حاصل، و a و b ضریب‌های منحنی‌اند که از min_dist و spread به دست می‌آیند. توان 2b یعنی دو برابر b، نه مربع b. در این اجرا a برابر ۱٫۲۶۲۰۵۸ و b برابر ۱٫۰۰۳۰۰۵ است. رابطه غیرخطی است و روی فاصلهٔ نمایشی کار می‌کند؛ یک ماتریس loading ژنیِ دوم نیست.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.\n\nTiming\n60 seconds. Cumulative 17:00."
+  },
+  {
+    "number": 17,
+    "title": "A numerical objective guides point movement",
+    "kind": "table",
+    "short": "For the same membership curve, a display distance of 0.5 gives strength 0.761, while distance 2 gives strength 0.165. A strong input edge favors the closer candidate, whereas an absent edge favors the farther one. The final layout balances such competing contributions across the graph.",
+    "fa": "با همان منحنی عضویت، فاصلهٔ نمایشی ۰٫۵ شدت ۰٫۷۶۱ و فاصلهٔ ۲ شدت ۰٫۱۶۵ می‌دهد. یال قویِ ورودی، نامزد نزدیک‌تر و یال غایب نامزد دورتر را ترجیح می‌دهد. چیدمان نهایی این سهم‌های متعارض را در کل گراف متعادل می‌کند.",
+    "explain": "These are hypothetical candidate distances evaluated with the curve fitted for our actual run, not logged optimization iterations. For an input strength p and display strength q, the pairwise cross-entropy contribution is −p ln(q) − (1 − p) ln(1 − q). Here p (pee, پی) is the fixed graph membership, q the display membership, and ln the natural logarithm. When p = 1, the contribution becomes −ln(q), smaller for a strong display connection. When p = 0 it becomes −ln(1 − q), smaller for a weak display connection. The implementation uses stochastic optimization and negative sampling, so this table explains the pairwise target and is not a report of the exact fitted training loss. It also does not imply that every pair improves simultaneously.",
+    "explainfa": "این‌ها فاصله‌های نامزد فرضی‌اند که با منحنی همان اجرای واقعی ارزیابی شده‌اند، نه مراحل ثبت‌شدهٔ بهینه‌سازی. برای شدت ورودی p و شدت نمایشی q، سهم آنتروپی متقاطع جفتی برابر منفی p ضربدر لگاریتم طبیعی q، منهای یک‌منهای p ضربدر لگاریتم طبیعی یک‌منهای q است. p با تلفظ پی عضویت ثابت گراف، q عضویت نمایشی و ln لگاریتم طبیعی است. وقتی p یک است، سهم به منفی لگاریتم q تبدیل می‌شود و با اتصال نمایشی قوی‌تر کمتر است. وقتی p صفر است، سهم منفی لگاریتم یک‌منهای q می‌شود و با اتصال نمایشی ضعیف‌تر کمتر است. پیاده‌سازی از بهینه‌سازی تصادفی و negative sampling استفاده می‌کند، پس جدول هدف جفتی را توضیح می‌دهد و گزارش loss دقیق آموزش نیست. همچنین نمی‌گوید همهٔ جفت‌ها هم‌زمان بهتر می‌شوند.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.",
+    "values": [
+      [
+        "Candidate display distance",
+        "Display strength q",
+        "Cost if edge p = 1",
+        "Cost if edge p = 0"
+      ],
+      [
+        "0.5",
+        "0.761",
+        "0.273",
+        "1.431"
+      ],
+      [
+        "2",
+        "0.165",
+        "1.803",
+        "0.180"
+      ]
+    ],
+    "bottom": "Candidate-distance calculation, not saved training iterations",
+    "seconds": 75,
+    "notes": "For the same membership curve, a display distance of 0.5 gives strength 0.761, while distance 2 gives strength 0.165. A strong input edge favors the closer candidate, whereas an absent edge favors the farther one. The final layout balances such competing contributions across the graph.\n\nبا همان منحنی عضویت، فاصلهٔ نمایشی ۰٫۵ شدت ۰٫۷۶۱ و فاصلهٔ ۲ شدت ۰٫۱۶۵ می‌دهد. یال قویِ ورودی، نامزد نزدیک‌تر و یال غایب نامزد دورتر را ترجیح می‌دهد. چیدمان نهایی این سهم‌های متعارض را در کل گراف متعادل می‌کند.\n\nInterpretation\nThese are hypothetical candidate distances evaluated with the curve fitted for our actual run, not logged optimization iterations. For an input strength p and display strength q, the pairwise cross-entropy contribution is −p ln(q) − (1 − p) ln(1 − q). Here p (pee, پی) is the fixed graph membership, q the display membership, and ln the natural logarithm. When p = 1, the contribution becomes −ln(q), smaller for a strong display connection. When p = 0 it becomes −ln(1 − q), smaller for a weak display connection. The implementation uses stochastic optimization and negative sampling, so this table explains the pairwise target and is not a report of the exact fitted training loss. It also does not imply that every pair improves simultaneously.\n\nاین‌ها فاصله‌های نامزد فرضی‌اند که با منحنی همان اجرای واقعی ارزیابی شده‌اند، نه مراحل ثبت‌شدهٔ بهینه‌سازی. برای شدت ورودی p و شدت نمایشی q، سهم آنتروپی متقاطع جفتی برابر منفی p ضربدر لگاریتم طبیعی q، منهای یک‌منهای p ضربدر لگاریتم طبیعی یک‌منهای q است. p با تلفظ پی عضویت ثابت گراف، q عضویت نمایشی و ln لگاریتم طبیعی است. وقتی p یک است، سهم به منفی لگاریتم q تبدیل می‌شود و با اتصال نمایشی قوی‌تر کمتر است. وقتی p صفر است، سهم منفی لگاریتم یک‌منهای q می‌شود و با اتصال نمایشی ضعیف‌تر کمتر است. پیاده‌سازی از بهینه‌سازی تصادفی و negative sampling استفاده می‌کند، پس جدول هدف جفتی را توضیح می‌دهد و گزارش loss دقیق آموزش نیست. همچنین نمی‌گوید همهٔ جفت‌ها هم‌زمان بهتر می‌شوند.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.\n\nTiming\n75 seconds. Cumulative 18:15."
+  },
+  {
+    "number": 18,
+    "title": "The same profiles now have UMAP coordinates",
+    "kind": "scatter",
+    "short": "The final plot uses actual UMAP coordinates computed from our three-PC representation. A and B share one location because we explicitly fitted unique profiles. The positions approximate the graph relationships and do not carry the gene-loading interpretation of PCA axes.",
+    "fa": "نمودار نهایی از مختصات واقعی UMAP استفاده می‌کند که از نمایش سه‌PC مثال محاسبه شده‌اند. A و B یک موقعیت مشترک دارند چون صریحاً پروفایل‌های یکتا را برازش کرده‌ایم. موقعیت‌ها رابطه‌های گراف را تقریب می‌زنند و معنای loading ژنیِ محورهای PCA را ندارند.",
+    "explain": "The fitted parameters are n_components=2, n_neighbors=3, min_dist=0.2, metric=euclidean, unique=True, random_state=42, init=random and n_epochs=500. The table records the numerical output and the scatter shows the same points. Translating or rotating the entire layout changes the coordinate values without changing its pairwise geometry. The two PC axes shown in the comparison plot are only a view of the input, because the fit uses PC3 as well. With only five unique profiles, the run is an arithmetic demonstration, not validation of UMAP, a recovered manifold, or evidence of cell types. The zero-distance A/B duplication is handled as documented rather than hidden by point jitter.",
+    "explainfa": "پارامترهای برازش n_components=2، n_neighbors=3، min_dist=0.2، فاصلهٔ اقلیدسی، unique=True، random_state=42، مقداردهی random و n_epochs=500 هستند. جدول خروجی عددی و نمودار همان نقاط را نشان می‌دهد. انتقال یا چرخش کل چیدمان مقدار مختصات را عوض می‌کند ولی هندسهٔ جفتی را حفظ می‌کند. دو محور PC در نمودار مقایسه فقط نمایی از ورودی‌اند چون PC3 هم وارد برازش شده است. با فقط پنج پروفایل یکتا، این اجرا نمایش محاسبات است و اعتبارسنجی UMAP، بازیابی manifold یا شاهد نوع سلولی نیست. تکرار با فاصلهٔ صفرِ A/B صریحاً مدیریت شده و با لرزش نمایشی نقاط پنهان نشده است.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.",
+    "values": [
+      [
+        "Cell",
+        "UMAP1",
+        "UMAP2"
+      ],
+      [
+        "A",
+        "-6.642",
+        "3.064"
+      ],
+      [
+        "B",
+        "-6.642",
+        "3.064"
+      ],
+      [
+        "C",
+        "-6.335",
+        "4.304"
+      ],
+      [
+        "D",
+        "-7.111",
+        "4.132"
+      ],
+      [
+        "E",
+        "-7.248",
+        "1.931"
+      ],
+      [
+        "F",
+        "-7.638",
+        "2.601"
+      ]
+    ],
+    "bottom": "Computed output, not a hand-drawn embedding",
+    "seconds": 75,
+    "notes": "The final plot uses actual UMAP coordinates computed from our three-PC representation. A and B share one location because we explicitly fitted unique profiles. The positions approximate the graph relationships and do not carry the gene-loading interpretation of PCA axes.\n\nنمودار نهایی از مختصات واقعی UMAP استفاده می‌کند که از نمایش سه‌PC مثال محاسبه شده‌اند. A و B یک موقعیت مشترک دارند چون صریحاً پروفایل‌های یکتا را برازش کرده‌ایم. موقعیت‌ها رابطه‌های گراف را تقریب می‌زنند و معنای loading ژنیِ محورهای PCA را ندارند.\n\nInterpretation\nThe fitted parameters are n_components=2, n_neighbors=3, min_dist=0.2, metric=euclidean, unique=True, random_state=42, init=random and n_epochs=500. The table records the numerical output and the scatter shows the same points. Translating or rotating the entire layout changes the coordinate values without changing its pairwise geometry. The two PC axes shown in the comparison plot are only a view of the input, because the fit uses PC3 as well. With only five unique profiles, the run is an arithmetic demonstration, not validation of UMAP, a recovered manifold, or evidence of cell types. The zero-distance A/B duplication is handled as documented rather than hidden by point jitter.\n\nپارامترهای برازش n_components=2، n_neighbors=3، min_dist=0.2، فاصلهٔ اقلیدسی، unique=True، random_state=42، مقداردهی random و n_epochs=500 هستند. جدول خروجی عددی و نمودار همان نقاط را نشان می‌دهد. انتقال یا چرخش کل چیدمان مقدار مختصات را عوض می‌کند ولی هندسهٔ جفتی را حفظ می‌کند. دو محور PC در نمودار مقایسه فقط نمایی از ورودی‌اند چون PC3 هم وارد برازش شده است. با فقط پنج پروفایل یکتا، این اجرا نمایش محاسبات است و اعتبارسنجی UMAP، بازیابی manifold یا شاهد نوع سلولی نیست. تکرار با فاصلهٔ صفرِ A/B صریحاً مدیریت شده و با لرزش نمایشی نقاط پنهان نشده است.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.\n\nTiming\n75 seconds. Cumulative 19:30."
+  },
+  {
+    "number": 19,
+    "title": "The objectives make the two reductions useful",
+    "kind": "table",
+    "short": "PCA compresses the gene representation into variance-ranked linear coordinates. UMAP uses neighborhoods from those coordinates to fit a nonlinear display. The first reduction prepares the comparison space and the second serves visualization, so they do different work.",
+    "fa": "PCA نمایش ژنی را به مختصات خطیِ رتبه‌بندی‌شده بر اساس واریانس فشرده می‌کند. UMAP از همسایگی همین مختصات برای برازش یک نمایش غیرخطی استفاده می‌کند. کاهش اول فضای مقایسه را آماده می‌کند و کاهش دوم برای نمایش است، پس کارشان متفاوت است.",
+    "explain": "In our example, the actual dimensional sequence is four standardized gene features to three PC scores to two UMAP coordinates. PCA weights combine genes linearly and can be inspected through loadings. UMAP transforms a local relationship structure into positions and optimizes a different target from retained variance. It does not apply the same PCA criterion a second time. In real analyses the first compression may be thousands of genes to tens of PCs. The usefulness of either compression depends on what it preserves for the question. UMAP cannot recreate variation removed during feature selection or PCA truncation, and stronger visual separation is not independent evidence that the representation is biologically correct.",
+    "explainfa": "در مثال ما زنجیرهٔ واقعی بُعد چهار ویژگی ژنی استانداردشده به سه score PCA و سپس دو مختصات UMAP است. وزن‌های PCA ژن‌ها را خطی ترکیب می‌کنند و با loadings قابل بررسی‌اند. UMAP ساختار رابطهٔ محلی را به موقعیت تبدیل می‌کند و هدفی متفاوت از واریانس نگه‌داشته‌شده را بهینه می‌کند. معیار PCA را بار دوم تکرار نمی‌کند. در تحلیل واقعی، فشرده‌سازی اول ممکن است از هزاران ژن به چند ده PC باشد. فایدهٔ هر فشرده‌سازی وابسته به چیزی است که برای سؤال حفظ می‌کند. UMAP تغییرات حذف‌شده در انتخاب ژن یا حذف PC را بازنمی‌سازد و جدایی ظاهری بیشتر شاهد مستقلِ صحت زیستی نمایش نیست.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Property",
+        "PCA",
+        "UMAP"
+      ],
+      [
+        "Input here",
+        "6 × 4 standardized expression",
+        "6 × 3 PC scores, deduplicated for fit"
+      ],
+      [
+        "Fitted object",
+        "Linear gene-loading vectors",
+        "Nonlinear display coordinates"
+      ],
+      [
+        "Target",
+        "Maximum retained variance",
+        "Approximate local graph memberships"
+      ],
+      [
+        "Output here",
+        "6 × 3 PC coordinates",
+        "6 × 2 display coordinates"
+      ]
+    ],
+    "bottom": "Different input objects, objectives and outputs",
+    "seconds": 60,
+    "notes": "PCA compresses the gene representation into variance-ranked linear coordinates. UMAP uses neighborhoods from those coordinates to fit a nonlinear display. The first reduction prepares the comparison space and the second serves visualization, so they do different work.\n\nPCA نمایش ژنی را به مختصات خطیِ رتبه‌بندی‌شده بر اساس واریانس فشرده می‌کند. UMAP از همسایگی همین مختصات برای برازش یک نمایش غیرخطی استفاده می‌کند. کاهش اول فضای مقایسه را آماده می‌کند و کاهش دوم برای نمایش است، پس کارشان متفاوت است.\n\nInterpretation\nIn our example, the actual dimensional sequence is four standardized gene features to three PC scores to two UMAP coordinates. PCA weights combine genes linearly and can be inspected through loadings. UMAP transforms a local relationship structure into positions and optimizes a different target from retained variance. It does not apply the same PCA criterion a second time. In real analyses the first compression may be thousands of genes to tens of PCs. The usefulness of either compression depends on what it preserves for the question. UMAP cannot recreate variation removed during feature selection or PCA truncation, and stronger visual separation is not independent evidence that the representation is biologically correct.\n\nدر مثال ما زنجیرهٔ واقعی بُعد چهار ویژگی ژنی استانداردشده به سه score PCA و سپس دو مختصات UMAP است. وزن‌های PCA ژن‌ها را خطی ترکیب می‌کنند و با loadings قابل بررسی‌اند. UMAP ساختار رابطهٔ محلی را به موقعیت تبدیل می‌کند و هدفی متفاوت از واریانس نگه‌داشته‌شده را بهینه می‌کند. معیار PCA را بار دوم تکرار نمی‌کند. در تحلیل واقعی، فشرده‌سازی اول ممکن است از هزاران ژن به چند ده PC باشد. فایدهٔ هر فشرده‌سازی وابسته به چیزی است که برای سؤال حفظ می‌کند. UMAP تغییرات حذف‌شده در انتخاب ژن یا حذف PC را بازنمی‌سازد و جدایی ظاهری بیشتر شاهد مستقلِ صحت زیستی نمایش نیست.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n60 seconds. Cumulative 20:30."
+  },
+  {
+    "number": 20,
+    "title": "PCA before UMAP is a useful choice",
+    "kind": "text",
+    "short": "UMAP can run directly on gene-expression features, so PCA is not a mathematical prerequisite. PCA often provides a more compact input for neighbor search and removes some redundant or discarded directions. The decision needs a representation check, rather than assuming two reductions always improve the biology.",
+    "fa": "UMAP می‌تواند مستقیم روی ویژگی‌های بیان ژن اجرا شود، پس PCA پیش‌شرط ریاضی آن نیست. PCA اغلب ورودی فشرده‌تری برای یافتن همسایه می‌دهد و بعضی جهت‌های افزونه یا کنارگذاشته‌شده را حذف می‌کند. تصمیم نیازمند بررسی نمایش است و نباید فرض کنیم دو کاهش بُعد همیشه زیست‌شناسی را بهتر می‌کنند.",
+    "explain": "Stopping at PCA is reasonable when its coordinates answer the question or its plots suffice. Plotting only the first two PCs is a projection of the retained representation, and may omit structure carried by other PCs. Direct UMAP is also possible, but then distances reflect the selected gene features and their scales directly. PCA can reduce computational cost and some noise when the discarded directions are unhelpful, while also potentially removing useful rare-state variation. Other workflows use integrated or model-derived latent spaces instead of PCA. Graph clustering usually operates on a related neighborhood graph and need not depend on the final two-dimensional UMAP positions.",
+    "explainfa": "توقف در PCA وقتی مختصات آن به سؤال جواب دهند یا نمودارهایش کافی باشند منطقی است. رسم فقط دو PC اول، تصویرکردن نمایش نگه‌داشته‌شده است و می‌تواند ساختار مؤلفه‌های دیگر را کنار بگذارد. UMAP مستقیم هم ممکن است، ولی فاصله‌ها آن وقت مستقیماً از ویژگی‌های ژنی و مقیاسشان می‌آیند. PCA وقتی جهت‌های حذف‌شده نامفید باشند می‌تواند هزینهٔ محاسبه و بخشی از نویز را کم کند، اما ممکن است تغییرات مفیدِ حالت نادر را هم حذف کند. بعضی workflowها به جای PCA از فضای نهفتهٔ مدل یا integration استفاده می‌کنند. خوشه‌بندی گرافی معمولاً روی گراف مرتبط انجام می‌شود و لازم نیست به موقعیت دوبعدی نهایی UMAP وابسته باشد.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "lines": [
+      "PCA supplies a compact input for cell comparison",
+      "The first two PCs show only part of that input",
+      "UMAP fits a display using all selected PC dimensions",
+      "Direct UMAP and alternative latent spaces remain possible"
+    ],
+    "bottom": "The sequence is justified by its purpose, not by a mandatory software ritual",
+    "seconds": 60,
+    "notes": "UMAP can run directly on gene-expression features, so PCA is not a mathematical prerequisite. PCA often provides a more compact input for neighbor search and removes some redundant or discarded directions. The decision needs a representation check, rather than assuming two reductions always improve the biology.\n\nUMAP می‌تواند مستقیم روی ویژگی‌های بیان ژن اجرا شود، پس PCA پیش‌شرط ریاضی آن نیست. PCA اغلب ورودی فشرده‌تری برای یافتن همسایه می‌دهد و بعضی جهت‌های افزونه یا کنارگذاشته‌شده را حذف می‌کند. تصمیم نیازمند بررسی نمایش است و نباید فرض کنیم دو کاهش بُعد همیشه زیست‌شناسی را بهتر می‌کنند.\n\nInterpretation\nStopping at PCA is reasonable when its coordinates answer the question or its plots suffice. Plotting only the first two PCs is a projection of the retained representation, and may omit structure carried by other PCs. Direct UMAP is also possible, but then distances reflect the selected gene features and their scales directly. PCA can reduce computational cost and some noise when the discarded directions are unhelpful, while also potentially removing useful rare-state variation. Other workflows use integrated or model-derived latent spaces instead of PCA. Graph clustering usually operates on a related neighborhood graph and need not depend on the final two-dimensional UMAP positions.\n\nتوقف در PCA وقتی مختصات آن به سؤال جواب دهند یا نمودارهایش کافی باشند منطقی است. رسم فقط دو PC اول، تصویرکردن نمایش نگه‌داشته‌شده است و می‌تواند ساختار مؤلفه‌های دیگر را کنار بگذارد. UMAP مستقیم هم ممکن است، ولی فاصله‌ها آن وقت مستقیماً از ویژگی‌های ژنی و مقیاسشان می‌آیند. PCA وقتی جهت‌های حذف‌شده نامفید باشند می‌تواند هزینهٔ محاسبه و بخشی از نویز را کم کند، اما ممکن است تغییرات مفیدِ حالت نادر را هم حذف کند. بعضی workflowها به جای PCA از فضای نهفتهٔ مدل یا integration استفاده می‌کنند. خوشه‌بندی گرافی معمولاً روی گراف مرتبط انجام می‌شود و لازم نیست به موقعیت دوبعدی نهایی UMAP وابسته باشد.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n60 seconds. Cumulative 21:30."
+  },
+  {
+    "number": 21,
+    "title": "A layout is an approximation of the graph",
+    "kind": "table",
+    "short": "An input graph weight and the strength implied by the fitted display need not match exactly. The pairwise examples show the compromises made by the two-dimensional layout. UMAP coordinates should therefore support exploration rather than act as an exact ruler for biological distances.",
+    "fa": "وزن گراف ورودی و شدت حاصل از نمایش برازش‌شده الزاماً دقیقاً برابر نیستند. این جفت‌ها مصالحه‌های چیدمان دوبعدی را نشان می‌دهند. پس مختصات UMAP برای بررسی و اکتشاف‌اند و خط‌کش دقیقی برای فاصلهٔ زیستی نیستند.",
+    "explain": "We calculate each final display strength using its fitted two-dimensional distance and the same a and b curve parameters. The input strength is read from the fixed graph, not re-estimated from the display. For example, C–D has input strength one but a final display strength near 0.557. This is expected to be imperfect under dimensional constraints and the sampled optimization, rather than an equality guaranteed by the method. The few pairs shown do not constitute an embedding-quality benchmark. Graph zeros are sparse-model choices. Gaps, area and apparent paths in a UMAP require additional evidence before claims about cell types, abundance or lineage.",
+    "explainfa": "شدت نمایشی نهایی هر جفت از فاصلهٔ دوبعدیِ برازش‌شده و همان ضریب‌های a و b محاسبه شده است. شدت ورودی از گراف ثابت خوانده می‌شود و از روی نمایش دوباره تخمین نمی‌خورد. مثلاً C و D شدت ورودی یک دارند ولی شدت نمایشی نهایی آن‌ها نزدیک ۰٫۵۵۷ است. با محدودیت بُعد و بهینه‌سازی نمونه‌برداری‌شده، این رابطه انتظار نمی‌رود کامل باشد و برابریِ تضمین‌شدهٔ روش نیست. این چند جفت benchmark کیفیت embedding نیستند. صفرهای گراف انتخاب‌های مدل تنک‌اند. شکاف، مساحت و مسیر ظاهری UMAP برای ادعای نوع سلولی، فراوانی یا دودمان به شواهد اضافه نیاز دارند.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.",
+    "values": [
+      [
+        "Pair",
+        "Input graph strength",
+        "Final display strength"
+      ],
+      [
+        "C / D",
+        "1.000",
+        "0.557"
+      ],
+      [
+        "C / E",
+        "0.000",
+        "0.109"
+      ],
+      [
+        "A/B / F",
+        "0.828",
+        "0.396"
+      ],
+      [
+        "F / E",
+        "1.000",
+        "0.569"
+      ]
+    ],
+    "bottom": "Fixed input relationships become an approximate two-dimensional layout",
+    "seconds": 60,
+    "notes": "An input graph weight and the strength implied by the fitted display need not match exactly. The pairwise examples show the compromises made by the two-dimensional layout. UMAP coordinates should therefore support exploration rather than act as an exact ruler for biological distances.\n\nوزن گراف ورودی و شدت حاصل از نمایش برازش‌شده الزاماً دقیقاً برابر نیستند. این جفت‌ها مصالحه‌های چیدمان دوبعدی را نشان می‌دهند. پس مختصات UMAP برای بررسی و اکتشاف‌اند و خط‌کش دقیقی برای فاصلهٔ زیستی نیستند.\n\nInterpretation\nWe calculate each final display strength using its fitted two-dimensional distance and the same a and b curve parameters. The input strength is read from the fixed graph, not re-estimated from the display. For example, C–D has input strength one but a final display strength near 0.557. This is expected to be imperfect under dimensional constraints and the sampled optimization, rather than an equality guaranteed by the method. The few pairs shown do not constitute an embedding-quality benchmark. Graph zeros are sparse-model choices. Gaps, area and apparent paths in a UMAP require additional evidence before claims about cell types, abundance or lineage.\n\nشدت نمایشی نهایی هر جفت از فاصلهٔ دوبعدیِ برازش‌شده و همان ضریب‌های a و b محاسبه شده است. شدت ورودی از گراف ثابت خوانده می‌شود و از روی نمایش دوباره تخمین نمی‌خورد. مثلاً C و D شدت ورودی یک دارند ولی شدت نمایشی نهایی آن‌ها نزدیک ۰٫۵۵۷ است. با محدودیت بُعد و بهینه‌سازی نمونه‌برداری‌شده، این رابطه انتظار نمی‌رود کامل باشد و برابریِ تضمین‌شدهٔ روش نیست. این چند جفت benchmark کیفیت embedding نیستند. صفرهای گراف انتخاب‌های مدل تنک‌اند. شکاف، مساحت و مسیر ظاهری UMAP برای ادعای نوع سلولی، فراوانی یا دودمان به شواهد اضافه نیاز دارند.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\nhttps://umap-learn.readthedocs.io/en/latest/how_umap_works.html\nhttps://umap-learn.readthedocs.io/en/latest/api.html\nComputed with umap-learn 0.5.12.\n\nTiming\n60 seconds. Cumulative 22:30."
+  },
+  {
+    "number": 22,
+    "title": "The numerical example explains the full sequence",
+    "kind": "table",
+    "short": "The same cells have now passed through every step without changing examples midway. Four gene features became three PC scores, then a graph and finally two display coordinates. Each step changed the mathematical object while preserving a traceable link to the starting count table.",
+    "fa": "همین سلول‌ها حالا از همهٔ مرحله‌ها گذشته‌اند، بدون اینکه در میانهٔ داستان مثال را عوض کنیم. چهار ویژگی ژنی به سه score PCA، سپس گراف و در نهایت دو مختصات نمایشی تبدیل شدند. هر مرحله شیء ریاضی را عوض کرد و پیوند قابل‌ردگیری با جدول count اولیه باقی ماند.",
+    "explain": "The small example is deliberately transparent, but it cannot reproduce the complexity of real single-cell data or establish an optimal preprocessing pipeline. It contains six observations, four selected genes and five unique normalized profiles. Real workflows perform cell and gene quality control, method-specific feature selection, and potentially batch integration before or within representation building. The key lesson scales without requiring the same parameters: decide what representation supports cell comparison, then choose a display for those relationships. The paper provides the organizing distinction between summarization and visualization. Its complete figures remain available after the timed route for discussion.",
+    "explainfa": "مثال کوچک عمداً شفاف است، اما پیچیدگی دادهٔ واقعی سینگل‌سل را بازتولید نمی‌کند و pipeline بهینه را تعیین نمی‌کند. شش مشاهده، چهار ژن انتخاب‌شده و پنج پروفایل نرمال‌شدهٔ یکتا دارد. workflow واقعی QC سلول و ژن، انتخاب ویژگی وابسته به روش و در صورت نیاز integration را پیش یا درون ساخت نمایش انجام می‌دهد. پیام بدون نیاز به همین پارامترها قابل تعمیم است: مشخص کنیم چه نمایشی مقایسهٔ سلول‌ها را پشتیبانی می‌کند و بعد برای رابطه‌های آن نمایش انتخاب کنیم. مقاله تفکیک خلاصه‌سازی و نمایش را فراهم می‌کند. تمام شکل‌های آن پس از مسیر زمان‌بندی‌شده برای بحث موجودند.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "values": [
+      [
+        "Stage",
+        "Object in this example",
+        "Purpose"
+      ],
+      [
+        "Count matrix",
+        "6 cells × 4 selected genes",
+        "Recorded molecules"
+      ],
+      [
+        "Log and standardized matrix",
+        "6 × 4 feature values",
+        "Define the comparison scale"
+      ],
+      [
+        "Retained PCA scores",
+        "6 × 3 coordinates",
+        "Compact linear representation"
+      ],
+      [
+        "UMAP graph",
+        "5 unique profiles and weighted links",
+        "Describe local relationships"
+      ],
+      [
+        "UMAP coordinates",
+        "6 × 2 display coordinates",
+        "Visual approximation"
+      ]
+    ],
+    "bottom": "Real datasets often use thousands of genes and tens of PCs",
+    "seconds": 90,
+    "notes": "The same cells have now passed through every step without changing examples midway. Four gene features became three PC scores, then a graph and finally two display coordinates. Each step changed the mathematical object while preserving a traceable link to the starting count table.\n\nهمین سلول‌ها حالا از همهٔ مرحله‌ها گذشته‌اند، بدون اینکه در میانهٔ داستان مثال را عوض کنیم. چهار ویژگی ژنی به سه score PCA، سپس گراف و در نهایت دو مختصات نمایشی تبدیل شدند. هر مرحله شیء ریاضی را عوض کرد و پیوند قابل‌ردگیری با جدول count اولیه باقی ماند.\n\nInterpretation\nThe small example is deliberately transparent, but it cannot reproduce the complexity of real single-cell data or establish an optimal preprocessing pipeline. It contains six observations, four selected genes and five unique normalized profiles. Real workflows perform cell and gene quality control, method-specific feature selection, and potentially batch integration before or within representation building. The key lesson scales without requiring the same parameters: decide what representation supports cell comparison, then choose a display for those relationships. The paper provides the organizing distinction between summarization and visualization. Its complete figures remain available after the timed route for discussion.\n\nمثال کوچک عمداً شفاف است، اما پیچیدگی دادهٔ واقعی سینگل‌سل را بازتولید نمی‌کند و pipeline بهینه را تعیین نمی‌کند. شش مشاهده، چهار ژن انتخاب‌شده و پنج پروفایل نرمال‌شدهٔ یکتا دارد. workflow واقعی QC سلول و ژن، انتخاب ویژگی وابسته به روش و در صورت نیاز integration را پیش یا درون ساخت نمایش انجام می‌دهد. پیام بدون نیاز به همین پارامترها قابل تعمیم است: مشخص کنیم چه نمایشی مقایسهٔ سلول‌ها را پشتیبانی می‌کند و بعد برای رابطه‌های آن نمایش انتخاب کنیم. مقاله تفکیک خلاصه‌سازی و نمایش را فراهم می‌کند. تمام شکل‌های آن پس از مسیر زمان‌بندی‌شده برای بحث موجودند.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n90 seconds. Cumulative 24:00."
+  },
+  {
+    "number": 24,
+    "title": "Discussion: what did each reduction change?",
+    "kind": "text",
+    "short": "PCA and UMAP answer different questions, even though both can reduce the number of coordinates. The example lets us track exactly where gene values became scores, where scores became relationships and where relationships became a layout. Which upstream choice would you inspect if a cell population disappeared from the final picture?",
+    "fa": "PCA و UMAP با وجود امکان کم‌کردن تعداد مختصات، سؤال‌های متفاوتی را پاسخ می‌دهند. مثال نشان داد دقیقاً کجا مقدار ژن به score، کجا score به رابطه و کجا رابطه به چیدمان تبدیل شد. اگر یک جمعیت سلولی در تصویر نهایی ناپدید شود، کدام انتخاب بالادستی را بررسی می‌کنید؟",
+    "explain": "A lost signal after reducing the PC count points back to the retained representation and its loadings. A shape change after altering min_dist, with the same input graph, mainly concerns the display fit. A change after normalization, feature selection or integration requires checking the upstream comparison space. These are different diagnostic questions. A and B being identical here follows from the constructed relative counts and does not establish that real cells with similar expression are biologically interchangeable. Independent biological evidence remains necessary for identity, state and condition comparisons.",
+    "explainfa": "سیگنال ازدست‌رفته بعد از کم‌کردن تعداد PC، بررسی نمایش نگه‌داشته‌شده و loadings آن را مطرح می‌کند. تغییر شکل با min_dist در صورت ثابت‌بودن گراف بیشتر به برازش نمایش مربوط است. تغییر پس از نرمال‌سازی، انتخاب ژن یا integration نیازمند بررسی فضای مقایسهٔ بالادستی است. این‌ها سؤال‌های تشخیصی متفاوتی‌اند. یکسان‌بودن A و B اینجا حاصل نسبت شمارش‌های ساخته‌شده است و ثابت نمی‌کند سلول‌های واقعی با بیان مشابه از نظر زیستی قابل‌جایگزینی‌اند. برای هویت، حالت و مقایسهٔ condition همچنان به شواهد زیستی مستقل نیاز داریم.",
+    "source": "Luecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.",
+    "lines": [
+      "Why retain three PCs if only two axes fit on the page?",
+      "What information does the graph keep from the PC space?",
+      "Which conclusions survive a different reasonable layout?"
+    ],
+    "bottom": "Five minutes for discussion",
+    "seconds": 300,
+    "notes": "PCA and UMAP answer different questions, even though both can reduce the number of coordinates. The example lets us track exactly where gene values became scores, where scores became relationships and where relationships became a layout. Which upstream choice would you inspect if a cell population disappeared from the final picture?\n\nPCA و UMAP با وجود امکان کم‌کردن تعداد مختصات، سؤال‌های متفاوتی را پاسخ می‌دهند. مثال نشان داد دقیقاً کجا مقدار ژن به score، کجا score به رابطه و کجا رابطه به چیدمان تبدیل شد. اگر یک جمعیت سلولی در تصویر نهایی ناپدید شود، کدام انتخاب بالادستی را بررسی می‌کنید؟\n\nInterpretation\nA lost signal after reducing the PC count points back to the retained representation and its loadings. A shape change after altering min_dist, with the same input graph, mainly concerns the display fit. A change after normalization, feature selection or integration requires checking the upstream comparison space. These are different diagnostic questions. A and B being identical here follows from the constructed relative counts and does not establish that real cells with similar expression are biologically interchangeable. Independent biological evidence remains necessary for identity, state and condition comparisons.\n\nسیگنال ازدست‌رفته بعد از کم‌کردن تعداد PC، بررسی نمایش نگه‌داشته‌شده و loadings آن را مطرح می‌کند. تغییر شکل با min_dist در صورت ثابت‌بودن گراف بیشتر به برازش نمایش مربوط است. تغییر پس از نرمال‌سازی، انتخاب ژن یا integration نیازمند بررسی فضای مقایسهٔ بالادستی است. این‌ها سؤال‌های تشخیصی متفاوتی‌اند. یکسان‌بودن A و B اینجا حاصل نسبت شمارش‌های ساخته‌شده است و ثابت نمی‌کند سلول‌های واقعی با بیان مشابه از نظر زیستی قابل‌جایگزینی‌اند. برای هویت، حالت و مقایسهٔ condition همچنان به شواهد زیستی مستقل نیاز داریم.\n\nSource\nLuecken & Theis (2019), doi:10.15252/msb.20188746. Numerical tables are an explicitly hypothetical teaching example, computed from the expanded slide 4 table.\n\nTiming\n300 seconds. Cumulative 30:00."
+  }
+]

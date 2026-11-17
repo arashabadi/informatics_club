@@ -1,0 +1,30 @@
+{
+  "slides": 39,
+  "source_slides_1_3_byte_identical": true,
+  "slide4_only_table_xml_changed": true,
+  "core_route": "1\u201324",
+  "appendix": "25\u201339",
+  "cloned_source_parts": 70,
+  "source_slide_mapping": {
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "17": 23,
+    "25": 25,
+    "5": 26,
+    "7": 27,
+    "8": 28,
+    "18": 29,
+    "26": 30,
+    "27": 31,
+    "28": 32,
+    "29": 33,
+    "30": 34,
+    "31": 35,
+    "32": 36,
+    "33": 37,
+    "34": 38,
+    "35": 39
+  }
+}

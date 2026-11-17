@@ -1,0 +1,142 @@
+[
+  {
+    "number": 1,
+    "text": "Arash  / Bagherabadi / Oct 21 / , 2026 / scTalk /   / 8 / : /  From Count Matrix to UMAP: / What Happens in Between?"
+  },
+  {
+    "number": 2,
+    "text": "Single-cell Journal Club Series / Discuss  / key/new papers / Shared standards and critical thinking in analysis / Open questions, interruptions, and debate encouraged / scTalk / 2 / Please Sign-in + Comments & Questions"
+  },
+  {
+    "number": 3,
+    "text": "Preprocessing prepares cells for biological inference / 02 / Count matrix / ↓ / QC / ↓ / Normalization / ↓ / Highly Variable Genes (Feature selection) / ↓ / Scaling (?) / ↓ / PCA / ↓ / Nearest-neighbor graph / ↓ / Clustering / ↓ / UMAP / ↓ / Marker genes / ↓ / Cell-type annotation / https://scanpy.readthedocs.io/en/stable/tutorials/index.html / https://satijalab.org/seurat/articles/pbmc3k_tutorial"
+  },
+  {
+    "number": 4,
+    "text": "A cell begins as a vector of molecular counts / 03 / Cell / CD3D / MS4A1 / NKG7 / Total UMIs / A / 4 / 0 / 1 / 1,000 / B / 8 / 0 / 2 / 2,000 / C / 0 / 6 / 0 / 1,200 / Each gene supplies one coordinate / Zero means no detected molecule / The full matrix contains many more genes / Illustrative counts. Total UMIs include genes omitted from this table. / Each UMI is intended to identify one captured mRNA molecule, rather than every mRNA molecule present in the cell."
+  },
+  {
+    "number": 5,
+    "text": "QC changes which cells enter the geometry / Luecken & Theis 2019, Figure 2, CC BY 4.0 / 04 / Count depth and detected genes / Mitochondrial fraction in context / Thresholds depend on tissue and sample"
+  },
+  {
+    "number": 6,
+    "text": "Normalization changes the meaning of a distance / 05 / Cell / Gene count / Total UMIs / Per 10,000 / log1p / A / 4 / 1,000 / 40 / 3.714 / B / 8 / 2,000 / 40 / 3.714 / yᵢⱼ = log(1 + 10,000 × cᵢⱼ / totalᵢ) / Library-size normalization reduces depth differences / log1p compresses the expression range / Illustrative arithmetic. Equal normalized values do not establish equal absolute RNA content."
+  },
+  {
+    "number": 7,
+    "text": "HVG selection and scaling define the gene space / 06 / Operation / What changes / What stays meaningful / HVG selection / Columns used for geometry / Original counts remain available / Centering / Gene mean becomes zero / Relative position of cells / Unit-variance scaling / Each gene has variance one / Gene-wise standardized deviations / HVGs emphasize variation beyond the mean–variance trend / Scaling is a modeling choice, not a universal requirement / Classic log-normalized workflow. HVG methods differ in expected input."
+  },
+  {
+    "number": 8,
+    "text": "Batch correction changes local relationships / Luecken & Theis 2019, Figure 3, CC BY 4.0 / 07 / Before and after correction / Mixing alone does not validate integration / Biology can be confounded with batch"
+  },
+  {
+    "number": 9,
+    "text": "Many genes share fewer patterns of variation / 08 / Co-regulated genes contribute redundant information / Technical variation adds unwanted directions / A compact representation can improve neighbor search / 20,000 genes     2,000 HVGs     30 PCs     2 UMAP coordinates / Illustrative dimensions, not recommended fixed settings"
+  },
+  {
+    "number": 10,
+    "text": "PCA rotates the axes, truncation removes directions / 09 / PC1 captures the largest remaining variance. PC2 is orthogonal to PC1."
+  },
+  {
+    "number": 11,
+    "text": "Loadings describe genes, scores locate cells / 10 / T = ZVₖ / Z: centered expression for the selected genes / Vₖ: gene weights for each retained component / T: one row per cell, one column per PC / PC1 score = 0.6 × Gene A + 0.8 × Gene B / Illustrative loading vector. Genes A and B denote centered, optionally scaled expression."
+  },
+  {
+    "number": 12,
+    "text": "Truncating PCA changes the distances between cells / 11 / d²(i,j) = Σₗ₌₁ᵏ (Tᵢₗ − Tⱼₗ)² / The retained PCs define the comparison space / All PCs preserve centered Euclidean geometry / Discarded PCs no longer contribute to distance / For an orthonormal PCA basis, without whitening"
+  },
+  {
+    "number": 13,
+    "text": "The elbow is a starting point for choosing PCs / Luecken & Theis 2019, Figure 4F, CC BY 4.0 / 12 / This dataset has an elbow around PCs 5–7 / Inspect loadings and QC associations / Check whether neighborhoods remain stable"
+  },
+  {
+    "number": 14,
+    "text": "A strong PC can reflect sequencing depth / Luecken & Theis 2019, Figure 4A, CC BY 4.0 / 13 / Cells share the count-depth color scale in Figure 4 / PCA optimizes variance without biological labels / Depth associations require investigation"
+  },
+  {
+    "number": 15,
+    "text": "Neighbor search defines local cell relationships / 14 / Candidate / PC coordinates / Distance from A / Among 2 nearest? / A / (0, 0, 0) / 0 / Reference / B / (0.1, 0.2, 0.1) / 0.245 / Yes / C / (2, 0, 0) / 2 / Yes / D / (0, 3, 0) / 3 / No / Each cell searches in the retained PC space / A graph records local connectivity and weights / Toy example with Euclidean distance and k = 2. A is excluded from its own candidates."
+  },
+  {
+    "number": 16,
+    "text": "UMAP fits a layout to a weighted graph / 15 / Local distances define connection strengths / Nearby cells attract in the embedding objective / Repulsion helps separate weakly connected cells / Optimization trades off conflicting relationships / The output gives each cell two display coordinates / Conceptual summary of UMAP’s fuzzy graph objective and negative-sampling optimization"
+  },
+  {
+    "number": 17,
+    "text": "The same cells produce different views of structure / Luecken & Theis 2019, Figure 4, CC BY 4.0 / 16"
+  },
+  {
+    "number": 18,
+    "text": "min_dist changes how tightly points pack / Official UMAP tutorial, synthetic data / 17 / Same synthetic color dataset from the official UMAP tutorial / Smaller min_dist allows tighter packing / n_neighbors controls the neighborhood scale"
+  },
+  {
+    "number": 19,
+    "text": "PCA and UMAP solve different problems / 18 / Property / PCA used for representation / UMAP used for display / Objective / Capture variance in orthogonal axes / Approximate weighted local relationships / Typical output here / Several dozen coordinates / Two coordinates / Interpretation / Gene loadings and cell scores / Relative layout and local neighborhoods / Main limitation / Linear axes may miss nonlinear structure / Global distances and density can distort / UMAP can run without PCA and can output more than two dimensions."
+  },
+  {
+    "number": 20,
+    "text": "Clustering and UMAP use related representations / 19 / Task / Usual input / Result / Neighbor construction / Retained PCs or integrated latent space / Weighted cell relationships / Clustering / A neighborhood graph, often with SNN weighting / A discrete label per cell / UMAP visualization / PC-derived neighborhoods or a supplied graph / Two display coordinates / Cluster labels usually appear as colors on UMAP / Changing layout settings need not change the clusters"
+  },
+  {
+    "number": 21,
+    "text": "UMAP distances need evidence beyond the picture / 20 / Nearby cells suggest local similarity worth checking / A gap does not prove a discrete cell type / Island area does not estimate population abundance / An apparent path does not establish lineage or time / Would the conclusion survive a different reasonable representation?"
+  },
+  {
+    "number": 22,
+    "text": "Different analysis tasks use different data layers / Luecken & Theis 2019, Table 1, teaching summary, CC BY 4.0 / 21 / Task / Appropriate representation / Library-aware count models and pseudobulk / Retained raw counts with sample metadata / Gene-expression display / An appropriate normalized gene-expression layer / Neighbor search and graph clustering / Selected PC scores or a suitable latent space / Visual exploration / UMAP coordinates, colored by independent metadata / Teaching summary based on Table 1. Statistical input depends on the chosen method."
+  },
+  {
+    "number": 23,
+    "text": "The full chain explains the final map / 22 / Counts record sampled molecules / QC and normalization define comparable observations / HVGs and scaling define the gene space / PCA and neighbor search define local similarity / UMAP supplies the display coordinates / Every visible island inherits upstream decisions"
+  },
+  {
+    "number": 24,
+    "text": "Discussion: which decision changes the conclusion? / 23 / A rare population disappears when we use fewer PCs / A cluster becomes tighter after changing min_dist / Samples mix after integration, but a disease state disappears / Which result needs a representation check, a layout check, or biological validation?"
+  },
+  {
+    "number": 25,
+    "text": "Backup material / Appendix: complete figures and implementation / Additional evidence for questions after the 30-minute session"
+  },
+  {
+    "number": 26,
+    "text": "Downstream tasks ask different biological questions / Luecken & Theis 2019, Figure 5, CC BY 4.0 / 25 / Appendix"
+  },
+  {
+    "number": 27,
+    "text": "Markers support the interpretation of cluster labels / Luecken & Theis 2019, Figure 6, CC BY 4.0 / 26 / Appendix"
+  },
+  {
+    "number": 28,
+    "text": "Trajectory models add assumptions beyond UMAP / Luecken & Theis 2019, Figure 7, CC BY 4.0 / 27 / Appendix"
+  },
+  {
+    "number": 29,
+    "text": "Published workflows used a range of HVG counts / Luecken & Theis 2019, Figure EV1, CC BY 4.0 / 28 / Appendix"
+  },
+  {
+    "number": 30,
+    "text": "Correction and denoising change gene-level variation / Luecken & Theis 2019, Figure EV2, CC BY 4.0 / 29 / Appendix"
+  },
+  {
+    "number": 31,
+    "text": "Random data can produce apparent marker evidence / Luecken & Theis 2019, Appendix Figure 1, CC BY 4.0 / 30 / Appendix"
+  },
+  {
+    "number": 32,
+    "text": "Each processing stage has different applications / Luecken & Theis 2019, Table 1, CC BY 4.0 / 31 / Appendix / Layer / Stage / Applications in the 2019 paper / Measured / 1 Raw / 2 Normalized (+ log transformed) / Statistical testing / Corrected / 3.1 Technical correction / Visual comparison / Corrected / 3.2 Biological correction / Preprocessing for trajectory inference / Reduced / 4 Feature selected / Visualization, trajectory inference / Reduced / 5 Dimensionally reduced (summarized) / Visualization, clustering, KNN graphs, trajectory inference / Full stage coverage, wording condensed. Method-specific assumptions still apply."
+  },
+  {
+    "number": 33,
+    "text": "The classical Seurat sequence / 32 / Appendix / obj <- NormalizeData(obj) / obj <- FindVariableFeatures(obj, nfeatures = 2000) / obj <- ScaleData(obj, features = VariableFeatures(obj)) / obj <- RunPCA(obj, features = VariableFeatures(obj)) / obj <- FindNeighbors(obj, dims = 1:30) / obj <- FindClusters(obj, resolution = 0.5) / obj <- RunUMAP(obj, reduction = \"pca\", dims = 1:30) / Assumes QC is complete. Illustrative settings, not optimized defaults. SCTransform follows an alternative route."
+  },
+  {
+    "number": 34,
+    "text": "The classical Scanpy sequence / 33 / Appendix / adata.layers[\"counts\"] = adata.X.copy() / sc.pp.normalize_total(adata, target_sum=1e4) / sc.pp.log1p(adata) / sc.pp.highly_variable_genes(adata, flavor=\"seurat\", /                           n_top_genes=2000) / sc.pp.scale(adata, max_value=10) / sc.pp.pca(adata, n_comps=50, mask_var=\"highly_variable\") / sc.pp.neighbors(adata, n_pcs=30, n_neighbors=15) / sc.tl.umap(adata, random_state=0) / sc.tl.leiden(adata, resolution=0.5) / Assumes QC is complete and X initially contains counts. Illustrative settings. Scaling can increase memory use."
+  },
+  {
+    "number": 35,
+    "text": "Sources and the scope of the update / 34 / Appendix / Main paper: Luecken & Theis, MSB 2019, e8746 / Main Figures 1–7, Expanded View Figures 1–2, Appendix Figure 1 / Current implementation references: Seurat, Scanpy, UMAP / Added arithmetic and PCA geometry are teaching examples / doi.org/10.15252/msb.20188746 / satijalab.org/seurat/articles/pbmc3k_tutorial / scanpy.readthedocs.io/en/stable/tutorials/basics/clustering.html / umap-learn.readthedocs.io/en/latest/how_umap_works.html / umap-learn.readthedocs.io/en/latest/parameters.html"
+  }
+]
